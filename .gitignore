@@ -36,3 +36,4 @@
 !box2d.lib
 !SDL2main.lib
 !SDL2test.lib
+.vs
