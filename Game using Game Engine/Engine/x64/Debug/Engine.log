@@ -1,0 +1,9 @@
+﻿  GameEngine.cpp
+D:\Development\EngenhoIrreal\Game using Game Engine\Engine\SDLWrapper.h(8,12): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+  InitError.cpp
+  SDLWrapper.cpp
+D:\Development\EngenhoIrreal\Game using Game Engine\Engine\SDLWrapper.h(8,12): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+D:\Development\EngenhoIrreal\Game using Game Engine\Engine\SDLWrapper.cpp(3,61): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+  Window.cpp
+  Generating Code...
+  Engine.vcxproj -> D:\Development\EngenhoIrreal\Game using Game Engine\x64\Debug\Engine.lib
