@@ -2,11 +2,16 @@
 * Generic Component
 ************************************************************/
 
-#include "SDL.h"
+#include "GameWorld.h"
+#include "GameEngine.h"
 #include "GameObject.h"
 #include "Component.h"
 #include <algorithm>
 #include "Log.h"
+
+GameObject::GameObject(GameWorld* myWorld) {
+	World = myWorld;
+}
 
 void GameObject::Start()
 {
@@ -17,10 +22,16 @@ void GameObject::Start()
 		components.end(),
 		[](std::shared_ptr<Component> cpt) { cpt->Start(); }
 	);
+
+	//if (World) {
+	//	World->InstatianteObject();
+	//}
+	//GameEngine::GetInstance()->InstantiateObject();
 }
 
 void GameObject::Update()
 {
+	//LOG("Update");
 }
 
 void GameObject::AddComponent(std::shared_ptr<Component> componentToAdd)
