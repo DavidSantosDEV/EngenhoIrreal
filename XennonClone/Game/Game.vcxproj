@@ -154,13 +154,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="CustomGameWorld.cpp" />
-    <ClCompile Include="Ship.cpp" />
+    <ClCompile Include="XennonGameWorld.cpp" />
     <ClCompile Include="XennonClone.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CustomGameWorld.h" />
-    <ClInclude Include="Ship.h" />
+    <ClInclude Include="XennonGameWorld.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,14 +1,14 @@
 /*
 * Client Game
 ************************************************************/
-#include "CustomGameWorld.h"
+#include "XennonGameWorld.h"
 #include "GameEngine.h"
 
 int main(int argc, char** argv)
 {
 	GameEngine gameEngine;
-	CustomGameWorld newWorld;
-	gameEngine.Init("XennonClone - Powered by EngenhoIrrealXVII", 640, 480, &newWorld);
+	XennonGameWorld xennonGameWorld;
+	gameEngine.Init("XennonClone - Powered by EngenhoIrrealXVII", 640, 480, &xennonGameWorld);
 	gameEngine.StartAndRun();
 
 	return 0;

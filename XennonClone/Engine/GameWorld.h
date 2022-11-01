@@ -1,22 +1,20 @@
-
 class GameEngine;
 class GameObject;
 
-class GameWorld {
-
-protected:
-	GameEngine* m_Engine;
-
+class GameWorld 
+{
 public:
 	void Init(GameEngine* myEngine);
 
 	GameWorld();
-	//GameWorld(GameEngine* Engine);
 	~GameWorld();
 
 	GameObject* InstantiateObject();
-	void RemoveObject(GameObject* Object);
+	void CallRemoveObjectFromStack(GameObject* gameObject);
 
 	virtual void Start() = 0;
 	virtual void Update() = 0;
+
+protected:
+	GameEngine* m_Engine = nullptr;
 };
