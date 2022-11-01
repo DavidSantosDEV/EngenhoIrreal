@@ -8,6 +8,19 @@
 #include <algorithm>
 #include "Log.h"
 
+<<<<<<< Updated upstream
+=======
+GameObject::GameObject() 
+{
+	LOG("BUILD");
+}
+GameObject::~GameObject() 
+{
+	GameEngine::GetGameWorld()->CallRemoveObjectFromStack(this);
+	LOG("DESTROY");
+}
+
+>>>>>>> Stashed changes
 void GameObject::Start()
 {
 	LOG("GO Start");
@@ -21,6 +34,10 @@ void GameObject::Start()
 
 void GameObject::Update()
 {
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 }
 
 void GameObject::AddComponent(std::shared_ptr<Component> componentToAdd)

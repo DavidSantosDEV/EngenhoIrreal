@@ -1,6 +1,7 @@
 c:\users\diogo\documents\github\engenhoirreal\xennonclone\game\x64\debug\vc143.pdb
 c:\users\diogo\documents\github\engenhoirreal\xennonclone\game\x64\debug\vc143.idb
 c:\users\diogo\documents\github\engenhoirreal\xennonclone\game\x64\debug\xennonclone.obj
+<<<<<<< Updated upstream
 c:\users\diogo\documents\github\engenhoirreal\xennonclone\game\x64\debug\xennonclone.tlog\cl.command.1.tlog
 c:\users\diogo\documents\github\engenhoirreal\xennonclone\game\x64\debug\xennonclone.tlog\cl.read.1.tlog
 c:\users\diogo\documents\github\engenhoirreal\xennonclone\game\x64\debug\xennonclone.tlog\cl.write.1.tlog
@@ -11,4 +12,13 @@ c:\users\diogo\documents\github\engenhoirreal\xennonclone\game\x64\debug\xennonc
 c:\users\diogo\documents\github\engenhoirreal\xennonclone\game\x64\debug\xennonclone.tlog\link.command.1.tlog
 c:\users\diogo\documents\github\engenhoirreal\xennonclone\game\x64\debug\xennonclone.tlog\link.read.1.tlog
 c:\users\diogo\documents\github\engenhoirreal\xennonclone\game\x64\debug\xennonclone.tlog\link.read.2.tlog
+=======
+c:\users\diogo\documents\github\engenhoirreal\xennonclone\game\x64\debug\ship.obj
+c:\users\diogo\documents\github\engenhoirreal\xennonclone\game\x64\debug\customgameworld.obj
+c:\users\diogo\documents\github\engenhoirreal\xennonclone\game\x64\debug\xennonclone.tlog\cl.command.1.tlog
+c:\users\diogo\documents\github\engenhoirreal\xennonclone\game\x64\debug\xennonclone.tlog\cl.read.1.tlog
+c:\users\diogo\documents\github\engenhoirreal\xennonclone\game\x64\debug\xennonclone.tlog\cl.write.1.tlog
+c:\users\diogo\documents\github\engenhoirreal\xennonclone\game\x64\debug\xennonclone.tlog\link.command.1.tlog
+c:\users\diogo\documents\github\engenhoirreal\xennonclone\game\x64\debug\xennonclone.tlog\link.read.1.tlog
+>>>>>>> Stashed changes
 c:\users\diogo\documents\github\engenhoirreal\xennonclone\game\x64\debug\xennonclone.tlog\link.write.1.tlog
