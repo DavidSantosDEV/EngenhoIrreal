@@ -8,7 +8,7 @@ class GameWorld;
 
 class GameEngine
 {
-	GameWorld* m_World;
+	
 protected:
 	std::vector<GameObject*> m_GameObjectStack;
 	std::vector<std::shared_ptr<RenderComponent>> m_RenderComponents = {};
@@ -24,9 +24,12 @@ public:
 	void AddGameObjectToStack(GameObject* newObject);
 	void DeleteObject(GameObject* Object);
 	
+	static GameWorld* GetGameWorld() { return m_World; }
 
 	~GameEngine();
 private:
+
+	static GameWorld* m_World;
 	class SDLWrapper* m_Sdl;
 	class Window* m_Window;
 };

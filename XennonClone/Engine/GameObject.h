@@ -7,12 +7,10 @@ class GameWorld;
 class GameObject
 {
 protected:
-	
-	GameWorld* World;
-
 public:
 
-	GameObject(GameWorld* MyWorld);
+	GameObject();
+	~GameObject();
 
 	virtual void Start();
 	virtual void Update();

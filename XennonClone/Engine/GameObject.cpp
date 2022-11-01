@@ -9,8 +9,12 @@
 #include <algorithm>
 #include "Log.h"
 
-GameObject::GameObject(GameWorld* myWorld) {
-	World = myWorld;
+GameObject::GameObject() {
+	LOG("BUILD");
+}
+GameObject::~GameObject() {
+	GameEngine::GetGameWorld()->RemoveObject(this);
+	LOG("DESTROY");
 }
 
 void GameObject::Start()
@@ -22,7 +26,7 @@ void GameObject::Start()
 		components.end(),
 		[](std::shared_ptr<Component> cpt) { cpt->Start(); }
 	);
-
+	
 	//if (World) {
 	//	World->InstatianteObject();
 	//}

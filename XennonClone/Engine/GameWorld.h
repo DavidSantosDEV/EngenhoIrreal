@@ -14,7 +14,8 @@ public:
 	//GameWorld(GameEngine* Engine);
 	~GameWorld();
 
-	GameObject* InstatianteObject();
+	GameObject* InstantiateObject();
+	void RemoveObject(GameObject* Object);
 
 	virtual void Start() = 0;
 	virtual void Update() = 0;

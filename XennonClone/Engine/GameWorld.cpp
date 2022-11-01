@@ -16,13 +16,20 @@ GameWorld::~GameWorld()
 {
 }
 
-GameObject* GameWorld::InstatianteObject()
+GameObject* GameWorld::InstantiateObject()
 {
 	if (m_Engine) {
-		GameObject* obj = new GameObject(this);
+		GameObject* obj = new GameObject();
 		m_Engine->AddGameObjectToStack(obj);
 		obj->Start();
 		return obj;
 	}
 	return nullptr;
+}
+
+void GameWorld::RemoveObject(GameObject* Object)
+{
+	if (m_Engine) {
+		m_Engine->DeleteObject(Object);
+	}
 }

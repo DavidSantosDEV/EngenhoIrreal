@@ -1,16 +1,18 @@
 #include "CustomGameWorld.h"
 #include "Log.h"
 
+
+#include "Ship.h"
 void CustomGameWorld::Start()
 {
-	//InstatianteObject();
+	InstantiateObject();
+	//
 }
 
 void CustomGameWorld::Update()
 {
-	if (bananas==8) {
-		//InstatianteObject();
-	}
+	GameObject* obj = InstantiateObject();
+	delete obj;
 	bananas++;
 	LOG("Bananas " << bananas);
 }
