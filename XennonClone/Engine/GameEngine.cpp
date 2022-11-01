@@ -1,11 +1,17 @@
+/*
+* Game Engine Core. Responsible for main execution loop and calling 
+* Start(), Update(), HandleEvents() and Renderer() functions from GameObjects.
+************************************************************/
+
 #include "GameEngine.h"
+#include "SDL.h"
 #include "SDLWrapper.h"
 #include "Window.h"
 
-void GameEngine::Init(std::string windowTitle, int windowWidth, int windowHeight)
+void GameEngine::Init(const char* windowTitle, int windowWidth, int windowHeight)
 {
-	sdl = new SDLWrapper(SDL_INIT_VIDEO | SDL_INIT_TIMER);
-	window = new Window(windowTitle, windowWidth, windowHeight);
+	m_Sdl = new SDLWrapper(SDL_INIT_VIDEO | SDL_INIT_TIMER);
+	m_Window = new Window(windowTitle, windowWidth, windowHeight);
 }
 
 void GameEngine::StartAndRun()
@@ -31,13 +37,33 @@ void GameEngine::StartAndRun()
 		Update();
 		Render();
 
-		window->updateSurface();
+		m_Window->UpdateSurface();
 	}
+}
+
+void GameEngine::Start()
+{
+
+}
+
+void GameEngine::HandleInput(union SDL_Event& ev)
+{
+
+}
+
+void GameEngine::Update()
+{
+
+}
+
+void GameEngine::Render()
+{
+
 }
 
 GameEngine::~GameEngine()
 {
-	delete window;
-	delete sdl;
+	delete m_Window;
+	delete m_Sdl;
 }
 

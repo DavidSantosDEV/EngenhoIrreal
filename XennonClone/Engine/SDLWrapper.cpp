@@ -1,3 +1,8 @@
+/*
+* Generic Component
+************************************************************/
+
+#include <SDL.h>
 #include "SDLWrapper.h"
 
 SDLWrapper::SDLWrapper(Uint32 flags /*= 0*/) throw(InitError)

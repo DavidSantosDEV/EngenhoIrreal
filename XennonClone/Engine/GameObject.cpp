@@ -1,3 +1,7 @@
+/*
+* Generic Component
+************************************************************/
+
 #include "SDL.h"
 #include "GameObject.h"
 #include "Component.h"

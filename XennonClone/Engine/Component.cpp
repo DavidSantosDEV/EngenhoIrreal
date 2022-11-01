@@ -1,3 +1,7 @@
+/*
+* Generic Component
+************************************************************/
+
 #include "Component.h"
 #include "Log.h"
 

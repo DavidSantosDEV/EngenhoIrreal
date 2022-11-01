@@ -1,3 +1,8 @@
+/*
+* Generic Component
+************************************************************/
+
+#include "SDL.h"
 #include "InitError.h"
 
 InitError::InitError() :exception(), msg(SDL_GetError()) {}

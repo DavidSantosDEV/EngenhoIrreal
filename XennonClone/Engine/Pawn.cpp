@@ -1,3 +1,7 @@
+/*
+* Generic Component
+************************************************************/
+
 #include "Pawn.h"
 #include "SDL.h"
 #include "Log.h"
