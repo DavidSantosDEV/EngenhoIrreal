@@ -13,7 +13,7 @@ GameObject::GameObject() {
 	LOG("BUILD");
 }
 GameObject::~GameObject() {
-	GameEngine::GetGameWorld()->RemoveObject(this);
+	GameEngine::GetGameWorld()->CallRemoveObjectFromStack(this);
 	LOG("DESTROY");
 }
 

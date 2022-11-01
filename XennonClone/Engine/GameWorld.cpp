@@ -1,11 +1,11 @@
+/*
+* - Works as GameMode on Unreal
+* - MUST be implemented by client
+************************************************************/
+
 #include "GameWorld.h"
 #include "GameObject.h"
 #include "GameEngine.h"
-
-
-void GameWorld::Init(GameEngine* myEngine) {
-	m_Engine = myEngine;
-}
 
 GameWorld::GameWorld()
 {
@@ -16,20 +16,24 @@ GameWorld::~GameWorld()
 {
 }
 
-GameObject* GameWorld::InstantiateObject()
+void GameWorld::Init(GameEngine* myEngine)
 {
-	if (m_Engine) {
-		GameObject* obj = new GameObject();
-		m_Engine->AddGameObjectToStack(obj);
-		obj->Start();
-		return obj;
-	}
-	return nullptr;
+	m_Engine = myEngine;
 }
 
-void GameWorld::RemoveObject(GameObject* Object)
+GameObject* GameWorld::InstantiateObject()
 {
-	if (m_Engine) {
-		m_Engine->DeleteObject(Object);
-	}
+	if (m_Engine == nullptr) { return nullptr; }
+
+	GameObject* gameObject = new GameObject();
+	m_Engine->AddGameObjectToStack(gameObject);
+	gameObject->Start();
+
+	return gameObject;
+}
+
+void GameWorld::CallRemoveObjectFromStack(GameObject* gameObject)
+{
+	if (m_Engine == nullptr) { return; }
+	m_Engine->RemoveObjectFromStack(gameObject);
 }

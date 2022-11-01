@@ -8,29 +8,29 @@ class GameWorld;
 
 class GameEngine
 {
-	
-protected:
-	std::vector<GameObject*> m_GameObjectStack;
-	std::vector<std::shared_ptr<RenderComponent>> m_RenderComponents = {};
 public:
+	~GameEngine();
 	void Init(const char* windowTitle, int windowWidth, int windowHeight, GameWorld* World);
 	void StartAndRun();
 
+	/* Engine Events */
 	void Start();
 	void HandleInput(union SDL_Event& ev);
 	void Update();
 	void Render();
 
-	void AddGameObjectToStack(GameObject* newObject);
-	void DeleteObject(GameObject* Object);
-	
-	static GameWorld* GetGameWorld() { return m_World; }
+	void AddGameObjectToStack(GameObject* gameObject);
+	void RemoveObjectFromStack(GameObject* gameObject);
 
-	~GameEngine();
 private:
+	std::vector<GameObject*> m_GameObjectStack = {};
+	std::vector<std::shared_ptr<RenderComponent>> m_RenderComponents = {};
 
 	static GameWorld* m_World;
 	class SDLWrapper* m_Sdl;
 	class Window* m_Window;
+
+public:
+	static GameWorld* GetGameWorld() { return m_World; }
 };
 

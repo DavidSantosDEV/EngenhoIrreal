@@ -6,7 +6,6 @@ class GameWorld;
 
 class GameObject
 {
-protected:
 public:
 
 	GameObject();
