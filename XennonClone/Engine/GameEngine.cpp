@@ -8,10 +8,17 @@
 #include "SDLWrapper.h"
 #include "Window.h"
 
-void GameEngine::Init(const char* windowTitle, int windowWidth, int windowHeight)
+#include "GameWorld.h"
+#include "GameObject.h"
+#include "RenderComponent.h"
+
+GameWorld* GameEngine::m_World = nullptr;
+
+void GameEngine::Init(const char* windowTitle, int windowWidth, int windowHeight, GameWorld* World)
 {
 	m_Sdl = new SDLWrapper(SDL_INIT_VIDEO | SDL_INIT_TIMER);
 	m_Window = new Window(windowTitle, windowWidth, windowHeight);
+	m_World = World;
 }
 
 void GameEngine::StartAndRun()
@@ -43,7 +50,11 @@ void GameEngine::StartAndRun()
 
 void GameEngine::Start()
 {
-
+	m_World->Init(this);
+	m_World->Start();
+	for (int i = 0; i < m_GameObjectStack.size(); ++i) {
+		m_GameObjectStack[i]->Start();
+	}
 }
 
 void GameEngine::HandleInput(union SDL_Event& ev)
@@ -51,14 +62,44 @@ void GameEngine::HandleInput(union SDL_Event& ev)
 
 }
 
+void GameEngine::AddGameObjectToStack(GameObject* newObject)
+{
+	if (!newObject) {
+		return;
+	}
+	for (int i = 0; i < m_GameObjectStack.size(); ++i) {
+		if (m_GameObjectStack[i] == newObject) {
+			return;	
+		}
+	}
+	m_GameObjectStack.push_back(newObject);
+	//newObject->Start();
+}
+
+void GameEngine::DeleteObject(GameObject* Object)
+{
+	for (int i = 0; i < m_GameObjectStack.size(); ++i) {
+		if (m_GameObjectStack[i] == Object) {
+			m_GameObjectStack.erase(m_GameObjectStack.begin()+i);
+			return;
+		}
+	}
+
+}
+
 void GameEngine::Update()
 {
-
+	m_World->Update();
+	for (int i = 0; i < m_GameObjectStack.size();++i) {
+		if(m_GameObjectStack[i]!=nullptr)m_GameObjectStack[i]->Update();
+	}
 }
 
 void GameEngine::Render()
 {
-
+	for (int i = 0; i < m_RenderComponents.size(); ++i) {
+		m_RenderComponents[i]->Render();
+	}
 }
 
 GameEngine::~GameEngine()

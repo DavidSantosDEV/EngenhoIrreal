@@ -2,9 +2,16 @@
 #include <vector>
 #include <memory>
 
+class GameWorld;
+
 class GameObject
 {
+protected:
 public:
+
+	GameObject();
+	~GameObject();
+
 	virtual void Start();
 	virtual void Update();
 
