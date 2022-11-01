@@ -11,9 +11,12 @@
 #include "SDLWrapper.h"
 #include "Window.h"
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
 void GameEngine::Init(const char* windowTitle, int windowWidth, int windowHeight)
 =======
+=======
+>>>>>>> Stashed changes
 #include "GameWorld.h"
 #include "GameObject.h"
 #include "RenderComponent.h"
@@ -98,13 +101,21 @@ void GameEngine::Render()
 	{
 		m_RenderComponents[i]->Render();
 	}
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 }
 
 void GameEngine::AddGameObjectToStack(GameObject* gameObject)
 {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
+=======
+	if (gameObject == nullptr) { return; }
+	m_GameObjectStack.push_back(gameObject);
+>>>>>>> Stashed changes
 =======
 	if (gameObject == nullptr) { return; }
 	m_GameObjectStack.push_back(gameObject);
@@ -114,8 +125,11 @@ void GameEngine::AddGameObjectToStack(GameObject* gameObject)
 void GameEngine::RemoveGameObjectFromStack(GameObject* gameObject)
 {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
 =======
+=======
+>>>>>>> Stashed changes
 	if (gameObject == nullptr) { return; }
 	for (int i = 0; i < m_GameObjectStack.size(); ++i)
 	{

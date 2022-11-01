@@ -4,8 +4,11 @@ class GameEngine
 {
 public:
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 	void Init(const char* windowTitle, int windowWidth, int windowHeight);
 =======
+=======
+>>>>>>> Stashed changes
 	~GameEngine();
 
 	void Init(const char* windowTitle, int windowWidth, int windowHeight, GameWorld* World);

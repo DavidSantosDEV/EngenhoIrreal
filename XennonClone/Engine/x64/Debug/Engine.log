@@ -1,7 +1,10 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(510,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (Engine.vcxproj).  This can lead to incorrect clean and rebuild behavior.
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   Window.cpp
 =======
+=======
+>>>>>>> Stashed changes
   GameEngine.cpp
 C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\SDLWrapper.h(7,12): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
   GameObject.cpp
@@ -9,5 +12,8 @@ C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32
   GameWorld.cpp
 C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
   Generating Code...
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   Engine.vcxproj -> C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\x64\Debug\EngenhoIrrealXVII.lib

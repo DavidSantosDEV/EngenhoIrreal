@@ -9,7 +9,10 @@
 #include "Log.h"
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 GameObject::GameObject() 
 {
 	LOG("BUILD");
@@ -35,6 +38,10 @@ void GameObject::Start()
 void GameObject::Update()
 {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 =======
 
 >>>>>>> Stashed changes

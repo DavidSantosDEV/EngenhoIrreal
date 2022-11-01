@@ -19,7 +19,10 @@
       <Filter>Source Files</Filter>
     </ClCompile>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
     <ClCompile Include="XennonGameWorld.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

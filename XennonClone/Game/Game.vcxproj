@@ -155,9 +155,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     <ClCompile Include="XennonClone.cpp" />
   </ItemGroup>
 =======
+=======
+>>>>>>> Stashed changes
     <ClCompile Include="XennonGameWorld.cpp" />
     <ClCompile Include="XennonClone.cpp" />
   </ItemGroup>
