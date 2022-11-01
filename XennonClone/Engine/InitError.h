@@ -1,6 +1,5 @@
 #include <exception>
 #include <string>
-#include "SDL.h"
 
 class InitError : public std::exception {
 public:

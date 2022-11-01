@@ -1,26 +1,32 @@
+/*
+* Generic Component
+************************************************************/
+
+#include <SDL.h>
 #include "Window.h"
 #include "InitError.h"
 
-Window::Window(std::string title, int windowWidth, int windowHeight)
+Window::Window(const char* title, int windowWidth, int windowHeight)
 {
-	window = SDL_CreateWindow(title.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, windowWidth, windowHeight, SDL_WINDOW_OPENGL);
-	if (window == nullptr)
+	m_Window = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 
+		windowWidth, windowHeight, SDL_WINDOW_OPENGL);
+	if (m_Window == nullptr)
 	{
 		throw InitError();
 	}
 }
 
-SDL_Surface* Window::getSurface()
+SDL_Surface* Window::GetSurface() const
 {
-	return SDL_GetWindowSurface(window);
+	return SDL_GetWindowSurface(m_Window);
 }
 
-void Window::updateSurface()
+void Window::UpdateSurface()
 {
-	SDL_UpdateWindowSurface(window);
+	SDL_UpdateWindowSurface(m_Window);
 }
 
 Window::~Window()
 {
-	SDL_DestroyWindow(window);
+	SDL_DestroyWindow(m_Window);
 }

@@ -1,16 +1,3 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(510,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (Engine.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  Component.cpp
-C:\Users\diogo\Documents\AdvancedTopicsProjects\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
-  GameEngine.cpp
-C:\Users\diogo\Documents\AdvancedTopicsProjects\XennonClone\Engine\SDLWrapper.h(8,12): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
-  GameObject.cpp
-C:\Users\diogo\Documents\AdvancedTopicsProjects\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
-  InitError.cpp
-  Pawn.cpp
-C:\Users\diogo\Documents\AdvancedTopicsProjects\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
-  SDLWrapper.cpp
-C:\Users\diogo\Documents\AdvancedTopicsProjects\XennonClone\Engine\SDLWrapper.h(8,12): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
-C:\Users\diogo\Documents\AdvancedTopicsProjects\XennonClone\Engine\SDLWrapper.cpp(3,61): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
   Window.cpp
-  Generating Code...
-  Engine.vcxproj -> C:\Users\diogo\Documents\AdvancedTopicsProjects\XennonClone\x64\Debug\EngenhoIrrealXVII.lib
+  Engine.vcxproj -> C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\x64\Debug\EngenhoIrrealXVII.lib
