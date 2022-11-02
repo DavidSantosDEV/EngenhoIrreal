@@ -9,36 +9,32 @@
 #include <algorithm>
 #include "Log.h"
 
-GameObject::GameObject() {
+GameObject::GameObject() 
+{
 	LOG("BUILD");
 }
-GameObject::~GameObject() {
+GameObject::~GameObject() 
+{
 	GameEngine::GetGameWorld()->CallRemoveObjectFromStack(this);
 	LOG("DESTROY");
 }
 
 void GameObject::Start()
 {
+	if (m_WasInitialized) { return; }
+
 	LOG("GO Start");
 
 	std::for_each(
-		components.begin(),
-		components.end(),
+		m_Components.begin(),
+		m_Components.end(),
 		[](std::shared_ptr<Component> cpt) { cpt->Start(); }
 	);
-	
-	//if (World) {
-	//	World->InstatianteObject();
-	//}
-	//GameEngine::GetInstance()->InstantiateObject();
+
+	m_WasInitialized = true;
 }
 
 void GameObject::Update()
 {
 	//LOG("Update");
-}
-
-void GameObject::AddComponent(std::shared_ptr<Component> componentToAdd)
-{
-	components.emplace_back(std::move(componentToAdd));
 }
