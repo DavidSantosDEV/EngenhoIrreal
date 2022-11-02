@@ -9,3 +9,8 @@ void Component::Start()
 {
 	LOG("Component Start");
 }
+
+void Component::Update()
+{
+	LOG("Component Update");
+}

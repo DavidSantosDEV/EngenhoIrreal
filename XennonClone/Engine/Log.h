@@ -19,8 +19,9 @@
 #include <iostream>
 #include "rlutil.h"
 #define LOG(x)\
-rlutil::setColor(7);\
-std::cout << x << std::endl;
+rlutil::setColor(2);\
+std::cout << x << std::endl;\
+rlutil::setColor(7);
 #define LOG_WARNING(x)\
 {\
 rlutil::setColor(6);\

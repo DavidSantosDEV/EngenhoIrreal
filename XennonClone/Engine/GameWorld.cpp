@@ -7,9 +7,11 @@
 #include "GameObject.h"
 #include "GameEngine.h"
 
+// Initialize static variables
+GameEngine* GameWorld::m_Engine = nullptr;
+
 GameWorld::GameWorld()
 {
-	m_Engine = nullptr;
 }
 
 GameWorld::~GameWorld()

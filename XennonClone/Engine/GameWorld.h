@@ -16,5 +16,5 @@ public:
 	virtual void Update() = 0;
 
 protected:
-	GameEngine* m_Engine = nullptr;
+	static GameEngine* m_Engine;
 };
