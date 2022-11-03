@@ -115,6 +115,7 @@ void GameEngine::AddGameObjectToStack(GameObject* gameObject)
 {
 	if (gameObject == nullptr) { return; }
 	m_GameObjectStack.push_back(gameObject);
+	//gameObject->Start();
 }
 
 void GameEngine::RemoveObjectFromStack(GameObject* gameObject)
