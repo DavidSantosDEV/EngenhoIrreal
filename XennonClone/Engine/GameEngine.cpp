@@ -17,6 +17,7 @@
 
 // Initialize static variables
 GameWorld* GameEngine::m_World = nullptr;
+float GameEngine::m_ElapsedMS = 0.f;
 
 GameEngine::~GameEngine()
 {
@@ -38,8 +39,10 @@ void GameEngine::StartAndRun()
 	bool isRunning = true;
 	SDL_Event ev;
 
+	LOG("Engine start")
 	while (isRunning)
 	{
+		Uint64 start = SDL_GetPerformanceCounter();
 		while (SDL_PollEvent(&ev) != 0)
 		{
 			if (ev.type == SDL_QUIT)
@@ -53,8 +56,15 @@ void GameEngine::StartAndRun()
 		}
 		Update();
 		Render();
-
 		m_Window->UpdateSurface();
+		
+		Uint64 end = SDL_GetPerformanceCounter();
+		m_ElapsedMS = (end - start) / (float)SDL_GetPerformanceFrequency() * 1000.0f;
+		const long double CalcedTime = (double)(1000.f / m_MaxFPS);
+		SDL_Delay(floor(abs(CalcedTime - m_ElapsedMS)));
+
+		LOG("Calced: "<<CalcedTime)
+		LOG("DeltaTime:" << m_ElapsedMS)
 	}
 }
 
