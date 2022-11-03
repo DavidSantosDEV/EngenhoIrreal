@@ -10,6 +10,5 @@ int main(int argc, char** argv)
 	XennonGameWorld xennonGameWorld;
 	gameEngine.Init("XennonClone - Powered by EngenhoIrrealXVII", 640, 480, &xennonGameWorld);
 	gameEngine.StartAndRun();
-
 	return 0;
 }

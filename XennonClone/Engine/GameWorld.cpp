@@ -14,6 +14,7 @@ GameWorld::GameWorld()
 
 GameWorld::~GameWorld()
 {
+		
 }
 
 void GameWorld::Init(GameEngine* myEngine)

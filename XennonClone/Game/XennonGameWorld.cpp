@@ -3,6 +3,9 @@
 
 void XennonGameWorld::Start()
 {
+	GameWorld* newWorld = new XennonGameWorld;
+
+	delete newWorld;
 }
 
 void XennonGameWorld::Update()

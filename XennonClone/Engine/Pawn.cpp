@@ -6,6 +6,14 @@
 #include "SDL.h"
 #include "Log.h"
 
+void Pawn::Start()
+{
+}
+
+void Pawn::Update()
+{
+}
+
 void Pawn::HandleEvents(SDL_Event& ev)
 {
 	if (ev.type == SDL_KEYDOWN)
