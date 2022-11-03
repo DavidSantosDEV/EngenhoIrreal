@@ -13,6 +13,7 @@
 #include "GameWorld.h"
 #include "GameObject.h"
 #include "RenderComponent.h"
+#include "Log.h"
 
 // Initialize static variables
 GameWorld* GameEngine::m_World = nullptr;
@@ -21,7 +22,6 @@ GameEngine::~GameEngine()
 {
 	delete m_Window;
 	delete m_Sdl;
-	delete m_World;
 }
 
 void GameEngine::Init(const char* windowTitle, int windowWidth, int windowHeight, GameWorld* World)
@@ -60,11 +60,19 @@ void GameEngine::StartAndRun()
 
 void GameEngine::Start()
 {
+	LOG("Engine Start");
+
 	m_World->Init(this);
 	m_World->Start();
+
 	for (int i = 0; i < m_GameObjectStack.size(); ++i) 
 	{
-		m_GameObjectStack[i]->Start();
+		// If gameobject hasn't been initialized yet
+		// GO created on world on compile time will have already been initialized
+		if (m_GameObjectStack[i]->GetWasInitialized() == false)
+		{
+			m_GameObjectStack[i]->Start();
+		}
 	}
 }
 

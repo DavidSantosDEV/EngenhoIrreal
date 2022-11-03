@@ -5,7 +5,7 @@
 
 class RenderComponent : public Component
 {
-
 public:
-	virtual void Render() = 0; //Pure Virtual
+	RenderComponent() = default;
+	void Render() {}
 };
