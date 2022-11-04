@@ -7,5 +7,5 @@ class RenderComponent : public Component
 {
 public:
 	RenderComponent() = default;
-	void Render() {}
+	virtual void Render(struct SDL_Renderer* renderer) = 0;
 };

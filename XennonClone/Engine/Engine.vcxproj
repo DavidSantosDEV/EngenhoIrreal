@@ -22,22 +22,30 @@
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="GameRenderer.cpp" />
     <ClCompile Include="GameWorld.cpp" />
     <ClCompile Include="InitError.cpp" />
     <ClCompile Include="Pawn.cpp" />
     <ClCompile Include="SDLWrapper.cpp" />
+    <ClCompile Include="Sprite.cpp" />
+    <ClCompile Include="TextureManager.cpp" />
+    <ClCompile Include="Transform.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Component.h" />
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="GameRenderer.h" />
     <ClInclude Include="GameWorld.h" />
     <ClInclude Include="InitError.h" />
     <ClInclude Include="Log.h" />
     <ClInclude Include="Pawn.h" />
     <ClInclude Include="RenderComponent.h" />
     <ClInclude Include="SDLWrapper.h" />
+    <ClInclude Include="Sprite.h" />
+    <ClInclude Include="TextureManager.h" />
+    <ClInclude Include="Transform.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

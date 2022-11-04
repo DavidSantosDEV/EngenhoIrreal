@@ -10,5 +10,6 @@ protected:
 
 public:
 	inline void SetOwnerGameObject(class GameObject* gameObject) { m_OwnerGameObject = gameObject; }
+	inline GameObject* GetOwner() { return m_OwnerGameObject; }
 };
 

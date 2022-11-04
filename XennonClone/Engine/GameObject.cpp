@@ -7,7 +7,6 @@
 #include "GameObject.h"
 #include "Component.h"
 #include <algorithm>
-#include "Log.h"
 
 GameObject::GameObject() 
 {

@@ -11,5 +11,6 @@ private:
 	struct SDL_Window* m_Window = nullptr;
 public:
 	struct SDL_Surface* GetSurface() const;
+	SDL_Window* GetWindow() const;
 };
 

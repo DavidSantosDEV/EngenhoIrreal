@@ -21,6 +21,11 @@ SDL_Surface* Window::GetSurface() const
 	return SDL_GetWindowSurface(m_Window);
 }
 
+SDL_Window* Window::GetWindow() const
+{
+	return m_Window;
+}
+
 void Window::UpdateSurface()
 {
 	SDL_UpdateWindowSurface(m_Window);

@@ -13,6 +13,7 @@
 #include "GameWorld.h"
 #include "GameObject.h"
 #include "RenderComponent.h"
+#include "GameRenderer.h"
 #include "Log.h"
 
 // Initialize static variables
@@ -29,6 +30,9 @@ void GameEngine::Init(const char* windowTitle, int windowWidth, int windowHeight
 {
 	m_Sdl = new SDLWrapper(SDL_INIT_VIDEO | SDL_INIT_TIMER);
 	m_Window = new Window(windowTitle, windowWidth, windowHeight);
+
+	m_Renderer = new GameRenderer(m_Window->GetWindow(), -1, true);
+
 	m_World = World;
 }
 
@@ -105,10 +109,12 @@ void GameEngine::Update()
 
 void GameEngine::Render()
 {
+	m_Renderer->CleanRender();
 	for (int i = 0; i < m_RenderComponents.size(); ++i) 
 	{
-		m_RenderComponents[i]->Render();
+		m_RenderComponents[i]->Render(m_Renderer->GetRenderer());
 	}
+	m_Renderer->RenderPresent();
 }
 
 void GameEngine::AddGameObjectToStack(GameObject* gameObject)

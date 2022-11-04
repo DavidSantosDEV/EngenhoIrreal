@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <memory>
+#include "Transform.h"
 #include "Log.h"
 #include <array>
 
@@ -16,11 +17,13 @@ public:
 	virtual void Start();
 	virtual void Update();
 
-//protected:
+protected:
 	std::vector<std::shared_ptr<class Component>> m_Components;
 	std::array<class Component*, 32> m_ComponentsHashMap;
 
 	bool m_WasInitialized = false;
+
+	Transform m_Transform;
 public:
 /* Component-Derived System */
 #pragma region ComponentSystem
@@ -66,5 +69,7 @@ public:
 
 public:
 	inline bool GetWasInitialized() const { return m_WasInitialized; }
+
+	inline Transform* GetTransform() { return &m_Transform; }
 };
 

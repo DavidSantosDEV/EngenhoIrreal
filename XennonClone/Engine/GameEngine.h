@@ -33,8 +33,10 @@ private:
 	std::vector<std::shared_ptr<RenderComponent>> m_RenderComponents = {};
 
 	static GameWorld* m_World;
+
 	class SDLWrapper* m_Sdl;
 	class Window* m_Window;
+	class GameRenderer* m_Renderer;
 
 	const int m_MaxFPS = 60;
 	
