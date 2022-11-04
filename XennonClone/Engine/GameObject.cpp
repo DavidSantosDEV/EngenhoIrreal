@@ -1,8 +1,9 @@
 /*
-* Generic Component
+* Generic GameObject(), Update() called every frame from GameEngine.h
+* Start() and Update() of the gameobject's components are also called
+* automatically
 ************************************************************/
 
-#include "GameWorld.h"
 #include "GameEngine.h"
 #include "GameObject.h"
 #include "Component.h"
@@ -11,11 +12,12 @@
 
 GameObject::GameObject() 
 {
+	GameEngine::AddGameObjectToStack(this);
 	LOG("BUILD");
 }
 GameObject::~GameObject() 
 {
-	GameEngine::GetGameWorld()->CallRemoveObjectFromStack(this);
+	GameEngine::RemoveGameObjectFromStack(this);
 	LOG("DESTROY");
 }
 
@@ -34,7 +36,6 @@ void GameObject::Start()
 	m_WasInitialized = true;
 }
 
-void GameObject::Update()
+void GameObject::Update(float deltaTime)
 {
-	//LOG("Update");
 }

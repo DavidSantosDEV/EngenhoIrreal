@@ -1,7 +1,7 @@
+#include "Log.h"
+
 class GameEngine;
 class GameObject;
-#include "GameEngine.h"
-#include "Log.h"
 
 class GameWorld 
 {
@@ -11,18 +11,14 @@ public:
 	GameWorld();
 	~GameWorld();
 
-	GameObject* InstantiateObject();
-	void CallRemoveObjectFromStack(GameObject* gameObject);
-
 	virtual void Start() = 0;
-	virtual void Update() = 0;
+	virtual void Update(float deltaTime) = 0;
 
 	template <typename T, typename... TArgs> T* InstantiateObject(TArgs&&... mArgs) {
 		T* newObject = new T(std::forward(mArgs)...);
-		if (static_cast<GameObject*>(newObject)) {
-			if (m_Engine) {
-				m_Engine->AddGameObjectToStack(newObject);
-			}
+		if (static_cast<GameObject*>(newObject)) 
+		{
+			newObject->Start();
 			return newObject;
 		}
 		LOG_ERROR("Can't instantiate Non GameObject types");

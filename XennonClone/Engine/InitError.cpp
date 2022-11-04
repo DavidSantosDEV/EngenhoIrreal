@@ -1,5 +1,5 @@
 /*
-* Generic Component
+* Class to use to throw SDL related errors
 ************************************************************/
 
 #include "SDL.h"

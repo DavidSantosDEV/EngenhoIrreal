@@ -3,7 +3,7 @@ class Component
 {
 public:
 	virtual void Start();
-	virtual void Update();
+	virtual void Update(float deltatime);
 
 protected:
 	class GameObject* m_OwnerGameObject = nullptr;

@@ -6,6 +6,7 @@
 class RenderComponent : public Component
 {
 public:
-	RenderComponent() = default;
-	void Render() {}
+	RenderComponent();
+	~RenderComponent();
+	void Render();
 };

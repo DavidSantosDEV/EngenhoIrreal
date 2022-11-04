@@ -13,8 +13,8 @@
 #if PONG_DEBUG == 1
 #include <iostream>
 #define LOG(x) std::cout << x << std::endl;
-#define WARNING(x) std::cout << x << std::endl;
-#define ERROR(x) std::cout << x << std::endl;
+#define LOG_WARNING(x) std::cout << x << std::endl;
+#define LOG_ERROR(x) std::cout << x << std::endl;
 #elif PONG_DEBUG == 2
 #include <iostream>
 #include "rlutil.h"

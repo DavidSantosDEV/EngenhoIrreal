@@ -1,17 +1,34 @@
 /*
-* Generic Component
+* Generic Pawn GameObject, HandleEvents() is called every frame from 
+* GameEngine.h
 ************************************************************/
 
+#include "GameEngine.h"
 #include "Pawn.h"
 #include "SDL.h"
 #include "Log.h"
 
-void Pawn::Start()
+Pawn::Pawn()
 {
+	GameEngine::AddPawnToStack(this);
 }
 
-void Pawn::Update()
+Pawn::~Pawn()
 {
+	GameEngine::RemovePawnFromStack(this);
+	LOG("Pawn Destroy");
+}
+
+void Pawn::Start()
+{
+	GameObject::Start();
+
+	LOG("Pawn start");
+}
+
+void Pawn::Update(float deltaTime)
+{
+	GameObject::Update(deltaTime);
 }
 
 void Pawn::HandleEvents(SDL_Event& ev)

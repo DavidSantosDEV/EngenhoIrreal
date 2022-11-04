@@ -14,11 +14,11 @@ public:
 	~GameObject();
 
 	virtual void Start();
-	virtual void Update();
+	virtual void Update(float deltaTime);
 
-//protected:
+protected:
 	std::vector<std::shared_ptr<class Component>> m_Components;
-	std::array<class Component*, 32> m_ComponentsHashMap;
+	std::array<class Component*, 32> m_ComponentsHashMap = std::array<class Component *, 32>();
 
 	bool m_WasInitialized = false;
 public:

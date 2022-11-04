@@ -1,6 +1,7 @@
 /*
 * - Works as GameMode on Unreal
 * - MUST be implemented by client
+* Start() and Update() are called before any other GameObjects
 ************************************************************/
 
 #include "GameWorld.h"
@@ -22,21 +23,4 @@ GameWorld::~GameWorld()
 void GameWorld::Init(GameEngine* myEngine)
 {
 	m_Engine = myEngine;
-}
-
-GameObject* GameWorld::InstantiateObject()
-{
-	if (m_Engine == nullptr) { return nullptr; }
-
-	GameObject* gameObject = new GameObject();
-	m_Engine->AddGameObjectToStack(gameObject);
-	gameObject->Start();
-
-	return gameObject;
-}
-
-void GameWorld::CallRemoveObjectFromStack(GameObject* gameObject)
-{
-	if (m_Engine == nullptr) { return; }
-	m_Engine->RemoveObjectFromStack(gameObject);
 }

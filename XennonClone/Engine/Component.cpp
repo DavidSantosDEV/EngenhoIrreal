@@ -1,5 +1,6 @@
 /*
-* Generic Component
+* Generic Component. Start() and Update() are automatically called
+* from m_OwnerGameObject
 ************************************************************/
 
 #include "Component.h"
@@ -10,7 +11,7 @@ void Component::Start()
 	LOG("Component Start");
 }
 
-void Component::Update()
+void Component::Update(float deltaSeconds)
 {
 	LOG("Component Update");
 }

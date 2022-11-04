@@ -1,5 +1,5 @@
 /*
-* Generic Component
+* Window class- Responsible for everything related to SDL_Window()
 ************************************************************/
 
 #include <SDL.h>

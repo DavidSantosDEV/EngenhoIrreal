@@ -1,5 +1,6 @@
 /*
-* Generic Component
+* Window class- Responsible for everything related to Initializing 
+* and stopping SDL
 ************************************************************/
 
 #include <SDL.h>

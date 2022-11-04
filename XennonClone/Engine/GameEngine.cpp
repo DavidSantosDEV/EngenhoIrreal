@@ -13,11 +13,15 @@
 #include "GameWorld.h"
 #include "GameObject.h"
 #include "RenderComponent.h"
+#include "Pawn.h"
 #include "Log.h"
 
 // Initialize static variables
 GameWorld* GameEngine::m_World = nullptr;
 float GameEngine::m_ElapsedMS = 0.f;
+std::vector<GameObject*> GameEngine::m_GameObjectStack;
+std::vector<RenderComponent*> GameEngine::m_RenderComponentsStack;
+std::vector<Pawn*> GameEngine::m_PawnsStack;
 
 GameEngine::~GameEngine()
 {
@@ -34,12 +38,13 @@ void GameEngine::Init(const char* windowTitle, int windowWidth, int windowHeight
 
 void GameEngine::StartAndRun()
 {
+	LOG("Engine start");
+
 	Start();
 
 	bool isRunning = true;
 	SDL_Event ev;
 
-	LOG("Engine start")
 	while (isRunning)
 	{
 		Uint64 start = SDL_GetPerformanceCounter();
@@ -54,6 +59,7 @@ void GameEngine::StartAndRun()
 				HandleInput(ev);
 			}
 		}
+
 		Update();
 		Render();
 		m_Window->UpdateSurface();
@@ -62,16 +68,11 @@ void GameEngine::StartAndRun()
 		m_ElapsedMS = (end - start) / (float)SDL_GetPerformanceFrequency() * 1000.0f;
 		const long double CalcedTime = (double)(1000.f / m_MaxFPS);
 		SDL_Delay(floor(abs(CalcedTime - m_ElapsedMS)));
-
-		LOG("Calced: "<<CalcedTime)
-		LOG("DeltaTime:" << m_ElapsedMS)
 	}
 }
 
 void GameEngine::Start()
 {
-	LOG("Engine Start");
-
 	m_World->Init(this);
 	m_World->Start();
 
@@ -86,28 +87,34 @@ void GameEngine::Start()
 	}
 }
 
-void GameEngine::HandleInput(union SDL_Event& ev)
+void GameEngine::HandleInput(SDL_Event& ev)
 {
-
+	for (int i = 0; i < m_PawnsStack.size();++i)
+	{
+		if (m_PawnsStack[i] != nullptr)
+		{
+			m_PawnsStack[i]->HandleEvents(ev);
+		}
+	}
 }
 
 void GameEngine::Update()
 {
-	m_World->Update();
+	m_World->Update(m_ElapsedMS);
 	for (int i = 0; i < m_GameObjectStack.size();++i) 
 	{
 		if (m_GameObjectStack[i] != nullptr)
 		{
-			m_GameObjectStack[i]->Update();
+			m_GameObjectStack[i]->Update(m_ElapsedMS);
 		}
 	}
 }
 
 void GameEngine::Render()
 {
-	for (int i = 0; i < m_RenderComponents.size(); ++i) 
+	for (int i = 0; i < m_RenderComponentsStack.size(); ++i) 
 	{
-		m_RenderComponents[i]->Render();
+		m_RenderComponentsStack[i]->Render();
 	}
 }
 
@@ -115,16 +122,51 @@ void GameEngine::AddGameObjectToStack(GameObject* gameObject)
 {
 	if (gameObject == nullptr) { return; }
 	m_GameObjectStack.push_back(gameObject);
-	//gameObject->Start();
 }
 
-void GameEngine::RemoveObjectFromStack(GameObject* gameObject)
+void GameEngine::RemoveGameObjectFromStack(GameObject* gameObject)
 {
 	for (int i = 0; i < m_GameObjectStack.size(); ++i) 
 	{
 		if (m_GameObjectStack[i] == gameObject)
 		{
 			m_GameObjectStack.erase(m_GameObjectStack.begin()+i);
+			return;
+		}
+	}
+}
+
+void GameEngine::AddRenderComponentToStack(RenderComponent* renderComponent)
+{
+	if (renderComponent == nullptr) { return; }
+	m_RenderComponentsStack.push_back(renderComponent);
+}
+
+void GameEngine::RemoveRenderComponentFromStack(RenderComponent* renderComponent)
+{
+	for (int i = 0; i < m_RenderComponentsStack.size(); ++i)
+	{
+		if (m_RenderComponentsStack[i] == renderComponent)
+		{
+			m_RenderComponentsStack.erase(m_RenderComponentsStack.begin() + i);
+			return;
+		}
+	}
+}
+
+void GameEngine::AddPawnToStack(Pawn* pawn)
+{
+	if (pawn == nullptr) { return; }
+	m_PawnsStack.push_back(pawn);
+}
+
+void GameEngine::RemovePawnFromStack(Pawn* pawn)
+{
+	for (int i = 0; i < m_PawnsStack.size(); ++i)
+	{
+		if (m_PawnsStack[i] == pawn)
+		{
+			m_PawnsStack.erase(m_PawnsStack.begin() + i);
 			return;
 		}
 	}
