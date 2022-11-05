@@ -3,6 +3,7 @@
 #include <memory>
 #include "Log.h"
 #include <array>
+#include "Transform.h"
 
 class GameWorld;
 
@@ -21,6 +22,8 @@ protected:
 	std::array<class Component*, 32> m_ComponentsHashMap = std::array<class Component *, 32>();
 
 	bool m_WasInitialized = false;
+
+	Transform m_Transform;
 public:
 /* Component-Derived System */
 #pragma region ComponentSystem
@@ -66,5 +69,7 @@ public:
 
 public:
 	inline bool GetWasInitialized() const { return m_WasInitialized; }
+
+	inline Transform* GetTransform() { return &m_Transform; }
 };
 

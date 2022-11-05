@@ -27,6 +27,8 @@
     <ClCompile Include="Pawn.cpp" />
     <ClCompile Include="RenderComponent.cpp" />
     <ClCompile Include="SDLWrapper.cpp" />
+    <ClCompile Include="Sprite.cpp" />
+    <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -39,6 +41,9 @@
     <ClInclude Include="Pawn.h" />
     <ClInclude Include="RenderComponent.h" />
     <ClInclude Include="SDLWrapper.h" />
+    <ClInclude Include="Sprite.h" />
+    <ClInclude Include="TextureManager.h" />
+    <ClInclude Include="Transform.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -136,7 +141,7 @@
     </Link>
     <Lib>
       <AdditionalLibraryDirectories>..\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>box2d.lib;SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>box2d.lib;SDL2.lib;SDL2main.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

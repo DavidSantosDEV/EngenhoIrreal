@@ -31,6 +31,8 @@ public:
 	static void RemovePawnFromStack(Pawn* pawn);
 
 private:
+	static GameEngine* m_Instance;
+
 	static std::vector<GameObject*> m_GameObjectStack;
 	static std::vector<RenderComponent*> m_RenderComponentsStack;
 	static std::vector<Pawn*> m_PawnsStack;
@@ -44,5 +46,9 @@ private:
 
 public:
 	static float GetDeltaTime() { return m_ElapsedMS; }
+
+	static GameEngine* GetInstance() { return m_Instance; }
+
+	struct SDL_Renderer* GetRenderer();
 };
 

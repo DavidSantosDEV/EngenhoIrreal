@@ -28,6 +28,11 @@ void Pawn::Start()
 
 void Pawn::Update(float deltaTime)
 {
+	static float x;
+	static float y;
+	GetTransform()->SetPosition(x, y);
+	x += 1 * deltaTime;
+	y += 1 * deltaTime;
 	GameObject::Update(deltaTime);
 }
 

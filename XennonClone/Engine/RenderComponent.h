@@ -8,5 +8,5 @@ class RenderComponent : public Component
 public:
 	RenderComponent();
 	~RenderComponent();
-	void Render();
+	virtual void Render() = 0;
 };

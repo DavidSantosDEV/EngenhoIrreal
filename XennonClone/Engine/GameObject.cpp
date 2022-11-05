@@ -12,6 +12,7 @@
 
 GameObject::GameObject() 
 {
+	m_Transform = Transform(0, 0, 1, 1);
 	GameEngine::AddGameObjectToStack(this);
 	LOG("BUILD");
 }

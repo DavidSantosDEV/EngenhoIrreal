@@ -23,6 +23,8 @@ std::vector<GameObject*> GameEngine::m_GameObjectStack;
 std::vector<RenderComponent*> GameEngine::m_RenderComponentsStack;
 std::vector<Pawn*> GameEngine::m_PawnsStack;
 
+GameEngine* GameEngine::m_Instance{ nullptr };
+
 GameEngine::~GameEngine()
 {
 	delete m_Window;
@@ -31,9 +33,15 @@ GameEngine::~GameEngine()
 
 void GameEngine::Init(const char* windowTitle, int windowWidth, int windowHeight, GameWorld* World)
 {
-	m_Sdl = new SDLWrapper(SDL_INIT_VIDEO | SDL_INIT_TIMER);
-	m_Window = new Window(windowTitle, windowWidth, windowHeight);
-	m_World = World;
+	if (m_Instance) {
+		delete this;
+	}
+	else {
+		m_Instance = this;
+		m_Sdl = new SDLWrapper(SDL_INIT_VIDEO | SDL_INIT_TIMER);
+		m_Window = new Window(windowTitle, windowWidth, windowHeight, true);
+		m_World = World;
+	}
 }
 
 void GameEngine::StartAndRun()
@@ -62,7 +70,7 @@ void GameEngine::StartAndRun()
 
 		Update();
 		Render();
-		m_Window->UpdateSurface();
+		
 		
 		Uint64 end = SDL_GetPerformanceCounter();
 		m_ElapsedMS = (end - start) / (float)SDL_GetPerformanceFrequency() * 1000.0f;
@@ -112,10 +120,12 @@ void GameEngine::Update()
 
 void GameEngine::Render()
 {
+	m_Window->Clean();
 	for (int i = 0; i < m_RenderComponentsStack.size(); ++i) 
 	{
 		m_RenderComponentsStack[i]->Render();
 	}
+	m_Window->UpdateRender();
 }
 
 void GameEngine::AddGameObjectToStack(GameObject* gameObject)
@@ -170,5 +180,13 @@ void GameEngine::RemovePawnFromStack(Pawn* pawn)
 			return;
 		}
 	}
+}
+
+SDL_Renderer* GameEngine::GetRenderer() 
+{
+	if (m_Window) {
+		return m_Window->GetRenderer();
+	}
+	return nullptr;
 }
 
