@@ -2,35 +2,36 @@
 #include "GameEngine.h"
 #include "GameRenderer.h"
 #include "SDL_image.h"
-#include <string>
+#include <iostream>
 
-const char* TextureManager::m_BasePath = "Assets/"; 
+const char* TextureManager::m_BasePath = "../Assets/"; 
 
-const char* TextureManager::GetPathTranslated(const char* path)
+std::string TextureManager::GetPathTranslated(const char* path)
 {
     std::string fullPath = m_BasePath;
     fullPath += path;
-    const char* foo = fullPath.c_str();
-    return foo;
+    return fullPath;
 }
 
 SDL_Texture* TextureManager::LoadTexture(const char* Filename)
 {
-    
-    SDL_Surface* tmpSurf{ LoadSurface(GetPathTranslated(Filename)) };
+    SDL_Renderer* const ren = GameEngine::GetGameRenderer()->GetRenderer();
+    if (!ren)return nullptr;
+    SDL_Surface* tmpSurf{ LoadSurface(Filename) };
     SDL_Texture* finaltexture{ nullptr };
     if (tmpSurf) {
-        finaltexture = SDL_CreateTextureFromSurface(GameEngine::GetGameRenderer()->GetRenderer(), tmpSurf);
+        finaltexture = SDL_CreateTextureFromSurface(ren, tmpSurf);
     }
     SDL_FreeSurface(tmpSurf);
     return finaltexture;
-    return nullptr;
 }
 
 SDL_Surface* TextureManager::LoadSurface(const char* Filename)
 {
-    if (!GameEngine::GetGameRenderer()->GetRenderer())return nullptr;
-    
-    SDL_Surface* tmpSurf = IMG_Load(GetPathTranslated(Filename));
+    std::string path = GetPathTranslated(Filename);
+    const char* pathC = path.c_str();
+    SDL_Surface* tmpSurf = IMG_Load(pathC);
+    const char* error = SDL_GetError();
+    std::cout << "tempSurf=" << tmpSurf << " Reason: " << SDL_GetError() << std::endl;
     return tmpSurf;
 }

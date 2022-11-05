@@ -20,6 +20,7 @@
 GameWorld* GameEngine::m_World = nullptr;
 GameRenderer* GameEngine::m_Renderer = nullptr;
 float GameEngine::m_ElapsedMS = 0.f;
+std::vector<RenderComponent*>  GameEngine::m_RenderComponents{};
 
 GameEngine::~GameEngine()
 {
@@ -127,11 +128,33 @@ void GameEngine::AddGameObjectToStack(GameObject* gameObject)
 
 void GameEngine::RemoveObjectFromStack(GameObject* gameObject)
 {
+	if (!gameObject)return;
 	for (int i = 0; i < m_GameObjectStack.size(); ++i) 
 	{
 		if (m_GameObjectStack[i] == gameObject)
 		{
 			m_GameObjectStack.erase(m_GameObjectStack.begin()+i);
+			return;
+		}
+	}
+}
+
+void GameEngine::AddRenderComponentToStack(RenderComponent* renderComp)
+{
+	if (renderComp) {
+		m_RenderComponents.push_back(renderComp);
+	}
+}
+
+
+void GameEngine::RemoveRenderComponentFromStack(RenderComponent* renderComp)
+{
+	if (!renderComp) return;
+	for (int i = 0; i < m_RenderComponents.size(); ++i)
+	{
+		if (m_RenderComponents[i] == renderComp)
+		{
+			m_RenderComponents.erase(m_RenderComponents.begin() + i);
 			return;
 		}
 	}

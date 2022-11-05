@@ -8,32 +8,44 @@
 
 Sprite::Sprite() : RenderComponent()
 {
-	m_Height = 1;
-	m_Width = 1;
+	m_Height = 32;
+	m_Width = 32;
 
 	m_Texture = nullptr;
-	if(m_OwnerGameObject) m_ParentTransform = m_OwnerGameObject->GetTransform();
+	
 }
 
-Sprite::~Sprite()
+Sprite::~Sprite() 
 {
 	SDL_DestroyTexture(m_Texture);
 	delete m_Texture;
 	delete m_ParentTransform;
 }
 
+void Sprite::Start() 
+{
+	if (m_OwnerGameObject) m_ParentTransform = m_OwnerGameObject->GetTransform();
+}
+
 void Sprite::SetSpriteScale(float height, float width)
 {
+	m_Height = height;
+	m_Width = width;
 }
 
 void Sprite::Render(SDL_Renderer* renderer)
 {
-	SDL_FRect dest;
-	dest.x = m_ParentTransform->GetPosition().x;
-	dest.y = m_ParentTransform->GetPosition().y;
-
-	//Game Engine Renderer
-	SDL_RenderCopyF(GameEngine::GetGameRenderer()->GetRenderer(), m_Texture, NULL, &dest);
+	if (m_Texture) {
+		if (m_ParentTransform) {
+			SDL_FRect dest;
+			dest.x = m_ParentTransform->GetPosition().x;
+			dest.y = m_ParentTransform->GetPosition().y;
+			dest.w = m_ParentTransform->GetScale().x * m_Width;
+			dest.h = m_ParentTransform->GetScale().y * m_Height;
+			//Game Engine Renderer
+			SDL_RenderCopyF(GameEngine::GetGameRenderer()->GetRenderer(), m_Texture, NULL, &dest);
+		}
+	}
 }
 
 void Sprite::SetSpriteTexture(SDL_Texture* Texture)

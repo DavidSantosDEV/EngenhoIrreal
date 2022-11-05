@@ -26,6 +26,8 @@ public:
 	Sprite();
 	~Sprite();
 
+	virtual void Start() override;
+
 	void SetSpriteTexture(SDL_Texture* Texture);
 	void SetSpriteTexture(const char* TexturePath);
 

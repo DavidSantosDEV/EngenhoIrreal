@@ -26,11 +26,13 @@ public:
 	void RemoveObjectFromStack(GameObject* gameObject);
 
 
-	
+	static void AddRenderComponentToStack(RenderComponent* renderComp);
 
+	static void RemoveRenderComponentFromStack(RenderComponent* renderComp);
 private:
 	std::vector<GameObject*> m_GameObjectStack = {};
-	std::vector<std::shared_ptr<RenderComponent>> m_RenderComponents = {};
+
+	static std::vector<RenderComponent*> m_RenderComponents;
 
 	static GameWorld* m_World;
 

@@ -26,6 +26,7 @@
     <ClCompile Include="GameWorld.cpp" />
     <ClCompile Include="InitError.cpp" />
     <ClCompile Include="Pawn.cpp" />
+    <ClCompile Include="RenderComponent.cpp" />
     <ClCompile Include="SDLWrapper.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="TextureManager.cpp" />
