@@ -10,5 +10,7 @@ protected:
 	static std::string GetPathTranslated(const char* path);
 public:
 	static SDL_Texture* LoadTexture(const char* Filename);
+	static SDL_Texture* LoadTextureBMP(const char* Filename);
+
 	static SDL_Surface* LoadSurface(const char* Filename);
 };
