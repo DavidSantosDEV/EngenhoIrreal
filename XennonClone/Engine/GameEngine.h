@@ -36,7 +36,8 @@ private:
 
 	class SDLWrapper* m_Sdl;
 	class Window* m_Window;
-	class GameRenderer* m_Renderer;
+
+	static class GameRenderer* m_Renderer;
 
 	const int m_MaxFPS = 60;
 	
@@ -44,6 +45,8 @@ private:
 
 public:
 	static GameWorld* GetGameWorld() { return m_World; }
+
+	static GameRenderer* GetGameRenderer();
 
 	static float GetDeltaTime() { return m_ElapsedMS; }
 };

@@ -2,6 +2,9 @@
 #include "GameObject.h"
 #include "SDL.h"
 #include "Transform.h"
+#include "GameEngine.h"
+#include "GameRenderer.h"
+#include "TextureManager.h"
 
 Sprite::Sprite() : RenderComponent()
 {
@@ -30,7 +33,7 @@ void Sprite::Render(SDL_Renderer* renderer)
 	dest.y = m_ParentTransform->GetPosition().y;
 
 	//Game Engine Renderer
-	SDL_RenderCopyF(, m_Texture, NULL, &dest);
+	SDL_RenderCopyF(GameEngine::GetGameRenderer()->GetRenderer(), m_Texture, NULL, &dest);
 }
 
 void Sprite::SetSpriteTexture(SDL_Texture* Texture)
@@ -40,5 +43,5 @@ void Sprite::SetSpriteTexture(SDL_Texture* Texture)
 
 void Sprite::SetSpriteTexture(const char* TexturePath) 
 {
-
+	m_Texture = TextureManager::LoadTexture(TexturePath);
 }

@@ -18,6 +18,7 @@
 
 // Initialize static variables
 GameWorld* GameEngine::m_World = nullptr;
+GameRenderer* GameEngine::m_Renderer = nullptr;
 float GameEngine::m_ElapsedMS = 0.f;
 
 GameEngine::~GameEngine()
@@ -134,5 +135,10 @@ void GameEngine::RemoveObjectFromStack(GameObject* gameObject)
 			return;
 		}
 	}
+}
+
+GameRenderer* GameEngine::GetGameRenderer()
+{
+	return m_Renderer;
 }
 
