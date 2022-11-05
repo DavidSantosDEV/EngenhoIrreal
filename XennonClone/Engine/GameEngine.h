@@ -38,6 +38,7 @@ private:
 	static GameWorld* m_World;
 	class SDLWrapper* m_Sdl;
 	class Window* m_Window;
+	class Input* m_Input;
 
 	const int m_MaxFPS = 60;
 	static float m_ElapsedMS;

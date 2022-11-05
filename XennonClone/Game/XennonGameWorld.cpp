@@ -6,10 +6,9 @@
 
 void XennonGameWorld::Start()
 {
-	Pawn* gameObject = InstantiateObject<Pawn>();
-	gameObject->AddComponent<RenderComponent>();
-	RenderComponent& render = gameObject->GetComponent<RenderComponent>();
-	delete gameObject;
+	Pawn* pawn = InstantiateObject<Pawn>();
+	pawn->AddComponent<RenderComponent>();
+	RenderComponent& render = pawn->GetComponent<RenderComponent>();
 }
 
 void XennonGameWorld::Update(float deltaTime)

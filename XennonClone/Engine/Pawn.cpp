@@ -5,8 +5,8 @@
 
 #include "GameEngine.h"
 #include "Pawn.h"
-#include "SDL.h"
 #include "Log.h"
+#include "Input.h"
 
 Pawn::Pawn()
 {
@@ -31,10 +31,9 @@ void Pawn::Update(float deltaTime)
 	GameObject::Update(deltaTime);
 }
 
-void Pawn::HandleEvents(SDL_Event& ev)
+void Pawn::HandleEvents()
 {
-	if (ev.type == SDL_KEYDOWN)
-	{
-		LOG_WARNING("Key down");
-	}
+	LOG("Horizontal: " << Input::GetRightAxisValue());
+	LOG("Vertical: " << Input::GetUpAxisValue());
+	//LOG(Input::IsFireKeyDown());
 }

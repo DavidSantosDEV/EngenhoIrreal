@@ -14,6 +14,7 @@
 #include "GameObject.h"
 #include "RenderComponent.h"
 #include "Pawn.h"
+#include "Input.h"
 #include "Log.h"
 
 // Initialize static variables
@@ -27,12 +28,14 @@ GameEngine::~GameEngine()
 {
 	delete m_Window;
 	delete m_Sdl;
+	delete m_Input;
 }
 
 void GameEngine::Init(const char* windowTitle, int windowWidth, int windowHeight, GameWorld* World)
 {
 	m_Sdl = new SDLWrapper(SDL_INIT_VIDEO | SDL_INIT_TIMER);
 	m_Window = new Window(windowTitle, windowWidth, windowHeight);
+	m_Input = new Input();
 	m_World = World;
 }
 
@@ -48,6 +51,7 @@ void GameEngine::StartAndRun()
 	while (isRunning)
 	{
 		Uint64 start = SDL_GetPerformanceCounter();
+
 		while (SDL_PollEvent(&ev) != 0)
 		{
 			if (ev.type == SDL_QUIT)
@@ -89,11 +93,13 @@ void GameEngine::Start()
 
 void GameEngine::HandleInput(SDL_Event& ev)
 {
+	m_Input->ReceiveEvent(ev);
+
 	for (int i = 0; i < m_PawnsStack.size();++i)
 	{
 		if (m_PawnsStack[i] != nullptr)
 		{
-			m_PawnsStack[i]->HandleEvents(ev);
+			m_PawnsStack[i]->HandleEvents();
 		}
 	}
 }

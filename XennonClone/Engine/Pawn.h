@@ -9,6 +9,6 @@ public:
 
 	virtual void Start() override;
 	virtual void Update(float deltaTime) override;
-	virtual void HandleEvents(union SDL_Event& ev);
+	virtual void HandleEvents();
 };
 
