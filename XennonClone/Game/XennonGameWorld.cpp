@@ -6,9 +6,9 @@
 
 void XennonGameWorld::Start()
 {
-	Pawn* gameObject = InstantiateObject<Pawn>();
-	gameObject->AddComponent<Sprite>();
-	Sprite& render = gameObject->GetComponent<Sprite>();
+	Pawn* pawn = InstantiateObject<Pawn>();
+	pawn->AddComponent<Sprite>();
+	Sprite& render = pawn->GetComponent<Sprite>();
 	render.SetSpriteTexture("banana.png");
 	render.SetSpriteScale(32, 32);
 }

@@ -1,0 +1,55 @@
+﻿  XennonGameWorld.cpp
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+  XennonClone.cpp
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+EngenhoIrrealXVII.lib(Pawn.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in XennonGameWorld.obj
+EngenhoIrrealXVII.lib(Pawn.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in XennonGameWorld.obj
+EngenhoIrrealXVII.lib(Pawn.obj) : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:ICF' specification
+EngenhoIrrealXVII.lib(Sprite.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in XennonGameWorld.obj
+EngenhoIrrealXVII.lib(Sprite.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in XennonGameWorld.obj
+EngenhoIrrealXVII.lib(GameEngine.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in XennonGameWorld.obj
+EngenhoIrrealXVII.lib(GameEngine.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in XennonGameWorld.obj
+EngenhoIrrealXVII.lib(GameWorld.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in XennonGameWorld.obj
+EngenhoIrrealXVII.lib(GameWorld.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in XennonGameWorld.obj
+EngenhoIrrealXVII.lib(GameObject.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in XennonGameWorld.obj
+EngenhoIrrealXVII.lib(GameObject.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in XennonGameWorld.obj
+EngenhoIrrealXVII.lib(Input.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in XennonGameWorld.obj
+EngenhoIrrealXVII.lib(Input.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in XennonGameWorld.obj
+EngenhoIrrealXVII.lib(Component.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in XennonGameWorld.obj
+EngenhoIrrealXVII.lib(Component.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in XennonGameWorld.obj
+EngenhoIrrealXVII.lib(RenderComponent.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in XennonGameWorld.obj
+EngenhoIrrealXVII.lib(RenderComponent.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in XennonGameWorld.obj
+EngenhoIrrealXVII.lib(TextureManager.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in XennonGameWorld.obj
+EngenhoIrrealXVII.lib(TextureManager.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in XennonGameWorld.obj
+EngenhoIrrealXVII.lib(SDLWrapper.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in XennonGameWorld.obj
+EngenhoIrrealXVII.lib(SDLWrapper.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in XennonGameWorld.obj
+EngenhoIrrealXVII.lib(Window.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in XennonGameWorld.obj
+EngenhoIrrealXVII.lib(Window.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in XennonGameWorld.obj
+EngenhoIrrealXVII.lib(InitError.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in XennonGameWorld.obj
+EngenhoIrrealXVII.lib(InitError.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in XennonGameWorld.obj
+LINK : warning LNK4098: defaultlib 'MSVCRTD' conflicts with use of other libs; use /NODEFAULTLIB:library
+EngenhoIrrealXVII.lib(TextureManager.obj) : error LNK2001: unresolved external symbol __imp__invalid_parameter
+EngenhoIrrealXVII.lib(SDLWrapper.obj) : error LNK2001: unresolved external symbol __imp__invalid_parameter
+EngenhoIrrealXVII.lib(Window.obj) : error LNK2001: unresolved external symbol __imp__invalid_parameter
+EngenhoIrrealXVII.lib(InitError.obj) : error LNK2001: unresolved external symbol __imp__invalid_parameter
+EngenhoIrrealXVII.lib(GameObject.obj) : error LNK2001: unresolved external symbol __imp__invalid_parameter
+EngenhoIrrealXVII.lib(Input.obj) : error LNK2001: unresolved external symbol __imp__invalid_parameter
+EngenhoIrrealXVII.lib(Component.obj) : error LNK2001: unresolved external symbol __imp__invalid_parameter
+EngenhoIrrealXVII.lib(RenderComponent.obj) : error LNK2001: unresolved external symbol __imp__invalid_parameter
+EngenhoIrrealXVII.lib(Pawn.obj) : error LNK2001: unresolved external symbol __imp__invalid_parameter
+EngenhoIrrealXVII.lib(Sprite.obj) : error LNK2001: unresolved external symbol __imp__invalid_parameter
+EngenhoIrrealXVII.lib(GameEngine.obj) : error LNK2001: unresolved external symbol __imp__invalid_parameter
+EngenhoIrrealXVII.lib(GameWorld.obj) : error LNK2001: unresolved external symbol __imp__invalid_parameter
+EngenhoIrrealXVII.lib(TextureManager.obj) : error LNK2001: unresolved external symbol __imp__CrtDbgReport
+EngenhoIrrealXVII.lib(SDLWrapper.obj) : error LNK2001: unresolved external symbol __imp__CrtDbgReport
+EngenhoIrrealXVII.lib(Window.obj) : error LNK2001: unresolved external symbol __imp__CrtDbgReport
+EngenhoIrrealXVII.lib(InitError.obj) : error LNK2001: unresolved external symbol __imp__CrtDbgReport
+EngenhoIrrealXVII.lib(GameObject.obj) : error LNK2001: unresolved external symbol __imp__CrtDbgReport
+EngenhoIrrealXVII.lib(Input.obj) : error LNK2001: unresolved external symbol __imp__CrtDbgReport
+EngenhoIrrealXVII.lib(Component.obj) : error LNK2001: unresolved external symbol __imp__CrtDbgReport
+EngenhoIrrealXVII.lib(RenderComponent.obj) : error LNK2001: unresolved external symbol __imp__CrtDbgReport
+EngenhoIrrealXVII.lib(Pawn.obj) : error LNK2001: unresolved external symbol __imp__CrtDbgReport
+EngenhoIrrealXVII.lib(Sprite.obj) : error LNK2001: unresolved external symbol __imp__CrtDbgReport
+EngenhoIrrealXVII.lib(GameEngine.obj) : error LNK2001: unresolved external symbol __imp__CrtDbgReport
+EngenhoIrrealXVII.lib(GameWorld.obj) : error LNK2001: unresolved external symbol __imp__CrtDbgReport
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\x64\Release\XennonClone.exe : fatal error LNK1120: 2 unresolved externals
