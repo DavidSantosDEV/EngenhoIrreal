@@ -16,7 +16,7 @@ Window::Window(const char* title, int windowWidth, int windowHeight, bool bUseVS
 	}
 
 	m_Renderer = SDL_CreateRenderer(m_Window, -1, bUseVSYNC ? SDL_RendererFlags::SDL_RENDERER_PRESENTVSYNC : 0);
-
+	SDL_SetRenderDrawBlendMode(m_Renderer, SDL_BLENDMODE_BLEND);
 	if (!m_Renderer) {
 		throw InitError();
 	}

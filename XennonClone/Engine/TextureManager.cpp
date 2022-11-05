@@ -22,6 +22,9 @@ SDL_Texture* TextureManager::LoadTexture(const char* Filename) //Generic Loader
         finaltexture = SDL_CreateTextureFromSurface(ren, tmpSurf);
     }
     SDL_FreeSurface(tmpSurf);
+
+    SDL_SetTextureBlendMode(finaltexture, SDL_BLENDMODE_BLEND);
+
     return finaltexture;
 }
 
@@ -40,13 +43,16 @@ SDL_Texture* TextureManager::LoadTextureBMP(const char* Filename) //BMP Loader
     }
 
     SDL_SetColorKey(surf, SDL_TRUE, SDL_MapRGB(surf->format, 255, 0, 255));
-
     SDL_Texture* text = SDL_CreateTextureFromSurface(ren, surf);
+    SDL_FreeSurface(surf);
     if (!text) {
         const char* error = SDL_GetError();
         std::cout << "tempSurf=" << surf << " Reason: " << SDL_GetError() << std::endl;
         return nullptr;
     }
+
+    SDL_SetTextureBlendMode(text, SDL_BLENDMODE_BLEND);
+
     return text;
 }
 
