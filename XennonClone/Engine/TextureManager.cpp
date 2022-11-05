@@ -13,7 +13,7 @@ std::string TextureManager::GetPathTranslated(const char* path)
     return fullPath;
 }
 
-SDL_Texture* TextureManager::LoadTexture(const char* Filename)
+SDL_Texture* TextureManager::LoadTexture(const char* Filename) //Generic Loader
 {
     SDL_Renderer* const ren = GameEngine::GetGameRenderer()->GetRenderer();
     if (!ren)return nullptr;
@@ -26,7 +26,8 @@ SDL_Texture* TextureManager::LoadTexture(const char* Filename)
     return finaltexture;
 }
 
-SDL_Texture* TextureManager::LoadTextureBMP(const char* Filename) {
+SDL_Texture* TextureManager::LoadTextureBMP(const char* Filename) //BMP Loader
+{ 
     SDL_Renderer* const ren = GameEngine::GetGameRenderer()->GetRenderer();
     
     if (!ren)return nullptr;
@@ -50,7 +51,7 @@ SDL_Texture* TextureManager::LoadTextureBMP(const char* Filename) {
     return text;
 }
 
-SDL_Surface* TextureManager::LoadSurface(const char* Filename)
+SDL_Surface* TextureManager::LoadSurface(const char* Filename) //Generic Surface Loader
 {
     std::string path = GetPathTranslated(Filename);
     SDL_Surface* tmpSurf = IMG_Load(path.c_str());
