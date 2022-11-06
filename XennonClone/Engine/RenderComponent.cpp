@@ -1,6 +1,7 @@
 /*
 * Generic Render component. Render() component called every frame 
 * from GameEngine.h
+* Not meant to be used directly, create child classes 
 ************************************************************/
 
 #include "GameEngine.h"

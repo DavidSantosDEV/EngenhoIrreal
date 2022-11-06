@@ -2,6 +2,7 @@
 #include "GameEngine.h"
 #include "SDL_image.h"
 #include <iostream>
+#include "Log.h"
 
 const char* TextureManager::m_BasePath = "../Assets/";
 
@@ -38,7 +39,7 @@ SDL_Texture* TextureManager::LoadTextureBMP(const char* Filename) //BMP Loader
 
     if (!surf) {
         const char* error = SDL_GetError();
-        std::cout << "tempSurf=" << surf << " Reason: " << SDL_GetError() << std::endl;
+        LOG_ERROR("tempSurf=" << surf << " Reason: " << SDL_GetError());
         return nullptr;
     }
 
@@ -47,7 +48,7 @@ SDL_Texture* TextureManager::LoadTextureBMP(const char* Filename) //BMP Loader
     SDL_FreeSurface(surf);
     if (!text) {
         const char* error = SDL_GetError();
-        std::cout << "tempSurf=" << surf << " Reason: " << SDL_GetError() << std::endl;
+        LOG_ERROR("tempSurf=" << surf << " Reason: " << SDL_GetError() << std::endl);
         return nullptr;
     }
 
@@ -62,7 +63,7 @@ SDL_Surface* TextureManager::LoadSurface(const char* Filename) //Generic Surface
     SDL_Surface* tmpSurf = IMG_Load(path.c_str());
     if (!tmpSurf) {
         const char* error = SDL_GetError();
-        std::cout << "tempSurf=" << tmpSurf << " Reason: " << SDL_GetError() << std::endl;
+       LOG_ERROR("tempSurf=" << tmpSurf << " Reason: " << SDL_GetError());
     }
     return tmpSurf;
 }

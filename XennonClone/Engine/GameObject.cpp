@@ -39,4 +39,10 @@ void GameObject::Start()
 
 void GameObject::Update(float deltaTime)
 {
+
+	std::for_each(
+		m_Components.begin(),
+		m_Components.end(),
+		[&](std::shared_ptr<Component> cpt) { cpt->Update(deltaTime); }
+	);
 }
