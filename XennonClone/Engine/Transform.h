@@ -99,6 +99,11 @@ public:
 		m_Scale.y = yS;
 	}
 
+	Transform(Vector2D position, Vector2D scale) {
+		m_Position = position;
+		m_Scale = scale;
+	}
+
 	inline Vector2D& GetPosition() { return m_Position; }
 	inline void SetPosition(const Vector2D& newPosition) { m_Position = newPosition; }
 	inline void SetPosition(const float xPos, const float yPos) { m_Position.x = xPos; m_Position.y = yPos; }

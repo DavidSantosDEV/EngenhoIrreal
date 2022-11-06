@@ -12,6 +12,9 @@ class GameObject
 public:
 
 	GameObject();
+	GameObject(Transform transform);
+	GameObject(Vector2D position, Vector2D scale);
+
 	~GameObject();
 
 	virtual void Start();

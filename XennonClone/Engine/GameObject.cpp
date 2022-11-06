@@ -16,6 +16,16 @@ GameObject::GameObject()
 	GameEngine::AddGameObjectToStack(this);
 	LOG("BUILD");
 }
+
+GameObject::GameObject(Transform transform) {
+	m_Transform = transform;
+	GameEngine::AddGameObjectToStack(this);
+}
+GameObject::GameObject(Vector2D position, Vector2D scale) {
+	m_Transform = Transform(position, scale);
+	GameEngine::AddGameObjectToStack(this);
+}
+
 GameObject::~GameObject() 
 {
 	GameEngine::RemoveGameObjectFromStack(this);
