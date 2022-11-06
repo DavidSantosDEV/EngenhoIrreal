@@ -9,8 +9,7 @@
 
 Sprite::Sprite(const char* texturePath, float h, float w) : RenderComponent()
 {
-	m_Height = h;
-	m_Width = w;
+	m_SpriteScale = Vector2D(32, 32);
 	m_Texture = TextureManager::LoadTexture(texturePath);
 }
 
@@ -28,12 +27,6 @@ void Sprite::Start()
 	if (m_OwnerGameObject) m_ParentTransform = m_OwnerGameObject->GetTransform();
 }
 
-void Sprite::SetSpriteScale(float height, float width)
-{
-	m_Height = height;
-	m_Width = width;
-}
-
 void Sprite::Render()
 {
 	if (m_Texture) {
@@ -41,8 +34,8 @@ void Sprite::Render()
 			SDL_FRect dest;
 			dest.x = m_ParentTransform->GetPosition().x;
 			dest.y = m_ParentTransform->GetPosition().y;
-			dest.w = m_ParentTransform->GetScale().x * m_Width;
-			dest.h = m_ParentTransform->GetScale().y * m_Height;
+			dest.w = m_ParentTransform->GetScale().x * m_SpriteScale.x;
+			dest.h = m_ParentTransform->GetScale().y * m_SpriteScale.y;
 			//Game Engine Renderer
 			// TODO: optimize get get renderer on tick
 			SDL_RenderCopyF(GameEngine::GetInstance()->GetRenderer(), m_Texture, nullptr, &dest);

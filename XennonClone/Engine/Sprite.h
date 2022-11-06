@@ -12,8 +12,7 @@ protected:
 	//Display
 	SDL_Texture* m_Texture;
 
-	float m_Width;
-	float m_Height;
+	Vector2D m_SpriteScale;
 	//SDL_FRect& m_destRect; Not needed its basically a copy of transform
 
 public:
@@ -28,7 +27,8 @@ public:
 
 	inline SDL_Texture* GetTexture() const { return m_Texture; }
 
-	void SetSpriteScale(float height, float width);
+	void SetSpriteScale(Vector2D scale) { m_SpriteScale = scale; }
+	void SetSpriteScale(float width,float height) { m_SpriteScale = Vector2D(width, height); }
 
 	// Inherited via RenderComponent
 	virtual void Render() override;

@@ -29,11 +29,10 @@ void Pawn::Start()
 
 void Pawn::Update(float deltaTime)
 {
-	static float x;
-	static float y;
-	GetTransform()->SetPosition(x, y);
-	x += 1 * deltaTime;
-	y += 1 * deltaTime;
+	const float Speed = 130;
+	Vector2D movement = (Vector2D(Input::GetRightAxisValue(), -Input::GetUpAxisValue()));
+	movement *= Speed;
+	GetTransform()->AddPosition(movement*deltaTime);
 	GameObject::Update(deltaTime);
 }
 
