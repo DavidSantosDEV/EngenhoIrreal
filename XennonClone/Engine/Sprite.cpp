@@ -4,14 +4,14 @@
 #include "Transform.h"
 #include "GameEngine.h"
 #include "TextureManager.h"
+#include "Log.h"
 
-Sprite::Sprite() : RenderComponent()
+
+Sprite::Sprite(const char* texturePath, float h, float w) : RenderComponent()
 {
-	m_Height = 32;
-	m_Width = 32;
-
-	m_Texture = nullptr;
-
+	m_Height = h;
+	m_Width = w;
+	m_Texture = TextureManager::LoadTexture(texturePath);
 }
 
 Sprite::~Sprite()
@@ -23,6 +23,8 @@ Sprite::~Sprite()
 
 void Sprite::Start()
 {
+	Component::Start();
+
 	if (m_OwnerGameObject) m_ParentTransform = m_OwnerGameObject->GetTransform();
 }
 
@@ -42,7 +44,8 @@ void Sprite::Render()
 			dest.w = m_ParentTransform->GetScale().x * m_Width;
 			dest.h = m_ParentTransform->GetScale().y * m_Height;
 			//Game Engine Renderer
-			SDL_RenderCopyF(GameEngine::GetInstance()->GetRenderer(), m_Texture, NULL, &dest);
+			// TODO: optimize get get renderer on tick
+			SDL_RenderCopyF(GameEngine::GetInstance()->GetRenderer(), m_Texture, nullptr, &dest);
 		}
 	}
 }

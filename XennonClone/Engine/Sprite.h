@@ -16,14 +16,9 @@ protected:
 	float m_Height;
 	//SDL_FRect& m_destRect; Not needed its basically a copy of transform
 
-	//Animation
-	bool m_IsAnimated = false;
-	int m_Frames;
-	int m_Speed;
-
 public:
-
-	Sprite();
+	Sprite() = default;
+	Sprite(const char* texturePath, float h, float w);
 	~Sprite();
 
 	virtual void Start() override;
