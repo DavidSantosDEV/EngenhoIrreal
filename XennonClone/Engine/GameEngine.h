@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <memory>
+#include "Transform.h"
 
 class RenderComponent;
 class GameObject;
@@ -42,7 +43,7 @@ private:
 	class Window* m_Window;
 	class Input* m_Input;
 
-	const int m_MaxFPS = 60;
+	const int m_MaxFPS = 120;
 	static float m_ElapsedMS;
 
 public:
@@ -51,5 +52,9 @@ public:
 	static GameEngine* GetInstance() { return m_Instance; }
 
 	struct SDL_Renderer* GetRenderer();
+
+	class Window* GetWindow() { return m_Window; }
+
+	Vector2D GetWindowSize();
 };
 

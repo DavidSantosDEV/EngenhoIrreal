@@ -31,7 +31,7 @@ GameEngine::~GameEngine()
 	delete m_Window;
 	delete m_Sdl;
 	delete m_Input;
-}
+}	
 
 void GameEngine::Init(const char* windowTitle, int windowWidth, int windowHeight, GameWorld* World)
 {
@@ -55,30 +55,28 @@ void GameEngine::StartAndRun()
 
 	bool isRunning = true;
 	SDL_Event ev;
-
+	const int lock = 1000 / m_MaxFPS;
+	Uint32 mTicksCount = SDL_GetTicks();
 	while (isRunning)
 	{
-		Uint64 start = SDL_GetPerformanceCounter();
-		while (SDL_PollEvent(&ev) != 0)
+		while (!SDL_TICKS_PASSED(SDL_GetTicks(), mTicksCount + lock)); //Wait until ms passed
+
+		m_ElapsedMS = (SDL_GetTicks() - mTicksCount) / 1000.0f;	
+
+		SDL_PollEvent(&ev);
+		if (ev.type == SDL_QUIT)
 		{
-			if (ev.type == SDL_QUIT)
-			{
-				isRunning = false;
-			}
-			else
-			{
-				HandleInput(ev);
-			}
+			isRunning = false;
+		}
+		else
+		{
+			HandleInput(ev);
 		}
 
 		Update();
 		Render();
-		
-		
-		Uint64 end = SDL_GetPerformanceCounter();
-		m_ElapsedMS = (end - start) / (float)SDL_GetPerformanceFrequency() * 1000.0f;
-		const long double CalcedTime = (double)(1000.f / m_MaxFPS);
-		SDL_Delay(floor(abs(CalcedTime - m_ElapsedMS)));
+
+		mTicksCount = SDL_GetTicks();
 	}
 }
 
@@ -193,5 +191,10 @@ SDL_Renderer* GameEngine::GetRenderer()
 		return m_Window->GetRenderer();
 	}
 	return nullptr;
+}
+
+Vector2D GameEngine::GetWindowSize() 
+{
+	return m_Window->GetWindowSize();
 }
 

@@ -19,6 +19,22 @@ public:
 		return Vector2D(0, 0);
 	}
 
+	static Vector2D Up() {
+		return Vector2D(0, 1);
+	}
+
+	static Vector2D Right() {
+		return Vector2D(1, 0);
+	}
+
+	static Vector2D Down() {
+		return Vector2D(0, -1);
+	}
+
+	static Vector2D Left() {
+		return Vector2D(-1, 0);
+	}
+
 	Vector2D& Add(const Vector2D& vector)
 	{
 		this->x += vector.x;
@@ -38,6 +54,13 @@ public:
 		this->y *= vector.y;
 		return *this;
 	}
+
+	Vector2D& MultiplyFloat(const float val) {
+		this->x *= val;
+		this->y *= val;
+		return *this;
+	}
+
 	Vector2D& Divide(const Vector2D& vector)
 	{
 		this->x /= vector.x;
@@ -51,12 +74,8 @@ public:
 	friend Vector2D operator*(Vector2D v1, const Vector2D& v2) { return v1.Multiply(v2); }
 	friend Vector2D operator/(Vector2D v1, const Vector2D& v2) { return v1.Divide(v2); }
 
-	Vector2D& operator*(float value)
-	{
-		this->x *= value;
-		this->y *= value;
-		return *this;
-	}
+	Vector2D& operator*(const float value) { return this->MultiplyFloat(value); }
+	Vector2D& operator*=(const float value) { return this->MultiplyFloat(value); }
 
 	Vector2D& operator+=(const Vector2D& v2) { return this->Add(v2); }
 	Vector2D& operator-=(const Vector2D& v2) { return this->Subtract(v2); }
@@ -83,6 +102,9 @@ public:
 	inline Vector2D& GetPosition() { return m_Position; }
 	inline void SetPosition(const Vector2D& newPosition) { m_Position = newPosition; }
 	inline void SetPosition(const float xPos, const float yPos) { m_Position.x = xPos; m_Position.y = yPos; }
+	inline void AddPosition(const Vector2D& posAdd) { m_Position += posAdd; }
+	inline void AddPosition(const float xPos, const float yPos) { m_Position += Vector2D(xPos, yPos); }
+
 
 	inline Vector2D& GetScale() { return m_Scale; }
 	inline void SetScale(const Vector2D& newScale) { m_Scale = newScale; }
