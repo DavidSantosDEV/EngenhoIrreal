@@ -55,15 +55,13 @@ void GameEngine::StartAndRun()
 
 	bool isRunning = true;
 	SDL_Event ev;
-	int lock = 1000 / m_MaxFPS;
+	const int lock = 1000 / m_MaxFPS;
 	Uint32 mTicksCount = SDL_GetTicks();
 	while (isRunning)
 	{
-		while (!SDL_TICKS_PASSED(SDL_GetTicks(), mTicksCount + lock)); //Wait until 16 ms passed
+		while (!SDL_TICKS_PASSED(SDL_GetTicks(), mTicksCount + lock)); //Wait until ms passed
 
-		m_ElapsedMS = (SDL_GetTicks() - mTicksCount) / 1000.0f;
-
-		mTicksCount = SDL_GetTicks();
+		m_ElapsedMS = (SDL_GetTicks() - mTicksCount) / 1000.0f;	
 
 		SDL_PollEvent(&ev);
 		if (ev.type == SDL_QUIT)
@@ -77,6 +75,8 @@ void GameEngine::StartAndRun()
 
 		Update();
 		Render();
+
+		mTicksCount = SDL_GetTicks();
 	}
 }
 
