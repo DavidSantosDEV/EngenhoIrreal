@@ -77,8 +77,7 @@ void Sprite::Render()
 		{
 			m_DestRect.x = m_ParentTransform->GetPosition().x;
 			m_DestRect.y = m_ParentTransform->GetPosition().y;
-			//Game Engine Renderer
-			// TODO: optimize get get renderer on tick
+			// TODO: optimize get renderer on tick
 			SDL_RenderCopyF(GameEngine::GetInstance()->GetRenderer(), m_Texture, &m_SourceRect, &m_DestRect);
 		}
 	}

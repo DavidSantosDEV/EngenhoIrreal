@@ -17,6 +17,7 @@ protected:
 	/* The pixels (width and height) of the texture that should be loaded */
 	int m_TextureWidth = 0;
 	int m_TextureHeight = 0;
+	/* The pixels (width and height) of each sprite in the spritesheet */
 	int m_FrameWidth = 1;
 	int m_FrameHeight = 1;
 	//SDL_FRect& m_destRect; Not needed its basically a copy of transform
