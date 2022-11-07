@@ -1,3 +1,11 @@
+/*
+* Generic Sprite class. Render() is called automatically since
+* this functions inherits from RenderComponent.
+* m_SpriteScale = the scale for this particular sprite (independent from parent GO scale)
+* m_TextureWidth = the full size of this texturesheet
+* m_SpriteWidth = the width of each sprite in the spritesheet (eg: 32x32, 64x64)
+************************************************************/
+
 #include "Sprite.h"
 #include "GameObject.h"
 #include "SDL.h"
@@ -6,12 +14,43 @@
 #include "TextureManager.h"
 #include "Log.h"
 
+SDL_Rect m_SourceRect;
+SDL_FRect m_DestRect;
 
-Sprite::Sprite(const char* texturePath, float h, float w) : RenderComponent()
+
+Sprite::Sprite(const char* texturePath) : RenderComponent()
 {
-	m_SpriteScale = Vector2D(32, 32);
+	//TODO automate to choose between BMP or PNG
 	m_Texture = TextureManager::LoadTexture(texturePath);
+	SDL_QueryTexture(m_Texture, nullptr, nullptr, &m_TextureWidth, &m_TextureHeight);
+
+	m_FrameWidth = m_TextureWidth;
+	m_FrameHeight = m_TextureHeight;
+
+	m_SourceRect.x = m_SourceRect.y = 0;
+	m_SourceRect.w = m_FrameWidth;
+	m_SourceRect.h = m_FrameHeight;
+	m_DestRect.w = m_FrameWidth;
+	m_DestRect.h = m_FrameHeight;
 }
+
+Sprite::Sprite(const char* texturePath, int spriteSheetRows, int spriteSheetColumns, float scale) : RenderComponent()
+{
+
+	//TODO automate to choose between BMP or PNG
+	m_Texture = TextureManager::LoadTexture(texturePath);
+	SDL_QueryTexture(m_Texture, nullptr, nullptr, &m_TextureWidth, &m_TextureHeight);
+
+	m_FrameWidth = m_TextureWidth / spriteSheetRows;
+	m_FrameHeight = m_TextureHeight / spriteSheetColumns;
+
+	m_SourceRect.x = m_SourceRect.y = 0;
+	m_SourceRect.w = m_FrameWidth;
+	m_SourceRect.h = m_FrameHeight;
+	m_DestRect.w = m_FrameWidth * scale;
+	m_DestRect.h = m_FrameHeight * scale;
+}
+
 
 Sprite::~Sprite()
 {
@@ -24,21 +63,23 @@ void Sprite::Start()
 {
 	Component::Start();
 
-	if (m_OwnerGameObject) m_ParentTransform = m_OwnerGameObject->GetTransform();
+	if (m_OwnerGameObject)
+	{
+		m_ParentTransform = m_OwnerGameObject->GetTransform();
+	}
+
 }
 
 void Sprite::Render()
 {
 	if (m_Texture) {
-		if (m_ParentTransform) {
-			SDL_FRect dest;
-			dest.x = m_ParentTransform->GetPosition().x;
-			dest.y = m_ParentTransform->GetPosition().y;
-			dest.w = m_ParentTransform->GetScale().x * m_SpriteScale.x;
-			dest.h = m_ParentTransform->GetScale().y * m_SpriteScale.y;
+		if (m_ParentTransform) 
+		{
+			m_DestRect.x = m_ParentTransform->GetPosition().x;
+			m_DestRect.y = m_ParentTransform->GetPosition().y;
 			//Game Engine Renderer
 			// TODO: optimize get get renderer on tick
-			SDL_RenderCopyF(GameEngine::GetInstance()->GetRenderer(), m_Texture, nullptr, &dest);
+			SDL_RenderCopyF(GameEngine::GetInstance()->GetRenderer(), m_Texture, &m_SourceRect, &m_DestRect);
 		}
 	}
 }
@@ -51,4 +92,9 @@ void Sprite::SetSpriteTexture(SDL_Texture* Texture)
 void Sprite::SetSpriteTexture(const char* TexturePath)
 {
 	m_Texture = TextureManager::LoadTexture(TexturePath);
+}
+
+SDL_Rect& Sprite::GetSourceRect() const
+{
+	return m_SourceRect;
 }

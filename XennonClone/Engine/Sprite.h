@@ -3,21 +3,30 @@
 #include "Transform.h"
 
 struct SDL_Texture;
+struct SDL_Rect;
 
 class Sprite : public RenderComponent
 {
+	friend class AnimationComponent;
 protected:
 	Transform* m_ParentTransform{ nullptr };
 
 	//Display
 	SDL_Texture* m_Texture;
 
-	Vector2D m_SpriteScale;
+	/* The pixels (width and height) of the texture that should be loaded */
+	int m_TextureWidth = 0;
+	int m_TextureHeight = 0;
+	int m_FrameWidth = 1;
+	int m_FrameHeight = 1;
 	//SDL_FRect& m_destRect; Not needed its basically a copy of transform
 
 public:
 	Sprite() = default;
-	Sprite(const char* texturePath, float h, float w);
+	/* Used for non-animated sprites */
+	Sprite(const char* texturePath);
+	/* Used for animated sprites */
+	Sprite(const char* texturePath, int spriteSheetRows, int spriteSheetColumns, float scale);
 	~Sprite();
 
 	virtual void Start() override;
@@ -26,9 +35,7 @@ public:
 	void SetSpriteTexture(const char* TexturePath);
 
 	inline SDL_Texture* GetTexture() const { return m_Texture; }
-
-	void SetSpriteScale(Vector2D scale) { m_SpriteScale = scale; }
-	void SetSpriteScale(float width,float height) { m_SpriteScale = Vector2D(width, height); }
+	SDL_Rect& GetSourceRect() const;
 
 	// Inherited via RenderComponent
 	virtual void Render() override;

@@ -13,5 +13,5 @@ void Component::Start()
 
 void Component::Update(float deltaSeconds)
 {
-	LOG("Component Update");
+	//LOG("Component Update");
 }

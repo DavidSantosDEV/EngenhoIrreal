@@ -16,26 +16,30 @@ std::string TextureManager::GetPathTranslated(const char* path)
 SDL_Texture* TextureManager::LoadTexture(const char* Filename) //Generic Loader
 {
     SDL_Renderer* const ren = GameEngine::GetInstance()->GetRenderer();
-    if (!ren)return nullptr;
+    if (!ren) { return nullptr; }
+
     SDL_Surface* tmpSurf{ LoadSurface(Filename) };
     SDL_Texture* finaltexture{ nullptr };
-    if (tmpSurf) {
+
+    if (tmpSurf) 
+    {
+		SDL_SetColorKey(tmpSurf, SDL_TRUE, SDL_MapRGB(tmpSurf->format, 255, 0, 255));
         finaltexture = SDL_CreateTextureFromSurface(ren, tmpSurf);
     }
-    SDL_FreeSurface(tmpSurf);
 
+    SDL_FreeSurface(tmpSurf);
     SDL_SetTextureBlendMode(finaltexture, SDL_BLENDMODE_BLEND);
 
     return finaltexture;
 }
 
-SDL_Texture* TextureManager::LoadTextureBMP(const char* Filename) //BMP Loader
+SDL_Texture* TextureManager::LoadTextureBMP(const char* fileName) //BMP Loader
 {
     SDL_Renderer* const ren = GameEngine::GetInstance()->GetRenderer();
 
     if (!ren)return nullptr;
 
-    SDL_Surface* surf = SDL_LoadBMP(Filename);
+    SDL_Surface* surf = SDL_LoadBMP(fileName);
 
     if (!surf) {
         const char* error = SDL_GetError();
