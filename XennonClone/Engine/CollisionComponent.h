@@ -2,18 +2,13 @@
 
 #include "Component.h"
 
-enum CollisionShape {
-	Circle,
-	Square,
 
-};
 class CollisionComponent : Component
 {
 protected:
-	
+	b2Shape* nShape;
 public:
 	CollisionComponent();
-	CollisionComponent(CollisionShape shape);
 	~CollisionComponent();
 };
 

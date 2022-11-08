@@ -8,7 +8,7 @@ protected:
 	static PhysicsWorld* m_Instance;
 	
 	class b2World* m_b2World;
-
+	class b2ContactListener* m_Listener;
 
 public:
 	PhysicsWorld();

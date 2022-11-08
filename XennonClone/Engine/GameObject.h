@@ -74,5 +74,8 @@ public:
 	inline bool GetWasInitialized() const { return m_WasInitialized; }
 
 	inline Transform* GetTransform() { return &m_Transform; }
+
+	virtual void OnBeginCollision(GameObject* other);
+	virtual void OnEndCollision(GameObject* other);
 };
 

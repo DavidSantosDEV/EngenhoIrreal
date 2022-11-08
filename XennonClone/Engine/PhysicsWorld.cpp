@@ -1,5 +1,6 @@
 #include "PhysicsWorld.h"
 #include "box2d\b2_world.h"
+#include "ContactListener.h"
 #include "box2d\b2_body.h"
 
 PhysicsWorld* PhysicsWorld::m_Instance{ nullptr };
@@ -10,6 +11,7 @@ PhysicsWorld::PhysicsWorld() {
 
 PhysicsWorld::~PhysicsWorld() {
 	delete m_b2World;
+	delete m_Listener;
 }
 
 void PhysicsWorld::Init() {
@@ -18,7 +20,9 @@ void PhysicsWorld::Init() {
 	}
 	else {
 		m_Instance = this;
+		m_Listener = new ContactListener();
 		m_b2World = new b2World(b2Vec2(0, -1));
+		m_b2World->SetContactListener(m_Listener);
 	}
 }
 
