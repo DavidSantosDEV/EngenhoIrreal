@@ -16,6 +16,7 @@
 #include "Pawn.h"
 #include "Log.h"
 #include "Input.h"
+#include "PhysicsWorld.h"
 
 // Initialize static variables
 GameWorld* GameEngine::m_World = nullptr;
@@ -31,6 +32,7 @@ GameEngine::~GameEngine()
 	delete m_Window;
 	delete m_Sdl;
 	delete m_Input;
+	delete m_PhysicsWorld;
 }	
 
 void GameEngine::Init(const char* windowTitle, int windowWidth, int windowHeight, GameWorld* World)
@@ -44,6 +46,8 @@ void GameEngine::Init(const char* windowTitle, int windowWidth, int windowHeight
 		m_Window = new Window(windowTitle, windowWidth, windowHeight, true);
 		m_World = World;
 		m_Input = new Input();
+		m_PhysicsWorld = new PhysicsWorld();
+		m_PhysicsWorld->Init();
 	}
 }
 

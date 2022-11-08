@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AnimationComponent.cpp" />
+    <ClCompile Include="CollisionComponent.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -27,6 +28,8 @@
     <ClCompile Include="InitError.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Pawn.cpp" />
+    <ClCompile Include="PhysicsComponent.cpp" />
+    <ClCompile Include="PhysicsWorld.cpp" />
     <ClCompile Include="RenderComponent.cpp" />
     <ClCompile Include="SDLWrapper.cpp" />
     <ClCompile Include="Sprite.cpp" />
@@ -35,6 +38,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationComponent.h" />
+    <ClInclude Include="CollisionComponent.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="GameObject.h" />
@@ -44,6 +48,8 @@
     <ClInclude Include="Log.h" />
     <ClInclude Include="MathHelper.h" />
     <ClInclude Include="Pawn.h" />
+    <ClInclude Include="PhysicsComponent.h" />
+    <ClInclude Include="PhysicsWorld.h" />
     <ClInclude Include="RenderComponent.h" />
     <ClInclude Include="SDLWrapper.h" />
     <ClInclude Include="Sprite.h" />
