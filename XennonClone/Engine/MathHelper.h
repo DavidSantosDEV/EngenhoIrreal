@@ -22,4 +22,10 @@ public:
 		float NewRange = (newMax - newMin);
 		value = (((value - oldMin) * NewRange) / oldRange) + newMin;
 	}
+
+	static int Abs(const int& value)
+	{
+		int inverse = -value;
+		return value ? value > inverse : inverse;
+	}
 };

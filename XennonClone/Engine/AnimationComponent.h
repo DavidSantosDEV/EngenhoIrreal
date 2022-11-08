@@ -14,9 +14,13 @@ public:
 	/* Play animation from specific sprite sheet sprites. Index starts at 0 for both rows and columns 
 	* Row = Y and Column = X.
 	*/
-	void PlayAnimation(int startingFrameRow, int startingFrameColumn, int endingFrameRow, int endingFrameColumn);
+	void PlayAnimation(int startingFrameRow, int startingFrameColumn, int endingFrameRow, 
+		int endingFrameColumn, bool canLoopAnimation);
 
-	/* Called by other classes to stop the current animation */
+	bool IsPlayingAnimation(int startingFrameRow, int startingFrameColumn, int endingFrameRow,
+		int endingFrameColumn) const;
+
+	/* Called by other classes to stop the current animation. Is called inside play animation automatically */
 	void StopAnimation() { m_IsPlayingAnimation = false; }
 private:
 	class Sprite& m_ParentSpriteComponent;
@@ -27,5 +31,6 @@ private:
 	int m_StartingAnimationFrameY = 0;
 	int m_EndingAnimationFrameX = 0;
 	int m_EndingAnimationFrameY = 0;
+	bool m_CanLoopAnimation = true;
 };
 

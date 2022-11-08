@@ -5,18 +5,17 @@
 #include "Pawn.h"
 #include "Log.h"
 #include "AnimationComponent.h"
+#include "Player.h"
 
-Pawn* pawn;
+Pawn* player;
+
 void XennonGameWorld::Start()
 {
 	//StaticBackground* background = InstantiateObject<StaticBackground>();
-	pawn = InstantiateObject<Pawn>();
-	Sprite& sprite = pawn->AddComponent<Sprite>("drone.bmp", 8, 2, 1.f);
-	AnimationComponent& anim = pawn->AddComponent<AnimationComponent>(sprite, false, 8.f);
-	anim.PlayAnimation(1, 1, 1, 7);
+	player = InstantiateObject<Player>();
 }
 
 void XennonGameWorld::Update(float deltaTime)
 {
-	pawn->GetTransform()->GetPosition().x += 50 * deltaTime;
+	//player->GetTransform()->GetPosition().x += 50 * deltaTime;
 }

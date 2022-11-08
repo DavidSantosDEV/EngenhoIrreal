@@ -1,5 +1,5 @@
 #pragma once
-
+#include <cmath>
 /*
 * Vector2D class 
 ************************************************************/
@@ -65,6 +65,16 @@ public:
 	{
 		this->x /= vector.x;
 		this->y /= vector.y;
+		return *this;
+	}
+
+	Vector2D& Normalize()
+	{
+		if (this->x == 0 || this->y == 0) { return *this; }
+
+		float magnitude = std::sqrt(std::pow(this->x, 2) + std::pow(this->y, 2));
+		this->x /= magnitude;
+		this->y /= magnitude;
 		return *this;
 	}
 
