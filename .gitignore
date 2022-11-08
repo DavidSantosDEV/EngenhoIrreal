@@ -47,3 +47,4 @@
 .vs
 *.tlog
 *.log
+XennonClone/Engine/x64/Debug/**
