@@ -28,4 +28,11 @@ public:
 		int inverse = -value;
 		return value ? value > inverse : inverse;
 	}
+
+	static void SwapVectorElement(int* a, int* b)
+	{
+		int aux = *a;
+		*a = *b;
+		*b = aux;
+	}
 };
