@@ -5,8 +5,14 @@
 
 Player::Player()
 {
-	m_SpriteComponent = &AddComponent<Sprite>("Ship1.bmp", 7, 1, 1.f);
+	m_SpriteComponent = &AddComponent<Sprite>("Ship1.bmp", 7, 1, 1.f, 0);
 	m_AnimationComponent= &AddComponent<AnimationComponent>(GetComponent<Sprite>(), false, 8.f);
+}
+
+Player::~Player()
+{
+	delete m_SpriteComponent;
+	delete m_AnimationComponent;
 }
 
 void Player::HandleEvents()

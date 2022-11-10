@@ -16,10 +16,13 @@
 #include "Pawn.h"
 #include "Log.h"
 #include "Input.h"
+#include <iostream>
+#include <memory>
 
 // Initialize static variables
 GameWorld* GameEngine::m_World = nullptr;
 float GameEngine::m_ElapsedMS = 0.f;
+
 std::vector<GameObject*> GameEngine::m_GameObjectStack;
 std::vector<RenderComponent*> GameEngine::m_RenderComponentsStack;
 std::vector<Pawn*> GameEngine::m_PawnsStack;
@@ -153,6 +156,9 @@ void GameEngine::AddRenderComponentToStack(RenderComponent* renderComponent)
 {
 	if (renderComponent == nullptr) { return; }
 	m_RenderComponentsStack.push_back(renderComponent);
+	LOG_WARNING("Before sort first index: " << m_RenderComponentsStack[0]);
+	SortRenderComponents();
+	LOG_WARNING("After sort first index: " << m_RenderComponentsStack[0]);
 }
 
 void GameEngine::RemoveRenderComponentFromStack(RenderComponent* renderComponent)
@@ -165,6 +171,7 @@ void GameEngine::RemoveRenderComponentFromStack(RenderComponent* renderComponent
 			return;
 		}
 	}
+	SortRenderComponents();
 }
 
 void GameEngine::AddPawnToStack(Pawn* pawn)
@@ -197,4 +204,29 @@ Vector2D GameEngine::GetWindowSize()
 {
 	return m_Window->GetWindowSize();
 }
+
+
+void GameEngine::SortRenderComponents()
+{
+	for (unsigned int i = 0; i < m_RenderComponentsStack.size() - 1; ++i)
+	{
+		int lowestIndex = i;
+		for (unsigned int j = i + 1; j < m_RenderComponentsStack.size(); ++j)
+		{
+			if (m_RenderComponentsStack[j]->GetRenderPriority() < 
+				m_RenderComponentsStack[lowestIndex]->GetRenderPriority())
+			{
+				lowestIndex = j;
+			}
+		}
+
+		if (i != lowestIndex)
+		{
+			std::swap(m_RenderComponentsStack[i], m_RenderComponentsStack[lowestIndex]);
+		}
+	}
+}
+
+
+
 

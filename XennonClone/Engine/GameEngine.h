@@ -10,8 +10,6 @@ class Pawn;
 
 class GameEngine
 {
-
-	
 public:
 	~GameEngine();
 	void Init(const char* windowTitle, int windowWidth, int windowHeight, GameWorld* World);
@@ -32,6 +30,10 @@ public:
 	static void RemovePawnFromStack(Pawn* pawn);
 
 private:
+	/* Sort render components in order to support a layering/priority system*/
+	static void SortRenderComponents();
+	static void SwapRenderComponents(RenderComponent* r1, RenderComponent* r2);
+
 	static GameEngine* m_Instance;
 
 	static std::vector<GameObject*> m_GameObjectStack;

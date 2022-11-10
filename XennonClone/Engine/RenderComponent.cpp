@@ -8,8 +8,9 @@
 #include "RenderComponent.h"
 #include "Log.h"
 
-RenderComponent::RenderComponent()
+RenderComponent::RenderComponent(int renderPriority)
 {
+	m_RenderPriority = renderPriority;
 	GameEngine::AddRenderComponentToStack(this);
 }
 

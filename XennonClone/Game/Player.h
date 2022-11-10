@@ -5,6 +5,7 @@ class Player : public Pawn
 {
 public:
 	Player();
+	~Player();
 	virtual void HandleEvents() override;
 
 private:

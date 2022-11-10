@@ -1,6 +1,7 @@
 #pragma once
 #include "RenderComponent.h"
 #include "Transform.h"
+#include "SDL.h"
 
 struct SDL_Texture;
 struct SDL_Rect;
@@ -14,6 +15,9 @@ protected:
 	//Display
 	SDL_Texture* m_Texture;
 
+	SDL_Rect m_SourceRect;
+	SDL_FRect m_DestRect;
+
 	/* The pixels (width and height) of the texture that should be loaded */
 	int m_TextureWidth = 0;
 	int m_TextureHeight = 0;
@@ -23,11 +27,10 @@ protected:
 	//SDL_FRect& m_destRect; Not needed its basically a copy of transform
 
 public:
-	Sprite() = default;
 	/* Used for non-animated sprites */
-	Sprite(const char* texturePath);
+	Sprite(const char* texturePath, int renderPriority);
 	/* Used for animated sprites */
-	Sprite(const char* texturePath, int spriteSheetRows, int spriteSheetColumns, float scale);
+	Sprite(const char* texturePath, int spriteSheetRows, int spriteSheetColumns, float scale, int renderPriority);
 	~Sprite();
 
 	virtual void Start() override;
@@ -36,7 +39,7 @@ public:
 	void SetSpriteTexture(const char* TexturePath);
 
 	inline SDL_Texture* GetTexture() const { return m_Texture; }
-	SDL_Rect& GetSourceRect() const;
+	SDL_Rect& GetSourceRect();
 
 	// Inherited via RenderComponent
 	virtual void Render() override;

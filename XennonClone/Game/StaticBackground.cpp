@@ -4,9 +4,7 @@
 
 StaticBackground::StaticBackground() : GameObject() 
 {
-	m_SpriteComponent = &AddComponent<Sprite>();
-	m_SpriteComponent->SetSpriteTexture("banana.png");
-	//m_SpriteComponent->SetSpriteScale(GameEngine::GetInstance()->GetWindowSize());
+	m_SpriteComponent = &AddComponent<Sprite>("banana.png", 10);
 }
 
 StaticBackground::~StaticBackground()

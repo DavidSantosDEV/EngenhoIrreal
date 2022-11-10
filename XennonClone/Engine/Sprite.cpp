@@ -14,11 +14,7 @@
 #include "TextureManager.h"
 #include "Log.h"
 
-SDL_Rect m_SourceRect;
-SDL_FRect m_DestRect;
-
-
-Sprite::Sprite(const char* texturePath) : RenderComponent()
+Sprite::Sprite(const char* texturePath, int renderPriority) : RenderComponent(renderPriority)
 {
 	//TODO automate to choose between BMP or PNG
 	m_Texture = TextureManager::LoadTexture(texturePath);
@@ -34,7 +30,8 @@ Sprite::Sprite(const char* texturePath) : RenderComponent()
 	m_DestRect.h = m_FrameHeight;
 }
 
-Sprite::Sprite(const char* texturePath, int spriteSheetRows, int spriteSheetColumns, float scale) : RenderComponent()
+Sprite::Sprite(const char* texturePath, int spriteSheetRows, int spriteSheetColumns, 
+	float scale, int renderPriority) : RenderComponent(renderPriority)
 {
 
 	//TODO automate to choose between BMP or PNG
@@ -93,7 +90,7 @@ void Sprite::SetSpriteTexture(const char* TexturePath)
 	m_Texture = TextureManager::LoadTexture(TexturePath);
 }
 
-SDL_Rect& Sprite::GetSourceRect() const
+SDL_Rect& Sprite::GetSourceRect()
 {
 	return m_SourceRect;
 }
