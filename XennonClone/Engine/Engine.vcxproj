@@ -26,6 +26,7 @@
     <ClCompile Include="GameWorld.cpp" />
     <ClCompile Include="InitError.cpp" />
     <ClCompile Include="Input.cpp" />
+    <ClCompile Include="ParallaxComponent.cpp" />
     <ClCompile Include="Pawn.cpp" />
     <ClCompile Include="RenderComponent.cpp" />
     <ClCompile Include="SDLWrapper.cpp" />
@@ -43,6 +44,7 @@
     <ClInclude Include="Input.h" />
     <ClInclude Include="Log.h" />
     <ClInclude Include="MathHelper.h" />
+    <ClInclude Include="ParallaxComponent.h" />
     <ClInclude Include="Pawn.h" />
     <ClInclude Include="RenderComponent.h" />
     <ClInclude Include="SDLWrapper.h" />

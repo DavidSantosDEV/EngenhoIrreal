@@ -7,6 +7,4 @@ protected:
 public:
 	StaticBackground();
 	~StaticBackground();
-
-	virtual void Start() override;
 };

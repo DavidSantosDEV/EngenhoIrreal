@@ -156,9 +156,7 @@ void GameEngine::AddRenderComponentToStack(RenderComponent* renderComponent)
 {
 	if (renderComponent == nullptr) { return; }
 	m_RenderComponentsStack.push_back(renderComponent);
-	LOG_WARNING("Before sort first index: " << m_RenderComponentsStack[0]);
 	SortRenderComponents();
-	LOG_WARNING("After sort first index: " << m_RenderComponentsStack[0]);
 }
 
 void GameEngine::RemoveRenderComponentFromStack(RenderComponent* renderComponent)
@@ -208,6 +206,8 @@ Vector2D GameEngine::GetWindowSize()
 
 void GameEngine::SortRenderComponents()
 {
+	LOG_WARNING("Before sort first index: " << m_RenderComponentsStack[0]);
+
 	for (unsigned int i = 0; i < m_RenderComponentsStack.size() - 1; ++i)
 	{
 		int lowestIndex = i;
@@ -225,6 +225,7 @@ void GameEngine::SortRenderComponents()
 			std::swap(m_RenderComponentsStack[i], m_RenderComponentsStack[lowestIndex]);
 		}
 	}
+	LOG_WARNING("After sort first index: " << m_RenderComponentsStack[0]);
 }
 
 

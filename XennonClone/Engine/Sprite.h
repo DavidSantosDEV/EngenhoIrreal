@@ -9,6 +9,7 @@ struct SDL_Rect;
 class Sprite : public RenderComponent
 {
 	friend class AnimationComponent;
+	friend class ParallaxComponent;
 protected:
 	Transform* m_ParentTransform{ nullptr };
 

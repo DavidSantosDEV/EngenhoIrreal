@@ -156,14 +156,14 @@
   <ItemGroup>
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="StaticBackground.cpp" />
-    <ClCompile Include="TestLayers.cpp" />
+    <ClCompile Include="RocksBackground.cpp" />
     <ClCompile Include="XennonGameWorld.cpp" />
     <ClCompile Include="XennonClone.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h" />
     <ClInclude Include="StaticBackground.h" />
-    <ClInclude Include="TestLayers.h" />
+    <ClInclude Include="RocksBackground.h" />
     <ClInclude Include="XennonGameWorld.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

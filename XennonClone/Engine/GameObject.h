@@ -20,13 +20,12 @@ public:
 	virtual void Start();
 	virtual void Update(float deltaTime);
 
+	Transform m_Transform;
 protected:
 	std::vector<std::shared_ptr<class Component>> m_Components;
 	std::array<class Component*, 32> m_ComponentsHashMap = std::array<class Component *, 32>();
 
 	bool m_WasInitialized = false;
-
-	Transform m_Transform;
 public:
 /* Component-Derived System */
 #pragma region ComponentSystem
