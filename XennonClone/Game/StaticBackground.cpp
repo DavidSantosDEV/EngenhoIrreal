@@ -4,15 +4,10 @@
 
 StaticBackground::StaticBackground() : GameObject() 
 {
-	m_SpriteComponent = &AddComponent<Sprite>("banana.png", 10);
+	m_SpriteComponent = &AddComponent<Sprite>("galaxy2.bmp", -2);
 }
 
 StaticBackground::~StaticBackground()
 {
 	delete m_SpriteComponent;
-}
-
-void StaticBackground::Start() 
-{
-
 }

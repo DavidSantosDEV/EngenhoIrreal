@@ -27,7 +27,7 @@
     <ClCompile Include="Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TestLayers.cpp">
+    <ClCompile Include="RocksBackground.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -41,7 +41,7 @@
     <ClInclude Include="Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TestLayers.h">
+    <ClInclude Include="RocksBackground.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

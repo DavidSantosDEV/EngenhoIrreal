@@ -6,17 +6,15 @@
 #include "Log.h"
 #include "AnimationComponent.h"
 #include "Player.h"
-#include "TestLayers.h"
+#include "RocksBackground.h"
 
 Pawn* player;
 
 void XennonGameWorld::Start()
 {
 	StaticBackground* background = InstantiateObject<StaticBackground>();
-	StaticBackground* bg2 = InstantiateObject<StaticBackground>();
+	InstantiateObject<RocksBackground>();
 	player = InstantiateObject<Player>();
-
-	InstantiateObject<TestLayers>();
 }
 
 void XennonGameWorld::Update(float deltaTime)
