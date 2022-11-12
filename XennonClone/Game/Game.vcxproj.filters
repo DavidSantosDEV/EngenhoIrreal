@@ -24,12 +24,18 @@
     <ClCompile Include="StaticBackground.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PhysicsTestActor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="XennonGameWorld.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="StaticBackground.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsTestActor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

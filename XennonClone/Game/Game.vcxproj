@@ -154,11 +154,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="PhysicsTestActor.cpp" />
     <ClCompile Include="StaticBackground.cpp" />
     <ClCompile Include="XennonGameWorld.cpp" />
     <ClCompile Include="XennonClone.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="PhysicsTestActor.h" />
     <ClInclude Include="StaticBackground.h" />
     <ClInclude Include="XennonGameWorld.h" />
   </ItemGroup>

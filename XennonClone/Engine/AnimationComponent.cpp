@@ -12,13 +12,15 @@ void AnimationComponent::Start()
 	{
 		m_StartingAnimationFrameX = 0;
 		m_StartingAnimationFrameY = 0;
-		m_EndingAnimationFrameX = m_ParentSpriteComponent.m_TextureWidth;
-		m_EndingAnimationFrameY = m_ParentSpriteComponent.m_TextureHeight;
+		m_EndingAnimationFrameX = m_ParentSpriteComponent->m_TextureWidth;
+		m_EndingAnimationFrameY = m_ParentSpriteComponent->m_TextureHeight;
 	}
+	Component::Start();
 }
 
 void AnimationComponent::Update(float deltatime)
 {
+	Component::Update(deltatime);
 	if (m_IsPlayingAnimation == false) 
 	{
 		frameTime = 0;
@@ -26,18 +28,18 @@ void AnimationComponent::Update(float deltatime)
 	}
 
 	//TODO don't get it every frame, get once and store it
-	SDL_Rect& spriteSourceRect = m_ParentSpriteComponent.GetSourceRect();
+	SDL_Rect& spriteSourceRect = m_ParentSpriteComponent->GetSourceRect();
 
 	frameTime += deltatime;
 
 	if (frameTime >= (1.f / m_AnimationSpeed))
 	{
-		spriteSourceRect.x += m_ParentSpriteComponent.m_FrameWidth;
+		spriteSourceRect.x += m_ParentSpriteComponent->m_FrameWidth;
 
 		if (spriteSourceRect.x >= m_EndingAnimationFrameX)
 		{
 			spriteSourceRect.x = m_StartingAnimationFrameX;
-			spriteSourceRect.y += m_ParentSpriteComponent.m_FrameHeight;
+			spriteSourceRect.y += m_ParentSpriteComponent->m_FrameHeight;
 
 			if (spriteSourceRect.y >= m_EndingAnimationFrameY)
 			{
@@ -52,13 +54,13 @@ void AnimationComponent::Update(float deltatime)
 void AnimationComponent::PlayAnimation(int startingFrameRow, int startingFrameColumn, int endingFrameRow, int endingFrameColumn)
 {
 	// Update animation values
-	m_StartingAnimationFrameX = startingFrameColumn * m_ParentSpriteComponent.m_FrameWidth;
-	m_StartingAnimationFrameY = startingFrameRow * m_ParentSpriteComponent.m_FrameHeight;
-	m_EndingAnimationFrameX = (endingFrameColumn * m_ParentSpriteComponent.m_FrameWidth) + m_ParentSpriteComponent.m_FrameWidth;
-	m_EndingAnimationFrameY = (endingFrameRow * m_ParentSpriteComponent.m_FrameHeight) + m_ParentSpriteComponent.m_FrameHeight;
+	m_StartingAnimationFrameX = startingFrameColumn * m_ParentSpriteComponent->m_FrameWidth;
+	m_StartingAnimationFrameY = startingFrameRow * m_ParentSpriteComponent->m_FrameHeight;
+	m_EndingAnimationFrameX = (endingFrameColumn * m_ParentSpriteComponent->m_FrameWidth) + m_ParentSpriteComponent->m_FrameWidth;
+	m_EndingAnimationFrameY = (endingFrameRow * m_ParentSpriteComponent->m_FrameHeight) + m_ParentSpriteComponent->m_FrameHeight;
 
 	// Change whatever sprite it is currently to the first of the new animation.
-	SDL_Rect& spriteSourceRect = m_ParentSpriteComponent.GetSourceRect();
+	SDL_Rect& spriteSourceRect = m_ParentSpriteComponent->GetSourceRect();
 	spriteSourceRect.x = m_StartingAnimationFrameX;
 	spriteSourceRect.y = m_StartingAnimationFrameY;
 

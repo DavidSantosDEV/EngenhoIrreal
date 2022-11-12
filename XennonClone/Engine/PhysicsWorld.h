@@ -20,6 +20,8 @@ public:
 
 	void SetGravity(Vector2D gravityDir);
 
+	void UpdatePhysics();
+
 	static PhysicsWorld* GetInstance() { return m_Instance; }
 
 	class b2Body* CreateBody(struct b2BodyDef& def);

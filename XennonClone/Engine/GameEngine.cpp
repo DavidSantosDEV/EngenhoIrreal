@@ -76,7 +76,7 @@ void GameEngine::StartAndRun()
 		{
 			HandleInput(ev);
 		}
-
+		m_PhysicsWorld->UpdatePhysics();
 		Update();
 		Render();
 

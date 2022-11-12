@@ -8,6 +8,7 @@
 #include "GameObject.h"
 #include "Component.h"
 #include <algorithm>
+#include "PhysicsComponent.h"
 #include "Log.h"
 
 GameObject::GameObject() 
@@ -49,16 +50,33 @@ void GameObject::Start()
 
 void GameObject::Update(float deltaTime)
 {
-	std::for_each(
-		m_Components.begin(),
-		m_Components.end(),
-		[&](std::shared_ptr<Component> cpt) { cpt->Update(deltaTime); }
-	);
+	for (std::shared_ptr<Component> cpt : m_Components) {
+		cpt->Update(deltaTime);
+	}
+}
+
+Transform* GameObject::GetTransform()
+{
+	PhysicsComponent* physComp = GetComponent<PhysicsComponent>();
+	if (physComp) {
+		//LOG_ERROR("Can't alter transform directly, please use Physics Component to get and set position")
+	}
+	return &m_Transform;
 }
 
 void GameObject::OnBeginCollision(GameObject* other) {
 
 }
 void GameObject::OnEndCollision(GameObject* other) {
+
+}
+
+void GameObject::OnTriggerEnter(GameObject* other)
+{
+
+}
+
+void GameObject::OnTriggerExit(GameObject* other)
+{
 
 }
