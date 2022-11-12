@@ -6,7 +6,7 @@ RocksBackground::RocksBackground() : GameObject()
 {
 	m_SpriteComponent = &AddComponent<Sprite>("background2.bmp", -1);
 
-	AddComponent<ParallaxComponent>().SetSpeed(40.f);
+	AddComponent<ParallaxComponent>().SetSpeed(70.f);
 }
 
 RocksBackground::~RocksBackground()
