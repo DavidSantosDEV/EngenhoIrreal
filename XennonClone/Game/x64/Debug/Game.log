@@ -13,4 +13,15 @@ D:\Development\EngenhoIrreal\XennonClone\Game\PhysicsTestActor.cpp(17): message 
           [
               T=CircleCollision
           ]
+EngenhoIrrealXVII.lib(b2_joint.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'EngenhoIrrealXVII.lib(b2_joint.obj)' or at 'D:\Development\EngenhoIrreal\XennonClone\x64\Debug\box2d.pdb'; linking object as if no debug info
+EngenhoIrrealXVII.lib(b2_island.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'EngenhoIrrealXVII.lib(b2_island.obj)' or at 'D:\Development\EngenhoIrreal\XennonClone\x64\Debug\box2d.pdb'; linking object as if no debug info
+EngenhoIrrealXVII.lib(b2_contact_solver.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'EngenhoIrrealXVII.lib(b2_contact_solver.obj)' or at 'D:\Development\EngenhoIrreal\XennonClone\x64\Debug\box2d.pdb'; linking object as if no debug info
+EngenhoIrrealXVII.lib(b2_chain_polygon_contact.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'EngenhoIrrealXVII.lib(b2_chain_polygon_contact.obj)' or at 'D:\Development\EngenhoIrreal\XennonClone\x64\Debug\box2d.pdb'; linking object as if no debug info
+EngenhoIrrealXVII.lib(b2_chain_circle_contact.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'EngenhoIrrealXVII.lib(b2_chain_circle_contact.obj)' or at 'D:\Development\EngenhoIrreal\XennonClone\x64\Debug\box2d.pdb'; linking object as if no debug info
+EngenhoIrrealXVII.lib(b2_body.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'EngenhoIrrealXVII.lib(b2_body.obj)' or at 'D:\Development\EngenhoIrreal\XennonClone\x64\Debug\box2d.pdb'; linking object as if no debug info
+EngenhoIrrealXVII.lib(b2_edge_shape.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'EngenhoIrrealXVII.lib(b2_edge_shape.obj)' or at 'D:\Development\EngenhoIrreal\XennonClone\x64\Debug\box2d.pdb'; linking object as if no debug info
+EngenhoIrrealXVII.lib(b2_dynamic_tree.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'EngenhoIrrealXVII.lib(b2_dynamic_tree.obj)' or at 'D:\Development\EngenhoIrreal\XennonClone\x64\Debug\box2d.pdb'; linking object as if no debug info
+EngenhoIrrealXVII.lib(b2_distance.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'EngenhoIrrealXVII.lib(b2_distance.obj)' or at 'D:\Development\EngenhoIrreal\XennonClone\x64\Debug\box2d.pdb'; linking object as if no debug info
+EngenhoIrrealXVII.lib(b2_circle_shape.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'EngenhoIrrealXVII.lib(b2_circle_shape.obj)' or at 'D:\Development\EngenhoIrreal\XennonClone\x64\Debug\box2d.pdb'; linking object as if no debug info
+EngenhoIrrealXVII.lib(b2_chain_shape.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'EngenhoIrrealXVII.lib(b2_chain_shape.obj)' or at 'D:\Development\EngenhoIrreal\XennonClone\x64\Debug\box2d.pdb'; linking object as if no debug info
   Game.vcxproj -> D:\Development\EngenhoIrreal\XennonClone\x64\Debug\XennonClone.exe
