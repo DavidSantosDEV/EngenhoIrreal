@@ -1,7 +1,7 @@
 #include "PhysicsTestActor.h"
 #include "Input.h"
 #include "Log.h"
-#include "CircleCollision.h"
+#include "SquareCollision.h"
 #include "Sprite.h"
 
 
@@ -14,7 +14,7 @@ PhysicsTestActor::PhysicsTestActor()
 void PhysicsTestActor::Start()
 {
 	physComp = AddComponent<PhysicsComponent>();
-	circleCol = AddComponent<CircleCollision>(physComp,20);
+	circleCol = AddComponent<SquareCollision>(physComp,20,20);
 	Pawn::Start();
 }
 

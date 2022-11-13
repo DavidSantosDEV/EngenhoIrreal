@@ -7,7 +7,7 @@ class PhysicsTestActor : public Pawn
 public:
 
 	PhysicsComponent* physComp;
-	class CircleCollision* circleCol;
+	class SquareCollision* circleCol;
 
 	bool hasInput = false;
 

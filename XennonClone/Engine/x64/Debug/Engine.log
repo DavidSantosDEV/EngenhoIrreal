@@ -1,47 +1,14 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(534,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (Engine.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  AnimationComponent.cpp
-D:\Development\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
   CircleCollision.cpp
 D:\Development\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
   CollisionComponent.cpp
-  Component.cpp
-D:\Development\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
   ContactListener.cpp
-D:\Development\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
-  GameEngine.cpp
-D:\Development\EngenhoIrreal\XennonClone\Engine\SDLWrapper.h(7,12): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
 D:\Development\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
   GameObject.cpp
 D:\Development\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
-  GameWorld.cpp
-D:\Development\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
-  InitError.cpp
-  Input.cpp
-D:\Development\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
-D:\Development\EngenhoIrreal\XennonClone\Engine\MathHelper.h(21,18): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-D:\Development\EngenhoIrreal\XennonClone\Engine\MathHelper.h(22,18): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-D:\Development\EngenhoIrreal\XennonClone\Engine\MathHelper.h(23,54): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  Pawn.cpp
-D:\Development\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
   PhysicsComponent.cpp
 D:\Development\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
-  PhysicsWorld.cpp
-  RenderComponent.cpp
-D:\Development\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
-  SDLWrapper.cpp
-D:\Development\EngenhoIrreal\XennonClone\Engine\SDLWrapper.h(7,12): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
-D:\Development\EngenhoIrreal\XennonClone\Engine\SDLWrapper.cpp(9,61): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
-  Sprite.cpp
-D:\Development\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
-D:\Development\EngenhoIrreal\XennonClone\Engine\Sprite.cpp(33,17): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-D:\Development\EngenhoIrreal\XennonClone\Engine\Sprite.cpp(34,17): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-D:\Development\EngenhoIrreal\XennonClone\Engine\Sprite.cpp(58,2): warning C4150: deletion of pointer to incomplete type 'SDL_Texture'; no destructor called
-D:\Development\EngenhoIrreal\XennonClone\include\SDL2\SDL_render.h(147): message : see declaration of 'SDL_Texture'
-  TextureManager.cpp
-D:\Development\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
-  Window.cpp
-D:\Development\EngenhoIrreal\XennonClone\Engine\Window.cpp(17,45): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Development\EngenhoIrreal\XennonClone\Engine\Window.cpp(17,32): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  SquareCollision.cpp
   Generating Code...
 SDL2_image.lib(SDL2_image.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in SDL2.lib(SDL2.dll); second definition ignored
   Engine.vcxproj -> D:\Development\EngenhoIrreal\XennonClone\x64\Debug\EngenhoIrrealXVII.lib

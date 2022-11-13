@@ -16,5 +16,8 @@ public:
 	CircleCollision(PhysicsComponent* physComp);
 
 	CircleCollision(PhysicsComponent* physComp, float radius);
+
+	void SetRadius(float radius);
+	inline float GetRadius() { return m_Radius; }
 };
 

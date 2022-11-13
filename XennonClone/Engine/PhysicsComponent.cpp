@@ -84,6 +84,27 @@ void PhysicsComponent::Update(float deltatime)
 	m_parentTransform->SetPosition(Vector2D(pos.x, -pos.y));
 }
 
+void PhysicsComponent::SetBodyType(BodyType newType)
+{
+	if (newType !=m_BodyType) {
+		m_BodyType = newType;
+
+		switch (m_BodyType)
+		{
+		case Dynamic:
+			m_storedBody->SetType(b2_dynamicBody);
+			break;
+		case Kinematic:
+			m_storedBody->SetType(b2_kinematicBody);
+			break;
+		case Static:
+			m_storedBody->SetType(b2_staticBody);
+			break;
+		}
+
+	}
+}
+
 void PhysicsComponent::ClearDefaultBody()
 {
 	if (m_bodyFixture) {

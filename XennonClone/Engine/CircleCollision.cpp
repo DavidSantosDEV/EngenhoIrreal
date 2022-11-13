@@ -36,3 +36,15 @@ CircleCollision::CircleCollision(PhysicsComponent* physComp, float radius)
 	m_PhysComp = physComp;
 	m_Radius = radius;
 }
+
+void CircleCollision::SetRadius(float radius)
+{
+	if (!m_myFixture)return;
+	if (m_Radius!=radius) {
+		m_Radius = radius;
+		b2CircleShape* shape = (b2CircleShape*)m_myFixture->GetShape();
+		if (shape) {
+			shape->m_radius = m_Radius;
+		}
+	}
+}

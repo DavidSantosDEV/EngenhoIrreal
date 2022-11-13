@@ -54,6 +54,8 @@ public:
 
 	virtual void Update(float deltatime) override;
 
+	void SetBodyType(BodyType newType);
+
 	b2Body* GetB2Body() { return m_storedBody; }
 
 	void ClearDefaultBody();
