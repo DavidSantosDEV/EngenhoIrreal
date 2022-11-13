@@ -45,7 +45,7 @@ public:
 		return typeID;
 	}
 
-	template <typename T, typename... TArgs> T& AddComponent(TArgs&&... mArgs)
+	template <typename T, typename... TArgs> T* AddComponent(TArgs&&... mArgs)
 	{
 		T* newComponent = new T(std::forward<TArgs>(mArgs)...);
 		newComponent->SetOwnerGameObject(this);
@@ -58,13 +58,13 @@ public:
 
 		newComponent->Start();
 
-		return *newComponent;
+		return newComponent;
 	}
 
-	template <typename T> T& GetComponent()
+	template <typename T> T* GetComponent()
 	{
 		auto componentFound = m_ComponentsHashMap[GetComponentID<T>()];
-		return *static_cast<T*>(componentFound);
+		return static_cast<T*>(componentFound);
 	}
 
 #pragma endregion
@@ -73,5 +73,11 @@ public:
 	inline bool GetWasInitialized() const { return m_WasInitialized; }
 
 	inline Transform* GetTransform() { return &m_Transform; }
+
+
+	virtual void OnBeginCollision(GameObject* other){};
+	virtual void OnEndCollision(GameObject* other){};
+	virtual void OnTriggerEnter(GameObject* other){};
+	virtual void OnTriggerExit(GameObject* other){};
 };
 

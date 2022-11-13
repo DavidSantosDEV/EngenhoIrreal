@@ -37,22 +37,19 @@ void GameObject::Start()
 	if (m_WasInitialized) { return; }
 
 	LOG("GO Start");
-
+	/*
 	std::for_each(
 		m_Components.begin(),
 		m_Components.end(),
 		[](std::shared_ptr<Component> cpt) { cpt->Start(); }
-	);
+	);*/
 
 	m_WasInitialized = true;
 }
 
 void GameObject::Update(float deltaTime)
 {
-
-	std::for_each(
-		m_Components.begin(),
-		m_Components.end(),
-		[&](std::shared_ptr<Component> cpt) { cpt->Update(deltaTime); }
-	);
+	for (auto cpt : m_Components) {
+		cpt->Update(deltaTime);
+	}
 }

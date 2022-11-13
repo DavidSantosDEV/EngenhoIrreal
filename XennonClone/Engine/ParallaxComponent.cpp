@@ -5,7 +5,7 @@
 
 void ParallaxComponent::Start()
 {
-	m_SpriteComponent = &m_OwnerGameObject->GetComponent<Sprite>();
+	m_SpriteComponent = m_OwnerGameObject->GetComponent<Sprite>();
 
 	if (m_SpriteComponent == nullptr)
 	{

@@ -13,6 +13,7 @@
 #include "GameWorld.h"
 #include "GameObject.h"
 #include "RenderComponent.h"
+#include "PhysicsWorld.h"
 #include "Pawn.h"
 #include "Log.h"
 #include "Input.h"
@@ -34,6 +35,7 @@ GameEngine::~GameEngine()
 	delete m_Window;
 	delete m_Sdl;
 	delete m_Input;
+	delete m_PhysicsWorld;
 }	
 
 void GameEngine::Init(const char* windowTitle, int windowWidth, int windowHeight, GameWorld* World)
@@ -47,6 +49,9 @@ void GameEngine::Init(const char* windowTitle, int windowWidth, int windowHeight
 		m_Window = new Window(windowTitle, windowWidth, windowHeight, true);
 		m_World = World;
 		m_Input = new Input();
+		m_PhysicsWorld = new PhysicsWorld();
+		m_PhysicsWorld->Init();
+
 	}
 }
 
@@ -75,7 +80,7 @@ void GameEngine::StartAndRun()
 		{
 			HandleInput(ev);
 		}
-
+		m_PhysicsWorld->UpdatePhysics();
 		Update();
 		Render();
 

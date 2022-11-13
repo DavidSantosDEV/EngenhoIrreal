@@ -7,6 +7,7 @@ class RenderComponent;
 class GameObject;
 class GameWorld;
 class Pawn;
+class PhysicsWorld;
 
 class GameEngine
 {
@@ -36,6 +37,8 @@ private:
 
 	static GameEngine* m_Instance;
 
+	PhysicsWorld* m_PhysicsWorld;
+
 	static std::vector<GameObject*> m_GameObjectStack;
 	static std::vector<RenderComponent*> m_RenderComponentsStack;
 	static std::vector<Pawn*> m_PawnsStack;
@@ -58,5 +61,7 @@ public:
 	class Window* GetWindow() { return m_Window; }
 
 	Vector2D GetWindowSize();
+
+	PhysicsWorld* GetPhysicsWorld() { return m_PhysicsWorld; }
 };
 

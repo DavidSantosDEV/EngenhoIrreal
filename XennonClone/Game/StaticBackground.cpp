@@ -4,7 +4,7 @@
 
 StaticBackground::StaticBackground() : GameObject() 
 {
-	m_SpriteComponent = &AddComponent<Sprite>("galaxy2.bmp", -2);
+	m_SpriteComponent = AddComponent<Sprite>("galaxy2.bmp", -2);
 }
 
 StaticBackground::~StaticBackground()
