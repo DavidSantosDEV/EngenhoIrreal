@@ -30,7 +30,7 @@ protected:
 public:
 	/* Used for non-animated sprites */
 	Sprite(const char* texturePath, int renderPriority);
-	/* Used for animated sprites or specific sprites in spritesheet */
+	/* Used for animated sprites */
 	Sprite(const char* texturePath, int spriteSheetRows, int spriteSheetColumns, float scale, int renderPriority);
 	~Sprite();
 
@@ -38,7 +38,6 @@ public:
 
 	void SetSpriteTexture(SDL_Texture* Texture);
 	void SetSpriteTexture(const char* TexturePath);
-	void SetActiveTexture(int spriteSheetRow, int spriteSheetColumn);
 
 	inline SDL_Texture* GetTexture() const { return m_Texture; }
 	SDL_Rect& GetSourceRect();

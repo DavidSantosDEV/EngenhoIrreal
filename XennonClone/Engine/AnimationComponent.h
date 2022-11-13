@@ -1,7 +1,6 @@
 #pragma once
 #include "Component.h"
 #include "Transform.h"
-
 class AnimationComponent : public Component
 {
 public:
@@ -33,6 +32,5 @@ private:
 	int m_EndingAnimationFrameX = 0;
 	int m_EndingAnimationFrameY = 0;
 	bool m_CanLoopAnimation = true;
-	float frameTime = 0;
 };
 

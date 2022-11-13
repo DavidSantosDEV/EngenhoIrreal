@@ -25,4 +25,6 @@ void ParallaxComponent::Update(float deltaTime)
 	{
 		m_OwnerGameObject->m_Transform.AddPosition(Vector2D(0, m_Speed * deltaTime));
 	}
+
+	LOG(m_OwnerGameObject->m_Transform.GetPosition().y);
 }

@@ -33,6 +33,7 @@ Sprite::Sprite(const char* texturePath, int renderPriority) : RenderComponent(re
 Sprite::Sprite(const char* texturePath, int spriteSheetRows, int spriteSheetColumns, 
 	float scale, int renderPriority) : RenderComponent(renderPriority)
 {
+
 	//TODO automate to choose between BMP or PNG
 	m_Texture = TextureManager::LoadTexture(texturePath);
 	SDL_QueryTexture(m_Texture, nullptr, nullptr, &m_TextureWidth, &m_TextureHeight);
@@ -87,12 +88,6 @@ void Sprite::SetSpriteTexture(SDL_Texture* Texture)
 void Sprite::SetSpriteTexture(const char* TexturePath)
 {
 	m_Texture = TextureManager::LoadTexture(TexturePath);
-}
-
-void Sprite::SetActiveTexture(int spriteSheetRow, int spriteSheetColumn)
-{
-	m_SourceRect.x = m_FrameWidth * spriteSheetColumn;
-	m_SourceRect.y = m_FrameHeight * spriteSheetRow;
 }
 
 SDL_Rect& Sprite::GetSourceRect()

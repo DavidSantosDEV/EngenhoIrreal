@@ -3,6 +3,8 @@
 #include "SDL.h"
 #include "Log.h"
 
+float frameTime = 0;
+
 void AnimationComponent::Start()
 {
 	if (m_ParentSpriteComponent.GetTexture() == nullptr)
