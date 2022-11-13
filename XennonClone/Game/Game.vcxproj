@@ -155,6 +155,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerBullet.cpp" />
     <ClCompile Include="StaticBackground.cpp" />
     <ClCompile Include="RocksBackground.cpp" />
     <ClCompile Include="XennonGameWorld.cpp" />
@@ -162,6 +163,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerBullet.h" />
     <ClInclude Include="StaticBackground.h" />
     <ClInclude Include="RocksBackground.h" />
     <ClInclude Include="XennonGameWorld.h" />

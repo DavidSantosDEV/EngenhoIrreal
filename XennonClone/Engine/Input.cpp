@@ -7,7 +7,8 @@
 SDL_Event Input::m_Event;
 
 SDL_GameController* m_GameController = nullptr;
-constexpr int JOYSTICK_DEAD_ZONE = 20000;
+constexpr int JOYSTICK_DEAD_ZONE = 8000;
+constexpr int JOYSTICK_MAX = 25000;
 
 Input::Input()
 {
@@ -40,18 +41,19 @@ int Input::GetRightAxisValue()
 {
 	// Get and clamp gamepad axis value from -1 to 1
 	int gamepadRightAxis = SDL_GameControllerGetAxis(m_GameController, SDL_CONTROLLER_AXIS_LEFTX);
-	MathHelper::ClampInt(gamepadRightAxis, -JOYSTICK_DEAD_ZONE, JOYSTICK_DEAD_ZONE);
-	MathHelper::MapClampRangedInt(gamepadRightAxis, -JOYSTICK_DEAD_ZONE, JOYSTICK_DEAD_ZONE, -1, 1);
+	MathHelper::ClampInt(gamepadRightAxis, -JOYSTICK_MAX, JOYSTICK_MAX);
+
+	//LOG("Right: " << gamepadRightAxis);
 
 	// Get Keyboard state (supports key yield down)
 	const Uint8* currentKeyStates = SDL_GetKeyboardState(NULL);
 
 	if (currentKeyStates[SDL_SCANCODE_RIGHT] ||
-		gamepadRightAxis == 1)
+		gamepadRightAxis > JOYSTICK_DEAD_ZONE)
 	{
 		return 1;
 	}
-	else if (currentKeyStates[SDL_SCANCODE_LEFT] || gamepadRightAxis == -1)
+	else if (currentKeyStates[SDL_SCANCODE_LEFT] || gamepadRightAxis < -JOYSTICK_DEAD_ZONE)
 	{
 		return -1;
 	}
@@ -62,18 +64,19 @@ int Input::GetUpAxisValue()
 {
 	// Get and clamp gamepad axis value from -1 to 1
 	int gamepadUpAxis = SDL_GameControllerGetAxis(m_GameController, SDL_CONTROLLER_AXIS_LEFTY);
-	MathHelper::ClampInt(gamepadUpAxis, -JOYSTICK_DEAD_ZONE, JOYSTICK_DEAD_ZONE);
-	MathHelper::MapClampRangedInt(gamepadUpAxis, -JOYSTICK_DEAD_ZONE, JOYSTICK_DEAD_ZONE, -1, 1);
+	MathHelper::ClampInt(gamepadUpAxis, -JOYSTICK_MAX, JOYSTICK_MAX);
 
 	// Get Keyboard state (supports key yield down)
 	const Uint8* currentKeyStates = SDL_GetKeyboardState(NULL);
 
+	//LOG("Up: " << gamepadUpAxis);
+
 	if (currentKeyStates[SDL_SCANCODE_UP] ||
-		gamepadUpAxis == 1)
+		gamepadUpAxis < -JOYSTICK_DEAD_ZONE)
 	{
 		return 1;
 	}
-	else if (currentKeyStates[SDL_SCANCODE_DOWN] || gamepadUpAxis == -1)
+	else if (currentKeyStates[SDL_SCANCODE_DOWN] || gamepadUpAxis > JOYSTICK_DEAD_ZONE)
 	{
 		return -1;
 	}
