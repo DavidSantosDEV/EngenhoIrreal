@@ -8,13 +8,12 @@
 #include "Player.h"
 #include "RocksBackground.h"
 
-Pawn* player;
 
 void XennonGameWorld::Start()
 {
 	StaticBackground* background = InstantiateObject<StaticBackground>();
 	InstantiateObject<RocksBackground>();
-	player = InstantiateObject<Player>();
+	InstantiateObject<Player>();
 }
 
 void XennonGameWorld::Update(float deltaTime)

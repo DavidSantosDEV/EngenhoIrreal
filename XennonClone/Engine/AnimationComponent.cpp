@@ -3,11 +3,9 @@
 #include "SDL.h"
 #include "Log.h"
 
-float frameTime = 0;
-
 void AnimationComponent::Start()
 {
-	if (m_ParentSpriteComponent.GetTexture() == nullptr)
+	if (m_ParentSpriteComponent->GetTexture() == nullptr)
 	{
 		LOG_ERROR("AnimationComponent only works if GO also has a SpriteComponent");
 	}
@@ -16,8 +14,8 @@ void AnimationComponent::Start()
 	{
 		m_StartingAnimationFrameX = 0;
 		m_StartingAnimationFrameY = 0;
-		m_EndingAnimationFrameX = m_ParentSpriteComponent.m_TextureWidth;
-		m_EndingAnimationFrameY = m_ParentSpriteComponent.m_TextureHeight;
+		m_EndingAnimationFrameX = m_ParentSpriteComponent->m_TextureWidth;
+		m_EndingAnimationFrameY = m_ParentSpriteComponent->m_TextureHeight;
 	}
 }
 
@@ -30,23 +28,23 @@ void AnimationComponent::Update(float deltatime)
 	}
 
 	//TODO don't get it every frame, get once and store it
-	SDL_Rect& spriteSourceRect = m_ParentSpriteComponent.GetSourceRect();
+	SDL_Rect& spriteSourceRect = m_ParentSpriteComponent->GetSourceRect();
 
 	frameTime += deltatime;
 
 	if (frameTime >= (1.f / m_AnimationSpeed))
 	{
-		spriteSourceRect.x += m_ParentSpriteComponent.m_FrameWidth;
+		spriteSourceRect.x += m_ParentSpriteComponent->m_FrameWidth;
 
 		if (spriteSourceRect.x >= m_EndingAnimationFrameX)
 		{
 			// If animation is not loopable, when it reaches the end, stay in the beginning of the last frame.
-			spriteSourceRect.x = m_CanLoopAnimation ? m_StartingAnimationFrameX : m_EndingAnimationFrameX - m_ParentSpriteComponent.m_FrameWidth;
-			spriteSourceRect.y += m_ParentSpriteComponent.m_FrameHeight;
+			spriteSourceRect.x = m_CanLoopAnimation ? m_StartingAnimationFrameX : m_EndingAnimationFrameX - m_ParentSpriteComponent->m_FrameWidth;
+			spriteSourceRect.y += m_ParentSpriteComponent->m_FrameHeight;
 
 			if (spriteSourceRect.y >= m_EndingAnimationFrameY)
 			{
-				spriteSourceRect.y = m_CanLoopAnimation ? m_StartingAnimationFrameY : m_EndingAnimationFrameY - m_ParentSpriteComponent.m_FrameHeight;
+				spriteSourceRect.y = m_CanLoopAnimation ? m_StartingAnimationFrameY : m_EndingAnimationFrameY - m_ParentSpriteComponent->m_FrameHeight;
 			}
 		}
 
@@ -59,15 +57,15 @@ void AnimationComponent::PlayAnimation(int startingFrameRow, int startingFrameCo
 	StopAnimation();
 
 	// Update animation values
-	m_StartingAnimationFrameX = startingFrameColumn * m_ParentSpriteComponent.m_FrameWidth;
-	m_StartingAnimationFrameY = startingFrameRow * m_ParentSpriteComponent.m_FrameHeight;
+	m_StartingAnimationFrameX = startingFrameColumn * m_ParentSpriteComponent->m_FrameWidth;
+	m_StartingAnimationFrameY = startingFrameRow * m_ParentSpriteComponent->m_FrameHeight;
 	// + m_ParentSpriteComponent.m_FrameWidth since the end of the frame it's its column + frame width.
-	m_EndingAnimationFrameX = (endingFrameColumn * m_ParentSpriteComponent.m_FrameWidth) + m_ParentSpriteComponent.m_FrameWidth;
+	m_EndingAnimationFrameX = (endingFrameColumn * m_ParentSpriteComponent->m_FrameWidth) + m_ParentSpriteComponent->m_FrameWidth;
 	// + m_ParentSpriteComponent.m_FrameHeight since the end of the frame it's its row + frame height.
-	m_EndingAnimationFrameY = (endingFrameRow * m_ParentSpriteComponent.m_FrameHeight) + m_ParentSpriteComponent.m_FrameHeight;
+	m_EndingAnimationFrameY = (endingFrameRow * m_ParentSpriteComponent->m_FrameHeight) + m_ParentSpriteComponent->m_FrameHeight;
 
 	// Change whatever sprite it is currently to the first of the new animation.
-	SDL_Rect& spriteSourceRect = m_ParentSpriteComponent.GetSourceRect();
+	SDL_Rect& spriteSourceRect = m_ParentSpriteComponent->GetSourceRect();
 	spriteSourceRect.x = m_StartingAnimationFrameX;
 	spriteSourceRect.y = m_StartingAnimationFrameY;
 
@@ -77,8 +75,8 @@ void AnimationComponent::PlayAnimation(int startingFrameRow, int startingFrameCo
 
 bool AnimationComponent::IsPlayingAnimation(int startingFrameRow, int startingFrameColumn, int endingFrameRow, int endingFrameColumn) const
 {
-	return m_StartingAnimationFrameX == startingFrameColumn * m_ParentSpriteComponent.m_FrameWidth &&
-		m_StartingAnimationFrameY == startingFrameRow * m_ParentSpriteComponent.m_FrameHeight &&
-		m_EndingAnimationFrameX == (endingFrameColumn * m_ParentSpriteComponent.m_FrameWidth) + m_ParentSpriteComponent.m_FrameWidth &&
-		m_EndingAnimationFrameY == (endingFrameRow * m_ParentSpriteComponent.m_FrameHeight) + m_ParentSpriteComponent.m_FrameHeight;
+	return m_StartingAnimationFrameX == startingFrameColumn * m_ParentSpriteComponent->m_FrameWidth &&
+		m_StartingAnimationFrameY == startingFrameRow * m_ParentSpriteComponent->m_FrameHeight &&
+		m_EndingAnimationFrameX == (endingFrameColumn * m_ParentSpriteComponent->m_FrameWidth) + m_ParentSpriteComponent->m_FrameWidth &&
+		m_EndingAnimationFrameY == (endingFrameRow * m_ParentSpriteComponent->m_FrameHeight) + m_ParentSpriteComponent->m_FrameHeight;
 }

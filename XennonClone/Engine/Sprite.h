@@ -30,7 +30,7 @@ protected:
 public:
 	/* Used for non-animated sprites */
 	Sprite(const char* texturePath, int renderPriority);
-	/* Used for animated sprites */
+	/* Used for animated sprites or specific sprites in spritesheet */
 	Sprite(const char* texturePath, int spriteSheetRows, int spriteSheetColumns, float scale, int renderPriority);
 	~Sprite();
 

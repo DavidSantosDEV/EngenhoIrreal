@@ -20,7 +20,7 @@ public:
 	}
 
 	static Vector2D Up() {
-		return Vector2D(0, 1);
+		return Vector2D(0, -1);
 	}
 
 	static Vector2D Right() {
@@ -28,7 +28,7 @@ public:
 	}
 
 	static Vector2D Down() {
-		return Vector2D(0, -1);
+		return Vector2D(0, 1);
 	}
 
 	static Vector2D Left() {

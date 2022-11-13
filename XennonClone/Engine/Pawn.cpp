@@ -42,7 +42,6 @@ void Pawn::Update(float deltaTime)
 
 void Pawn::HandleEvents()
 {
-	//LOG("Horizontal: " << Input::GetRightAxisValue());
-	//LOG("Vertical: " << Input::GetUpAxisValue());
-	//LOG(Input::IsFireKeyDown());
+	m_InputRightAxis = Input::GetRightAxisValue();
+	m_InputUpAxis = Input::GetUpAxisValue();
 }
