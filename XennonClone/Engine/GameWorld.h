@@ -14,7 +14,7 @@ public:
 	virtual void Start() = 0;
 	virtual void Update(float deltaTime) = 0;
 
-	template <typename T, typename... TArgs> T* InstantiateObject(TArgs&&... mArgs) {
+	template <typename T, typename... TArgs> static T* InstantiateObject(TArgs&&... mArgs) {
 		T* newObject = new T(std::forward(mArgs)...);
 		if (static_cast<GameObject*>(newObject)) 
 		{
