@@ -18,7 +18,6 @@
 #include "Input.h"
 #include <iostream>
 #include <memory>
-#include "PhysicsWorld.h"
 
 // Initialize static variables
 GameWorld* GameEngine::m_World = nullptr;
@@ -35,7 +34,6 @@ GameEngine::~GameEngine()
 	delete m_Window;
 	delete m_Sdl;
 	delete m_Input;
-	delete m_PhysicsWorld;
 }	
 
 void GameEngine::Init(const char* windowTitle, int windowWidth, int windowHeight, GameWorld* World)
@@ -49,8 +47,6 @@ void GameEngine::Init(const char* windowTitle, int windowWidth, int windowHeight
 		m_Window = new Window(windowTitle, windowWidth, windowHeight, true);
 		m_World = World;
 		m_Input = new Input();
-		m_PhysicsWorld = new PhysicsWorld();
-		m_PhysicsWorld->Init();
 	}
 }
 
@@ -79,7 +75,7 @@ void GameEngine::StartAndRun()
 		{
 			HandleInput(ev);
 		}
-		m_PhysicsWorld->UpdatePhysics();
+
 		Update();
 		Render();
 
