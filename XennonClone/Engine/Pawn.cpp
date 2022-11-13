@@ -29,13 +29,12 @@ void Pawn::Start()
 
 void Pawn::Update(float deltaTime)
 {
-	const float Speed = 130;
+	/*const float Speed = 130;
 	Vector2D movement = (Vector2D(Input::GetRightAxisValue(), -Input::GetUpAxisValue()));
 	movement.Normalize();
 	//LOG("X: " << movement.x << " " << "Y: "<< movement.y);
 	movement *= Speed;
-	GetTransform()->AddPosition(movement*deltaTime);
-
+	GetTransform()->AddPosition(movement*deltaTime);*/
 	GameObject::Update(deltaTime);
 }
 

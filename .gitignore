@@ -31,6 +31,12 @@
 *.out
 *.app
 
+*.tlog
+*.log
+*.idb
+*.pdb
+
+
 !SDL2.dll
 !SDL2.lib
 !box2d.lib
@@ -39,3 +45,5 @@
 !SDL2_image.lib
 !SDL2_image.dll
 .vs
+*.tlog
+*.log

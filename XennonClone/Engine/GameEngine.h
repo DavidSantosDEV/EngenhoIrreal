@@ -7,6 +7,7 @@ class RenderComponent;
 class GameObject;
 class GameWorld;
 class Pawn;
+class PhysicsWorld;
 
 class GameEngine
 {
@@ -40,11 +41,13 @@ private:
 	static std::vector<RenderComponent*> m_RenderComponentsStack;
 	static std::vector<Pawn*> m_PawnsStack;
 
+	
 	static GameWorld* m_World;
+	PhysicsWorld* m_PhysicsWorld;
+
 	class SDLWrapper* m_Sdl;
 	class Window* m_Window;
 	class Input* m_Input;
-
 	const int m_MaxFPS = 120;
 	static float m_ElapsedMS;
 
@@ -58,5 +61,7 @@ public:
 	class Window* GetWindow() { return m_Window; }
 
 	Vector2D GetWindowSize();
+
+	PhysicsWorld* GetPhysicsWorld() { return m_PhysicsWorld; }
 };
 

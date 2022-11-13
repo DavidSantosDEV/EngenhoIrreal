@@ -154,14 +154,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <ClCompile Include="Player.cpp" />
+=======
+    <ClCompile Include="PhysicsTestActor.cpp" />
+>>>>>>> CollisionandPhysics
     <ClCompile Include="StaticBackground.cpp" />
     <ClCompile Include="RocksBackground.cpp" />
     <ClCompile Include="XennonGameWorld.cpp" />
     <ClCompile Include="XennonClone.cpp" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <ClInclude Include="Player.h" />
+=======
+    <ClInclude Include="PhysicsTestActor.h" />
+>>>>>>> CollisionandPhysics
     <ClInclude Include="StaticBackground.h" />
     <ClInclude Include="RocksBackground.h" />
     <ClInclude Include="XennonGameWorld.h" />

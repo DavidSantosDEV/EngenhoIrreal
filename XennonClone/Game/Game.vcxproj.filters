@@ -24,10 +24,14 @@
     <ClCompile Include="StaticBackground.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="RocksBackground.cpp">
+=======
+    <ClCompile Include="PhysicsTestActor.cpp">
+>>>>>>> CollisionandPhysics
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -38,10 +42,14 @@
     <ClInclude Include="StaticBackground.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="RocksBackground.h">
+=======
+    <ClInclude Include="PhysicsTestActor.h">
+>>>>>>> CollisionandPhysics
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

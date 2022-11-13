@@ -4,7 +4,7 @@
 class AnimationComponent : public Component
 {
 public:
-	AnimationComponent(class Sprite& spriteComponent, bool autoPlayAnimation, float animationSpeed) :
+	AnimationComponent(class Sprite* spriteComponent, bool autoPlayAnimation, float animationSpeed) :
 		m_ParentSpriteComponent{ spriteComponent }, m_IsPlayingAnimation{autoPlayAnimation}, 
 		m_AnimationSpeed{animationSpeed} {};
 
@@ -23,7 +23,7 @@ public:
 	/* Called by other classes to stop the current animation. Is called inside play animation automatically */
 	void StopAnimation() { m_IsPlayingAnimation = false; }
 private:
-	class Sprite& m_ParentSpriteComponent;
+	class Sprite* m_ParentSpriteComponent;
 	float m_AnimationSpeed = 1.f;
 	bool m_IsPlayingAnimation = false;
 
