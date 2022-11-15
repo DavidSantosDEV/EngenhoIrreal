@@ -6,7 +6,6 @@
 class CollisionComponent : public Component
 {
 protected:
-	class b2Shape* m_baseShape;
 	class PhysicsComponent* m_PhysComp;
 	class b2Fixture* m_myFixture;
 
@@ -28,8 +27,6 @@ public:
 	~CollisionComponent();
 
 	virtual void Start() override;
-
-	b2Shape* GetCurrentShape() { return m_baseShape; }
 
 	void SetIsTrigger(bool newVal);
 

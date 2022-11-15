@@ -39,6 +39,7 @@ b2Fixture* CollisionComponent::CreateFixture()
 CollisionComponent::CollisionComponent(PhysicsComponent* physical)
 {
 	m_PhysComp = physical;
+	m_myFixture = nullptr;
 }
 
 void CollisionComponent::Start()
@@ -50,7 +51,7 @@ void CollisionComponent::Start()
 
 CollisionComponent::~CollisionComponent()
 {
-	delete m_baseShape;
+	delete m_myFixture;
 }
 
 void CollisionComponent::SetIsTrigger(bool newVal)
