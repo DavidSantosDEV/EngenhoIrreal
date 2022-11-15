@@ -49,7 +49,4 @@ void GameObject::Start()
 
 void GameObject::Update(float deltaTime)
 {
-	for (auto cpt : m_Components) {
-		cpt->Update(deltaTime);
-	}
 }

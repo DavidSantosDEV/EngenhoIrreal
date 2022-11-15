@@ -21,6 +21,9 @@ public:
 	virtual void Update(float deltaTime);
 
 	Transform m_Transform;
+
+	std::vector<std::string> Tags;
+
 protected:
 	std::vector<std::shared_ptr<class Component>> m_Components;
 	std::array<class Component*, 32> m_ComponentsHashMap = std::array<class Component *, 32>();
@@ -66,6 +69,9 @@ public:
 		auto componentFound = m_ComponentsHashMap[GetComponentID<T>()];
 		return static_cast<T*>(componentFound);
 	}
+
+	inline std::vector<std::shared_ptr<Component>> GetAllComponents() { return m_Components; }
+
 
 #pragma endregion
 

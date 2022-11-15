@@ -125,6 +125,10 @@ void GameEngine::Update()
 		if (m_GameObjectStack[i] != nullptr)
 		{
 			m_GameObjectStack[i]->Update(m_ElapsedMS);
+			const std::vector<std::shared_ptr<Component>> comps = m_GameObjectStack[i]->GetAllComponents();
+			for (auto cpt : comps) {
+				cpt->Update(m_ElapsedMS);
+			}
 		}
 	}
 }
