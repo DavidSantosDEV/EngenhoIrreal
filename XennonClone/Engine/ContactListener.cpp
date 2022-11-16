@@ -14,6 +14,12 @@ void ContactListener::BeginContact(b2Contact* contact)
 		if (compA->GetIsEnabled() && compB->GetIsEnabled()) {
 			GameObject* const objA = compA->GetOwnerGameObject();
 			GameObject* const objB = compB->GetOwnerGameObject();
+			if (&objA == NULL || &objB == NULL) {
+				return;
+			}
+			if (objA->IsPendingDestroy() || objB->IsPendingDestroy()) {
+				return;
+			}
 			if (compA->GetIsTrigger() || compB->GetIsTrigger()) {	
 				objA->OnTriggerEnter(objB);
 				objB->OnTriggerEnter(objA);
@@ -35,6 +41,13 @@ void ContactListener::EndContact(b2Contact* contact)
 		if (compA->GetIsEnabled() && compB->GetIsEnabled()) {
 			GameObject* const objA = compA->GetOwnerGameObject();
 			GameObject* const objB = compB->GetOwnerGameObject();
+			
+			if (&objA == NULL || &objB == NULL) {
+				return;
+			}
+			if (objA->IsPendingDestroy() || objB->IsPendingDestroy()) {
+				return;
+			}
 			if (compA->GetIsTrigger() || compB->GetIsTrigger()) {
 				objA->OnTriggerExit(objB);
 				objB->OnTriggerExit(objA);

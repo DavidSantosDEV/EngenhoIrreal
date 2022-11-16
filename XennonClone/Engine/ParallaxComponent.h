@@ -6,7 +6,7 @@ class ParallaxComponent : public Component
 public:
 	virtual void Start() override;
 	virtual void Update(float deltaTime) override;
-
+	virtual void Destroy() override;
 private:
 
 	float m_Speed = 50.f;

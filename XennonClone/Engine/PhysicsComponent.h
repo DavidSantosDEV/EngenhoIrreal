@@ -36,7 +36,11 @@ protected:
 	void BuildDefaultFixture();
 public:
 	PhysicsComponent();
+	PhysicsComponent(BodyType type, float GravityScale, float bodyMass, float density);
+	
 	~PhysicsComponent();
+
+	virtual void Destroy() override;
 
 	virtual void Start() override;
 

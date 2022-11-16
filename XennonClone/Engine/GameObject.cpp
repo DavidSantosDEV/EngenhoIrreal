@@ -28,7 +28,10 @@ GameObject::GameObject(Vector2D position, Vector2D scale) {
 
 GameObject::~GameObject() 
 {
-	GameEngine::RemoveGameObjectFromStack(this);
+	/*for (auto c : m_Components) {
+		delete c.get();
+	}*/
+	//GameEngine::RemoveGameObjectFromStack(this);
 	LOG("DESTROY");
 }
 
@@ -49,4 +52,30 @@ void GameObject::Start()
 
 void GameObject::Update(float deltaTime)
 {
+}
+
+void GameObject::Destroy()
+{
+	delete this;
+}
+
+bool GameObject::HasTag(std::string tag) {
+	for (std::string str : m_objectTags) {
+		if (str == tag) {
+			return true;
+		}
+	}
+	return false;
+}
+bool GameObject::HasTag(const char* tag) {
+	for (std::string str : m_objectTags) {
+		if (std::strcmp(tag, str.c_str()) == 0) {
+			return true;
+		}
+	}
+	return false;
+}
+
+void GameObject::AddTag(const char* tag) {
+	m_objectTags.push_back(tag);
 }

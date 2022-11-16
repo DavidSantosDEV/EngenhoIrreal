@@ -5,7 +5,7 @@
 *
 * - MUST be implemented by client
 ************************************************************/
-
+#include <memory>
 #include "GameEngine.h"
 #include "SDL.h"
 #include "SDLWrapper.h"
@@ -18,7 +18,7 @@
 #include "Log.h"
 #include "Input.h"
 #include <iostream>
-#include <memory>
+
 
 // Initialize static variables
 GameWorld* GameEngine::m_World = nullptr;
@@ -68,8 +68,8 @@ void GameEngine::StartAndRun()
 	while (isRunning)
 	{
 		while (!SDL_TICKS_PASSED(SDL_GetTicks(), mTicksCount + lock)); //Wait until ms passed
-
 		m_ElapsedMS = (SDL_GetTicks() - mTicksCount) / 1000.0f;	
+
 
 		SDL_PollEvent(&ev);
 		if (ev.type == SDL_QUIT)
@@ -80,12 +80,40 @@ void GameEngine::StartAndRun()
 		{
 			HandleInput(ev);
 		}
+
+		
 		m_PhysicsWorld->UpdatePhysics();
+
 		Update();
+
 		Render();
 
+		DestroyPending();
+		
 		mTicksCount = SDL_GetTicks();
 	}
+}
+
+void GameEngine::DestroyPending()
+{
+	if (m_PendingDestroy.size() > 0) {
+		for (auto obj : m_PendingDestroy) {
+			std::vector<std::shared_ptr<Component>> comps = obj->GetAllComponents();
+			for (auto comp : comps) {
+				comp->Destroy();			
+				delete comp.get();
+			}
+			RemoveGameObjectFromStack(obj);
+			//obj->Destroy();
+		}
+		
+		m_PendingDestroy.clear();
+	}
+
+}
+void GameEngine::AddPendingDestroy(GameObject* obj)
+{
+	m_PendingDestroy.push_back(obj);
 }
 
 void GameEngine::Start()
@@ -136,10 +164,17 @@ void GameEngine::Update()
 void GameEngine::Render()
 {
 	m_Window->Clean();
+	for (auto mR : m_RenderComponentsStack) 
+	{
+		mR->Render();
+	}
+	/*
 	for (int i = 0; i < m_RenderComponentsStack.size(); ++i) 
 	{
-		m_RenderComponentsStack[i]->Render();
-	}
+		if (m_RenderComponentsStack[i]) {
+			m_RenderComponentsStack[i]->Render();
+		}
+	}*/
 	m_Window->UpdateRender();
 }
 

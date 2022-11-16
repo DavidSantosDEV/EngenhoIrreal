@@ -10,6 +10,7 @@
 
 // Initialize static variables
 GameEngine* GameWorld::m_Engine = nullptr;
+GameWorld* GameWorld::m_World = nullptr;
 
 GameWorld::GameWorld()
 {
@@ -22,5 +23,16 @@ GameWorld::~GameWorld()
 
 void GameWorld::Init(GameEngine* myEngine)
 {
-	m_Engine = myEngine;
+	if (m_World) {
+		delete this;
+	}
+	else {
+		m_Engine = myEngine;
+		m_World = this;
+	}
+}
+
+void GameWorld::DestroyObject(GameObject* Object) {
+	Object->SetPendingDestroy();
+	m_Engine->AddPendingDestroy(Object);
 }

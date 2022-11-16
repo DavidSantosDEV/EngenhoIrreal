@@ -22,6 +22,9 @@ public:
 	void Update();
 	void Render();
 
+	void DestroyPending();
+	void AddPendingDestroy(GameObject* obj);
+
 	/* Object manipulation */
 	static void AddGameObjectToStack(GameObject* gameObject);
 	static void RemoveGameObjectFromStack(GameObject* gameObject);
@@ -29,6 +32,8 @@ public:
 	static void RemoveRenderComponentFromStack(RenderComponent* renderComponent);
 	static void AddPawnToStack(Pawn* pawn);
 	static void RemovePawnFromStack(Pawn* pawn);
+
+
 
 private:
 	/* Sort render components in order to support a layering/priority system*/
@@ -38,6 +43,8 @@ private:
 	static GameEngine* m_Instance;
 
 	PhysicsWorld* m_PhysicsWorld;
+
+	std::vector<GameObject*> m_PendingDestroy;
 
 	static std::vector<GameObject*> m_GameObjectStack;
 	static std::vector<RenderComponent*> m_RenderComponentsStack;

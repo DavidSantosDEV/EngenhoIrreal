@@ -9,6 +9,8 @@ public:
 	~PlayerBullet();
 	virtual void Update(float deltaTime) override;
 
+	virtual void OnTriggerEnter(GameObject* other) override;
+
 private:
 	class AnimationComponent* m_AnimationComponent;
 	float m_MoveSpeed = 200.f;

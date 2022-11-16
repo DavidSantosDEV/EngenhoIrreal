@@ -12,8 +12,40 @@ PhysicsComponent::PhysicsComponent() : Component()
 	
 }
 
+PhysicsComponent::PhysicsComponent(BodyType type, float GravityScale, float bodyMass, float density) {
+	m_BodyType = type;
+	GravityScale = GravityScale;
+	m_bodyMass = bodyMass;
+	m_density = density;
+}
+
+
 PhysicsComponent::~PhysicsComponent()
 {
+	/*
+	b2Fixture* fix = m_storedBody->GetFixtureList();
+	do {
+		if (fix) {
+			b2Fixture* temp = fix;
+			fix = fix->GetNext();
+			m_storedBody->DestroyFixture(temp);
+		}
+	} while (fix != nullptr);
+
+	PhysicsWorld::GetInstance()->DestroyBody(m_storedBody);
+	*/
+}
+
+void PhysicsComponent::Destroy()
+{
+	b2Fixture* fix = m_storedBody->GetFixtureList();
+	do {
+		if (fix) {
+			b2Fixture* temp = fix;
+			fix = fix->GetNext();
+			m_storedBody->DestroyFixture(temp);
+		}
+	} while (fix != nullptr);
 	PhysicsWorld::GetInstance()->DestroyBody(m_storedBody);
 }
 
@@ -37,7 +69,7 @@ void PhysicsComponent::SetVelocity(Vector2D velocity)
 	
 	m_storedBody->SetLinearVelocity(vec);
 
-	LOG("Speed received " << m_storedBody->GetLinearVelocity().x << " " << m_storedBody->GetLinearVelocity().y)
+	//LOG("Speed received " << m_storedBody->GetLinearVelocity().x << " " << m_storedBody->GetLinearVelocity().y)
 }
 
 void PhysicsComponent::SetGravityScale(float scale)
@@ -69,7 +101,7 @@ bool PhysicsComponent::GetIsBodyAwake()
 
 void PhysicsComponent::SetPosition(Vector2D position)
 {
-	m_storedBody->SetTransform(b2Vec2(position.x,position.y), 0);
+	m_storedBody->SetTransform(b2Vec2(position.x,-position.y), 0);
 	m_parentTransform->SetPosition(position);
 }
 

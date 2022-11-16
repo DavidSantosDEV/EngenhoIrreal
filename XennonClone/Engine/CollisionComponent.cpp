@@ -3,6 +3,7 @@
 #include "PhysicsComponent.h"
 #include "box2d/b2_fixture.h"
 #include "box2d/b2_body.h"
+#include "Log.h"
 #include "box2d/b2_circle_shape.h"
 
 b2Fixture* CollisionComponent::FindMyFixture()
@@ -44,6 +45,7 @@ CollisionComponent::CollisionComponent(PhysicsComponent* physical)
 
 void CollisionComponent::Start()
 {
+	LOG("Calleds")
 	if (m_PhysComp) {
 		m_myFixture = CreateFixture();
 	}
@@ -51,7 +53,16 @@ void CollisionComponent::Start()
 
 CollisionComponent::~CollisionComponent()
 {
+	m_PhysComp->GetB2Body()->DestroyFixture(m_myFixture);
 	delete m_myFixture;
+}
+
+void CollisionComponent::Destroy()
+{
+	if (m_myFixture) {
+		//m_PhysComp->GetB2Body()->DestroyFixture(m_myFixture);
+		//delete m_myFixture;
+	}
 }
 
 void CollisionComponent::SetIsTrigger(bool newVal)

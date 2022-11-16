@@ -20,15 +20,20 @@ public:
 	virtual void Start();
 	virtual void Update(float deltaTime);
 
+	virtual void Destroy();
+
 	Transform m_Transform;
 
-	std::vector<std::string> Tags;
+	
 
 protected:
 	std::vector<std::shared_ptr<class Component>> m_Components;
 	std::array<class Component*, 32> m_ComponentsHashMap = std::array<class Component *, 32>();
 
+	std::vector<std::string> m_objectTags;
+
 	bool m_WasInitialized = false;
+	bool m_pendingDestroy = false;
 public:
 /* Component-Derived System */
 #pragma region ComponentSystem
@@ -76,10 +81,21 @@ public:
 #pragma endregion
 
 public:
+
+	bool HasTag(std::string tag);
+	bool HasTag(const char* tag);
+
+	void AddTag(const char* tag);
+
+	std::vector<std::string> GetTags() { return m_objectTags; }
+
 	inline bool GetWasInitialized() const { return m_WasInitialized; }
 
 	inline Transform* GetTransform() { return &m_Transform; }
 
+	void SetPendingDestroy() { m_pendingDestroy = true; }
+
+	bool IsPendingDestroy() { return m_pendingDestroy; }
 
 	virtual void OnBeginCollision(GameObject* other){};
 	virtual void OnEndCollision(GameObject* other){};

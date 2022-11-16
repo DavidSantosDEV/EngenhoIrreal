@@ -44,4 +44,6 @@ public:
 
 	// Inherited via RenderComponent
 	virtual void Render() override;
+
+	virtual void Destroy() override;
 };

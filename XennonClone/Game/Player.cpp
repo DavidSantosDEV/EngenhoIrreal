@@ -3,18 +3,26 @@
 #include "Sprite.h"
 #include "AnimationComponent.h"
 #include "GameWorld.h"
+#include "PhysicsComponent.h"
+#include "CircleCollision.h"
 #include "PlayerBullet.h"
 
 Player::Player()
 {
+	AddTag("Player");
 	m_SpriteComponent = AddComponent<Sprite>("Ship1.bmp", 7, 1, 1.f, 1);
-	m_AnimationComponent = AddComponent<AnimationComponent>(GetComponent<Sprite>(), false, 8.f);
+	m_AnimationComponent = AddComponent<AnimationComponent>(m_SpriteComponent, false, 8.f);
+	m_PhysicsComponent = AddComponent<PhysicsComponent>(BodyType::Dynamic, 0, 1, 1);
+	m_Collider = AddComponent<CircleCollision>(m_PhysicsComponent, 20);
+
 }
 
 Player::~Player()
 {
 	delete m_SpriteComponent;
 	delete m_AnimationComponent;
+	delete m_PhysicsComponent;
+	delete m_Collider;
 }
 
 void Player::HandleEvents()
@@ -23,7 +31,8 @@ void Player::HandleEvents()
 
 	if (Input::IsFireKeyDown() && m_ShotsTimer >= m_FireRate)
 	{
-		GameWorld::InstantiateObject<PlayerBullet>()->GetTransform()->SetPosition(CalculateFirePosition());
+		GameObject* bullet = GameWorld::InstantiateObject<PlayerBullet>();
+		bullet->GetComponent<PhysicsComponent>()->SetPosition(CalculateFirePosition());
 		m_ShotsTimer = 0.f;
 	}
 }
@@ -44,7 +53,8 @@ void Player::Move(float deltaTime)
 	movement.Normalize();
 	//LOG("X: " << movement.x << " " << "Y: "<< movement.y);
 	movement *= m_MoveSpeed;
-	GetTransform()->AddPosition(movement * deltaTime);
+	m_PhysicsComponent->SetVelocity(movement);
+	//GetTransform()->AddPosition(movement * deltaTime);
 }
 
 void Player::ChangeAnimationBasedOnInput()

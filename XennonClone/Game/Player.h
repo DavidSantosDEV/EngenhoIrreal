@@ -1,6 +1,9 @@
 #pragma once
 #include "Pawn.h"
 
+class PhysicsComponent;
+class CircleCollision;
+
 class Player : public Pawn
 {
 public:
@@ -10,6 +13,9 @@ public:
 	virtual void HandleEvents() override;
 
 private:
+
+
+
 	void Move(float deltaTime);
 	void ChangeAnimationBasedOnInput();
 
@@ -20,9 +26,12 @@ private:
 	class AnimationComponent* m_AnimationComponent;
 	class Sprite* m_SpriteComponent;
 
+	PhysicsComponent* m_PhysicsComponent;
+	CircleCollision* m_Collider;
+
 	float m_FireRate = 0.2f;
 	float m_ShotsTimer = 0.f;
-	int m_MoveSpeed = 130;
+	int m_MoveSpeed = 100;
 	Vector2D m_FirePosition;
 };
 

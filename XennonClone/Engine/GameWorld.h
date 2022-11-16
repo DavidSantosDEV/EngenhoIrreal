@@ -8,6 +8,8 @@ class GameWorld
 public:
 	void Init(GameEngine* myEngine);
 
+	static GameWorld* GetWorld() {return m_World;}
+
 	GameWorld();
 	~GameWorld();
 
@@ -25,6 +27,10 @@ public:
 		return nullptr;
 	}
 
+	void DestroyObject(GameObject* Object);
+
 protected:
+	static GameWorld* m_World;
+
 	static GameEngine* m_Engine;
 };

@@ -3,6 +3,10 @@
 #include "SDL.h"
 #include "Log.h"
 
+void AnimationComponent::Destroy()
+{
+}
+
 void AnimationComponent::Start()
 {
 	if (m_ParentSpriteComponent->GetTexture() == nullptr)

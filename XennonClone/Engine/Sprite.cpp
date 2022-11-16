@@ -50,10 +50,11 @@ Sprite::Sprite(const char* texturePath, int spriteSheetRows, int spriteSheetColu
 
 
 Sprite::~Sprite()
-{
+{/*
+	GameEngine::RemoveRenderComponentFromStack(this);
 	SDL_DestroyTexture(m_Texture);
 	delete m_Texture;
-	delete m_ParentTransform;
+	delete m_ParentTransform;*/
 }
 
 void Sprite::Start()
@@ -78,6 +79,15 @@ void Sprite::Render()
 			SDL_RenderCopyF(GameEngine::GetInstance()->GetRenderer(), m_Texture, &m_SourceRect, &m_DestRect);
 		}
 	}
+}
+
+void Sprite::Destroy()
+{
+	GameEngine::RemoveRenderComponentFromStack(this);
+	SDL_DestroyTexture(m_Texture);
+	//delete m_Texture;
+	//delete m_ParentTransform;
+	//delete this;
 }
 
 void Sprite::SetSpriteTexture(SDL_Texture* Texture)
