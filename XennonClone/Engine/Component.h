@@ -13,6 +13,6 @@ public:
 
 	GameObject* const GetOwnerGameObject() { return m_OwnerGameObject; }
 
-	virtual void Destroy() =0;
+	virtual void Destroy() {};
 };
 

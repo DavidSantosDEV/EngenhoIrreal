@@ -27,7 +27,7 @@ public:
 		return nullptr;
 	}
 
-	void DestroyObject(GameObject* Object);
+	static void DestroyObject(GameObject* Object);
 
 protected:
 	static GameWorld* m_World;

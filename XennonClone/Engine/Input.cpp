@@ -41,7 +41,7 @@ int Input::GetRightAxisValue()
 {
 	// Get and clamp gamepad axis value from -1 to 1
 	int gamepadRightAxis = SDL_GameControllerGetAxis(m_GameController, SDL_CONTROLLER_AXIS_LEFTX);
-	MathHelper::ClampInt(gamepadRightAxis, -JOYSTICK_MAX, JOYSTICK_MAX);
+	MathHelper::ClampIntRef(gamepadRightAxis, -JOYSTICK_MAX, JOYSTICK_MAX);
 
 	// Get Keyboard state (supports key yield down)
 	const Uint8* currentKeyStates = SDL_GetKeyboardState(NULL);
@@ -62,7 +62,7 @@ int Input::GetUpAxisValue()
 {
 	// Get and clamp gamepad axis value from -1 to 1
 	int gamepadUpAxis = SDL_GameControllerGetAxis(m_GameController, SDL_CONTROLLER_AXIS_LEFTY);
-	MathHelper::ClampInt(gamepadUpAxis, -JOYSTICK_MAX, JOYSTICK_MAX);
+	MathHelper::ClampIntRef(gamepadUpAxis, -JOYSTICK_MAX, JOYSTICK_MAX);
 
 	// Get Keyboard state (supports key yield down)
 	const Uint8* currentKeyStates = SDL_GetKeyboardState(NULL);

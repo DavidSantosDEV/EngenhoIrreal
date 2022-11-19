@@ -30,14 +30,16 @@ protected:
 public:
 	/* Used for non-animated sprites */
 	Sprite(const char* texturePath, int renderPriority);
+	/* Used for non-animated sprites */
+	Sprite(const char* texturePath, int renderPriority, float scale);
 	/* Used for animated sprites or specific sprites in spritesheet */
-	Sprite(const char* texturePath, int spriteSheetRows, int spriteSheetColumns, float scale, int renderPriority);
+	Sprite(const char* texturePath, int spriteSheetColumns, int spriteSheetRows, float scale, int renderPriority);
 	~Sprite();
 
 	virtual void Start() override;
 
 	void SetSpriteTexture(SDL_Texture* Texture);
-	void SetSpriteTexture(const char* TexturePath);
+	void SetTextureData(const char* texturePath, int spriteSheetColumns, int spriteSheetRows, float scale);
 
 	inline SDL_Texture* GetTexture() const { return m_Texture; }
 	SDL_Rect& GetSourceRect();

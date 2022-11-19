@@ -8,7 +8,6 @@
 #include "Player.h"
 #include "RocksBackground.h"
 
-
 void XennonGameWorld::Start()
 {
 	StaticBackground* background = InstantiateObject<StaticBackground>();

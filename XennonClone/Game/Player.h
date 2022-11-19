@@ -3,6 +3,7 @@
 
 class PhysicsComponent;
 class CircleCollision;
+class HealthComponent;
 
 class Player : public Pawn
 {
@@ -11,10 +12,9 @@ public:
 	~Player();
 	virtual void Update(float deltaTime) override;
 	virtual void HandleEvents() override;
+	virtual void OnZeroHealth() override;
 
 private:
-
-
 
 	void Move(float deltaTime);
 	void ChangeAnimationBasedOnInput();
@@ -25,9 +25,11 @@ private:
 	// Components
 	class AnimationComponent* m_AnimationComponent;
 	class Sprite* m_SpriteComponent;
+	class HealthComponent* m_HealthComponent;
 
 	PhysicsComponent* m_PhysicsComponent;
 	CircleCollision* m_Collider;
+
 
 	float m_FireRate = 0.2f;
 	float m_ShotsTimer = 0.f;

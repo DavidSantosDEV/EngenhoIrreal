@@ -9,7 +9,7 @@ PlayerBullet::PlayerBullet()
 {
 	AddComponent<Sprite>("missile.bmp", 2, 4, 2.f, 0);
 	m_AnimationComponent = AddComponent<AnimationComponent>(GetComponent<Sprite>(), false, 8.f);
-	AddComponent<PhysicsComponent>(BodyType::Dynamic, 0, 1, 1);
+	m_PhysicsComponent = AddComponent<PhysicsComponent>(BodyType::Dynamic, 0, 1, 1);
 	AddComponent<CircleCollision>(GetComponent<PhysicsComponent>(), 10);
 	GetComponent<CircleCollision>()->SetIsTrigger(true);
 }
@@ -31,6 +31,13 @@ void PlayerBullet::Update(float deltaTime)
 	if (!m_AnimationComponent->IsPlayingAnimation(0, 0, 0, 1)) m_AnimationComponent->PlayAnimation(0, 0, 0, 1, true);
 
 	GameObject::Update(deltaTime);
+
+	m_DestroyTimer += deltaTime;
+
+	if (m_DestroyTimer >= m_AutoDestroyBulletAfter)
+	{
+		Destroy();
+	}
 }
 
 void PlayerBullet::OnTriggerEnter(GameObject* other)
