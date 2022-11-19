@@ -101,5 +101,10 @@ public:
 	virtual void OnEndCollision(GameObject* other){};
 	virtual void OnTriggerEnter(GameObject* other){};
 	virtual void OnTriggerExit(GameObject* other){};
+	/* Only called if GameObject has HealthComponent */
+	virtual void OnZeroHealth() {};
+
+	/*Only called if GameObject has AnimationComponent */
+	virtual void OnAnimationEnd() {};
 };
 

@@ -154,6 +154,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Explosion.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerBullet.cpp" />
     <ClCompile Include="StaticBackground.cpp" />
@@ -162,6 +163,7 @@
     <ClCompile Include="XennonClone.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Explosion.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerBullet.h" />
     <ClInclude Include="StaticBackground.h" />

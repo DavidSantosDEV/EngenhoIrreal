@@ -16,38 +16,19 @@
 
 Sprite::Sprite(const char* texturePath, int renderPriority) : RenderComponent(renderPriority)
 {
-	//TODO automate to choose between BMP or PNG
-	m_Texture = TextureManager::LoadTexture(texturePath);
-	SDL_QueryTexture(m_Texture, nullptr, nullptr, &m_TextureWidth, &m_TextureHeight);
+	SetTextureData(texturePath, 1, 1, 1.f);
+}
 
-	m_FrameWidth = m_TextureWidth;
-	m_FrameHeight = m_TextureHeight;
-
-	m_SourceRect.x = m_SourceRect.y = 0;
-	m_SourceRect.w = m_FrameWidth;
-	m_SourceRect.h = m_FrameHeight;
-	m_DestRect.w = m_FrameWidth;
-	m_DestRect.h = m_FrameHeight;
+Sprite::Sprite(const char* texturePath, int renderPriority, float scale) : RenderComponent(renderPriority)
+{
+	SetTextureData(texturePath, 1, 1, scale);
 }
 
 Sprite::Sprite(const char* texturePath, int spriteSheetRows, int spriteSheetColumns, 
 	float scale, int renderPriority) : RenderComponent(renderPriority)
 {
-
-	//TODO automate to choose between BMP or PNG
-	m_Texture = TextureManager::LoadTexture(texturePath);
-	SDL_QueryTexture(m_Texture, nullptr, nullptr, &m_TextureWidth, &m_TextureHeight);
-
-	m_FrameWidth = m_TextureWidth / spriteSheetRows;
-	m_FrameHeight = m_TextureHeight / spriteSheetColumns;
-
-	m_SourceRect.x = m_SourceRect.y = 0;
-	m_SourceRect.w = m_FrameWidth;
-	m_SourceRect.h = m_FrameHeight;
-	m_DestRect.w = m_FrameWidth * scale;
-	m_DestRect.h = m_FrameHeight * scale;
+	SetTextureData(texturePath, spriteSheetRows, spriteSheetColumns, scale);
 }
-
 
 Sprite::~Sprite()
 {/*
@@ -90,14 +71,24 @@ void Sprite::Destroy()
 	//delete this;
 }
 
-void Sprite::SetSpriteTexture(SDL_Texture* Texture)
+void Sprite::SetSpriteTexture(SDL_Texture* texture)
 {
-	m_Texture = Texture;
+	m_Texture = texture;
 }
 
-void Sprite::SetSpriteTexture(const char* TexturePath)
+void Sprite::SetTextureData(const char* texturePath, int spriteSheetRows, int spriteSheetColumns, float scale)
 {
-	m_Texture = TextureManager::LoadTexture(TexturePath);
+	m_Texture = TextureManager::LoadTexture(texturePath);
+	SDL_QueryTexture(m_Texture, nullptr, nullptr, &m_TextureWidth, &m_TextureHeight);
+
+	m_FrameWidth = m_TextureWidth / spriteSheetRows;
+	m_FrameHeight = m_TextureHeight / spriteSheetColumns;
+
+	m_SourceRect.x = m_SourceRect.y = 0;
+	m_SourceRect.w = m_FrameWidth;
+	m_SourceRect.h = m_FrameHeight;
+	m_DestRect.w = m_FrameWidth * scale;
+	m_DestRect.h = m_FrameHeight * scale;
 }
 
 SDL_Rect& Sprite::GetSourceRect()

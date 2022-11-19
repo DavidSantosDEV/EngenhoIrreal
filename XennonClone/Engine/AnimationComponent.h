@@ -9,9 +9,10 @@ public:
 		m_AnimationSpeed{animationSpeed} {};
 
 	virtual void Destroy() override;
-
 	virtual void Start() override;
 	virtual void Update(float deltatime) override;
+
+	void SetCanLoopAnimation(const bool value) { m_CanLoopAnimation = value; }
 
 	/* Play animation from specific sprite sheet sprites. Index starts at 0 for both rows and columns 
 	* Row = Y and Column = X.

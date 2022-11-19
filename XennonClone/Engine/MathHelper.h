@@ -3,7 +3,7 @@
 class MathHelper
 {
 public:
-	static void ClampInt(int& value, const int& min, const int& max)
+	static void ClampIntRef(int& value, const int& min, const int& max)
 	{
 		if (value < min)
 		{
@@ -13,6 +13,19 @@ public:
 		{
 			value = max;
 		}
+	}
+
+	static int ClampInt(int value, const int& min, const int& max)
+	{
+		if (value < min)
+		{
+			value = min;
+		}
+		if (value > max)
+		{
+			value = max;
+		}
+		return value;
 	}
 
 	static void MapClampRangedInt(int& value, const int& oldMin, const int& oldMax,

@@ -2,6 +2,7 @@
 #include "Sprite.h"
 #include "SDL.h"
 #include "Log.h"
+#include "GameObject.h"
 
 void AnimationComponent::Destroy()
 {
@@ -42,10 +43,29 @@ void AnimationComponent::Update(float deltatime)
 
 		if (spriteSourceRect.x >= m_EndingAnimationFrameX)
 		{
-			// If animation is not loopable, when it reaches the end, stay in the beginning of the last frame.
-			spriteSourceRect.x = m_CanLoopAnimation ? m_StartingAnimationFrameX : m_EndingAnimationFrameX - m_ParentSpriteComponent->m_FrameWidth;
-			spriteSourceRect.y += m_ParentSpriteComponent->m_FrameHeight;
 
+			float nextSourceRectY = spriteSourceRect.y + m_ParentSpriteComponent->m_FrameHeight;
+
+			if (m_CanLoopAnimation)
+			{
+				spriteSourceRect.x = m_StartingAnimationFrameX;
+			}
+			else
+			{
+				if (nextSourceRectY < m_EndingAnimationFrameY)
+				{
+					spriteSourceRect.x = m_StartingAnimationFrameX;
+				}
+				// If animation is not loopable, when it reaches the end, stay in the beginning of the last frame.
+				else
+				{
+					spriteSourceRect.x = m_EndingAnimationFrameX - m_ParentSpriteComponent->m_FrameWidth;
+					m_OwnerGameObject->OnAnimationEnd();
+				}
+			}
+
+			spriteSourceRect.y = nextSourceRectY;
+			
 			if (spriteSourceRect.y >= m_EndingAnimationFrameY)
 			{
 				spriteSourceRect.y = m_CanLoopAnimation ? m_StartingAnimationFrameY : m_EndingAnimationFrameY - m_ParentSpriteComponent->m_FrameHeight;

@@ -6,6 +6,10 @@
 #include "PhysicsComponent.h"
 #include "CircleCollision.h"
 #include "PlayerBullet.h"
+#include "HealthComponent.h"
+#include "Explosion.h"
+
+bool removeLater = true;
 
 Player::Player()
 {
@@ -14,15 +18,16 @@ Player::Player()
 	m_AnimationComponent = AddComponent<AnimationComponent>(m_SpriteComponent, false, 8.f);
 	m_PhysicsComponent = AddComponent<PhysicsComponent>(BodyType::Dynamic, 0, 1, 1);
 	m_Collider = AddComponent<CircleCollision>(m_PhysicsComponent, 20);
-
+	m_HealthComponent = AddComponent<HealthComponent>(100);
 }
 
 Player::~Player()
 {
-	delete m_SpriteComponent;
-	delete m_AnimationComponent;
-	delete m_PhysicsComponent;
-	delete m_Collider;
+	//delete m_SpriteComponent;
+	//delete m_AnimationComponent;
+	//delete m_PhysicsComponent;
+	//delete m_Collider;
+	//delete m_HealthComponent;
 }
 
 void Player::HandleEvents()
@@ -31,10 +36,23 @@ void Player::HandleEvents()
 
 	if (Input::IsFireKeyDown() && m_ShotsTimer >= m_FireRate)
 	{
-		GameObject* bullet = GameWorld::InstantiateObject<PlayerBullet>();
-		bullet->GetComponent<PhysicsComponent>()->SetPosition(CalculateFirePosition());
+		PlayerBullet* bullet = GameWorld::InstantiateObject<PlayerBullet>();
+		// TODO don't get component every frame
+		bullet->GetPhysicsComponent()->SetPosition(CalculateFirePosition());
 		m_ShotsTimer = 0.f;
 	}
+
+	if (m_ShotsTimer >= 2.f && removeLater)
+	{
+		OnZeroHealth();
+		removeLater = false;
+	}
+}
+
+void Player::OnZeroHealth()
+{
+	GameWorld::InstantiateObject<Explosion>()->m_Transform.SetPosition(m_Transform.GetPosition());
+	GameWorld::DestroyObject(this);
 }
 
 void Player::Update(float deltaTime)
