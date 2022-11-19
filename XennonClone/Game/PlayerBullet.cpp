@@ -36,7 +36,7 @@ void PlayerBullet::Update(float deltaTime)
 
 	if (m_DestroyTimer >= m_AutoDestroyBulletAfter)
 	{
-		Destroy();
+		GameWorld::DestroyObject(this);
 	}
 }
 
