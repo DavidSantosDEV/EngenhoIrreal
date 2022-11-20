@@ -78,6 +78,17 @@ public:
 		return *this;
 	}
 
+	static float Distance(Vector2D v1, Vector2D v2) {
+		
+		const float x = v2.x - v1.x;
+		const float y = v2.y - v1.y;
+
+		const float calc = ((x * x) + (y * y));
+
+		return sqrt(calc);
+	}
+
+
 	/* Returns a new vector, doesn't affect the arguments */
 	friend Vector2D operator+(Vector2D v1, const Vector2D& v2) { return v1.Add(v2); }
 	friend Vector2D operator-(Vector2D v1, const Vector2D& v2) { return v1.Subtract(v2); }
@@ -91,6 +102,14 @@ public:
 	Vector2D& operator-=(const Vector2D& v2) { return this->Subtract(v2); }
 	Vector2D& operator*=(const Vector2D& v2) { return this->Multiply(v2); }
 	Vector2D& operator/=(const Vector2D& v2) { return this->Divide(v2); }
+
+	friend bool operator < (Vector2D v1, Vector2D v2) {
+		return v1.x < v2.x&& v1.y < v2.y;
+	}
+
+	friend bool operator > (Vector2D v1, Vector2D v2) {
+		return v1.x > v2.x&& v1.y > v2.y;
+	}
 
 	friend bool operator!= (Vector2D v1, Vector2D v2) {
 		return v1.x != v2.x || v1.y != v2.y;

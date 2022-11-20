@@ -43,6 +43,7 @@ public:
 
 	inline SDL_Texture* GetTexture() const { return m_Texture; }
 	SDL_Rect& GetSourceRect();
+	SDL_FRect& GetDestRect();
 
 	// Inherited via RenderComponent
 	virtual void Render() override;

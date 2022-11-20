@@ -16,6 +16,7 @@
 #include "PhysicsWorld.h"
 #include "Pawn.h"
 #include "Log.h"
+#include "TimerManager.h"
 #include "Input.h"
 #include <iostream>
 
@@ -103,6 +104,7 @@ void GameEngine::DestroyPending()
 				comp->Destroy();			
 				delete comp.get();
 			}
+			obj->Destroy();
 			RemoveGameObjectFromStack(obj);
 			//obj->Destroy();
 		}
@@ -121,6 +123,7 @@ void GameEngine::Start()
 	m_World->Init(this);
 	m_World->Start();
 
+	/* Game Objects created on construct were being called twice, this is the culprit :)
 	for (int i = 0; i < m_GameObjectStack.size(); ++i) 
 	{
 		// If gameobject hasn't been initialized yet
@@ -130,6 +133,7 @@ void GameEngine::Start()
 			m_GameObjectStack[i]->Start();
 		}
 	}
+	*/
 }
 
 void GameEngine::HandleInput(SDL_Event& ev)
@@ -147,6 +151,7 @@ void GameEngine::HandleInput(SDL_Event& ev)
 
 void GameEngine::Update()
 {
+	TimerManager::UpdateHandles(m_ElapsedMS);
 	m_World->Update(m_ElapsedMS);
 	for (int i = 0; i < m_GameObjectStack.size();++i) 
 	{
@@ -161,11 +166,46 @@ void GameEngine::Update()
 	}
 }
 
+float triangleArea(Vector2D A,Vector2D B ,Vector2D C ){
+	return (C.x * B.y - B.x * C.y) - (C.x * A.y - A.x * C.y) + (B.x * A.y - A.x * B.y);
+}
+ bool isInsideSquare(Vector2D A ,Vector2D B ,Vector2D C ,Vector2D D ,Vector2D P)
+{
+	if (triangleArea(A,B,P) > 0 || triangleArea(B,C,P) > 0 || triangleArea(C,D,P) > 0 || triangleArea(D,A,P) > 0) {
+		return false;
+	}
+	return true;
+}
+
+bool IsInside(Vector2D windowConfines, Vector2D pos, float Leeway) {
+
+	if (pos < windowConfines) {
+		return true;
+	}
+	//lets try for now
+	return false;
+}
+
+
 void GameEngine::Render()
 {
 	m_Window->Clean();
 	for (auto mR : m_RenderComponentsStack) 
 	{
+		Vector2D pos = mR->GetOwnerGameObject()->GetTransform()->GetPosition();
+		Vector2D win = m_Window->GetWindowSize();
+		if (isInsideSquare(Vector2D(-20,-20),Vector2D(win.x,-20),win,Vector2D(-20,win.y),pos)) {
+			if (!mR->GetIsVisible()) {
+				mR->SetIsVisible(true);
+				mR->GetOwnerGameObject()->OnBecameVisible();
+			}
+		}
+		else {
+			if (mR->GetIsVisible()) {
+				mR->SetIsVisible(false);
+				mR->GetOwnerGameObject()->OnBecameHidden();
+			}
+		}
 		mR->Render();
 	}
 	/*

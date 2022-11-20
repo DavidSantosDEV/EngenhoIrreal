@@ -2,6 +2,7 @@
 #include "Sprite.h"
 #include "PhysicsComponent.h"
 #include "CircleCollision.h"
+#include "HealthComponent.h"
 #include "GameWorld.h"
 #include "AnimationComponent.h"
 
@@ -43,7 +44,10 @@ void PlayerBullet::Update(float deltaTime)
 void PlayerBullet::OnTriggerEnter(GameObject* other)
 {
 	if (other->HasTag("Enemy")) {
-		LOG("Hit this guy");
+		HealthComponent* health =other->GetComponent<HealthComponent>();
+		if (health) {
+			health->TakeDamage(1);
+		}
 		GameWorld::GetWorld()->DestroyObject(this);
 	}
 }

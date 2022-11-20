@@ -30,6 +30,7 @@
     <ClCompile Include="HealthComponent.cpp" />
     <ClCompile Include="InitError.cpp" />
     <ClCompile Include="Input.cpp" />
+    <ClCompile Include="MathHelper.cpp" />
     <ClCompile Include="ParallaxComponent.cpp" />
     <ClCompile Include="Pawn.cpp" />
     <ClCompile Include="PhysicsComponent.cpp" />
@@ -39,6 +40,8 @@
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="SquareCollision.cpp" />
     <ClCompile Include="TextureManager.cpp" />
+    <ClCompile Include="TimerManager.cpp" />
+    <ClCompile Include="ViewPortCollision.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -64,7 +67,9 @@
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="SquareCollision.h" />
     <ClInclude Include="TextureManager.h" />
+    <ClInclude Include="TimerManager.h" />
     <ClInclude Include="Transform.h" />
+    <ClInclude Include="ViewPortCollision.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

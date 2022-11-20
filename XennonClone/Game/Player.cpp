@@ -8,8 +8,8 @@
 #include "PlayerBullet.h"
 #include "HealthComponent.h"
 #include "Explosion.h"
-
-bool removeLater = true;
+#include "TimerManager.h"
+bool removeLater = false;
 
 Player::Player()
 {
@@ -20,6 +20,8 @@ Player::Player()
 	m_Collider = AddComponent<CircleCollision>(m_PhysicsComponent, 20);
 	m_HealthComponent = AddComponent<HealthComponent>(100);
 }
+
+
 
 Player::~Player()
 {
@@ -53,6 +55,16 @@ void Player::OnZeroHealth()
 {
 	GameWorld::InstantiateObject<Explosion>()->m_Transform.SetPosition(m_Transform.GetPosition());
 	GameWorld::DestroyObject(this);
+}
+
+void Player::OnBecameVisible()
+{
+	LOG("Visible");
+}
+
+void Player::OnBecameHidden()
+{
+	LOG("Hidden");
 }
 
 void Player::Update(float deltaTime)

@@ -14,6 +14,12 @@ public:
 	virtual void HandleEvents() override;
 	virtual void OnZeroHealth() override;
 
+	virtual void OnBecameVisible() override;
+	virtual void OnBecameHidden() override;
+
+	void DoLog() {
+		LOG("HEY")
+	}
 private:
 
 	void Move(float deltaTime);

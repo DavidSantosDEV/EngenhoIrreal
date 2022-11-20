@@ -34,6 +34,7 @@ protected:
 
 	bool m_WasInitialized = false;
 	bool m_pendingDestroy = false;
+
 public:
 /* Component-Derived System */
 #pragma region ComponentSystem
@@ -81,7 +82,6 @@ public:
 #pragma endregion
 
 public:
-
 	bool HasTag(std::string tag);
 	bool HasTag(const char* tag);
 
@@ -106,5 +106,9 @@ public:
 
 	/*Only called if GameObject has AnimationComponent */
 	virtual void OnAnimationEnd() {};
+
+	virtual void OnBecameVisible() {};
+	virtual void OnBecameHidden() {};
+
 };
 

@@ -95,3 +95,8 @@ SDL_Rect& Sprite::GetSourceRect()
 {
 	return m_SourceRect;
 }
+
+SDL_FRect& Sprite::GetDestRect()
+{
+	return m_DestRect;
+}

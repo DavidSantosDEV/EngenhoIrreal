@@ -6,13 +6,19 @@
 #include "Log.h"
 #include "AnimationComponent.h"
 #include "Player.h"
+#include "Enemy.h"
+#include "PhysicsComponent.h"
+#include "EnemyManager.h"
 #include "RocksBackground.h"
 
 void XennonGameWorld::Start()
 {
+	InstantiateObject<EnemyManager>();
 	StaticBackground* background = InstantiateObject<StaticBackground>();
 	InstantiateObject<RocksBackground>();
-	InstantiateObject<Player>();
+	GameObject* p = InstantiateObject<Player>();
+	p->GetComponent<PhysicsComponent>()->SetPosition(Vector2D(120, 50));
+	InstantiateObject<Enemy>();
 }
 
 void XennonGameWorld::Update(float deltaTime)

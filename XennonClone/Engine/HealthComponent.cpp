@@ -24,5 +24,8 @@ void HealthComponent::DealDamage(HealthComponent* otherHealthComponent, int amou
 	}
 
 	otherHealthComponent->TakeDamage(amount);
+}
 
+void Banasn() {
+	std::cout << "Died";
 }

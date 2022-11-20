@@ -56,7 +56,6 @@ void GameObject::Update(float deltaTime)
 
 void GameObject::Destroy()
 {
-	delete this;
 }
 
 bool GameObject::HasTag(std::string tag) {
