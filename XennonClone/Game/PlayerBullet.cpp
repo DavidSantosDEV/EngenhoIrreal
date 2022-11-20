@@ -55,3 +55,8 @@ void PlayerBullet::OnTriggerEnter(GameObject* other)
 	}
 }
 
+void PlayerBullet::OnBecameHidden()
+{
+	GameWorld::DestroyObject(this);
+}
+

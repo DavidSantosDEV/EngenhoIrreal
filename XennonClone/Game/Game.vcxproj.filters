@@ -48,6 +48,9 @@
     <ClCompile Include="Loner.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="HomingMissile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="XennonGameWorld.h">
@@ -78,6 +81,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Loner.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HomingMissile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

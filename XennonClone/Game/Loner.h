@@ -2,6 +2,11 @@
 #include "Enemy.h"
 class Loner : public Enemy
 {
+protected:
+	float currentDelay;
+	float shootDelay = 1.f;
+
+	void Shoot();
 public:
 	Loner();
 

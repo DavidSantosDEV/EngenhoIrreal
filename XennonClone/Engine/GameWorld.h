@@ -29,6 +29,8 @@ public:
 
 	static void DestroyObject(GameObject* Object);
 
+	static GameObject* FindObjectWithTag(std::string tag);
+
 protected:
 	static GameWorld* m_World;
 

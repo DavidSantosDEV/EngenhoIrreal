@@ -27,6 +27,11 @@ protected:
 	int m_FrameHeight = 1;
 	//SDL_FRect& m_destRect; Not needed its basically a copy of transform
 
+	float m_rotation = 0.f;
+
+	bool m_FlipX = false;
+	bool m_FlipY = false;
+
 public:
 	/* Used for non-animated sprites */
 	Sprite(const char* texturePath, int renderPriority);
@@ -36,6 +41,8 @@ public:
 	Sprite(const char* texturePath, int spriteSheetColumns, int spriteSheetRows, float scale, int renderPriority);
 	~Sprite();
 
+	void SetFlipY(bool val) { m_FlipY = val; }
+
 	virtual void Start() override;
 
 	void SetSpriteTexture(SDL_Texture* Texture);
@@ -44,6 +51,9 @@ public:
 	inline SDL_Texture* GetTexture() const { return m_Texture; }
 	SDL_Rect& GetSourceRect();
 	SDL_FRect& GetDestRect();
+
+
+	void SetRotation(float val) { m_rotation = val; }
 
 	// Inherited via RenderComponent
 	virtual void Render() override;

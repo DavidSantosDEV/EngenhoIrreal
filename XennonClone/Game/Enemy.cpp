@@ -46,3 +46,8 @@ void Enemy::OnTriggerEnter(GameObject* other)
 		m_HealthComponent->TakeDamage(20);
 	}
 }
+
+void Enemy::OnBecameHidden()
+{
+	EnemyManager::GetInstance()->DeleteEnemy(this);
+}

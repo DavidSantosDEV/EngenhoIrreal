@@ -18,7 +18,7 @@ GameWorld::GameWorld()
 
 GameWorld::~GameWorld()
 {
-		
+
 }
 
 void GameWorld::Init(GameEngine* myEngine)
@@ -35,4 +35,17 @@ void GameWorld::Init(GameEngine* myEngine)
 void GameWorld::DestroyObject(GameObject* Object) {
 	Object->SetPendingDestroy();
 	m_Engine->AddPendingDestroy(Object);
+}
+
+GameObject* GameWorld::FindObjectWithTag(std::string tag)
+{
+	if (m_Engine) {
+		std::vector<GameObject*> objs = m_Engine->GetAllGameObjects();
+		for (auto obj : objs) {
+			if (obj->HasTag(tag)) {
+				return obj;
+			}
+		}
+	}
+	return nullptr;
 }

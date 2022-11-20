@@ -57,7 +57,15 @@ void Sprite::Render()
 			m_DestRect.x = m_ParentTransform->GetPosition().x;
 			m_DestRect.y = m_ParentTransform->GetPosition().y;
 			// TODO: optimize get renderer on tick
-			SDL_RenderCopyF(GameEngine::GetInstance()->GetRenderer(), m_Texture, &m_SourceRect, &m_DestRect);
+			SDL_FPoint center;
+			center.x = 0;
+			center.y = 0;
+
+			SDL_RendererFlip flip = (m_FlipY ? SDL_FLIP_VERTICAL : SDL_FLIP_NONE);
+			
+
+			SDL_RenderCopyExF(GameEngine::GetInstance()->GetRenderer(), m_Texture, &m_SourceRect, &m_DestRect, m_rotation, &center, flip);
+			//SDL_RenderCopyF(GameEngine::GetInstance()->GetRenderer(), m_Texture, &m_SourceRect, &m_DestRect);
 		}
 	}
 }

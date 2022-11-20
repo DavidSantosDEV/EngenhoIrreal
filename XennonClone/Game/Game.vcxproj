@@ -157,6 +157,7 @@
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyManager.cpp" />
     <ClCompile Include="Explosion.cpp" />
+    <ClCompile Include="HomingMissile.cpp" />
     <ClCompile Include="Loner.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerBullet.cpp" />
@@ -170,6 +171,7 @@
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyManager.h" />
     <ClInclude Include="Explosion.h" />
+    <ClInclude Include="HomingMissile.h" />
     <ClInclude Include="Loner.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerBullet.h" />

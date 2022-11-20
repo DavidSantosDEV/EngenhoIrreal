@@ -33,7 +33,7 @@ public:
 	static void AddPawnToStack(Pawn* pawn);
 	static void RemovePawnFromStack(Pawn* pawn);
 
-
+	static std::vector<GameObject*> GetAllGameObjects() { return m_GameObjectStack; }
 
 private:
 	/* Sort render components in order to support a layering/priority system*/

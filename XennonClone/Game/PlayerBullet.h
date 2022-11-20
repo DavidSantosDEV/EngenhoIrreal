@@ -11,6 +11,8 @@ public:
 
 	virtual void OnTriggerEnter(GameObject* other) override;
 
+	virtual void OnBecameHidden() override;
+
 	class PhysicsComponent* GetPhysicsComponent() const { return m_PhysicsComponent; }
 
 private:
