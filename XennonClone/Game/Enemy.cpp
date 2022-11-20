@@ -60,3 +60,15 @@ void Enemy::OnZeroHealth()
 	GameWorld::InstantiateObject<Explosion>()->GetTransform()->SetPosition(m_Transform.GetPosition());
 	GameWorld::DestroyObject(this);
 }
+
+void Enemy::OnBeginCollision(GameObject* other)
+{
+	if (other->HasTag("Player")) {
+		HealthComponent* h = other->GetComponent<HealthComponent>();
+		if (h) {
+			h->TakeDamage(10);
+		}
+		GameWorld::InstantiateObject<Explosion>()->GetTransform()->SetPosition(m_Transform.GetPosition());
+		GameWorld::DestroyObject(this);
+	}
+}

@@ -33,5 +33,7 @@ public:
 	virtual void Destroy() override;
 
 	virtual void OnZeroHealth() override;
+
+	virtual void OnBeginCollision(GameObject* other) override;
 };
 
