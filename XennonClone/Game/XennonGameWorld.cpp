@@ -6,10 +6,11 @@
 #include "Log.h"
 #include "AnimationComponent.h"
 #include "Player.h"
-#include "Enemy.h"
+#include "Rusher.h"
 #include "PhysicsComponent.h"
 #include "EnemyManager.h"
 #include "RocksBackground.h"
+#include "Loner.h"
 
 void XennonGameWorld::Start()
 {
@@ -18,10 +19,10 @@ void XennonGameWorld::Start()
 	InstantiateObject<RocksBackground>();
 	GameObject* p = InstantiateObject<Player>();
 	p->GetComponent<PhysicsComponent>()->SetPosition(Vector2D(120, 50));
-	InstantiateObject<Enemy>();
+	InstantiateObject<Rusher>()->GetComponent<PhysicsComponent>()->SetPosition(Vector2D(300, -300));
+	InstantiateObject<Loner>()->GetComponent<PhysicsComponent>()->SetPosition(Vector2D(800, 300));
 }
 
 void XennonGameWorld::Update(float deltaTime)
 {
-	//player->GetTransform()->GetPosition().x += 50 * deltaTime;
 }

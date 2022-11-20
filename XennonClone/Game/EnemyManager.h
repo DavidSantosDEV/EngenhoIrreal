@@ -8,12 +8,12 @@ protected:
 
 	Vector2D VectorSpawns[5] = {Vector2D(50,0),Vector2D(0,0), Vector2D(300,0.f), Vector2D(150,0.f), Vector2D(200,0.f)};
 
-	float currentTime;
+	float m_CurrentTime;
 
 	float m_SpawnDelay = 2;
 
 	int m_MaxEnemies=10;
-	std::vector<class Enemy*> enemies;
+	std::vector<class Enemy*> m_Enemies;
 
 	static EnemyManager* m_Instance;
 
@@ -27,6 +27,6 @@ public:
 
 	void SpawnEnemyAtRandom();
 
-	void DeleteEnemy(Enemy* enemy);
+	void DeleteEnemy(class Enemy* enemy);
 };
 

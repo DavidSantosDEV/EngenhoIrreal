@@ -5,6 +5,7 @@
 #include "HealthComponent.h"
 #include "GameWorld.h"
 #include "AnimationComponent.h"
+#include "Enemy.h"
 
 PlayerBullet::PlayerBullet()
 {
@@ -38,15 +39,17 @@ void PlayerBullet::Update(float deltaTime)
 	if (m_DestroyTimer >= m_AutoDestroyBulletAfter)
 	{
 		GameWorld::DestroyObject(this);
+		LOG("Bullet destroyed");
 	}
 }
 
 void PlayerBullet::OnTriggerEnter(GameObject* other)
 {
-	if (other->HasTag("Enemy")) {
-		HealthComponent* health =other->GetComponent<HealthComponent>();
+	if (other->HasTag("Enemy"))
+	{
+		HealthComponent* health = other->GetComponent<HealthComponent>();
 		if (health) {
-			health->TakeDamage(1);
+			health->TakeDamage(m_BulletDamage);
 		}
 		GameWorld::GetWorld()->DestroyObject(this);
 	}

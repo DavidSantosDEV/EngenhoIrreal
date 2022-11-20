@@ -8,13 +8,13 @@ EnemyManager* EnemyManager::m_Instance = nullptr;
 
 void EnemyManager::Start()
 {
-	if (m_Instance) {
+	if (m_Instance != nullptr) {
 		delete this;
 		return;
 	}
 	m_Instance = this;
-	currentTime = m_SpawnDelay;
-	SpawnEnemyAtRandom();
+	m_CurrentTime = m_SpawnDelay;
+	//SpawnEnemyAtRandom();
 }
 
 void EnemyManager::Update(float deltaTime)
@@ -22,20 +22,23 @@ void EnemyManager::Update(float deltaTime)
 	GameObject::Update(deltaTime);
 
 
-	currentTime -= deltaTime;
-	if (currentTime<=0) {
-		currentTime = m_SpawnDelay;
+	m_CurrentTime -= deltaTime;
+	if (m_CurrentTime<=0) {
+		m_CurrentTime = m_SpawnDelay;
 		//SpawnEnemyAtRandom();
 	}
 }
 
 void EnemyManager::SpawnEnemyAtRandom()
 {	
-  	if (enemies.size()< m_MaxEnemies) {
+	// TODO FIX. Enemy base class doesn't do anything, only child classes
+	// Como resolver: o enemy manager tem de saber das classes de inimigos que existem no jogo
+	// e escolhe random dentro dessas para fazer spawn
+  	if (m_Enemies.size()< m_MaxEnemies) {
 		
 		Enemy* enemy = GameWorld::InstantiateObject<Enemy>();
 		enemy->GetComponent<PhysicsComponent>()->SetPosition(VectorSpawns[rand() % 5]);
-		enemies.push_back(enemy);
+		m_Enemies.push_back(enemy);
 	}
 
 }
@@ -43,11 +46,11 @@ void EnemyManager::SpawnEnemyAtRandom()
 void EnemyManager::DeleteEnemy(Enemy* enemy)
 {
 	if (!enemy)return;
-	for (int i = 0; i < enemies.size(); ++i)
+	for (int i = 0; i < m_Enemies.size(); ++i)
 	{
-		if (enemies[i] == enemy)
+		if (m_Enemies[i] == enemy)
 		{
-			enemies.erase(enemies.begin() + i);
+			m_Enemies.erase(m_Enemies.begin() + i);
 			return;
 		}
 	}

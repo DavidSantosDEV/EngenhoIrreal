@@ -8,46 +8,19 @@
 #include "EnemyManager.h"
 #include "Explosion.h"
 #include <cmath>
+#include "Log.h"
 
-Enemy::Enemy()
+void Enemy::Setup() 
 {
-	Setup();
-}
+	AddTag(m_EnemyData.tag);
 
-
-void Enemy::Setup() {
-
-	AddTag("Enemy");
-
-	m_SpriteComponent = AddComponent<Sprite>("drone.bmp", 8, 2, 1.f, 1);
-	m_AnimationComponent = AddComponent<AnimationComponent>(m_SpriteComponent, false, 8.f);
-	m_PhysicsComponent = AddComponent<PhysicsComponent>(BodyType::Dynamic, 0, 1, 1);
-	m_Collider = AddComponent<CircleCollision>(m_PhysicsComponent, 20);
-	m_HealthComponent = AddComponent<HealthComponent>(1);
-}
-
-void Enemy::Start()
-{
-	
-}
-
-void Enemy::Update(float deltaTime)
-{
-	Vector2D vel = Vector2D::Down();
-	if (bDecreasing) {
-		additor -= deltaTime*sidewaySpeed;
-		if (additor<=-variation) {
-			bDecreasing = false;
-		}
-	}
-	else {
-		additor += deltaTime*sidewaySpeed;
-		if (additor>=variation) {
-			bDecreasing = true;
-		}
-	}
-	vel.x += additor;
-	m_PhysicsComponent->SetVelocity(vel*enemySpeed);
+	m_SpriteComponent = AddComponent<Sprite>(m_EnemyData.texturePath, m_EnemyData.spriteColumns, 
+		m_EnemyData.spriteRows, m_EnemyData.scale, 1);
+	m_AnimationComponent = AddComponent<AnimationComponent>(m_SpriteComponent, true, 8.f);
+	m_PhysicsComponent = AddComponent<PhysicsComponent>(BodyType::Kinematic, 0, 1, 1);
+	m_Collider = AddComponent<CircleCollision>(m_PhysicsComponent, m_EnemyData.colliderRadius);
+	m_HealthComponent = AddComponent<HealthComponent>(m_EnemyData.maxHealth);
+	m_Collider->SetIsTrigger(true);
 }
 
 void Enemy::Destroy()
@@ -61,14 +34,15 @@ void Enemy::OnZeroHealth()
 	GameWorld::DestroyObject(this);
 }
 
-void Enemy::OnBeginCollision(GameObject* other)
+void Enemy::OnTriggerEnter(GameObject* other)
 {
-	if (other->HasTag("Player")) {
-		HealthComponent* h = other->GetComponent<HealthComponent>();
-		if (h) {
-			h->TakeDamage(10);
+	if (other->HasTag("Player"))
+	{
+		HealthComponent* playerHealthComp = other->GetComponent<HealthComponent>();
+		if (playerHealthComp) {
+			playerHealthComp->TakeDamage(m_EnemyData.enemyDamage);
 		}
-		GameWorld::InstantiateObject<Explosion>()->GetTransform()->SetPosition(m_Transform.GetPosition());
-		GameWorld::DestroyObject(this);
+		// TODO place damage in player class
+		m_HealthComponent->TakeDamage(20);
 	}
 }

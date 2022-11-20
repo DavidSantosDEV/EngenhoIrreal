@@ -157,8 +157,10 @@
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyManager.cpp" />
     <ClCompile Include="Explosion.cpp" />
+    <ClCompile Include="Loner.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerBullet.cpp" />
+    <ClCompile Include="Rusher.cpp" />
     <ClCompile Include="StaticBackground.cpp" />
     <ClCompile Include="RocksBackground.cpp" />
     <ClCompile Include="XennonGameWorld.cpp" />
@@ -168,8 +170,10 @@
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyManager.h" />
     <ClInclude Include="Explosion.h" />
+    <ClInclude Include="Loner.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerBullet.h" />
+    <ClInclude Include="Rusher.h" />
     <ClInclude Include="StaticBackground.h" />
     <ClInclude Include="RocksBackground.h" />
     <ClInclude Include="XennonGameWorld.h" />
