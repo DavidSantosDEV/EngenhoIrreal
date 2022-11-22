@@ -5,5 +5,6 @@ class PlayerBullet : public Bullet
 {
 public:
 	PlayerBullet();
+	virtual void Start() override;
 };
 

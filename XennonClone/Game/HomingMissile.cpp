@@ -2,6 +2,7 @@
 #include "GameWorld.h"
 #include "Log.h"
 #include "PhysicsComponent.h"
+#include "AnimationComponent.h"
 
 HomingMissile::HomingMissile()
 {
@@ -11,6 +12,12 @@ HomingMissile::HomingMissile()
 
 void HomingMissile::Start()
 {
+
+	if (m_AnimationComponent->IsPlayingAnimation(0, 0, 0, 7) == false)
+	{
+		m_AnimationComponent->PlayAnimation(0, 0, 0, 7, true);
+	}
+
 	GameObject* p = GameWorld::FindObjectWithTag("Player");
 	GameObject* parent = GameWorld::FindObjectWithTag("Loner");
 	if (p) 
