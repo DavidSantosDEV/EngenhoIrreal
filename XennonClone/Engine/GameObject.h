@@ -24,8 +24,6 @@ public:
 
 	Transform m_Transform;
 
-	
-
 protected:
 	std::vector<std::shared_ptr<class Component>> m_Components;
 	std::array<class Component*, 32> m_ComponentsHashMap = std::array<class Component *, 32>();
