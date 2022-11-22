@@ -14,7 +14,7 @@
 
 void XennonGameWorld::Start()
 {
-	InstantiateObject<EnemyManager>();
+	//InstantiateObject<EnemyManager>();
 	StaticBackground* background = InstantiateObject<StaticBackground>();
 	InstantiateObject<RocksBackground>();
 	GameObject* p = InstantiateObject<Player>();

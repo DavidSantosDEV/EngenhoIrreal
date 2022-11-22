@@ -111,6 +111,11 @@ void PhysicsComponent::SetPosition(float x, float y)
 	m_parentTransform->SetPosition(Vector2D(x,y));
 }
 
+Vector2D PhysicsComponent::GetPosition()
+{
+	return Vector2D(m_storedBody->GetPosition().x, m_storedBody->GetPosition().y);
+}
+
 void PhysicsComponent::Update(float deltatime)
 {
 	const b2Vec2 pos = m_storedBody->GetPosition();

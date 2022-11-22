@@ -25,7 +25,9 @@ void Enemy::Setup()
 
 void Enemy::Destroy()
 {
- 	EnemyManager::GetInstance()->DeleteEnemy(this);
+	if (EnemyManager::GetInstance() != nullptr) {
+		EnemyManager::GetInstance()->DeleteEnemy(this);
+	}
 }
 
 void Enemy::OnZeroHealth()
@@ -49,5 +51,7 @@ void Enemy::OnTriggerEnter(GameObject* other)
 
 void Enemy::OnBecameHidden()
 {
-	EnemyManager::GetInstance()->DeleteEnemy(this);
+	if (EnemyManager::GetInstance() != nullptr) {
+		EnemyManager::GetInstance()->DeleteEnemy(this);
+	}
 }

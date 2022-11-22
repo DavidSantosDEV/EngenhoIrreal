@@ -56,6 +56,8 @@ public:
 	void SetPosition(Vector2D position);
 	void SetPosition(float x, float y);
 
+	Vector2D GetPosition();
+
 	virtual void Update(float deltatime) override;
 
 	void SetBodyType(BodyType newType);
