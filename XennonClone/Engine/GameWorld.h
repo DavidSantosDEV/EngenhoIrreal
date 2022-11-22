@@ -1,4 +1,5 @@
 #include "Log.h"
+#include "InstanceCounter.h"
 
 class GameEngine;
 class GameObject;
@@ -21,6 +22,7 @@ public:
 		if (static_cast<GameObject*>(newObject)) 
 		{
 			newObject->Start();
+			InstanceCounter::AddObjectCount();
 			return newObject;
 		}
 		LOG_ERROR("Can't instantiate Non GameObject types");

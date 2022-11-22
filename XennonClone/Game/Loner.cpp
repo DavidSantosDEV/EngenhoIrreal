@@ -22,9 +22,17 @@ void Loner::Update(float deltaTime)
 
 	m_PhysicsComponent->SetVelocity(m_MoveDirection * m_EnemyData.speed);
 
-	currentDelay -= deltaTime;
-	if (currentDelay<=0) {
-		Shoot();
-		currentDelay = shootDelay;
+	if (canShoot) {
+		currentDelay -= deltaTime;
+		if (currentDelay <= 0) {
+			Shoot();
+			currentDelay = shootDelay;
+		}
 	}
+
+}
+
+void Loner::OnBecameVisible()
+{
+	canShoot = true;
 }

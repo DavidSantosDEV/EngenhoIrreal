@@ -18,6 +18,7 @@
 #include "Log.h"
 #include "TimerManager.h"
 #include "Input.h"
+#include "InstanceCounter.h"
 #include <iostream>
 
 
@@ -91,8 +92,17 @@ void GameEngine::StartAndRun()
 
 		DestroyPending();
 		
+		InstanceCounter::PrintCounts();
+
 		mTicksCount = SDL_GetTicks();
 	}
+	/*Cleaning */
+	for (auto obj : m_GameObjectStack) {
+		AddPendingDestroy(obj);
+	}
+	DestroyPending();
+	/*-------------*/
+	InstanceCounter::PrintCounts();
 }
 
 void GameEngine::DestroyPending()
@@ -103,6 +113,8 @@ void GameEngine::DestroyPending()
 			for (auto comp : comps) {
 				comp->Destroy();			
 				delete comp.get();
+				InstanceCounter::RemoveComponentCount();
+				InstanceCounter::PrintCounts();
 			}
 			obj->Destroy();
 			RemoveGameObjectFromStack(obj);
@@ -231,6 +243,7 @@ void GameEngine::RemoveGameObjectFromStack(GameObject* gameObject)
 		if (m_GameObjectStack[i] == gameObject)
 		{
 			m_GameObjectStack.erase(m_GameObjectStack.begin()+i);
+			InstanceCounter::RemoveObjectCount();
 			return;
 		}
 	}

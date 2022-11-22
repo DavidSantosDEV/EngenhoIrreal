@@ -3,6 +3,7 @@
 #include <memory>
 #include "Log.h"
 #include <array>
+#include "InstanceCounter.h"
 #include "Transform.h"
 
 class GameWorld;
@@ -64,6 +65,7 @@ public:
 		m_ComponentsHashMap[GetComponentID<T>()] = newComponent;
 
 		newComponent->Start();
+		InstanceCounter::AddComponentCount();
 
 		return newComponent;
 	}

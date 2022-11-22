@@ -43,11 +43,11 @@ void EnemyManager::SpawnEnemyAtRandom()
 		Vector2D spawnPoint;
 		if ((rand() % 100) > 50) {
 			enemy = GameWorld::InstantiateObject<Loner>();
-			spawnPoint = LonerSpawns[rand() % 5];
+			spawnPoint = LonerSpawns[rand() % 3];
 		}
 		else {
 			enemy = GameWorld::InstantiateObject<Rusher>();
-			spawnPoint = RusherSpawns[rand() % 3];
+			spawnPoint = RusherSpawns[rand() % 4];
 		}
 		enemy->GetComponent<PhysicsComponent>()->SetPosition(spawnPoint);
 		m_Enemies.push_back(enemy);

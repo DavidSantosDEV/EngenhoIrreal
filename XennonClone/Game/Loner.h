@@ -3,8 +3,11 @@
 class Loner : public Enemy
 {
 protected:
+
+	bool canShoot=false;
+
 	float currentDelay;
-	float shootDelay = 1.f;
+	float shootDelay = 2.f;
 
 	void Shoot();
 public:
@@ -13,5 +16,7 @@ public:
 	Vector2D m_MoveDirection = Vector2D::Left();
 
 	virtual void Update(float deltaTime) override;
+
+	virtual void OnBecameVisible() override;
 };
 

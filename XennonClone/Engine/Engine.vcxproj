@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AnimationComponent.cpp" />
+    <ClCompile Include="AudioSystem.cpp" />
     <ClCompile Include="CircleCollision.cpp" />
     <ClCompile Include="CollisionComponent.cpp" />
     <ClCompile Include="Component.cpp" />
@@ -30,6 +31,7 @@
     <ClCompile Include="HealthComponent.cpp" />
     <ClCompile Include="InitError.cpp" />
     <ClCompile Include="Input.cpp" />
+    <ClCompile Include="InstanceCounter.cpp" />
     <ClCompile Include="MathHelper.cpp" />
     <ClCompile Include="ParallaxComponent.cpp" />
     <ClCompile Include="Pawn.cpp" />
@@ -46,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationComponent.h" />
+    <ClInclude Include="AudioSystem.h" />
     <ClInclude Include="CircleCollision.h" />
     <ClInclude Include="CollisionComponent.h" />
     <ClInclude Include="Component.h" />
@@ -56,6 +59,7 @@
     <ClInclude Include="HealthComponent.h" />
     <ClInclude Include="InitError.h" />
     <ClInclude Include="Input.h" />
+    <ClInclude Include="InstanceCounter.h" />
     <ClInclude Include="Log.h" />
     <ClInclude Include="MathHelper.h" />
     <ClInclude Include="ParallaxComponent.h" />
