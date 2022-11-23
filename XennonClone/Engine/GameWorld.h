@@ -35,6 +35,5 @@ public:
 
 protected:
 	static GameWorld* m_World;
-
 	static GameEngine* m_Engine;
 };

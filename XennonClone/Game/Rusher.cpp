@@ -3,7 +3,7 @@
 
 Rusher::Rusher()
 {
-	m_EnemyData = EnemyData("Enemy", "rusher.bmp", 4, 6, 1.f, 30, 10, 10, 40);
+	m_EnemyData = EnemyData("Enemy", "rusher.bmp", 4, 6, 1.f, 30, 10, 50, 40);
 	Setup();
 }
 

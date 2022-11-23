@@ -1,3 +1,10 @@
+/*
+* - Circle Collision Component. Responsible for having a circle 
+* collision shape around GO and calling collision events 
+* (whether they are trigger or not).
+*  - GameObject MUST have PhysicsComponent for collision events be called
+************************************************************/
+
 #include "CircleCollision.h"
 #include "Transform.h"
 #include "PhysicsComponent.h"

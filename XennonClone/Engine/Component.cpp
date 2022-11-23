@@ -1,6 +1,6 @@
 /*
-* Generic Component. Start() and Update() are automatically called
-* from m_OwnerGameObject
+* Generic Component. Start() and Update() are automatically.
+* Start() On AddComponent and Update() on Engine Loop
 ************************************************************/
 
 #include "Component.h"

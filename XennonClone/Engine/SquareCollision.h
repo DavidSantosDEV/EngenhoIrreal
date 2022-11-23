@@ -8,9 +8,8 @@ class SquareCollision : public CollisionComponent
 protected:
 	float m_Height = 1;
 	float m_width = 1;
-protected:
-	b2Fixture* CreateFixture() override;
 
+	b2Fixture* CreateFixture() override;
 	void UpdateShape(float width, float height);
 
 public:

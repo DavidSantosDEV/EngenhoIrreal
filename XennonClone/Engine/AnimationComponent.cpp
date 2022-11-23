@@ -1,10 +1,16 @@
+/*
+* - Animation Component. Responsible for playing animations base on spritesheet
+* Supports auto animations and playing animations from specific rows and columns.
+* 
+*  - GameObject MUST have SpriteComponent for this component to work
+************************************************************/
 #include "AnimationComponent.h"
 #include "Sprite.h"
 #include "SDL.h"
 #include "Log.h"
 #include "GameObject.h"
 
-void AnimationComponent::Destroy()
+void AnimationComponent::OnDestroyed()
 {
 }
 
@@ -32,7 +38,7 @@ void AnimationComponent::Update(float deltatime)
 		return; 
 	}
 
-	//TODO don't get it every frame, get once and store it
+	// TODO don't get it every frame, get once and store it
 	SDL_Rect& spriteSourceRect = m_ParentSpriteComponent->GetSourceRect();
 
 	frameTime += deltatime;

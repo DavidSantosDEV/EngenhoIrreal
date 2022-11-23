@@ -48,7 +48,7 @@ protected:
 
 public:
 	Enemy() {};
-	virtual void Destroy() override;
+	virtual void OnDestroyed() override;
 	virtual void OnZeroHealth() override;
 	virtual void OnTriggerEnter(GameObject* other) override;
 	virtual void OnBecameHidden() override;

@@ -1,7 +1,7 @@
 /*
 * - Works as GameMode on Unreal
-* - MUST be implemented by client
 * Start() and Update() are called before any other GameObjects
+* - MUST be implemented by client
 ************************************************************/
 
 #include "GameWorld.h"

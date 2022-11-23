@@ -36,7 +36,7 @@ PhysicsComponent::~PhysicsComponent()
 	*/
 }
 
-void PhysicsComponent::Destroy()
+void PhysicsComponent::OnDestroyed()
 {
 	b2Fixture* fix = m_storedBody->GetFixtureList();
 	do {

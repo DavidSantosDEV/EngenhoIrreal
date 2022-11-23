@@ -1,8 +1,7 @@
 /*
 * - Game Engine Core. Responsible for main execution loop and calling 
-* Start(), Update(), HandleEvents() and Renderer() functions from GameObjects.
+* - Update(), HandleEvents() and Renderer() functions from GameObjects and Components.
 * - m_World is an exception which Start() and Upate() are called before any other GO
-*
 * - MUST be implemented by client
 ************************************************************/
 #include <memory>
@@ -53,7 +52,6 @@ void GameEngine::Init(const char* windowTitle, int windowWidth, int windowHeight
 		m_Input = new Input();
 		m_PhysicsWorld = new PhysicsWorld();
 		m_PhysicsWorld->Init();
-
 	}
 }
 
@@ -92,16 +90,17 @@ void GameEngine::StartAndRun()
 
 		DestroyPending();
 		
-		InstanceCounter::PrintCounts();
+		//InstanceCounter::PrintCounts();
 
 		mTicksCount = SDL_GetTicks();
 	}
-	/*Cleaning */
+
+	/*End game cleaning (memory leaks check) */
+	InstanceCounter::PrintCounts();
 	for (auto obj : m_GameObjectStack) {
 		AddPendingDestroy(obj);
 	}
 	DestroyPending();
-	/*-------------*/
 	InstanceCounter::PrintCounts();
 }
 
@@ -111,16 +110,14 @@ void GameEngine::DestroyPending()
 		for (auto obj : m_PendingDestroy) {
 			std::vector<std::shared_ptr<Component>> comps = obj->GetAllComponents();
 			for (auto comp : comps) {
-				comp->Destroy();			
+				comp->OnDestroyed();			
 				delete comp.get();
 				InstanceCounter::RemoveComponentCount();
 				InstanceCounter::PrintCounts();
 			}
-			obj->Destroy();
+			obj->OnDestroyed();
 			RemoveGameObjectFromStack(obj);
-			//obj->Destroy();
 		}
-		
 		m_PendingDestroy.clear();
 	}
 
@@ -134,18 +131,6 @@ void GameEngine::Start()
 {
 	m_World->Init(this);
 	m_World->Start();
-
-	/* Game Objects created on construct were being called twice, this is the culprit :)
-	for (int i = 0; i < m_GameObjectStack.size(); ++i) 
-	{
-		// If gameobject hasn't been initialized yet
-		// GO created on world on compile time will have already been initialized
-		if (m_GameObjectStack[i]->GetWasInitialized() == false)
-		{
-			m_GameObjectStack[i]->Start();
-		}
-	}
-	*/
 }
 
 void GameEngine::HandleInput(SDL_Event& ev)
@@ -198,7 +183,6 @@ bool IsInside(Vector2D windowConfines, Vector2D pos, float Leeway) {
 	return false;
 }
 
-
 void GameEngine::Render()
 {
 	m_Window->Clean();
@@ -220,13 +204,6 @@ void GameEngine::Render()
 		}
 		mR->Render();
 	}
-	/*
-	for (int i = 0; i < m_RenderComponentsStack.size(); ++i) 
-	{
-		if (m_RenderComponentsStack[i]) {
-			m_RenderComponentsStack[i]->Render();
-		}
-	}*/
 	m_Window->UpdateRender();
 }
 
@@ -299,7 +276,6 @@ Vector2D GameEngine::GetWindowSize()
 {
 	return m_Window->GetWindowSize();
 }
-
 
 void GameEngine::SortRenderComponents()
 {

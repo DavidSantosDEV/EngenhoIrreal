@@ -23,7 +23,7 @@ void Enemy::Setup()
 	m_Collider->SetIsTrigger(true);
 }
 
-void Enemy::Destroy()
+void Enemy::OnDestroyed()
 {
 	if (EnemyManager::GetInstance() != nullptr) {
 		EnemyManager::GetInstance()->DeleteEnemy(this);
@@ -32,7 +32,7 @@ void Enemy::Destroy()
 
 void Enemy::OnZeroHealth()
 {
-	GameWorld::InstantiateObject<Explosion>()->GetTransform()->SetPosition(m_Transform.GetPosition());
+	GameWorld::InstantiateObject<Explosion>()->GetTransform()->SetPosition(_Transform.GetPosition());
 	GameWorld::DestroyObject(this);
 }
 

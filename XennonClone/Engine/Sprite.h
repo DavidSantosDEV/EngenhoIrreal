@@ -52,11 +52,10 @@ public:
 	SDL_Rect& GetSourceRect();
 	SDL_FRect& GetDestRect();
 
-
 	void SetRotation(float val) { m_rotation = val; }
 
 	// Inherited via RenderComponent
 	virtual void Render() override;
 
-	virtual void Destroy() override;
+	virtual void OnDestroyed() override;
 };

@@ -2,17 +2,15 @@
 
 #include "Component.h"
 
-
 class CollisionComponent : public Component
 {
 protected:
-	class PhysicsComponent* m_PhysComp;
-	class b2Fixture* m_myFixture;
+	class PhysicsComponent* m_PhysComp = nullptr;
+	class b2Fixture* m_myFixture = nullptr;
 
 	float m_friction = 1;
-
 	bool m_enabled = true;
-	bool m_IsTrigger=false;
+	bool m_IsTrigger = false;
 	bool m_IsCollisionEnabled = true;
 
 protected:
@@ -26,7 +24,7 @@ public:
 	CollisionComponent(PhysicsComponent* physical);
 	~CollisionComponent();
 
-	virtual void Destroy() override;
+	virtual void OnDestroyed() override;
 
 	virtual void Start() override;
 

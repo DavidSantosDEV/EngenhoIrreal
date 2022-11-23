@@ -14,7 +14,7 @@ void ContactListener::BeginContact(b2Contact* contact)
 		if (compA->GetIsEnabled() && compB->GetIsEnabled()) {
 			GameObject* const objA = compA->GetOwnerGameObject();
 			GameObject* const objB = compB->GetOwnerGameObject();
-			if (&objA == NULL || &objB == NULL) {
+			if (&objA == nullptr || &objB == nullptr) {
 				return;
 			}
 			if (objA->IsPendingDestroy() || objB->IsPendingDestroy()) {
@@ -42,7 +42,7 @@ void ContactListener::EndContact(b2Contact* contact)
 			GameObject* const objA = compA->GetOwnerGameObject();
 			GameObject* const objB = compB->GetOwnerGameObject();
 			
-			if (&objA == NULL || &objB == NULL) {
+			if (&objA == nullptr || &objB == nullptr) {
 				return;
 			}
 			if (objA->IsPendingDestroy() || objB->IsPendingDestroy()) {
