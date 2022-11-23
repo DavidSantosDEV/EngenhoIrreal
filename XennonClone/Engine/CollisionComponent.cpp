@@ -45,7 +45,6 @@ CollisionComponent::CollisionComponent(PhysicsComponent* physical)
 
 void CollisionComponent::Start()
 {
-	LOG("Calleds")
 	if (m_PhysComp) {
 		m_myFixture = CreateFixture();
 	}
@@ -57,12 +56,8 @@ CollisionComponent::~CollisionComponent()
 	delete m_myFixture;
 }
 
-void CollisionComponent::Destroy()
+void CollisionComponent::OnDestroyed()
 {
-	if (m_myFixture) {
-		//m_PhysComp->GetB2Body()->DestroyFixture(m_myFixture);
-		//delete m_myFixture;
-	}
 }
 
 void CollisionComponent::SetIsTrigger(bool newVal)

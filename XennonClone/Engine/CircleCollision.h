@@ -5,7 +5,7 @@
 class CircleCollision : public CollisionComponent
 {
 protected:
-	float m_Radius =100;
+	float m_Radius = 100.f;
 
 protected:
 	virtual class b2Fixture* CreateFixture() override;

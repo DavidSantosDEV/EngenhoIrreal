@@ -1,13 +1,10 @@
 #pragma once
 
-
-
 class MathHelper
 {
 public:
 
 	static float SquareRoot(float val);
-
 
 	static void ClampIntRef(int& value, const int& min, const int& max)
 	{

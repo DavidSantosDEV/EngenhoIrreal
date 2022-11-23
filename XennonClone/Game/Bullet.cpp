@@ -38,7 +38,7 @@ void Bullet::OnTriggerEnter(GameObject* other)
 		// Only spawn explosion if other GO will not be destroyed (avoids overlapping expliosions)
 		if (otherHealthLeft > 0)
 		{
-			GameWorld::InstantiateObject<Explosion>()->m_Transform.SetPosition(m_Transform.GetPosition());
+			GameWorld::InstantiateObject<Explosion>()->_Transform.SetPosition(_Transform.GetPosition());
 		}
 
 		GameWorld::DestroyObject(this);

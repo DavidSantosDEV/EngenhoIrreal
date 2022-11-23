@@ -16,7 +16,7 @@ public:
 	void SetIsVisible(bool val) { m_IsVisible = val; }
 	bool GetIsVisible() { return m_IsVisible; }
 
-	virtual void Destroy() override;
+	virtual void OnDestroyed() override;
 protected:
 	/* Higher numbers will be rendered in front of smaller ones. */
 	int m_RenderPriority = 0;

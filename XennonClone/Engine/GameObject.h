@@ -21,9 +21,10 @@ public:
 	virtual void Start();
 	virtual void Update(float deltaTime);
 
-	virtual void Destroy();
+	/* Called right before the GameObject is destroyed */
+	virtual void OnDestroyed();
 
-	Transform m_Transform;
+	Transform _Transform;
 
 protected:
 	std::vector<std::shared_ptr<class Component>> m_Components;
@@ -84,22 +85,25 @@ public:
 public:
 	bool HasTag(std::string tag);
 	bool HasTag(const char* tag);
-
 	void AddTag(const char* tag);
 
 	std::vector<std::string> GetTags() { return m_objectTags; }
 
 	inline bool GetWasInitialized() const { return m_WasInitialized; }
 
-	inline Transform* GetTransform() { return &m_Transform; }
+	inline Transform* GetTransform() { return &_Transform; }
 
 	void SetPendingDestroy() { m_pendingDestroy = true; }
 
 	bool IsPendingDestroy() { return m_pendingDestroy; }
 
+	/* Only called if GameObject has CollisionComponent*/
 	virtual void OnBeginCollision(GameObject* other){};
+	/* Only called if GameObject has CollisionComponent*/
 	virtual void OnEndCollision(GameObject* other){};
+	/* Only called if GameObject has CollisionComponent*/
 	virtual void OnTriggerEnter(GameObject* other){};
+	/* Only called if GameObject has CollisionComponent*/
 	virtual void OnTriggerExit(GameObject* other){};
 	/* Only called if GameObject has HealthComponent */
 	virtual void OnZeroHealth() {};
@@ -107,7 +111,9 @@ public:
 	/*Only called if GameObject has AnimationComponent */
 	virtual void OnAnimationEnd() {};
 
+	/* Called when the GameObject is inside the screen area */
 	virtual void OnBecameVisible() {};
+	/* Called when the GameObject is outside the screen area */
 	virtual void OnBecameHidden() {};
 
 };

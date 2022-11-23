@@ -11,7 +11,6 @@ public:
 	void Clean();
 
 private:
-
 	Vector2D m_StoredWindowSize;
 
 	struct SDL_Window* m_Window = nullptr;

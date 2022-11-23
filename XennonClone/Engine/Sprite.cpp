@@ -70,7 +70,7 @@ void Sprite::Render()
 	}
 }
 
-void Sprite::Destroy()
+void Sprite::OnDestroyed()
 {
 	GameEngine::RemoveRenderComponentFromStack(this);
 	SDL_DestroyTexture(m_Texture);

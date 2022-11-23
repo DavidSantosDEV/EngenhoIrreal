@@ -1,3 +1,9 @@
+/*
+* - Generic HealthComponent. Supports taking and dealing damage
+* - with configurable parameters
+* - When Health == 0, OnZeroHealth() method from GameObject is called
+************************************************************/
+
 #include "HealthComponent.h"
 #include "Log.h"
 #include "MathHelper.h"
@@ -24,8 +30,4 @@ void HealthComponent::DealDamage(HealthComponent* otherHealthComponent, int amou
 	}
 
 	otherHealthComponent->TakeDamage(amount);
-}
-
-void Banasn() {
-	std::cout << "Died";
 }

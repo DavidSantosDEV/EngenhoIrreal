@@ -6,12 +6,12 @@
 void Loner::Shoot()
 {
 	GameWorld::InstantiateObject<HomingMissile>()->GetPhysicsComponent()->
-		SetPosition(m_Transform.GetPosition());
+		SetPosition(_Transform.GetPosition());
 }
 
 Loner::Loner()
 {
-	m_EnemyData = EnemyData("Enemy", "lonerA.bmp", 4, 4, 1.f, 35, 10, 10, 10);
+	m_EnemyData = EnemyData("Enemy", "lonerA.bmp", 4, 4, 1.f, 35, 10, 50, 10);
 	Setup();
 	currentDelay = shootDelay;
 	AddTag("Loner");
@@ -19,7 +19,6 @@ Loner::Loner()
 
 void Loner::Update(float deltaTime)
 {
-
 	m_PhysicsComponent->SetVelocity(m_MoveDirection * m_EnemyData.speed);
 
 	if (canShoot) {

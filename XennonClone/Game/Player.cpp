@@ -9,6 +9,7 @@
 #include "HealthComponent.h"
 #include "Explosion.h"
 #include "TimerManager.h"
+
 bool removeLater = false;
 
 Player::Player()
@@ -21,8 +22,6 @@ Player::Player()
 	m_Collider = AddComponent<CircleCollision>(m_PhysicsComponent, 20);
 	m_HealthComponent = AddComponent<HealthComponent>(100);
 }
-
-
 
 Player::~Player()
 {
@@ -54,7 +53,7 @@ void Player::HandleEvents()
 
 void Player::OnZeroHealth()
 {
-	GameWorld::InstantiateObject<Explosion>()->m_Transform.SetPosition(m_Transform.GetPosition());
+	GameWorld::InstantiateObject<Explosion>()->_Transform.SetPosition(_Transform.GetPosition());
 	GameWorld::DestroyObject(this);
 }
 
@@ -82,10 +81,8 @@ void Player::Move(float deltaTime)
 {
 	Vector2D movement = (Vector2D(m_InputRightAxis, -m_InputUpAxis));
 	movement.Normalize();
-	//LOG("X: " << movement.x << " " << "Y: "<< movement.y);
 	movement *= m_MoveSpeed;
 	m_PhysicsComponent->SetVelocity(movement);
-	//GetTransform()->AddPosition(movement * deltaTime);
 }
 
 void Player::ChangeAnimationBasedOnInput()
@@ -106,7 +103,7 @@ void Player::ChangeAnimationBasedOnInput()
 
 Vector2D& Player::CalculateFirePosition()
 {
-	m_FirePosition = m_Transform.GetPosition() + Vector2D(17.f, 0);
+	m_FirePosition = _Transform.GetPosition() + Vector2D(17.f, 0);
 	return m_FirePosition;
 }
 
