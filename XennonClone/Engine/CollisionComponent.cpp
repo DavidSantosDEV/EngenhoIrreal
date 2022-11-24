@@ -1,3 +1,8 @@
+/*
+* - Generic Collision Component. SHOULDN'T be used directly by users
+* - Instead use inherited classes such as CircleCollision and SquareCollision
+************************************************************/
+
 #include "CollisionComponent.h"
 #include "box2d/b2_shape.h"
 #include "PhysicsComponent.h"
@@ -54,10 +59,6 @@ CollisionComponent::~CollisionComponent()
 {
 	m_PhysComp->GetB2Body()->DestroyFixture(m_myFixture);
 	delete m_myFixture;
-}
-
-void CollisionComponent::OnDestroyed()
-{
 }
 
 void CollisionComponent::SetIsTrigger(bool newVal)

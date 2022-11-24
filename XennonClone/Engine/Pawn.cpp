@@ -1,6 +1,7 @@
 /*
 * Generic Pawn GameObject, HandleEvents() is called every frame from 
 * GameEngine.h
+* Should be used for GO that respond to input
 ************************************************************/
 
 #include "GameEngine.h"

@@ -30,14 +30,6 @@ Sprite::Sprite(const char* texturePath, int spriteSheetRows, int spriteSheetColu
 	SetTextureData(texturePath, spriteSheetRows, spriteSheetColumns, scale);
 }
 
-Sprite::~Sprite()
-{/*
-	GameEngine::RemoveRenderComponentFromStack(this);
-	SDL_DestroyTexture(m_Texture);
-	delete m_Texture;
-	delete m_ParentTransform;*/
-}
-
 void Sprite::Start()
 {
 	Component::Start();

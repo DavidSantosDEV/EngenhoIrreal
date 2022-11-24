@@ -1,11 +1,90 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(510,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (Game.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  Bullet.cpp
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\Transform.h(75,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Game\Bullet.cpp(24,89): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\GameObject.h(59,46): warning C4244: 'argument': conversion from '_Ty' to 'float', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Game\Bullet.cpp(16): message : see reference to function template instantiation 'T *GameObject::AddComponent<PhysicsComponent,BodyType,int,int,int>(BodyType &&,int &&,int &&,int &&)' being compiled
+          with
+          [
+              T=PhysicsComponent
+          ]
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\GameObject.h(59,46): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Game\Bullet.cpp(17): message : see reference to function template instantiation 'T *GameObject::AddComponent<CircleCollision,PhysicsComponent*,int&>(PhysicsComponent *&&,int &)' being compiled
+          with
+          [
+              T=CircleCollision
+          ]
+  Enemy.cpp
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\Transform.h(75,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\GameObject.h(59,46): warning C4244: 'argument': conversion from '_Ty' to 'float', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Game\Enemy.cpp(20): message : see reference to function template instantiation 'T *GameObject::AddComponent<PhysicsComponent,BodyType,int,int,int>(BodyType &&,int &&,int &&,int &&)' being compiled
+          with
+          [
+              T=PhysicsComponent
+          ]
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\GameObject.h(59,46): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Game\Enemy.cpp(21): message : see reference to function template instantiation 'T *GameObject::AddComponent<CircleCollision,PhysicsComponent*&,int&>(PhysicsComponent *&,int &)' being compiled
+          with
+          [
+              T=CircleCollision
+          ]
+  EnemyManager.cpp
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\Transform.h(75,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  Explosion.cpp
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\Transform.h(75,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  HomingMissile.cpp
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\Transform.h(75,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   Loner.cpp
 C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
 C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\Transform.h(75,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
 C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Game\Loner.cpp(22,63): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
+  Player.cpp
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\Transform.h(75,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Game\Player.cpp(82,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Game\Player.cpp(82,32): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Game\Player.cpp(84,14): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\GameObject.h(59,46): warning C4244: 'argument': conversion from '_Ty' to 'float', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Game\Player.cpp(21): message : see reference to function template instantiation 'T *GameObject::AddComponent<PhysicsComponent,BodyType,int,int,int>(BodyType &&,int &&,int &&,int &&)' being compiled
+          with
+          [
+              T=PhysicsComponent
+          ]
+  PlayerBullet.cpp
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\Transform.h(75,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  RocksBackground.cpp
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\Transform.h(75,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   Rusher.cpp
 C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
 C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\Transform.h(75,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
 C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Game\Rusher.cpp(12,63): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
+  StaticBackground.cpp
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\Transform.h(75,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  XennonClone.cpp
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\Transform.h(75,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  XennonGameWorld.cpp
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\Transform.h(75,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   Generating Code...
   Game.vcxproj -> C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\x64\Debug\XennonClone.exe

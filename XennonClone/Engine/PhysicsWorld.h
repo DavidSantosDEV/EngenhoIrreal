@@ -7,11 +7,11 @@ class PhysicsWorld //Manager class for anything related with physics on the worl
 protected:
 	static PhysicsWorld* m_Instance;
 	
-	class b2World* m_b2World;
-	class b2ContactListener* m_Listener;
+	class b2World* m_b2World = nullptr;
+	class b2ContactListener* m_Listener = nullptr;
 
 public:
-	PhysicsWorld();
+	PhysicsWorld() {};
 	~PhysicsWorld();
 
 	void Init();

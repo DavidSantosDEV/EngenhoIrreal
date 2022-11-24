@@ -12,10 +12,10 @@ enum BodyType {
 class PhysicsComponent : public Component
 {
 protected:
-	class b2Fixture* m_bodyFixture;
+	class b2Fixture* m_bodyFixture = nullptr;
 
-	class b2Body* m_storedBody;
-	Transform* m_parentTransform;
+	class b2Body* m_storedBody = nullptr;
+	Transform* m_parentTransform = nullptr;
 
 	Vector2D m_Position;
 	Vector2D m_LinearVelocity;
@@ -35,11 +35,9 @@ protected:
 	void BuildBody();
 	void BuildDefaultFixture();
 public:
-	PhysicsComponent();
+	PhysicsComponent() {};
 	PhysicsComponent(BodyType type, float GravityScale, float bodyMass, float density);
 	
-	~PhysicsComponent();
-
 	virtual void OnDestroyed() override;
 	virtual void Start() override;
 

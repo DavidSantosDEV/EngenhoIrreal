@@ -11,7 +11,7 @@ protected:
 	virtual class b2Fixture* CreateFixture() override;
 public:
 
-	CircleCollision();
+	CircleCollision() {};
 
 	CircleCollision(PhysicsComponent* physComp);
 

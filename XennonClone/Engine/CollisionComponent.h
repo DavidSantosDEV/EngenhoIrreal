@@ -24,8 +24,6 @@ public:
 	CollisionComponent(PhysicsComponent* physical);
 	~CollisionComponent();
 
-	virtual void OnDestroyed() override;
-
 	virtual void Start() override;
 
 	void SetIsTrigger(bool newVal);

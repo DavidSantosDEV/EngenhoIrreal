@@ -4,6 +4,7 @@
 * - m_World is an exception which Start() and Upate() are called before any other GO
 * - MUST be implemented by client
 ************************************************************/
+
 #include <memory>
 #include "GameEngine.h"
 #include "SDL.h"
@@ -80,7 +81,6 @@ void GameEngine::StartAndRun()
 		{
 			HandleInput(ev);
 		}
-
 		
 		m_PhysicsWorld->UpdatePhysics();
 
@@ -120,8 +120,8 @@ void GameEngine::DestroyPending()
 		}
 		m_PendingDestroy.clear();
 	}
-
 }
+
 void GameEngine::AddPendingDestroy(GameObject* obj)
 {
 	m_PendingDestroy.push_back(obj);

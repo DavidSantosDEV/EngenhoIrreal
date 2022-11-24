@@ -14,7 +14,7 @@ protected:
 	Transform* m_ParentTransform{ nullptr };
 
 	//Display
-	SDL_Texture* m_Texture;
+	SDL_Texture* m_Texture = nullptr;
 
 	SDL_Rect m_SourceRect;
 	SDL_FRect m_DestRect;

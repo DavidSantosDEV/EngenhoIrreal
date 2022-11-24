@@ -28,10 +28,6 @@ b2Fixture* CircleCollision::CreateFixture()
 	return fix;
 }
 
-CircleCollision::CircleCollision()
-{
-}
-
 CircleCollision::CircleCollision(PhysicsComponent* physComp) : CollisionComponent(physComp)
 {
 	m_PhysComp = physComp;

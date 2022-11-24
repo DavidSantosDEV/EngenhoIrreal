@@ -1,3 +1,8 @@
+/*
+* - Contact listener for box2d collisions. Methods are called 
+* - automatically as longs as this is the active listener 
+************************************************************/
+
 #include "ContactListener.h"
 #include "box2d\b2_contact.h"
 #include "CollisionComponent.h"

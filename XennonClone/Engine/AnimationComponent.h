@@ -8,7 +8,6 @@ public:
 		m_ParentSpriteComponent{ spriteComponent }, m_IsPlayingAnimation{autoPlayAnimation}, 
 		m_AnimationSpeed{animationSpeed} {};
 
-	virtual void OnDestroyed() override;
 	virtual void Start() override;
 	virtual void Update(float deltatime) override;
 

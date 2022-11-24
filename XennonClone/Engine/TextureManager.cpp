@@ -1,3 +1,7 @@
+/*
+* - Helper class for loading BMP or PNG textures.
+************************************************************/
+
 #include "TextureManager.h"
 #include "GameEngine.h"
 #include "SDL_image.h"

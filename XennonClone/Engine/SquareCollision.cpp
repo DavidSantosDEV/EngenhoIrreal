@@ -1,3 +1,10 @@
+/*
+* - Square Collision Component. Responsible for having a square
+* collision shape around GO and calling collision events
+* (whether they are trigger or not).
+*  - GameObject MUST have PhysicsComponent for collision events be called
+************************************************************/
+
 #include "SquareCollision.h"
 #include "box2d/b2_fixture.h"
 #include "PhysicsComponent.h"

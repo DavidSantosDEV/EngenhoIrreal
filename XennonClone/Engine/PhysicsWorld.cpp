@@ -5,9 +5,6 @@
 
 PhysicsWorld* PhysicsWorld::m_Instance{ nullptr };
 
-PhysicsWorld::PhysicsWorld() {
-	m_b2World = nullptr;
-}
 
 PhysicsWorld::~PhysicsWorld() {
 	delete m_b2World;

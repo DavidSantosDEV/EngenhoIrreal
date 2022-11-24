@@ -4,15 +4,12 @@
 * 
 *  - GameObject MUST have SpriteComponent for this component to work
 ************************************************************/
+
 #include "AnimationComponent.h"
 #include "Sprite.h"
 #include "SDL.h"
 #include "Log.h"
 #include "GameObject.h"
-
-void AnimationComponent::OnDestroyed()
-{
-}
 
 void AnimationComponent::Start()
 {

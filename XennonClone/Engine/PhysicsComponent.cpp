@@ -1,3 +1,8 @@
+/*
+* - PhysicsComponent. Works as a Rigidbody in Unity
+* - Collision events are only called if GO also has a CollisionComponent
+************************************************************/
+
 #include "GameObject.h"
 #include "PhysicsComponent.h"
 #include "PhysicsWorld.h"
@@ -7,33 +12,11 @@
 #include "box2d\b2_circle_shape.h"
 #include "box2d\b2_shape.h"
 
-PhysicsComponent::PhysicsComponent() : Component()
-{
-	
-}
-
 PhysicsComponent::PhysicsComponent(BodyType type, float GravityScale, float bodyMass, float density) {
 	m_BodyType = type;
 	GravityScale = GravityScale;
 	m_bodyMass = bodyMass;
 	m_density = density;
-}
-
-
-PhysicsComponent::~PhysicsComponent()
-{
-	/*
-	b2Fixture* fix = m_storedBody->GetFixtureList();
-	do {
-		if (fix) {
-			b2Fixture* temp = fix;
-			fix = fix->GetNext();
-			m_storedBody->DestroyFixture(temp);
-		}
-	} while (fix != nullptr);
-
-	PhysicsWorld::GetInstance()->DestroyBody(m_storedBody);
-	*/
 }
 
 void PhysicsComponent::OnDestroyed()

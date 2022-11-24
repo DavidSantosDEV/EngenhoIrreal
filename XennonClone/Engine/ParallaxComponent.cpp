@@ -1,3 +1,8 @@
+/*
+* - Generic ParallaxComponent with configurable parameters.
+* -  - GameObject MUST have SpriteComponent for this component to work
+************************************************************/
+
 #include "ParallaxComponent.h"
 #include "Sprite.h"
 #include "GameObject.h"

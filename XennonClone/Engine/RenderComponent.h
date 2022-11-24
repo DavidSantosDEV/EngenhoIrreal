@@ -1,6 +1,3 @@
-
-//Render Component
-
 #include "Component.h"
 
 class RenderComponent : public Component
