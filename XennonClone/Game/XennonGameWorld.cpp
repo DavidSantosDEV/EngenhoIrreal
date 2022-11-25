@@ -21,6 +21,7 @@ void XennonGameWorld::Start()
 	p->GetComponent<PhysicsComponent>()->SetPosition(Vector2D(250, 300));
 	//InstantiateObject<Rusher>()->GetComponent<PhysicsComponent>()->SetPosition(Vector2D(300, -300));
 	//InstantiateObject<Loner>()->GetComponent<PhysicsComponent>()->SetPosition(Vector2D(800, 300));
+	LOG_ERROR("drone.bmp texture path is not valid!");
 }
 
 void XennonGameWorld::Update(float deltaTime)

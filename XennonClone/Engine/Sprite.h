@@ -39,7 +39,6 @@ public:
 	Sprite(const char* texturePath, int renderPriority, float scale);
 	/* Used for animated sprites or specific sprites in spritesheet */
 	Sprite(const char* texturePath, int spriteSheetColumns, int spriteSheetRows, float scale, int renderPriority);
-	~Sprite();
 
 	void SetFlipY(bool val) { m_FlipY = val; }
 
