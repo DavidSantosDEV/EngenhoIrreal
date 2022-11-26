@@ -9,7 +9,6 @@ class Player : public Pawn
 {
 public:
 	Player();
-	~Player();
 	virtual void Update(float deltaTime) override;
 	virtual void HandleEvents() override;
 	virtual void OnZeroHealth() override;

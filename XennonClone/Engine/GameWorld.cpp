@@ -12,14 +12,6 @@
 GameEngine* GameWorld::m_Engine = nullptr;
 GameWorld* GameWorld::m_World = nullptr;
 
-GameWorld::GameWorld()
-{
-}
-
-GameWorld::~GameWorld()
-{
-
-}
 
 void GameWorld::Init(GameEngine* myEngine)
 {

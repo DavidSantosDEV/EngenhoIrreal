@@ -18,7 +18,3 @@ RenderComponent::~RenderComponent()
 {
 	GameEngine::RemoveRenderComponentFromStack(this);
 }
-
-void RenderComponent::OnDestroyed()
-{
-}

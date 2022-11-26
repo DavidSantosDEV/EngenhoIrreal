@@ -11,9 +11,6 @@ public:
 
 	static GameWorld* GetWorld() {return m_World;}
 
-	GameWorld();
-	~GameWorld();
-
 	virtual void Start() = 0;
 	virtual void Update(float deltaTime) = 0;
 

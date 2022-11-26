@@ -38,53 +38,54 @@ C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Game\Enemy.cpp(21): me
           [
               T=CircleCollision
           ]
+  EnemyManager.cpp
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\Transform.h(75,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   Explosion.cpp
 C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
 C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\Transform.h(75,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  HomingMissile.cpp
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\Transform.h(75,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  Loner.cpp
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\Transform.h(75,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Game\Loner.cpp(22,63): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
   Player.cpp
 C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
 C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\Transform.h(75,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Game\Player.cpp(82,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Game\Player.cpp(82,32): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Game\Player.cpp(84,14): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Game\Player.cpp(74,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Game\Player.cpp(74,32): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Game\Player.cpp(76,14): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
 C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\GameObject.h(59,46): warning C4244: 'argument': conversion from '_Ty' to 'float', possible loss of data
           with
           [
               _Ty=int
           ]
-C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Game\Player.cpp(21): message : see reference to function template instantiation 'T *GameObject::AddComponent<PhysicsComponent,BodyType,int,int,int>(BodyType &&,int &&,int &&,int &&)' being compiled
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Game\Player.cpp(22): message : see reference to function template instantiation 'T *GameObject::AddComponent<PhysicsComponent,BodyType,int,int,int>(BodyType &&,int &&,int &&,int &&)' being compiled
           with
           [
               T=PhysicsComponent
           ]
-  RocksBackground.cpp
-C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
-C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\Transform.h(75,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-  StaticBackground.cpp
+  XennonClone.cpp
 C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
 C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\Transform.h(75,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   XennonGameWorld.cpp
 C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
 C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\Transform.h(75,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   Generating Code...
-EnemyManager.obj : warning LNK4099: PDB 'vc143.pdb' was not found with 'EnemyManager.obj' or at 'C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\x64\Debug\vc143.pdb'; linking object as if no debug info
-HomingMissile.obj : warning LNK4099: PDB 'vc143.pdb' was not found with 'HomingMissile.obj' or at 'C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\x64\Debug\vc143.pdb'; linking object as if no debug info
-Loner.obj : warning LNK4099: PDB 'vc143.pdb' was not found with 'Loner.obj' or at 'C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\x64\Debug\vc143.pdb'; linking object as if no debug info
 PlayerBullet.obj : warning LNK4099: PDB 'vc143.pdb' was not found with 'PlayerBullet.obj' or at 'C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\x64\Debug\vc143.pdb'; linking object as if no debug info
 Rusher.obj : warning LNK4099: PDB 'vc143.pdb' was not found with 'Rusher.obj' or at 'C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\x64\Debug\vc143.pdb'; linking object as if no debug info
-XennonClone.obj : warning LNK4099: PDB 'vc143.pdb' was not found with 'XennonClone.obj' or at 'C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\x64\Debug\vc143.pdb'; linking object as if no debug info
 EngenhoIrrealXVII.lib(GameObject.obj) : warning LNK4204: 'C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\x64\Debug\EngenhoIrrealXVII.pdb' is missing debugging information for referencing module; linking object as if no debug info
 EngenhoIrrealXVII.lib(Component.obj) : warning LNK4204: 'C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\x64\Debug\EngenhoIrrealXVII.pdb' is missing debugging information for referencing module; linking object as if no debug info
 EngenhoIrrealXVII.lib(PhysicsComponent.obj) : warning LNK4204: 'C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\x64\Debug\EngenhoIrrealXVII.pdb' is missing debugging information for referencing module; linking object as if no debug info
 EngenhoIrrealXVII.lib(CollisionComponent.obj) : warning LNK4204: 'C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\x64\Debug\EngenhoIrrealXVII.pdb' is missing debugging information for referencing module; linking object as if no debug info
 EngenhoIrrealXVII.lib(CircleCollision.obj) : warning LNK4204: 'C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\x64\Debug\EngenhoIrrealXVII.pdb' is missing debugging information for referencing module; linking object as if no debug info
 EngenhoIrrealXVII.lib(HealthComponent.obj) : warning LNK4204: 'C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\x64\Debug\EngenhoIrrealXVII.pdb' is missing debugging information for referencing module; linking object as if no debug info
-EngenhoIrrealXVII.lib(GameWorld.obj) : warning LNK4204: 'C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\x64\Debug\EngenhoIrrealXVII.pdb' is missing debugging information for referencing module; linking object as if no debug info
 EngenhoIrrealXVII.lib(InstanceCounter.obj) : warning LNK4204: 'C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\x64\Debug\EngenhoIrrealXVII.pdb' is missing debugging information for referencing module; linking object as if no debug info
 EngenhoIrrealXVII.lib(Pawn.obj) : warning LNK4204: 'C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\x64\Debug\EngenhoIrrealXVII.pdb' is missing debugging information for referencing module; linking object as if no debug info
 EngenhoIrrealXVII.lib(Input.obj) : warning LNK4204: 'C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\x64\Debug\EngenhoIrrealXVII.pdb' is missing debugging information for referencing module; linking object as if no debug info
 EngenhoIrrealXVII.lib(RenderComponent.obj) : warning LNK4204: 'C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\x64\Debug\EngenhoIrrealXVII.pdb' is missing debugging information for referencing module; linking object as if no debug info
-EngenhoIrrealXVII.lib(GameEngine.obj) : warning LNK4204: 'C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\x64\Debug\EngenhoIrrealXVII.pdb' is missing debugging information for referencing module; linking object as if no debug info
 EngenhoIrrealXVII.lib(TextureManager.obj) : warning LNK4204: 'C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\x64\Debug\EngenhoIrrealXVII.pdb' is missing debugging information for referencing module; linking object as if no debug info
 EngenhoIrrealXVII.lib(PhysicsWorld.obj) : warning LNK4204: 'C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\x64\Debug\EngenhoIrrealXVII.pdb' is missing debugging information for referencing module; linking object as if no debug info
 EngenhoIrrealXVII.lib(b2_body.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'EngenhoIrrealXVII.lib(b2_body.obj)' or at 'C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\x64\Debug\box2d.pdb'; linking object as if no debug info

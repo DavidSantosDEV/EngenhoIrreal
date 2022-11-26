@@ -1,3 +1,10 @@
+/*
+* - World where physics bodies live in. 
+* - Used to create physics bodies to live inside of it.
+* - Bodies created will not have collision detected unless 
+* - a CollisionComponent is added after
+************************************************************/
+
 #include "PhysicsWorld.h"
 #include "box2d\b2_world.h"
 #include "ContactListener.h"
