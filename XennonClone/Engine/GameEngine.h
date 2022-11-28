@@ -25,6 +25,8 @@ public:
 	void DestroyPending();
 	void AddPendingDestroy(GameObject* obj);
 
+
+
 	/* Object manipulation */
 	static void AddGameObjectToStack(GameObject* gameObject);
 	static void RemoveGameObjectFromStack(GameObject* gameObject);
@@ -36,6 +38,9 @@ public:
 	static std::vector<GameObject*> GetAllGameObjects() { return m_GameObjectStack; }
 
 private:
+
+	void SplashScreen();
+
 	/* Sort render components in order to support a layering/priority system*/
 	static void SortRenderComponents();
 	static void SwapRenderComponents(RenderComponent* r1, RenderComponent* r2);
@@ -52,6 +57,7 @@ private:
 
 	static GameWorld* m_World;
 	class SDLWrapper* m_Sdl;
+	class AudioSystem* m_audioSystem;
 	class Window* m_Window;
 	class Input* m_Input;
 

@@ -11,6 +11,7 @@
 #include "SDL.h"
 #include "Transform.h"
 #include "GameEngine.h"
+#include "MathHelper.h"
 #include "TextureManager.h"
 #include "Log.h"
 
@@ -39,6 +40,12 @@ void Sprite::Start()
 		m_ParentTransform = m_OwnerGameObject->GetTransform();
 	}
 
+}
+
+void Sprite::SetOpacity(float opacity)
+{
+	m_Opacity = MathHelper::Clamp01(opacity);
+	SDL_SetTextureAlphaMod(m_Texture, (Uint8)(m_Opacity * 255));
 }
 
 void Sprite::Render()

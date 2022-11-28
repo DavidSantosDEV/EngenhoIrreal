@@ -14,26 +14,29 @@ void ContactListener::BeginContact(b2Contact* contact)
 {
 	CollisionComponent* const compA = (CollisionComponent*)contact->GetFixtureA()->GetUserData().pointer;
 	CollisionComponent* const compB = (CollisionComponent*)contact->GetFixtureB()->GetUserData().pointer;
-	if (compA && compB)
+	if (!compA || !compB)
 	{
-		if (compA->GetIsEnabled() && compB->GetIsEnabled()) {
-			GameObject* const objA = compA->GetOwnerGameObject();
-			GameObject* const objB = compB->GetOwnerGameObject();
-			if (&objA == nullptr || &objB == nullptr) {
-				return;
-			}
-			if (objA->IsPendingDestroy() || objB->IsPendingDestroy()) {
-				return;
-			}
-			if (compA->GetIsTrigger() || compB->GetIsTrigger()) {	
-				objA->OnTriggerEnter(objB);
-				objB->OnTriggerEnter(objA);
-			}
-			else {
-				objA->OnBeginCollision(objB);
-				objB->OnBeginCollision(objA);
-			}
-		}
+		return;
+	}
+	if (!compA->GetIsEnabled() || !compB->GetIsEnabled()) {
+		return;
+	}
+	GameObject* const objA = compA->GetOwnerGameObject();
+	GameObject* const objB = compB->GetOwnerGameObject();
+	if (&objA == nullptr || &objB == nullptr) {
+		return;
+	}
+
+	if (objA->IsPendingDestroy() || objB->IsPendingDestroy()) {
+		return;
+	}
+	if (compA->GetIsTrigger() || compB->GetIsTrigger()) {
+		objA->OnTriggerEnter(objB);
+		objB->OnTriggerEnter(objA);
+	}
+	else {
+		objA->OnBeginCollision(objB);
+		objB->OnBeginCollision(objA);
 	}
 }
 

@@ -19,6 +19,10 @@
 #include "TimerManager.h"
 #include "Input.h"
 #include "InstanceCounter.h"
+#include "MathHelper.h"
+#include "TextureManager.h"
+#include "AudioSystem.h"
+#include "SDL_audio.h"
 #include <iostream>
 
 
@@ -32,12 +36,15 @@ std::vector<Pawn*> GameEngine::m_PawnsStack;
 
 GameEngine* GameEngine::m_Instance{ nullptr };
 
+
+
 GameEngine::~GameEngine()
 {
 	delete m_Window;
 	delete m_Sdl;
 	delete m_Input;
 	delete m_PhysicsWorld;
+	delete m_audioSystem;
 }	
 
 void GameEngine::Init(const char* windowTitle, int windowWidth, int windowHeight, GameWorld* World)
@@ -47,21 +54,25 @@ void GameEngine::Init(const char* windowTitle, int windowWidth, int windowHeight
 	}
 	else {
 		m_Instance = this;
-		m_Sdl = new SDLWrapper(SDL_INIT_VIDEO | SDL_INIT_TIMER);
+		m_Sdl = new SDLWrapper(SDL_INIT_VIDEO | SDL_INIT_TIMER | SDL_INIT_AUDIO);
 		m_Window = new Window(windowTitle, windowWidth, windowHeight, true);
 		m_World = World;
 		m_Input = new Input();
 		m_PhysicsWorld = new PhysicsWorld();
 		m_PhysicsWorld->Init();
+		m_audioSystem = new AudioSystem();
+		m_audioSystem->Init();
 	}
 }
 
 void GameEngine::StartAndRun()
 {
+
 	LOG("Engine start");
 
-	Start();
+	SplashScreen();
 
+	Start();
 	bool isRunning = true;
 	SDL_Event ev;
 	const int lock = 1000 / m_MaxFPS;
@@ -70,7 +81,6 @@ void GameEngine::StartAndRun()
 	{
 		while (!SDL_TICKS_PASSED(SDL_GetTicks(), mTicksCount + lock)); //Wait until ms passed
 		m_ElapsedMS = (SDL_GetTicks() - mTicksCount) / 1000.0f;	
-
 
 		SDL_PollEvent(&ev);
 		if (ev.type == SDL_QUIT)
@@ -94,7 +104,7 @@ void GameEngine::StartAndRun()
 
 		mTicksCount = SDL_GetTicks();
 	}
-
+	m_audioSystem->Clean();
 	/*End game cleaning (memory leaks check) */
 	InstanceCounter::PrintCounts();
 	for (auto obj : m_GameObjectStack) {
@@ -275,6 +285,62 @@ SDL_Renderer* GameEngine::GetRenderer()
 Vector2D GameEngine::GetWindowSize() 
 {
 	return m_Window->GetWindowSize();
+}
+
+void GameEngine::SplashScreen()
+{
+	SDL_Texture* text = TextureManager::LoadTexture("engenho.png");
+	if (!text) {
+		return;
+	}
+
+	SDL_Rect dest;
+	dest.x = 10;
+	dest.y = -50;
+	dest.w = 600;
+	dest.h = 500;
+	Uint32 mTicksCount = SDL_GetTicks();
+
+	//PlaySound
+	//AudioClip audio = AudioSystem::CreateClip("engenho.wav");
+	//AudioSystem::PlayClip(&audio, false);
+	//
+	float seconds = 0;
+	const float wait = 2 * 1000;
+
+
+	float alpha = 0;
+
+	bool bCanContinue = false;
+
+	float ms;
+
+	bool bIsFinished = false;
+
+	const int lock = 1000 / 20;
+
+	while (!bIsFinished ) {
+		while (!SDL_TICKS_PASSED(SDL_GetTicks(), mTicksCount + lock));
+		ms = (SDL_GetTicks() - mTicksCount) / 1000.0f;
+
+		alpha += (!bCanContinue ? 0.01f : -0.01f)*ms;
+		alpha = MathHelper::Clamp01(alpha);
+		if (alpha == 1 && !bCanContinue) {
+			seconds += ms;
+			if (seconds>=wait) {
+				bCanContinue = true;
+			}
+		}
+			
+		bIsFinished = alpha == 0 && bCanContinue;
+			
+
+		SDL_SetTextureAlphaMod(text, 255*alpha);	
+		SDL_RenderCopy(m_Window->GetRenderer(), text, NULL, &dest);
+		m_Window->UpdateRender();
+		m_Window->Clean();
+	}
+	SDL_DestroyTexture(text);
 }
 
 void GameEngine::SortRenderComponents()

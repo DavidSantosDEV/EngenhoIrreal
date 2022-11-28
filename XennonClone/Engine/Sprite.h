@@ -32,6 +32,8 @@ protected:
 	bool m_FlipX = false;
 	bool m_FlipY = false;
 
+	float m_Opacity = 1;
+
 public:
 	/* Used for non-animated sprites */
 	Sprite(const char* texturePath, int renderPriority);
@@ -52,6 +54,8 @@ public:
 	SDL_FRect& GetDestRect();
 
 	void SetRotation(float val) { m_rotation = val; }
+
+	void SetOpacity(float opacity);
 
 	// Inherited via RenderComponent
 	virtual void Render() override;

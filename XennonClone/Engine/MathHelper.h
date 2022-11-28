@@ -33,6 +33,32 @@ public:
 		return value;
 	}
 
+	static float ClampFloat(float value, const float& min, const float& max) 
+	{	
+		if (value < min)
+		{
+			value = min;
+		}
+		if (value > max)
+		{
+			value = max;
+		}
+		return value;
+	}
+
+	static float Clamp01(float value) 
+	{
+		if (value < 0)
+		{
+			return 0;
+		}
+		if (value > 1)
+		{
+			return 1;
+		}
+		return value;
+	}
+
 	/* Map Clamp Ranged the input value. No return value */
 	static void MapClampRangedIntRef(int& value, const int& oldMin, const int& oldMax,
 		const int& newMin, const int& newMax)
