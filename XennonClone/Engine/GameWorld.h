@@ -6,6 +6,10 @@ class GameObject;
 
 class GameWorld 
 {
+private:
+	static void AddObjectToEngine(GameObject* obj);
+
+
 public:
 	void Init(GameEngine* myEngine);
 
@@ -18,6 +22,7 @@ public:
 		T* newObject = new T(std::forward(mArgs)...);
 		if (static_cast<GameObject*>(newObject)) 
 		{
+			GameWorld::AddObjectToEngine(newObject); //Cheesy way to not have engine included
 			newObject->Start();
 			InstanceCounter::AddObjectCount();
 			return newObject;

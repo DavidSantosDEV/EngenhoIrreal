@@ -7,10 +7,15 @@ D:\Development\EngenhoIrreal\XennonClone\Engine\MathHelper.h(66,18): warning C42
 D:\Development\EngenhoIrreal\XennonClone\Engine\MathHelper.h(67,18): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
 D:\Development\EngenhoIrreal\XennonClone\Engine\MathHelper.h(68,54): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
 D:\Development\EngenhoIrreal\XennonClone\Engine\GameEngine.cpp(338,35): warning C4244: 'argument': conversion from 'float' to 'Uint8', possible loss of data
-  Window.cpp
+  Sprite.cpp
 D:\Development\EngenhoIrreal\XennonClone\Engine\Transform.h(75,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-D:\Development\EngenhoIrreal\XennonClone\Engine\Window.cpp(17,45): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Development\EngenhoIrreal\XennonClone\Engine\Window.cpp(17,32): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Development\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+D:\Development\EngenhoIrreal\XennonClone\Engine\MathHelper.h(66,18): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\Development\EngenhoIrreal\XennonClone\Engine\MathHelper.h(67,18): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\Development\EngenhoIrreal\XennonClone\Engine\MathHelper.h(68,54): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  TextureManager.cpp
+D:\Development\EngenhoIrreal\XennonClone\Engine\Transform.h(75,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\Development\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
   Generating Code...
 SDL2_image.lib(SDL2_image.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in SDL2.lib(SDL2.dll); second definition ignored
 SDL2_mixer.lib(SDL2_mixer.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in SDL2.lib(SDL2.dll); second definition ignored

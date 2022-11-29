@@ -14,17 +14,17 @@
 GameObject::GameObject() 
 {
 	_Transform = Transform(0, 0, 1, 1);
-	GameEngine::AddGameObjectToStack(this);
+	//GameEngine::AddGameObjectToStack(this);
 	LOG("BUILD");
 }
 
 GameObject::GameObject(Transform transform) {
 	_Transform = transform;
-	GameEngine::AddGameObjectToStack(this);
+	//GameEngine::AddGameObjectToStack(this);
 }
 GameObject::GameObject(Vector2D position, Vector2D scale) {
 	_Transform = Transform(position, scale);
-	GameEngine::AddGameObjectToStack(this);
+	//GameEngine::AddGameObjectToStack(this);
 }
 
 GameObject::~GameObject() 

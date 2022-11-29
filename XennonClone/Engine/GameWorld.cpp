@@ -13,6 +13,11 @@ GameEngine* GameWorld::m_Engine = nullptr;
 GameWorld* GameWorld::m_World = nullptr;
 
 
+void GameWorld::AddObjectToEngine(GameObject* obj)
+{
+	GameEngine::AddGameObjectToStack(obj);
+}
+
 void GameWorld::Init(GameEngine* myEngine)
 {
 	if (m_World) {

@@ -5,6 +5,7 @@
 #include "TextureManager.h"
 #include "GameEngine.h"
 #include "SDL_image.h"
+//#include "RenderComponent.h"
 #include <iostream>
 #include "Log.h"
 
@@ -36,6 +37,51 @@ SDL_Texture* TextureManager::LoadTexture(const char* Filename) //Generic Loader
 
     return finaltexture;
 }
+/*
+SDL_Texture* TextureManager::LoadTextureBind(const char* Filename, RenderComponent* comp)
+{
+    if (!comp)return nullptr;
+    TextureAndComps* RefText = &m_textureMap[std::string(Filename)];
+    if (RefText) {
+        for (int i = 0; i < RefText->components.size();++i) {
+            if (comp == RefText->components[i]) {
+                return nullptr;
+            }
+        }
+
+        RefText->components.push_back(comp);
+        return RefText->texture;
+    }
+    else {
+        SDL_Texture* text = LoadTexture(Filename);
+
+        //std::vector<RenderComponent*> r = { comp };
+        m_textureMap[std::string(Filename)] = TextureAndComps{ text,{ comp } };
+
+        return text;
+    }
+    return nullptr;
+}
+
+void TextureManager::RemoveFromBind(SDL_Texture* text, RenderComponent* comp)
+{
+    if (!comp) {
+        return;
+    }
+    
+    TextureAndComps* RefText = &m_textureMap[std::string(Filename)];
+    if (RefText) {
+        for (int i = 0; i < RefText->components.size(); ++i) {
+            if (comp == RefText->components[i]) {
+                return nullptr;
+            }
+        }
+
+        RefText->components.push_back(comp);
+        return RefText->texture;
+    }
+}
+*/
 
 SDL_Texture* TextureManager::LoadTextureBMP(const char* fileName) //BMP Loader
 {
