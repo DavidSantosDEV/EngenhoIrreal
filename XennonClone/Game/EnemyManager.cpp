@@ -38,7 +38,7 @@ void EnemyManager::SpawnEnemyAtRandom()
 	// e escolhe random dentro dessas para fazer spawn
 
 
-  	if (m_Enemies.size()< m_MaxEnemies) {
+  	if (enemyCount< m_MaxEnemies) {
 		Enemy* enemy = nullptr;
 		Vector2D spawnPoint;
 		if ((rand() % 100) > 50) {
@@ -49,8 +49,13 @@ void EnemyManager::SpawnEnemyAtRandom()
 			enemy = GameWorld::InstantiateObject<Rusher>();
 			spawnPoint = RusherSpawns[rand() % 4];
 		}
-		enemy->GetComponent<PhysicsComponent>()->SetPosition(spawnPoint);
-		m_Enemies.push_back(enemy);
+		if (enemy) {
+			enemyCount++;
+			enemy->GetComponent<PhysicsComponent>()->SetPosition(spawnPoint);
+			m_Enemies.push_back(enemy);
+			LOG_ERROR("Enemy Count: " << enemyCount);
+		}
+
 	}
 
 }
@@ -62,8 +67,10 @@ void EnemyManager::DeleteEnemy(Enemy* enemy)
 	{
 		if (m_Enemies[i] == enemy)
 		{
+			enemyCount--;
 			//GameWorld::DestroyObject(enemy);
 			m_Enemies.erase(m_Enemies.begin() + i);
+			LOG_ERROR("Enemy Count: " << enemyCount);
 			return;
 		}
 	}

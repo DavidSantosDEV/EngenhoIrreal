@@ -18,5 +18,6 @@ public:
 	virtual void Update(float deltaTime) override;
 
 	virtual void OnBecameVisible() override;
+	virtual void OnBecameHidden() override;
 };
 

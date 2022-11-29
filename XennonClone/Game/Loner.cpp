@@ -35,3 +35,10 @@ void Loner::OnBecameVisible()
 {
 	canShoot = true;
 }
+
+void Loner::OnBecameHidden()
+{
+	if (canShoot) {
+		Enemy::OnBecameHidden();
+	}
+}

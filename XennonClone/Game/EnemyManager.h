@@ -18,6 +18,7 @@ protected:
 	std::vector<class Enemy*> m_Enemies;
 
 	static EnemyManager* m_Instance;
+	int enemyCount = 0;
 
 public:
 
