@@ -70,7 +70,7 @@ void GameEngine::StartAndRun()
 
 	LOG("Engine start");
 
-	SplashScreen();
+	//SplashScreen();
 
 	Start();
 	bool isRunning = true;
