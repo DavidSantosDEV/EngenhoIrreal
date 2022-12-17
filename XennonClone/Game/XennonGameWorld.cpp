@@ -6,7 +6,7 @@
 #include "Log.h"
 #include "AnimationComponent.h"
 #include "Player.h"
-#include "Drone.h"
+#include "DronePack.h"
 #include "Rusher.h"
 #include "PhysicsComponent.h"
 #include "EnemyManager.h"
@@ -20,7 +20,7 @@ void XennonGameWorld::Start()
 	InstantiateObject<RocksBackground>();
 	GameObject* p = InstantiateObject<Player>();
 	p->GetComponent<PhysicsComponent>()->SetPosition(Vector2D(250, 300));
-	InstantiateObject<Drone>()->GetComponent<PhysicsComponent>()->SetPosition(Vector2D(300, -300));
+	InstantiateObject<DronePack>()->_Transform.SetPosition(Vector2D(300, -300));
 	//InstantiateObject<Rusher>()->GetComponent<PhysicsComponent>()->SetPosition(Vector2D(300, -300));
 	//InstantiateObject<Loner>()->GetComponent<PhysicsComponent>()->SetPosition(Vector2D(800, 300));
 }
