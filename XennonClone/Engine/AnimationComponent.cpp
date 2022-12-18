@@ -63,7 +63,8 @@ void AnimationComponent::Update(float deltatime)
 				else
 				{
 					spriteSourceRect.x = m_EndingAnimationFrameX - m_ParentSpriteComponent->m_FrameWidth;
-					m_OwnerGameObject->OnAnimationEnd();
+					OnAnimationEnded.Broadcast();
+					//m_OwnerGameObject->OnAnimationEnd();
 				}
 			}
 

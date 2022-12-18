@@ -6,7 +6,8 @@ class HealthComponent : public Component
 {
 public:
 
-	Delegate<> OnHealthZero;
+	Delegate<int> OnAnyDamageTaken;
+	Delegate<> OnDie;
 
 	HealthComponent(int maxHealth) : m_MaxHealth{ maxHealth }, m_CurrentHealth{maxHealth} {};
 

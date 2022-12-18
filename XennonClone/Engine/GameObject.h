@@ -105,11 +105,9 @@ public:
 	virtual void OnTriggerEnter(GameObject* other){};
 	/* Only called if GameObject has CollisionComponent*/
 	virtual void OnTriggerExit(GameObject* other){};
-	/* Only called if GameObject has HealthComponent */
-	virtual void OnZeroHealth() {};
 
 	/*Only called if GameObject has AnimationComponent */
-	virtual void OnAnimationEnd() {};
+	//virtual void OnAnimationEnd() {};
 
 	/* Called when the GameObject is inside the screen area */
 	virtual void OnBecameVisible() {};

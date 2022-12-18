@@ -26,6 +26,6 @@ public:
 	
 	void SetTarget(Player* newTarget, Vector2D localPosition);
 	virtual void Update(float delta) override;
-	virtual void OnZeroHealth() override;
+	void OnZeroHealth();
 };
 

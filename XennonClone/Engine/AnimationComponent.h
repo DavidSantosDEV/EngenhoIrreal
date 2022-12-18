@@ -1,9 +1,13 @@
 #pragma once
 #include "Component.h"
 #include "Transform.h"
+#include "Delegate.h"
 class AnimationComponent : public Component
 {
 public:
+
+	Delegate<> OnAnimationEnded;
+
 	AnimationComponent(class Sprite* spriteComponent, bool autoPlayAnimation, float animationSpeed) :
 		m_ParentSpriteComponent{ spriteComponent }, m_IsPlayingAnimation{autoPlayAnimation}, 
 		m_AnimationSpeed{animationSpeed} {};

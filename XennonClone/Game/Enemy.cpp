@@ -20,13 +20,13 @@ void Enemy::Setup()
 	m_PhysicsComponent = AddComponent<PhysicsComponent>(BodyType::Kinematic, 0, 1, 1);
 	m_Collider = AddComponent<CircleCollision>(m_PhysicsComponent, m_EnemyData.colliderRadius);
 	m_HealthComponent = AddComponent<HealthComponent>(m_EnemyData.maxHealth);
-	m_HealthComponent->OnHealthZero.Add(this, &Enemy::OnDie);
+	m_HealthComponent->OnDie.Add(this, &Enemy::OnZeroHealth);
 	m_Collider->SetIsTrigger(true);
 }
 
-void Enemy::OnDie()
+void Enemy::TestFunc(int v, int b)
 {
-	LOG_ERROR("Enemy Killed");
+ 	LOG_ERROR("Enemy Killed" << v << "d "<< b);
 }
 
 void Enemy::OnDestroyed()

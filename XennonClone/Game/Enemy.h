@@ -48,9 +48,9 @@ protected:
 
 public:
 	Enemy() {};
-	void OnDie();
+	void TestFunc(int bal, int val);
 	virtual void OnDestroyed() override;
-	virtual void OnZeroHealth() override;
+	void OnZeroHealth();
 	virtual void OnTriggerEnter(GameObject* other) override;
 	virtual void OnBecameHidden() override;
 };

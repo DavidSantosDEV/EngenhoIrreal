@@ -5,7 +5,7 @@ class Explosion : public GameObject
 public:
 	Explosion();
 
-	virtual void OnAnimationEnd() override;
+	void OnAnimationEnd();
 
 private:
 	class Sprite* m_SpriteComponent = nullptr;

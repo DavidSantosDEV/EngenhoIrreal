@@ -16,8 +16,7 @@ int HealthComponent::TakeDamage(int amount)
 
 	if (m_CurrentHealth <= 0)
 	{
-		m_OwnerGameObject->OnZeroHealth();
-		OnHealthZero.Broadcast();
+		OnDie.Broadcast();
 	}
 
 	return m_CurrentHealth;
@@ -32,6 +31,7 @@ void HealthComponent::DealDamage(HealthComponent* otherHealthComponent, int amou
 	}
 
 	otherHealthComponent->TakeDamage(amount);
+	OnAnyDamageTaken.Broadcast(amount);
 }
 
 void HealthComponent::Heal(int ammount)

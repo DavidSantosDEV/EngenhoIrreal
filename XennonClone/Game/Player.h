@@ -11,7 +11,7 @@ public:
 	Player();
 	virtual void Update(float deltaTime) override;
 	virtual void HandleEvents() override;
-	virtual void OnZeroHealth() override;
+	void OnZeroHealth();
 
 	virtual void OnBecameVisible() override;
 	virtual void OnBecameHidden() override;

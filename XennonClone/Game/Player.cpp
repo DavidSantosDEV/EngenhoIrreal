@@ -22,6 +22,7 @@ Player::Player()
 	m_PhysicsComponent = AddComponent<PhysicsComponent>(BodyType::Dynamic, 0, 1, 1);
 	m_Collider = AddComponent<CircleCollision>(m_PhysicsComponent, 20);
 	m_HealthComponent = AddComponent<HealthComponent>(100);
+	m_HealthComponent->OnDie.Add(this, &Player::OnZeroHealth);
 }
 
 void Player::HandleEvents()
