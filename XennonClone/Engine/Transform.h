@@ -150,4 +150,14 @@ public:
 	inline Vector2D& GetScale() { return m_Scale; }
 	inline void SetScale(const Vector2D& newScale) { m_Scale = newScale; }
 	inline void SetScale(const float xScale, const float yScale) { m_Scale.x = xScale; m_Scale.y = yScale; }
+
+	static Transform& WorldToLocal(Transform Local, Transform Base) {
+
+		//Calculate local based on base
+
+
+			
+
+		return Local;
+	}
 };

@@ -27,8 +27,8 @@ Player::Player()
 void Player::HandleEvents()
 {
 	Pawn::HandleEvents();
-
-	if (Input::IsFireKeyDown() && m_ShotsTimer >= m_FireRate)
+	m_isShooting = Input::IsFireKeyDown();
+	if (m_isShooting && m_ShotsTimer >= m_FireRate)
 	{
 		PlayerBullet* bullet = GameWorld::InstantiateObject<PlayerBullet>();
 		// TODO don't get component every frame

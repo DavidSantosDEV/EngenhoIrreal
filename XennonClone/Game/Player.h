@@ -16,6 +16,8 @@ public:
 	virtual void OnBecameVisible() override;
 	virtual void OnBecameHidden() override;
 
+	bool GetIsShooting() { return m_isShooting; }
+
 	void DoLog() {
 		LOG("HEY")
 	}
@@ -35,7 +37,7 @@ private:
 	PhysicsComponent* m_PhysicsComponent;
 	CircleCollision* m_Collider;
 
-
+	bool m_isShooting=false;
 	float m_FireRate = 0.2f;
 	float m_ShotsTimer = 0.f;
 	int m_MoveSpeed = 100;

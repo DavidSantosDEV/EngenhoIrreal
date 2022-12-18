@@ -9,6 +9,7 @@
 #include "MathHelper.h"
 #include "GameObject.h"
 
+
 int HealthComponent::TakeDamage(int amount)
 {
 	m_CurrentHealth = MathHelper::ClampInt(m_CurrentHealth - amount, 0, m_MaxHealth);
@@ -16,6 +17,7 @@ int HealthComponent::TakeDamage(int amount)
 	if (m_CurrentHealth <= 0)
 	{
 		m_OwnerGameObject->OnZeroHealth();
+		OnHealthZero.Broadcast();
 	}
 
 	return m_CurrentHealth;
@@ -30,4 +32,9 @@ void HealthComponent::DealDamage(HealthComponent* otherHealthComponent, int amou
 	}
 
 	otherHealthComponent->TakeDamage(amount);
+}
+
+void HealthComponent::Heal(int ammount)
+{
+	m_CurrentHealth = MathHelper::ClampInt(m_CurrentHealth + ammount, 0, m_MaxHealth);
 }
