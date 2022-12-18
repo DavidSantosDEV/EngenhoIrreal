@@ -83,8 +83,10 @@ Delegate<TArgs...>::~Delegate() {
 template <typename ... TArgs>
 template <class T>
 void Delegate<TArgs...>::Add(T* object, void (T::* method)(TArgs... params)) {
-    //Throw exception if the object is null? TBA
-
+    //Throw exception if the object is null
+    if (object==nullptr) {
+        throw new std::exception;
+    }
     IDelegateInvokable<TArgs...>* member = new DelegateToMember<T, TArgs...>(object, method);
     m_Attached.push_back(member);
 }
