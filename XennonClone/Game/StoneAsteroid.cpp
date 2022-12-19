@@ -47,7 +47,7 @@ void StoneAsteroid::OnDestroyed()
 	if (m_AsteroidType == AsteroidType::Large ||
 		m_AsteroidType == AsteroidType::Medium)
 	{
-		/* When smaller asteroids are destroyed, one will go 45º to the left and the other 45º to the right */
+		/* When smaller asteroids are created, one will go 45º to the left and the other 45º to the right */
 		float directionMultiplier = 0.5f;
 		AsteroidType smallerAsteroidType = (AsteroidType)((int)m_AsteroidType - 1);
 		for (int i = 0; i < 2; ++i)
