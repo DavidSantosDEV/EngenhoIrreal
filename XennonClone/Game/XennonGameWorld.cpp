@@ -13,6 +13,7 @@
 #include "RocksBackground.h"
 #include "Loner.h"
 #include "MetalAsteroid.h"
+#include "StoneAsteroid.h"
 
 void XennonGameWorld::Start()
 {
@@ -22,7 +23,8 @@ void XennonGameWorld::Start()
 	GameObject* p = InstantiateObject<Player>();
 	p->GetComponent<PhysicsComponent>()->SetPosition(Vector2D(250, 300));
 	InstantiateObject<DronePack>()->_Transform.SetPosition(Vector2D(300, -300));
-	InstantiateObject<MetalAsteroid>()->GetComponent<PhysicsComponent>()->SetPosition(Vector2D(50, -50));
+	//InstantiateObject<MetalAsteroid>()->GetComponent<PhysicsComponent>()->SetPosition(Vector2D(50, -50));
+	InstantiateObject<StoneAsteroid>()->GetComponent<PhysicsComponent>()->SetPosition(Vector2D(300, -50));
 	//InstantiateObject<Rusher>()->GetComponent<PhysicsComponent>()->SetPosition(Vector2D(300, -300));
 	//InstantiateObject<Loner>()->GetComponent<PhysicsComponent>()->SetPosition(Vector2D(800, 300));
 }

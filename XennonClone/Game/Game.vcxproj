@@ -169,6 +169,7 @@
     <ClCompile Include="Rusher.cpp" />
     <ClCompile Include="StaticBackground.cpp" />
     <ClCompile Include="RocksBackground.cpp" />
+    <ClCompile Include="StoneAsteroid.cpp" />
     <ClCompile Include="XennonGameWorld.cpp" />
     <ClCompile Include="XennonClone.cpp" />
   </ItemGroup>
@@ -188,6 +189,7 @@
     <ClInclude Include="Rusher.h" />
     <ClInclude Include="StaticBackground.h" />
     <ClInclude Include="RocksBackground.h" />
+    <ClInclude Include="StoneAsteroid.h" />
     <ClInclude Include="XennonGameWorld.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
