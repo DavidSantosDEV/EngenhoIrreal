@@ -69,10 +69,11 @@ public:
 	}
 
 	/* Returns the absolute result of the given value. (Eg: -5 returns 5 and 5 returns 5)*/
-	static int Abs(const int& value)
+	static int Abs(const int value)
 	{
 		int inverse = -value;
-		return value ? value > inverse : inverse;
+		return value > inverse ? value : inverse;
+		//return value ? value > inverse : inverse;
 	}
 
 	/* Swaps two vector elements (pointers) */

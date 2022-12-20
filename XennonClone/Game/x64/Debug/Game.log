@@ -1,7 +1,40 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (Game.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-EngenhoIrrealXVII.lib(b2_chain_polygon_contact.obj) : warning LNK4099: PDB '' was not found with 'EngenhoIrrealXVII.lib(b2_chain_polygon_contact.obj)' or at ''; linking object as if no debug info
-EngenhoIrrealXVII.lib(b2_chain_circle_contact.obj) : warning LNK4099: PDB '' was not found with 'EngenhoIrrealXVII.lib(b2_chain_circle_contact.obj)' or at ''; linking object as if no debug info
-EngenhoIrrealXVII.lib(b2_edge_shape.obj) : warning LNK4099: PDB '' was not found with 'EngenhoIrrealXVII.lib(b2_edge_shape.obj)' or at ''; linking object as if no debug info
-EngenhoIrrealXVII.lib(b2_circle_shape.obj) : warning LNK4099: PDB '' was not found with 'EngenhoIrrealXVII.lib(b2_circle_shape.obj)' or at ''; linking object as if no debug info
-EngenhoIrrealXVII.lib(b2_chain_shape.obj) : warning LNK4099: PDB '' was not found with 'EngenhoIrrealXVII.lib(b2_chain_shape.obj)' or at ''; linking object as if no debug info
+  Player.cpp
+D:\Development\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+D:\Development\EngenhoIrreal\XennonClone\Engine\Transform.h(75,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\Development\EngenhoIrreal\XennonClone\Engine\MathHelper.h(66,18): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\Development\EngenhoIrreal\XennonClone\Engine\MathHelper.h(67,18): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\Development\EngenhoIrreal\XennonClone\Engine\MathHelper.h(68,54): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+D:\Development\EngenhoIrreal\XennonClone\Game\Player.cpp(75,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Development\EngenhoIrreal\XennonClone\Game\Player.cpp(75,32): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Development\EngenhoIrreal\XennonClone\Game\Player.cpp(77,14): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
+D:\Development\EngenhoIrreal\XennonClone\Engine\GameObject.h(59,46): warning C4244: 'argument': conversion from '_Ty' to 'float', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+D:\Development\EngenhoIrreal\XennonClone\Game\Player.cpp(22,80): message : see reference to function template instantiation 'T *GameObject::AddComponent<PhysicsComponent,BodyType,int,int,int>(BodyType &&,int &&,int &&,int &&)' being compiled
+          with
+          [
+              T=PhysicsComponent
+          ]
+  XennonGameWorld.cpp
+D:\Development\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+D:\Development\EngenhoIrreal\XennonClone\Engine\Transform.h(75,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\Development\EngenhoIrreal\XennonClone\Engine\MathHelper.h(66,18): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\Development\EngenhoIrreal\XennonClone\Engine\MathHelper.h(67,18): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\Development\EngenhoIrreal\XennonClone\Engine\MathHelper.h(68,54): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+D:\Development\EngenhoIrreal\XennonClone\Engine\Timer.h(44,30): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
+D:\Development\EngenhoIrreal\XennonClone\Engine\Timer.h(42,1): message : while compiling class template member function 'void TimerHandle<XennonGameWorld>::Set(SimpleDelegateMember<XennonGameWorld> *,float,bool)'
+D:\Development\EngenhoIrreal\XennonClone\Engine\TimerManager.h(21,14): message : see reference to function template instantiation 'void TimerHandle<XennonGameWorld>::Set(SimpleDelegateMember<XennonGameWorld> *,float,bool)' being compiled
+D:\Development\EngenhoIrreal\XennonClone\Engine\TimerManager.h(17,1): message : see reference to class template instantiation 'TimerHandle<XennonGameWorld>' being compiled
+D:\Development\EngenhoIrreal\XennonClone\Game\XennonGameWorld.cpp(35,80): message : see reference to function template instantiation 'BaseHandle *TimerManager::CreateTimer<XennonGameWorld>(T *,void (__cdecl XennonGameWorld::* )(void),float,bool,bool)' being compiled
+          with
+          [
+              T=XennonGameWorld
+          ]
+D:\Development\EngenhoIrreal\XennonClone\Engine\Timer.h(59,31): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
+D:\Development\EngenhoIrreal\XennonClone\Engine\Timer.h(56,1): message : while compiling class template member function 'void TimerHandle<XennonGameWorld>::Start(float,bool)'
+D:\Development\EngenhoIrreal\XennonClone\Engine\TimerManager.h(22,31): message : see reference to function template instantiation 'void TimerHandle<XennonGameWorld>::Start(float,bool)' being compiled
+  Generating Code...
   Game.vcxproj -> D:\Development\EngenhoIrreal\XennonClone\x64\Debug\XennonClone.exe

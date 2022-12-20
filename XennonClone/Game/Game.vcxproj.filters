@@ -63,6 +63,9 @@
     <ClCompile Include="Companion.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MetalAsteroid.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="XennonGameWorld.h">
@@ -108,6 +111,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Companion.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MetalAsteroid.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

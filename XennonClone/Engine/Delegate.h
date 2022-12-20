@@ -1,11 +1,32 @@
 #pragma once
 #include <vector>
+#include <memory>
+
+class IDelegateHolder { //Cheese to have the classes in an easy vector
+};
+
+class ISimpleDelegateInvoker : IDelegateHolder {
+    virtual void Execute() = 0;
+};
+
+template <class TObject>
+class SimpleDelegateMember : ISimpleDelegateInvoker {
+public:
+    typedef void (TObject::* SimpleDelegateNoParams)();
+    SimpleDelegateMember(TObject* target, SimpleDelegateNoParams method) : m_Target(target), m_Method(method){}
+    virtual void Execute() override {
+        (m_Target->*m_Method)();
+    }
+private:
+    TObject* m_Target;
+    SimpleDelegateNoParams m_Method;
+};
 
 //Simple interface (Abstract)
 template <typename ...TArgs>
-class IDelegateInvokable {
+class IDelegateInvokable : IDelegateHolder{
 public:
-    virtual void Broadcast(TArgs... params) = 0;
+    virtual void Execute(TArgs... params) = 0;
 };
 
 template<class TObject, typename... TArgs>
@@ -18,7 +39,7 @@ public:
     DelegateToMember(TObject* target, SpecializedDelegateOneParam method); //Constructor
 
     //Perhaps it only works with public functions, a shortcomming but will do for now
-    void Broadcast(TArgs... params) override{
+    void Execute(TArgs... params) override{
         if (m_target != nullptr) {
             (m_target->*m_Method)(params...); //Call method on target
         }
@@ -69,7 +90,7 @@ public:
         
         for (int i = 0; i < m_Attached.size();++i) {
             IDelegateInvokable<TArgs...>* member = m_Attached[i];
-            member->Broadcast(params...);
+            member->Execute(params...);
         }
     }
 };
