@@ -16,6 +16,7 @@
 #include "HealthComponent.h"
 #include "TimerManager.h"
 #include "MathHelper.h"
+#include "StoneAsteroid.h"
 
 void XennonGameWorld::Start()
 {
@@ -29,10 +30,10 @@ void XennonGameWorld::Start()
 
 	InstantiateObject<DronePack>()->_Transform.SetPosition(Vector2D(300, -300));
 	InstantiateObject<MetalAsteroid>()->GetComponent<PhysicsComponent>()->SetPosition(Vector2D(50, -50));
-
 	m_currentPlayerLifeCount = m_MaxPlayerLifeCount;
-
 	TimerManager::CreateTimer(this, &XennonGameWorld::RespawnPlayer, 5,false, true);
+	//InstantiateObject<MetalAsteroid>()->GetComponent<PhysicsComponent>()->SetPosition(Vector2D(50, -50));
+	InstantiateObject<StoneAsteroid>()->GetComponent<PhysicsComponent>()->SetPosition(Vector2D(300, -50));
 	//InstantiateObject<Rusher>()->GetComponent<PhysicsComponent>()->SetPosition(Vector2D(300, -300));
 	//InstantiateObject<Loner>()->GetComponent<PhysicsComponent>()->SetPosition(Vector2D(800, 300));
 }

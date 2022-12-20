@@ -19,7 +19,7 @@ public:
 	virtual void Update(float deltaTime) = 0;
 
 	template <typename T, typename... TArgs> static T* InstantiateObject(TArgs&&... mArgs) {
-		T* newObject = new T(std::forward(mArgs)...);
+		T* newObject = new T(std::forward<TArgs>(mArgs)...);
 		if (static_cast<GameObject*>(newObject)) 
 		{
 			GameWorld::AddObjectToEngine(newObject); //Cheesy way to not have engine included
