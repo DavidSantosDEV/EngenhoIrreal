@@ -5,12 +5,13 @@
 class IDelegateHolder { //Cheese to have the classes in an easy vector
 };
 
-class ISimpleDelegateInvoker : IDelegateHolder {
+class ISimpleDelegateInvoker : public IDelegateHolder {
+public:
     virtual void Execute() = 0;
 };
 
 template <class TObject>
-class SimpleDelegateMember : ISimpleDelegateInvoker {
+class SimpleDelegateMember : public ISimpleDelegateInvoker {
 public:
     typedef void (TObject::* SimpleDelegateNoParams)();
     SimpleDelegateMember(TObject* target, SimpleDelegateNoParams method) : m_Target(target), m_Method(method){}

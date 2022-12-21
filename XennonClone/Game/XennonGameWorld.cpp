@@ -25,12 +25,14 @@ void XennonGameWorld::Start()
 	InstantiateObject<RocksBackground>();
 
 	m_player = InstantiateObject<Player>();
-	m_player->GetComponent<PhysicsComponent>()->SetPosition(Vector2D(250, 300));
+	
+	m_player->GetComponent<PhysicsComponent>()->SetPosition(m_PlayerStartPos);
 	m_player->GetComponent<HealthComponent>()->OnDie.Add(this, &XennonGameWorld::OnPlayerDie);
 
 	InstantiateObject<DronePack>()->_Transform.SetPosition(Vector2D(300, -300));
 	InstantiateObject<MetalAsteroid>()->GetComponent<PhysicsComponent>()->SetPosition(Vector2D(50, -50));
 	m_currentPlayerLifeCount = m_MaxPlayerLifeCount;
+
 	TimerManager::CreateTimer(this, &XennonGameWorld::RespawnPlayer, 5,false, true);
 	//InstantiateObject<MetalAsteroid>()->GetComponent<PhysicsComponent>()->SetPosition(Vector2D(50, -50));
 	InstantiateObject<StoneAsteroid>()->GetComponent<PhysicsComponent>()->SetPosition(Vector2D(300, -50));

@@ -158,6 +158,7 @@ void GameEngine::HandleInput(SDL_Event& ev)
 
 void GameEngine::Update()
 {
+	TimerManager::ExecuteHandles();
 	m_World->Update(m_ElapsedMS);
 	for (int i = 0; i < m_GameObjectStack.size();++i) 
 	{

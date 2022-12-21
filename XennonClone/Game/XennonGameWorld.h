@@ -1,5 +1,6 @@
 #pragma once
 #include "GameWorld.h"
+#include "Transform.h"
 
 class XennonGameWorld : public GameWorld
 {
@@ -10,6 +11,7 @@ protected:
 	unsigned short m_MaxPlayerLifeCount = 3;
 	unsigned short m_currentPlayerLifeCount = 0;
 
+	Vector2D m_PlayerStartPos = Vector2D(250, 300);
 	class Player* m_player;
 
 protected:

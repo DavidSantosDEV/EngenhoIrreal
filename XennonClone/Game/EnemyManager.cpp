@@ -5,6 +5,7 @@
 #include "Loner.h"
 #include "Rusher.h"
 #include "Random"
+#include "TimerManager.h"
 
 EnemyManager* EnemyManager::m_Instance = nullptr;
 
@@ -16,6 +17,8 @@ void EnemyManager::Start()
 	}
 	m_Instance = this;
 	m_CurrentTime = m_SpawnDelay;
+
+	TimerManager::CreateTimer(this, &EnemyManager::SpawnEnemyAtRandom, m_SpawnDelay, true, true);
 	//SpawnEnemyAtRandom();
 }
 
@@ -23,12 +26,13 @@ void EnemyManager::Update(float deltaTime)
 {
 	GameObject::Update(deltaTime);
 
-
+	/*
 	m_CurrentTime -= deltaTime;
 	if (m_CurrentTime<=0) {
 		m_CurrentTime = m_SpawnDelay;
 		SpawnEnemyAtRandom();
 	}
+	*/
 }
 
 void EnemyManager::SpawnEnemyAtRandom()
