@@ -1,4 +1,22 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(510,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (Engine.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  AnimationComponent.cpp
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\Transform.h(75,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\AnimationComponent.cpp(50,26): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\AnimationComponent.cpp(71,25): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  AudioClip.cpp
+  AudioSystem.cpp
+  CircleCollision.cpp
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\Transform.h(75,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+  CollisionComponent.cpp
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\Transform.h(75,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+  Component.cpp
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+  ContactListener.cpp
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\Transform.h(75,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
   GameEngine.cpp
 C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\Transform.h(75,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
 C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\SDLWrapper.h(7,12): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
@@ -7,9 +25,73 @@ C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\MathHelper.h(66
 C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\MathHelper.h(67,18): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
 C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\MathHelper.h(68,54): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
 C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\GameEngine.cpp(338,35): warning C4244: 'argument': conversion from 'float' to 'Uint8', possible loss of data
+  GameObject.cpp
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\Transform.h(75,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
   GameWorld.cpp
 C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
 C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\Transform.h(75,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  HealthComponent.cpp
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\MathHelper.h(66,18): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\MathHelper.h(67,18): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\MathHelper.h(68,54): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\Transform.h(75,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  InitError.cpp
+  Input.cpp
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\MathHelper.h(66,18): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\MathHelper.h(67,18): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\MathHelper.h(68,54): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  InstanceCounter.cpp
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+  MathHelper.cpp
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\MathHelper.h(66,18): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\MathHelper.h(67,18): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\MathHelper.h(68,54): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  ParallaxComponent.cpp
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\Transform.h(75,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\ParallaxComponent.cpp(20,49): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\ParallaxComponent.cpp(27,50): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
+  Pawn.cpp
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\Transform.h(75,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+  PhysicsComponent.cpp
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\Transform.h(75,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  PhysicsWorld.cpp
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\Transform.h(75,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  RenderComponent.cpp
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\Transform.h(75,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+  Generating Code...
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\AudioSystem.cpp(33): warning C4715: 'AudioSystem::CreateClip': not all control paths return a value
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\AudioSystem.cpp(31): warning C4172: returning address of local variable or temporary: clip
+  Compiling...
+  SDLWrapper.cpp
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\SDLWrapper.h(7,12): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\SDLWrapper.cpp(9,61): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+  Sprite.cpp
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\Transform.h(75,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\MathHelper.h(66,18): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\MathHelper.h(67,18): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\MathHelper.h(68,54): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  SquareCollision.cpp
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\Transform.h(75,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  TextureManager.cpp
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\Transform.h(75,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+  Timer.cpp
+  TimerManager.cpp
+  ViewPortCollision.cpp
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\Transform.h(75,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  Window.cpp
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\Transform.h(75,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\Window.cpp(17,45): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\Window.cpp(17,32): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   Generating Code...
 SDL2_image.lib(SDL2_image.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in SDL2.lib(SDL2.dll); second definition ignored
 SDL2_mixer.lib(SDL2_mixer.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in SDL2.lib(SDL2.dll); second definition ignored

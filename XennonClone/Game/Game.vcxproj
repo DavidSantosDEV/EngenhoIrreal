@@ -154,6 +154,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BasePickup.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Companion.cpp" />
     <ClCompile Include="Drone.cpp" />
@@ -167,13 +168,16 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerBullet.cpp" />
     <ClCompile Include="Rusher.cpp" />
+    <ClCompile Include="ShieldPickup.cpp" />
     <ClCompile Include="StaticBackground.cpp" />
     <ClCompile Include="RocksBackground.cpp" />
     <ClCompile Include="StoneAsteroid.cpp" />
+    <ClCompile Include="WeaponPowerPickup.cpp" />
     <ClCompile Include="XennonGameWorld.cpp" />
     <ClCompile Include="XennonClone.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BasePickup.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Companion.h" />
     <ClInclude Include="Drone.h" />
@@ -182,14 +186,17 @@
     <ClInclude Include="EnemyManager.h" />
     <ClInclude Include="Explosion.h" />
     <ClInclude Include="HomingMissile.h" />
+    <ClInclude Include="IUpgradableShip.h" />
     <ClInclude Include="Loner.h" />
     <ClInclude Include="MetalAsteroid.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerBullet.h" />
     <ClInclude Include="Rusher.h" />
+    <ClInclude Include="ShieldPickup.h" />
     <ClInclude Include="StaticBackground.h" />
     <ClInclude Include="RocksBackground.h" />
     <ClInclude Include="StoneAsteroid.h" />
+    <ClInclude Include="WeaponPowerPickup.h" />
     <ClInclude Include="XennonGameWorld.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

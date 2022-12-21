@@ -9,8 +9,7 @@
 #include "HealthComponent.h"
 #include "Explosion.h"
 #include "TimerManager.h"
-
-bool removeLater = false;
+#include "MathHelper.h"
 
 Player::Player()
 {
@@ -31,16 +30,15 @@ void Player::HandleEvents()
 	m_isShooting = Input::IsFireKeyDown();
 	if (m_isShooting && m_ShotsTimer >= m_FireRate)
 	{
-		PlayerBullet* bullet = GameWorld::InstantiateObject<PlayerBullet>();
-		// TODO don't get component every frame
-		bullet->GetPhysicsComponent()->SetPosition(CalculateFirePosition());
+		int bulletPositionMultiplier = 1;
+		for (unsigned int i = 0; i < m_WeaponLevel; ++i)
+		{
+			PlayerBullet* bullet = GameWorld::InstantiateObject<PlayerBullet>();
+			// TODO don't get component every frame
+			bullet->GetPhysicsComponent()->SetPosition(CalculateFirePosition(bulletPositionMultiplier));
+			bulletPositionMultiplier *= -1;
+		}
 		m_ShotsTimer = 0.f;
-	}
-
-	if (m_ShotsTimer >= 2.f && removeLater)
-	{
-		OnZeroHealth();
-		removeLater = false;
 	}
 }
 
@@ -58,6 +56,18 @@ void Player::OnBecameVisible()
 void Player::OnBecameHidden()
 {
 	LOG("Hidden");
+}
+
+void Player::UpgradeShields(int amountToHeal)
+{
+	LOG_WARNING("Player Shields Upgraded");
+	m_HealthComponent->Heal(amountToHeal);
+}
+
+void Player::UpgradeWeaponPower()
+{
+	LOG_WARNING("Player WeaponPower Upgraded");
+	m_WeaponLevel = MathHelper::ClampInt(m_WeaponLevel + 1, 1, 2);
 }
 
 void Player::Update(float deltaTime)
@@ -94,9 +104,9 @@ void Player::ChangeAnimationBasedOnInput()
 	}
 }
 
-Vector2D& Player::CalculateFirePosition()
+Vector2D& Player::CalculateFirePosition(int positionMultiplier)
 {
-	m_FirePosition = _Transform.GetPosition() + Vector2D(17.f, 0);
+	m_FirePosition = _Transform.GetPosition() + Vector2D(17.f * positionMultiplier, 0);
 	return m_FirePosition;
 }
 
