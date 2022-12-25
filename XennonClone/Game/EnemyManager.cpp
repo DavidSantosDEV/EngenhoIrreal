@@ -18,7 +18,7 @@ void EnemyManager::Start()
 	m_Instance = this;
 	m_CurrentTime = m_SpawnDelay;
 
-	TimerManager::CreateTimer(this, &EnemyManager::SpawnEnemyAtRandom, m_SpawnDelay, true, true);
+	//TimerManager::CreateTimer(this, &EnemyManager::SpawnEnemyAtRandom, m_SpawnDelay, true, true);
 	//SpawnEnemyAtRandom();
 }
 

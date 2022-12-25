@@ -33,7 +33,7 @@ void XennonGameWorld::Start()
 	InstantiateObject<MetalAsteroid>()->GetComponent<PhysicsComponent>()->SetPosition(Vector2D(50, -50));
 	m_currentPlayerLifeCount = m_MaxPlayerLifeCount;
 
-	TimerManager::CreateTimer(this, &XennonGameWorld::RespawnPlayer, 5,false, true);
+	//TimerManager::CreateTimer(this, &XennonGameWorld::RespawnPlayer, 5,false, true);
 	//InstantiateObject<MetalAsteroid>()->GetComponent<PhysicsComponent>()->SetPosition(Vector2D(50, -50));
 	InstantiateObject<StoneAsteroid>()->GetComponent<PhysicsComponent>()->SetPosition(Vector2D(300, -50));
 	//InstantiateObject<Rusher>()->GetComponent<PhysicsComponent>()->SetPosition(Vector2D(300, -300));

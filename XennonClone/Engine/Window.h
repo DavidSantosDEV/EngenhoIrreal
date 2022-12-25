@@ -19,6 +19,7 @@ private:
 public:
 	struct SDL_Surface* GetSurface() const;
 	SDL_Renderer* GetRenderer() const { return m_Renderer; }
+	struct SDL_Window* GetWindow() const { return m_Window; }
 
 	Vector2D GetWindowSize() { return m_StoredWindowSize; }
 };

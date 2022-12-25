@@ -24,7 +24,12 @@
 #include "AudioSystem.h"
 #include "SDL_audio.h"
 #include <iostream>
-
+#define STB_IMAGE_IMPLEMENTATION
+#include "stb_image.h"
+#include <glad/glad.h>
+#include <glm.hpp>
+#include <gtc/matrix_transform.hpp>
+#include <gtc/type_ptr.hpp>
 
 // Initialize static variables
 GameWorld* GameEngine::m_World = nullptr;
@@ -35,8 +40,6 @@ std::vector<RenderComponent*> GameEngine::m_RenderComponentsStack;
 std::vector<Pawn*> GameEngine::m_PawnsStack;
 
 GameEngine* GameEngine::m_Instance{ nullptr };
-
-
 
 GameEngine::~GameEngine()
 {
@@ -55,6 +58,10 @@ void GameEngine::Init(const char* windowTitle, int windowWidth, int windowHeight
 	else {
 		m_Instance = this;
 		m_Sdl = new SDLWrapper(SDL_INIT_VIDEO | SDL_INIT_TIMER | SDL_INIT_AUDIO);
+		SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
+		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 2);
+		SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 0);
 		m_Window = new Window(windowTitle, windowWidth, windowHeight, true);
 		m_World = World;
 		m_Input = new Input();
@@ -70,13 +77,162 @@ void GameEngine::StartAndRun()
 
 	LOG("Engine start");
 
-	//SplashScreen();
+	SDL_GLContext context = SDL_GL_CreateContext(m_Window->GetWindow());
 
-	Start();
 	bool isRunning = true;
 	SDL_Event ev;
 	const int lock = 1000 / m_MaxFPS;
 	Uint32 mTicksCount = SDL_GetTicks();
+
+
+	if (!gladLoadGLLoader((GLADloadproc)SDL_GL_GetProcAddress)) {
+		LOG_ERROR("Failed to initialize GLAD");
+		SDL_Quit();
+	}
+
+	float vertices[] = {
+		0.5f, 0.5f, 1.f, 0.5f, 0.f,	// top right | R = 1, G = 0, B = 0
+		0.5f, -0.5f, 0.5f, 1.f, 0.f,	// bottom right | R = 1, G = 0, B = 0
+		-0.5f, -0.5f, 0.f, 1.f, 0.5f, // bottom left | R = 0, G = 1, B = 0
+		-0.5f, 0.5f, 0.f, 0.5f, 1.f	// top left | R = 0, G = 1, B = 0
+	};
+
+	unsigned int indices[] = {
+		0, 1, 3,
+		1, 2, 3
+	};
+
+	GLuint vao;
+	glGenVertexArrays(1, &vao);
+	glBindVertexArray(vao);
+
+	GLuint vbo;
+	glGenBuffers(1, &vbo);
+	glBindBuffer(GL_ARRAY_BUFFER, vbo);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+	GLuint ebo;
+	glGenBuffers(1, &ebo);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+
+#pragma region VertexShader
+
+	const char* vertexShaderSource = R"glsl(
+	#version 330 core
+	
+	layout (location = 0) in vec2 position;
+	layout (location = 1) in vec3 color;
+
+	out vec3 Color;
+	
+	void main()
+	{
+		Color = color;
+		gl_Position = vec4(position, 0.0, 1.0);
+	}
+
+	)glsl";
+
+	GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
+	glShaderSource(vertexShader, 1, &vertexShaderSource, nullptr);
+	glCompileShader(vertexShader);
+
+	GLint success;
+	char infoLog[512];
+	glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
+
+	if (!success)
+	{
+		glGetShaderInfoLog(vertexShader, 512, nullptr, infoLog);
+		LOG_ERROR("ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog);
+		SDL_GL_DeleteContext(context);
+		SDL_DestroyWindow(m_Window->GetWindow());
+		SDL_Quit();
+	}
+
+#pragma endregion
+
+#pragma region FragmentShader
+
+	const char* fragmentShaderSource = R"glsl(
+	#version 330 core
+
+	in vec3 Color;
+	out vec4 outColor;
+
+	void main()
+	{
+		outColor = vec4(Color, 1.f);
+	}
+
+	)glsl";
+
+	GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+	glShaderSource(fragmentShader, 1, &fragmentShaderSource, nullptr);
+	glCompileShader(fragmentShader);
+	glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
+
+	if (!success)
+	{
+		glGetShaderInfoLog(fragmentShader, 512, nullptr, infoLog);
+		LOG_ERROR("ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n" << infoLog << std::endl);
+		SDL_GL_DeleteContext(context);
+		SDL_DestroyWindow(m_Window->GetWindow());
+		SDL_Quit();
+	}
+
+#pragma endregion
+
+#pragma region ShaderProgram
+	GLuint shaderProgram = glCreateProgram();
+	glAttachShader(shaderProgram, vertexShader);
+	glAttachShader(shaderProgram, fragmentShader);
+	glLinkProgram(shaderProgram);
+
+	glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
+	if (!success)
+	{
+		glGetProgramInfoLog(shaderProgram, 512, nullptr, infoLog);
+		LOG_ERROR("ERROR::SHADER::PROGRAM::LINK_FAILED\n" << infoLog);
+	}
+
+	glUseProgram(shaderProgram);
+
+#pragma endregion
+
+	GLint posAttrib = glGetAttribLocation(shaderProgram, "position");
+	glEnableVertexAttribArray(posAttrib);
+	glVertexAttribPointer(posAttrib, 2, GL_FLOAT, false, 5 * sizeof(float), 0);
+
+	GLint colorAttrib = glGetAttribLocation(shaderProgram, "color");
+	glEnableVertexAttribArray(colorAttrib);
+	glVertexAttribPointer(colorAttrib, 3, GL_FLOAT, false, 5 * sizeof(float), (void*)(2 * sizeof(float)));
+
+	//SplashScreen();
+	Start();
+
+	while (true)
+	{
+		if (SDL_PollEvent(&ev))
+		{
+			if (ev.type == SDL_QUIT) break;
+		}
+
+		glClear(GL_COLOR_BUFFER_BIT);
+
+		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+
+		glClearColor(0.2f, 0.3f, 0.3f, 1.f);
+
+		SDL_GL_SwapWindow(m_Window->GetWindow());
+	}
+
+	SDL_GL_DeleteContext(context);
+	SDL_DestroyWindow(m_Window->GetWindow());
+
+	SDL_Quit();
+
 	while (isRunning)
 	{
 		while (!SDL_TICKS_PASSED(SDL_GetTicks(), mTicksCount + lock)); //Wait until ms passed
@@ -195,7 +351,15 @@ bool IsInside(Vector2D windowConfines, Vector2D pos, float Leeway) {
 
 void GameEngine::Render()
 {
+	glClear(GL_COLOR_BUFFER_BIT);
+
+	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+
+	glClearColor(0.2f, 0.3f, 0.3f, 1.f);
 	m_Window->Clean();
+
+
+
 	for (auto mR : m_RenderComponentsStack) 
 	{
 		Vector2D pos = mR->GetOwnerGameObject()->GetTransform()->GetPosition();
