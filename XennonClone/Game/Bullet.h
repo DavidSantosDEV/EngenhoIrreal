@@ -37,7 +37,7 @@ public:
 	Bullet() {};
 
 	virtual void Update(float deltaTime) override;
-	virtual void OnTriggerEnter(GameObject* other) override;
+	virtual void OnTriggerEnter(GameObject* other);
 	virtual void OnBecameHidden() override;
 	class PhysicsComponent* GetPhysicsComponent() const { return m_PhysicsComponent; }
 

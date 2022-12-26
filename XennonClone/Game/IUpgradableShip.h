@@ -8,4 +8,5 @@ public:
 		And c++ does not allow dynamic_cast for pure virtual classes */
 	virtual void UpgradeShields(int amountToHeal) { LOG_ERROR(" Forgot to override IUpgradableShip methods") };
 	virtual void UpgradeWeaponPower() { LOG_ERROR(" Forgot to override IUpgradableShip methods") };
+	virtual void AddCompanion() {};
 };

@@ -1,6 +1,7 @@
 #pragma once
 #include "Pawn.h"
 #include "IUpgradableShip.h"
+#include "Delegate.h"
 
 class PhysicsComponent;
 class CircleCollision;
@@ -9,10 +10,14 @@ class HealthComponent;
 class Player : public Pawn, public IUpgradableShip
 {
 public:
+	Delegate<bool> OnShootUpdate;
+
 	Player();
 	virtual void Update(float deltaTime) override;
 	virtual void HandleEvents() override;
+
 	void OnZeroHealth();
+	void OnRevive();
 
 	virtual void OnBecameVisible() override;
 	virtual void OnBecameHidden() override;
@@ -26,9 +31,12 @@ public:
 	/* IUpgradableShip Interface declarations */
 	virtual void UpgradeShields(int amountToHeal) override;
 	virtual void UpgradeWeaponPower() override;
+	virtual void AddCompanion() override;
+
 
 private:
 
+	void OnCompanionDie(class Companion* co);
 	void Move(float deltaTime);
 	void ChangeAnimationBasedOnInput();
 
@@ -51,5 +59,8 @@ private:
 	int m_WeaponLevel = 1;
 
 	Vector2D m_FirePosition;
+	//Companion
+	std::vector<Vector2D> m_CompanionPositions {Vector2D(100,0)};
+	std::vector<Vector2D> m_AvailablePositions;
 };
 

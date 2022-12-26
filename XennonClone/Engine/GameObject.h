@@ -34,6 +34,7 @@ protected:
 
 	bool m_WasInitialized = false;
 	bool m_pendingDestroy = false;
+	bool m_isEnabled = true;
 
 public:
 /* Component-Derived System */
@@ -93,18 +94,18 @@ public:
 
 	inline Transform* GetTransform() { return &_Transform; }
 
-	void SetPendingDestroy() { m_pendingDestroy = true; }
+	void SetPendingDestroy();
 
-	bool IsPendingDestroy() { return m_pendingDestroy; }
+	bool IsPendingDestroy();
 
 	/* Only called if GameObject has CollisionComponent*/
-	virtual void OnBeginCollision(GameObject* other){};
+	//virtual void OnBeginCollision(GameObject* other){};
 	/* Only called if GameObject has CollisionComponent*/
-	virtual void OnEndCollision(GameObject* other){};
+	//virtual void OnEndCollision(GameObject* other){};
 	/* Only called if GameObject has CollisionComponent*/
-	virtual void OnTriggerEnter(GameObject* other){};
+	//virtual void OnTriggerEnter(GameObject* other){};
 	/* Only called if GameObject has CollisionComponent*/
-	virtual void OnTriggerExit(GameObject* other){};
+	//virtual void OnTriggerExit(GameObject* other){};
 
 	/*Only called if GameObject has AnimationComponent */
 	//virtual void OnAnimationEnd() {};
@@ -113,6 +114,9 @@ public:
 	virtual void OnBecameVisible() {};
 	/* Called when the GameObject is outside the screen area */
 	virtual void OnBecameHidden() {};
+
+	bool GetIsEnabled() { return m_isEnabled;}
+	void SetEnabled(bool bEnabled) { m_isEnabled = bEnabled; }
 
 };
 

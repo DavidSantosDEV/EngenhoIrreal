@@ -4,11 +4,12 @@
 #include "HealthComponent.h"
 #include "Sprite.h"
 #include "AnimationComponent.h"
-#include "GameWorld.h"
+//#include "GameWorld.h"
 #include "EnemyManager.h"
 #include "Explosion.h"
 #include <cmath>
 #include "Log.h"
+#include "XennonGameWorld.h"
 
 void Enemy::Setup() 
 {
@@ -19,9 +20,11 @@ void Enemy::Setup()
 	m_AnimationComponent = AddComponent<AnimationComponent>(m_SpriteComponent, true, 8.f);
 	m_PhysicsComponent = AddComponent<PhysicsComponent>(BodyType::Kinematic, 0, 1, 1);
 	m_Collider = AddComponent<CircleCollision>(m_PhysicsComponent, m_EnemyData.colliderRadius);
+
 	m_HealthComponent = AddComponent<HealthComponent>(m_EnemyData.maxHealth);
 	m_HealthComponent->OnDie.Add(this, &Enemy::OnZeroHealth);
 	m_Collider->SetIsTrigger(true);
+	m_Collider->OnTriggerEnter.Add(this, &Enemy::OnTriggerEnter);
 }
 
 void Enemy::TestFunc(int v, int b)
@@ -39,6 +42,12 @@ void Enemy::OnDestroyed()
 void Enemy::OnZeroHealth()
 {
 	GameWorld::InstantiateObject<Explosion>()->GetTransform()->SetPosition(_Transform.GetPosition());
+
+	XennonGameWorld* world = dynamic_cast<XennonGameWorld*>(GameWorld::GetWorld());
+	if (world) {
+		world->AddScore(20);
+	}
+
 	GameWorld::DestroyObject(this);
 }
 

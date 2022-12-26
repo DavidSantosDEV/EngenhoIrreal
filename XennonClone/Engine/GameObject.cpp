@@ -69,3 +69,20 @@ bool GameObject::HasTag(const char* tag) {
 void GameObject::AddTag(const char* tag) {
 	m_objectTags.push_back(tag);
 }
+
+void GameObject::SetPendingDestroy()
+{
+	m_pendingDestroy = true;
+	for (auto cpt : m_Components) {
+		cpt->SetPendingKill();
+	}
+}
+
+bool GameObject::IsPendingDestroy()
+{
+	if (!this) {
+		throw 505;
+		return true;
+	}
+	return m_pendingDestroy;
+}

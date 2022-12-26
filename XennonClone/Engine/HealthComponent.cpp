@@ -12,11 +12,15 @@
 
 int HealthComponent::TakeDamage(int amount)
 {
+	if (bIsDead)return 0;
 	m_CurrentHealth = MathHelper::ClampInt(m_CurrentHealth - amount, 0, m_MaxHealth);
 
+	OnAnyDamageTaken.Broadcast(amount);
 	if (m_CurrentHealth <= 0)
 	{
+
 		OnDie.Broadcast();
+		bIsDead = true;
 	}
 
 	return m_CurrentHealth;
@@ -31,10 +35,17 @@ void HealthComponent::DealDamage(HealthComponent* otherHealthComponent, int amou
 	}
 
 	otherHealthComponent->TakeDamage(amount);
-	OnAnyDamageTaken.Broadcast(amount);
 }
 
 void HealthComponent::Heal(int ammount)
 {
 	m_CurrentHealth = MathHelper::ClampInt(m_CurrentHealth + ammount, 0, m_MaxHealth);
+}
+
+void HealthComponent::Revive()
+{
+	if (!bIsDead)return;
+	bIsDead = false;
+	m_CurrentHealth = m_MaxHealth;
+	OnRevive.Broadcast();
 }

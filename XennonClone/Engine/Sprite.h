@@ -56,6 +56,7 @@ public:
 	void SetRotation(float val) { m_rotation = val; }
 
 	void SetOpacity(float opacity);
+	void SetScale(float fScale);
 
 	// Inherited via RenderComponent
 	virtual void Render() override;

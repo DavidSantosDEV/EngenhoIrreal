@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Component.h"
+#include "Delegate.h"
 
 class CollisionComponent : public Component
 {
@@ -19,6 +20,12 @@ protected:
 
 	virtual b2Fixture* CreateFixture();
 public:
+
+	Delegate<GameObject*> OnCollisionEnter;
+	Delegate<GameObject*> OnCollisionExit;
+	Delegate<GameObject*> OnTriggerEnter;
+	Delegate<GameObject*> OnTriggerExit;
+
 	CollisionComponent(){};
 
 	CollisionComponent(PhysicsComponent* physical);
@@ -33,6 +40,9 @@ public:
 	void SetCollisionEnabled(bool bNewEnabled);
 
 	bool GetIsTrigger() { return m_IsTrigger; }
-	bool GetIsEnabled() { return m_enabled; }
+	bool GetIsCollisionEnabled();
+
+	PhysicsComponent* GetPhysComp() { return m_PhysComp; }
+	b2Fixture* GetFixture() { return m_myFixture; }
 };
 

@@ -8,7 +8,7 @@ protected:
 	static PhysicsWorld* m_Instance;
 	
 	class b2World* m_b2World = nullptr;
-	class b2ContactListener* m_Listener = nullptr;
+	class ContactListener* m_Listener = nullptr;
 
 public:
 	PhysicsWorld() {};
@@ -23,6 +23,8 @@ public:
 	void UpdatePhysics();
 
 	static PhysicsWorld* GetInstance() { return m_Instance; }
+
+	void ExecuteStashedEvents();
 
 	class b2Body* CreateBody(struct b2BodyDef& def);
 	void DestroyBody(b2Body* bodyDes);

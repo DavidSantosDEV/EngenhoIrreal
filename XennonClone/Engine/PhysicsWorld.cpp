@@ -41,6 +41,13 @@ void PhysicsWorld::UpdatePhysics()
 	m_b2World->Step(1.f/60.f, 8, 3);
 }
 
+void PhysicsWorld::ExecuteStashedEvents()
+{
+	if (m_Listener) {
+		m_Listener->ExecuteHandles();
+	}
+}
+
 b2Body* PhysicsWorld::CreateBody(b2BodyDef& def) {
 
 	if (!m_b2World) {

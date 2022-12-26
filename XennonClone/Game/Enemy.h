@@ -51,7 +51,7 @@ public:
 	void TestFunc(int bal, int val);
 	virtual void OnDestroyed() override;
 	void OnZeroHealth();
-	virtual void OnTriggerEnter(GameObject* other) override;
+	virtual void OnTriggerEnter(GameObject* other);
 	virtual void OnBecameHidden() override;
 };
 

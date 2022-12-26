@@ -48,8 +48,15 @@ void Sprite::SetOpacity(float opacity)
 	SDL_SetTextureAlphaMod(m_Texture, (Uint8)(m_Opacity * 255));
 }
 
+void Sprite::SetScale(float fScale)
+{
+	m_DestRect.w = m_FrameWidth * fScale;
+	m_DestRect.h = m_FrameHeight * fScale;
+}
+
 void Sprite::Render()
 {
+	if (!m_isActive)return;
 	if (m_Texture) {
 		if (m_ParentTransform) 
 		{

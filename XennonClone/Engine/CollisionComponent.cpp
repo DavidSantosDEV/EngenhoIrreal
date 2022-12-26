@@ -85,12 +85,14 @@ void CollisionComponent::SetCollisionEnabled(bool bNewEnabled)
 	if (!fix) {
 		return;
 	}
-	if (m_enabled == true) {
-		fix->SetSensor(true);
-	}
-	else {
-		fix->SetSensor(false);
-	}
-
+	fix->SetSensor(bNewEnabled);
 	m_enabled = bNewEnabled;
+}
+
+bool CollisionComponent::GetIsCollisionEnabled()
+{
+	if (m_PhysComp) {
+		return m_IsCollisionEnabled;
+	}
+	return false;
 }

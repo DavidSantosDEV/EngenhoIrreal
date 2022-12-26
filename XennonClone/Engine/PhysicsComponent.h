@@ -37,6 +37,7 @@ protected:
 public:
 	PhysicsComponent() {};
 	PhysicsComponent(BodyType type, float GravityScale, float bodyMass, float density);
+	~PhysicsComponent();
 	
 	virtual void OnDestroyed() override;
 	virtual void Start() override;

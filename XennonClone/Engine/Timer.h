@@ -38,6 +38,8 @@ public:
 	bool GetShouldRepeat() { return m_ShouldRepeat; }
 	void SetShouldRepeat(bool val) { m_ShouldRepeat = val; }
 
+	FORCEINLINE ISimpleDelegateInvoker* GetDelegateInvoker() { return m_del; }
+
 	virtual void Execute() override;
 protected:
 	void DelayTask();

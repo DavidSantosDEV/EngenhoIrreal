@@ -18,6 +18,9 @@ public:
     virtual void Execute() override {
         (m_Target->*m_Method)();
     }
+    bool Equals(TObject* obj, SimpleDelegateNoParams method) {
+        return obj == m_Target && method == m_Method;
+    }
 private:
     TObject* m_Target;
     SimpleDelegateNoParams m_Method;
@@ -88,10 +91,11 @@ public:
     }
 
     void Broadcast(TArgs ... params) {
-        
         for (int i = 0; i < m_Attached.size();++i) {
             IDelegateInvokable<TArgs...>* member = m_Attached[i];
-            member->Execute(params...);
+            if (member!=nullptr) {
+                member->Execute(params...);
+            }
         }
     }
 };

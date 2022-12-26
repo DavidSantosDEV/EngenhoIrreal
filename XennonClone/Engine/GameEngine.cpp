@@ -24,6 +24,7 @@
 #include "AudioSystem.h"
 #include "SDL_audio.h"
 #include <iostream>
+#include <mutex>
 
 
 // Initialize static variables
@@ -114,14 +115,19 @@ void GameEngine::StartAndRun()
 	InstanceCounter::PrintCounts();
 }
 
+
+static std::mutex m_ObjMutex;
 void GameEngine::DestroyPending()
 {
+	std::lock_guard<std::mutex> lock(m_ObjMutex);
 	if (m_PendingDestroy.size() > 0) {
 		for (auto obj : m_PendingDestroy) {
 			std::vector<std::shared_ptr<Component>> comps = obj->GetAllComponents();
 			for (auto comp : comps) {
-				comp->OnDestroyed();			
-				delete comp.get();
+				if (comp) {
+					comp->OnDestroyed();
+					delete comp.get();
+				}
 				InstanceCounter::RemoveComponentCount();
 				InstanceCounter::PrintCounts();
 			}
@@ -158,16 +164,23 @@ void GameEngine::HandleInput(SDL_Event& ev)
 
 void GameEngine::Update()
 {
+
+	/*
+	Execute events here
+	*/
+	PhysicsWorld::GetInstance()->ExecuteStashedEvents();
 	TimerManager::ExecuteHandles();
 	m_World->Update(m_ElapsedMS);
 	for (int i = 0; i < m_GameObjectStack.size();++i) 
 	{
 		if (m_GameObjectStack[i] != nullptr)
 		{
-			m_GameObjectStack[i]->Update(m_ElapsedMS);
-			const std::vector<std::shared_ptr<Component>> comps = m_GameObjectStack[i]->GetAllComponents();
-			for (auto cpt : comps) {
-				cpt->Update(m_ElapsedMS);
+			if (m_GameObjectStack[i]->GetIsEnabled()) {
+				m_GameObjectStack[i]->Update(m_ElapsedMS);
+				const std::vector<std::shared_ptr<Component>> comps = m_GameObjectStack[i]->GetAllComponents();
+				for (auto cpt : comps) {
+					cpt->Update(m_ElapsedMS);
+				}
 			}
 		}
 	}

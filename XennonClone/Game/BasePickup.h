@@ -6,7 +6,7 @@ class BasePickup : public GameObject
 public:
 	BasePickup();
 	virtual void Update(float deltaTime) override;
-	virtual void OnTriggerEnter(GameObject* other) override;
+	void OnTriggerEnter(GameObject* other);
 
 protected:
 	virtual void CallPickupPower(class IUpgradableShip* other) = 0;

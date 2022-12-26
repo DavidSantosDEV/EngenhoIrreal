@@ -19,7 +19,7 @@ PhysicsComponent::PhysicsComponent(BodyType type, float GravityScale, float body
 	m_density = density;
 }
 
-void PhysicsComponent::OnDestroyed()
+PhysicsComponent::~PhysicsComponent()
 {
 	b2Fixture* fix = m_storedBody->GetFixtureList();
 	do {
@@ -30,6 +30,20 @@ void PhysicsComponent::OnDestroyed()
 		}
 	} while (fix != nullptr);
 	PhysicsWorld::GetInstance()->DestroyBody(m_storedBody);
+}
+
+void PhysicsComponent::OnDestroyed()
+{
+	/*
+	b2Fixture* fix = m_storedBody->GetFixtureList();
+	do {
+		if (fix) {
+			b2Fixture* temp = fix;
+			fix = fix->GetNext();
+			m_storedBody->DestroyFixture(temp);
+		}
+	} while (fix != nullptr);
+	PhysicsWorld::GetInstance()->DestroyBody(m_storedBody);*/
 }
 
 void PhysicsComponent::Start()

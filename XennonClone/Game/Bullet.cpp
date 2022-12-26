@@ -14,8 +14,9 @@ void Bullet::Setup()
 		m_BulletData.scale, 0);
 	m_AnimationComponent = AddComponent<AnimationComponent>(GetComponent<Sprite>(), false, 8.f);
 	m_PhysicsComponent = AddComponent<PhysicsComponent>(BodyType::Dynamic, 0, 1, 1);
-	AddComponent<CircleCollision>(GetComponent<PhysicsComponent>(), m_BulletData.radius);
-	GetComponent<CircleCollision>()->SetIsTrigger(true);
+	CollisionComponent* comp = AddComponent<CircleCollision>(GetComponent<PhysicsComponent>(), m_BulletData.radius);
+	comp->SetIsTrigger(true);
+	comp->OnTriggerEnter.Add(this, &Bullet::OnTriggerEnter);
 }
 
 
@@ -30,7 +31,7 @@ void Bullet::OnTriggerEnter(GameObject* other)
 	if (other->HasTag(m_BulletData.destroyTagCheck))
 	{
 		HealthComponent* otherHealthComp = other->GetComponent<HealthComponent>();
-		int otherHealthLeft;
+		int otherHealthLeft = 0;
 		if (otherHealthComp) {
 			otherHealthLeft = otherHealthComp->TakeDamage(m_BulletData.damage);
 		}

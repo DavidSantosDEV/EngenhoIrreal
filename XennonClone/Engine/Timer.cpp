@@ -10,7 +10,7 @@ TimerHandle::~TimerHandle()
 void TimerHandle::Stop()
 {
 	m_isActive = false;
-	//Stop Thread
+	//Stop Thread idk how tho
 }
 
 void TimerHandle::Start(float Delay /*Time in seconds*/, bool bRepeating)

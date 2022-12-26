@@ -9,6 +9,7 @@
 #include "HealthComponent.h"
 #include "Explosion.h"
 #include "TimerManager.h"
+#include "Companion.h"
 #include "MathHelper.h"
 
 Player::Player()
@@ -22,11 +23,17 @@ Player::Player()
 	m_Collider = AddComponent<CircleCollision>(m_PhysicsComponent, 20);
 	m_HealthComponent = AddComponent<HealthComponent>(100);
 	m_HealthComponent->OnDie.Add(this, &Player::OnZeroHealth);
+	m_HealthComponent->OnRevive.Add(this, &Player::OnRevive);
+
+	m_AvailablePositions = m_CompanionPositions;
 }
 
 void Player::HandleEvents()
 {
 	Pawn::HandleEvents();
+
+	if (!m_HealthComponent->GetIsAlive())return;
+	
 	m_isShooting = Input::IsFireKeyDown();
 	if (m_isShooting && m_ShotsTimer >= m_FireRate)
 	{
@@ -45,7 +52,15 @@ void Player::HandleEvents()
 void Player::OnZeroHealth()
 {
 	GameWorld::InstantiateObject<Explosion>()->_Transform.SetPosition(_Transform.GetPosition());
-	GameWorld::DestroyObject(this);
+	m_SpriteComponent->SetActive(false);
+	m_Collider->SetCollisionEnabled(false);
+	//GameWorld::DestroyObject(this);
+}
+
+void Player::OnRevive()
+{
+	m_Collider->SetCollisionEnabled(true);
+	m_SpriteComponent->SetActive(true);
 }
 
 void Player::OnBecameVisible()
@@ -70,6 +85,19 @@ void Player::UpgradeWeaponPower()
 	m_WeaponLevel = MathHelper::ClampInt(m_WeaponLevel + 1, 1, 2);
 }
 
+void Player::AddCompanion()
+{
+	if (!m_AvailablePositions.size()>0) {
+		return;
+	}
+	Vector2D pos = m_AvailablePositions[0];
+	Companion* comp = GameWorld::InstantiateObject<Companion>(pos);
+	//comp->GetTransform()->SetPosition(GetTransform()->GetPosition() + pos);
+	comp->OnCompanionDie.Add(this, &Player::OnCompanionDie);
+	comp->SetTarget(this, pos);
+	m_AvailablePositions.erase(m_AvailablePositions.begin());
+}
+
 void Player::Update(float deltaTime)
 {
 	m_ShotsTimer += deltaTime;
@@ -78,6 +106,12 @@ void Player::Update(float deltaTime)
 	ChangeAnimationBasedOnInput();
 
 	Pawn::Update(deltaTime);
+}
+
+void Player::OnCompanionDie(Companion* co)
+{
+	if (!co)return;
+	m_AvailablePositions.push_back(co->GetPositionTarget());
 }
 
 void Player::Move(float deltaTime)

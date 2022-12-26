@@ -19,6 +19,7 @@ void BasePickup::SetupPickup(const char* spritePath, int spriteColumns, int spri
 	m_PhysicsComponent = AddComponent<PhysicsComponent>(BodyType::Kinematic, 0, 1, 1);
 	m_Collider = AddComponent<CircleCollision>(m_PhysicsComponent, colliderRadius);
 	m_Collider->SetIsTrigger(true);
+	m_Collider->OnTriggerEnter.Add(this, &BasePickup::OnTriggerEnter);
 }
 
 void BasePickup::Update(float deltaTime)

@@ -157,6 +157,7 @@
     <ClCompile Include="BasePickup.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Companion.cpp" />
+    <ClCompile Include="CompanionPickup.cpp" />
     <ClCompile Include="Drone.cpp" />
     <ClCompile Include="DronePack.cpp" />
     <ClCompile Include="Enemy.cpp" />
@@ -180,6 +181,7 @@
     <ClInclude Include="BasePickup.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Companion.h" />
+    <ClInclude Include="CompanionPickup.h" />
     <ClInclude Include="Drone.h" />
     <ClInclude Include="DronePack.h" />
     <ClInclude Include="Enemy.h" />
