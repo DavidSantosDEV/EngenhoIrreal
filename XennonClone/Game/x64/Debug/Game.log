@@ -1,15 +1,47 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(510,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (Game.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-EngenhoIrrealXVII.lib(Component.obj) : warning LNK4204: 'C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\x64\Debug\EngenhoIrrealXVII.pdb' is missing debugging information for referencing module; linking object as if no debug info
+  BasePickup.cpp
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\Transform.h(75,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\GameObject.h(59,46): warning C4244: 'argument': conversion from '_Ty' to 'float', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Game\BasePickup.cpp(19): message : see reference to function template instantiation 'T *GameObject::AddComponent<PhysicsComponent,BodyType,int,int,int>(BodyType &&,int &&,int &&,int &&)' being compiled
+          with
+          [
+              T=PhysicsComponent
+          ]
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\GameObject.h(59,46): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Game\BasePickup.cpp(20): message : see reference to function template instantiation 'T *GameObject::AddComponent<CircleCollision,PhysicsComponent*&,int&>(PhysicsComponent *&,int &)' being compiled
+          with
+          [
+              T=CircleCollision
+          ]
+  XennonGameWorld.cpp
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\Transform.h(75,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\MathHelper.h(66,18): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\MathHelper.h(67,18): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\MathHelper.h(68,54): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  Generating Code...
+XennonClone.obj : warning LNK4099: PDB 'vc143.pdb' was not found with 'XennonClone.obj' or at 'C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\x64\Debug\vc143.pdb'; linking object as if no debug info
 EngenhoIrrealXVII.lib(InstanceCounter.obj) : warning LNK4204: 'C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\x64\Debug\EngenhoIrrealXVII.pdb' is missing debugging information for referencing module; linking object as if no debug info
+EngenhoIrrealXVII.lib(Input.obj) : warning LNK4204: 'C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\x64\Debug\EngenhoIrrealXVII.pdb' is missing debugging information for referencing module; linking object as if no debug info
+EngenhoIrrealXVII.lib(TextureManager.obj) : warning LNK4204: 'C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\x64\Debug\EngenhoIrrealXVII.pdb' is missing debugging information for referencing module; linking object as if no debug info
 EngenhoIrrealXVII.lib(b2_body.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'EngenhoIrrealXVII.lib(b2_body.obj)' or at 'C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\x64\Debug\box2d.pdb'; linking object as if no debug info
 EngenhoIrrealXVII.lib(b2_circle_shape.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'EngenhoIrrealXVII.lib(b2_circle_shape.obj)' or at 'C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\x64\Debug\box2d.pdb'; linking object as if no debug info
 EngenhoIrrealXVII.lib(b2_fixture.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'EngenhoIrrealXVII.lib(b2_fixture.obj)' or at 'C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\x64\Debug\box2d.pdb'; linking object as if no debug info
+EngenhoIrrealXVII.lib(InitError.obj) : warning LNK4204: 'C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\x64\Debug\EngenhoIrrealXVII.pdb' is missing debugging information for referencing module; linking object as if no debug info
+EngenhoIrrealXVII.lib(SDLWrapper.obj) : warning LNK4204: 'C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\x64\Debug\EngenhoIrrealXVII.pdb' is missing debugging information for referencing module; linking object as if no debug info
+EngenhoIrrealXVII.lib(AudioSystem.obj) : warning LNK4204: 'C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\x64\Debug\EngenhoIrrealXVII.pdb' is missing debugging information for referencing module; linking object as if no debug info
 EngenhoIrrealXVII.lib(b2_world.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'EngenhoIrrealXVII.lib(b2_world.obj)' or at 'C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\x64\Debug\box2d.pdb'; linking object as if no debug info
 EngenhoIrrealXVII.lib(b2_settings.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'EngenhoIrrealXVII.lib(b2_settings.obj)' or at 'C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\x64\Debug\box2d.pdb'; linking object as if no debug info
 EngenhoIrrealXVII.lib(b2_block_allocator.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'EngenhoIrrealXVII.lib(b2_block_allocator.obj)' or at 'C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\x64\Debug\box2d.pdb'; linking object as if no debug info
 EngenhoIrrealXVII.lib(b2_broad_phase.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'EngenhoIrrealXVII.lib(b2_broad_phase.obj)' or at 'C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\x64\Debug\box2d.pdb'; linking object as if no debug info
 EngenhoIrrealXVII.lib(b2_contact_manager.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'EngenhoIrrealXVII.lib(b2_contact_manager.obj)' or at 'C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\x64\Debug\box2d.pdb'; linking object as if no debug info
 EngenhoIrrealXVII.lib(b2_math.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'EngenhoIrrealXVII.lib(b2_math.obj)' or at 'C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\x64\Debug\box2d.pdb'; linking object as if no debug info
+EngenhoIrrealXVII.lib(AudioClip.obj) : warning LNK4204: 'C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\x64\Debug\EngenhoIrrealXVII.pdb' is missing debugging information for referencing module; linking object as if no debug info
 EngenhoIrrealXVII.lib(b2_island.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'EngenhoIrrealXVII.lib(b2_island.obj)' or at 'C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\x64\Debug\box2d.pdb'; linking object as if no debug info
 EngenhoIrrealXVII.lib(b2_dynamic_tree.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'EngenhoIrrealXVII.lib(b2_dynamic_tree.obj)' or at 'C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\x64\Debug\box2d.pdb'; linking object as if no debug info
 EngenhoIrrealXVII.lib(b2_contact.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'EngenhoIrrealXVII.lib(b2_contact.obj)' or at 'C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\x64\Debug\box2d.pdb'; linking object as if no debug info
@@ -44,27 +76,4 @@ EngenhoIrrealXVII.lib(b2_chain_shape.obj) : warning LNK4099: PDB 'box2d.pdb' was
 EngenhoIrrealXVII.lib(b2_edge_shape.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'EngenhoIrrealXVII.lib(b2_edge_shape.obj)' or at 'C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\x64\Debug\box2d.pdb'; linking object as if no debug info
 EngenhoIrrealXVII.lib(b2_collide_circle.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'EngenhoIrrealXVII.lib(b2_collide_circle.obj)' or at 'C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\x64\Debug\box2d.pdb'; linking object as if no debug info
 EngenhoIrrealXVII.lib(b2_collide_polygon.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'EngenhoIrrealXVII.lib(b2_collide_polygon.obj)' or at 'C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\x64\Debug\box2d.pdb'; linking object as if no debug info
-EngenhoIrrealXVII.lib(GameEngine.obj) : error LNK2019: unresolved external symbol gladLoadGLLoader referenced in function "public: void __cdecl GameEngine::StartAndRun(void)" (?StartAndRun@GameEngine@@QEAAXXZ)
-EngenhoIrrealXVII.lib(GameEngine.obj) : error LNK2001: unresolved external symbol glad_glClear
-EngenhoIrrealXVII.lib(GameEngine.obj) : error LNK2001: unresolved external symbol glad_glClearColor
-EngenhoIrrealXVII.lib(GameEngine.obj) : error LNK2001: unresolved external symbol glad_glDrawElements
-EngenhoIrrealXVII.lib(GameEngine.obj) : error LNK2001: unresolved external symbol glad_glBindBuffer
-EngenhoIrrealXVII.lib(GameEngine.obj) : error LNK2001: unresolved external symbol glad_glGenBuffers
-EngenhoIrrealXVII.lib(GameEngine.obj) : error LNK2001: unresolved external symbol glad_glBufferData
-EngenhoIrrealXVII.lib(GameEngine.obj) : error LNK2001: unresolved external symbol glad_glAttachShader
-EngenhoIrrealXVII.lib(GameEngine.obj) : error LNK2001: unresolved external symbol glad_glCompileShader
-EngenhoIrrealXVII.lib(GameEngine.obj) : error LNK2001: unresolved external symbol glad_glCreateProgram
-EngenhoIrrealXVII.lib(GameEngine.obj) : error LNK2001: unresolved external symbol glad_glCreateShader
-EngenhoIrrealXVII.lib(GameEngine.obj) : error LNK2001: unresolved external symbol glad_glEnableVertexAttribArray
-EngenhoIrrealXVII.lib(GameEngine.obj) : error LNK2001: unresolved external symbol glad_glGetAttribLocation
-EngenhoIrrealXVII.lib(GameEngine.obj) : error LNK2001: unresolved external symbol glad_glGetProgramiv
-EngenhoIrrealXVII.lib(GameEngine.obj) : error LNK2001: unresolved external symbol glad_glGetProgramInfoLog
-EngenhoIrrealXVII.lib(GameEngine.obj) : error LNK2001: unresolved external symbol glad_glGetShaderiv
-EngenhoIrrealXVII.lib(GameEngine.obj) : error LNK2001: unresolved external symbol glad_glGetShaderInfoLog
-EngenhoIrrealXVII.lib(GameEngine.obj) : error LNK2001: unresolved external symbol glad_glLinkProgram
-EngenhoIrrealXVII.lib(GameEngine.obj) : error LNK2001: unresolved external symbol glad_glShaderSource
-EngenhoIrrealXVII.lib(GameEngine.obj) : error LNK2001: unresolved external symbol glad_glUseProgram
-EngenhoIrrealXVII.lib(GameEngine.obj) : error LNK2001: unresolved external symbol glad_glVertexAttribPointer
-EngenhoIrrealXVII.lib(GameEngine.obj) : error LNK2001: unresolved external symbol glad_glBindVertexArray
-EngenhoIrrealXVII.lib(GameEngine.obj) : error LNK2001: unresolved external symbol glad_glGenVertexArrays
-C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\x64\Debug\XennonClone.exe : fatal error LNK1120: 23 unresolved externals
+  Game.vcxproj -> C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\x64\Debug\XennonClone.exe
