@@ -93,6 +93,8 @@ void GameEngine::StartAndRun()
 			HandleInput(ev);
 		}
 		
+		PhysicsWorld::GetInstance()->ExecuteStashedEvents();
+
 		m_PhysicsWorld->UpdatePhysics(m_ElapsedMS);
 
 		Update();
@@ -101,8 +103,6 @@ void GameEngine::StartAndRun()
 
 		DestroyPending();
 
-		//PhysicsWorld::GetInstance()->ExecuteStashedEvents();
-		
 		//InstanceCounter::PrintCounts();
 		LOG("Elapsed : " << m_ElapsedMS);
 		mTicksCount = SDL_GetTicks();

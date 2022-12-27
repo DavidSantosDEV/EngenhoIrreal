@@ -87,20 +87,20 @@ void ContactListener::EndContact(b2Contact* contact)
 
 	if (compA->GetIsTrigger() || compB->GetIsTrigger()) {
 		
-		compA->OnTriggerExit.Broadcast(objB);
-		compB->OnTriggerExit.Broadcast(objA);
+		//compA->OnTriggerExit.Broadcast(objB);
+		//compB->OnTriggerExit.Broadcast(objA);
 		
-		//AddDel(objA, &compA->OnTriggerExit, objB);
-		//AddDel(objB, &compB->OnTriggerExit, objA);
+		AddDel(objA, &compA->OnTriggerExit, objB);
+		AddDel(objB, &compB->OnTriggerExit, objA);
 		//objA->OnTriggerExit(objB);
 		//objB->OnTriggerExit(objA);
 	}
 	else {
 
-		compA->OnCollisionExit.Broadcast(objB);
-		compB->OnCollisionExit.Broadcast(objA);
-		//AddDel(objA, &compA->OnCollisionExit, objB);
-		//AddDel(objB, &compB->OnCollisionExit, objA);
+		//compA->OnCollisionExit.Broadcast(objB);
+		//compB->OnCollisionExit.Broadcast(objA);
+		AddDel(objA, &compA->OnCollisionExit, objB);
+		AddDel(objB, &compB->OnCollisionExit, objA);
 		//objA->OnEndCollision(objB);
 		//objB->OnEndCollision(objA);
 	}
