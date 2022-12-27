@@ -36,9 +36,10 @@ void PhysicsWorld::SetGravity(Vector2D gravityDir) {
 	}
 }
 
-void PhysicsWorld::UpdatePhysics()
+void PhysicsWorld::UpdatePhysics(float delta)
 {
-	m_b2World->Step(1.f/60.f, 8, 3);
+	m_b2World->Step(delta,8,8);
+	//m_b2World->Step(1.f/60.f, 8, 3);
 }
 
 void PhysicsWorld::ExecuteStashedEvents()

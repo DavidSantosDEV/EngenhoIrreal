@@ -10,8 +10,6 @@ class HealthComponent;
 class Player : public Pawn, public IUpgradableShip
 {
 public:
-	Delegate<bool> OnShootUpdate;
-
 	Player();
 	virtual void Update(float deltaTime) override;
 	virtual void HandleEvents() override;

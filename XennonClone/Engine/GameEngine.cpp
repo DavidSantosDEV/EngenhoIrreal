@@ -93,16 +93,18 @@ void GameEngine::StartAndRun()
 			HandleInput(ev);
 		}
 		
-		m_PhysicsWorld->UpdatePhysics();
+		m_PhysicsWorld->UpdatePhysics(m_ElapsedMS);
 
 		Update();
 
 		Render();
 
 		DestroyPending();
+
+		//PhysicsWorld::GetInstance()->ExecuteStashedEvents();
 		
 		//InstanceCounter::PrintCounts();
-
+		LOG("Elapsed : " << m_ElapsedMS);
 		mTicksCount = SDL_GetTicks();
 	}
 	m_audioSystem->Clean();
@@ -123,10 +125,10 @@ void GameEngine::DestroyPending()
 	if (m_PendingDestroy.size() > 0) {
 		for (auto obj : m_PendingDestroy) {
 			std::vector<std::shared_ptr<Component>> comps = obj->GetAllComponents();
-			for (auto comp : comps) {
-				if (comp) {
-					comp->OnDestroyed();
-					delete comp.get();
+			for (int i = 0; i < comps.size();++i) {
+				comps[i]->OnDestroyed();
+				if (comps[i]) {
+					comps[i]->OnDestroyed();
 				}
 				InstanceCounter::RemoveComponentCount();
 				InstanceCounter::PrintCounts();
@@ -168,7 +170,6 @@ void GameEngine::Update()
 	/*
 	Execute events here
 	*/
-	PhysicsWorld::GetInstance()->ExecuteStashedEvents();
 	TimerManager::ExecuteHandles();
 	m_World->Update(m_ElapsedMS);
 	for (int i = 0; i < m_GameObjectStack.size();++i) 

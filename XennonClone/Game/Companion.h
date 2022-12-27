@@ -18,13 +18,10 @@ protected:
 	class HealthComponent* HealthComp;
 
 	Vector2D m_playerOffSet;
+	Vector2D m_bulletPos;
 
-
-protected:
-
-	float m_ShootDelay= 0.2f;
-	void Shoot();
-
+	float m_FireRate = 0.2f;
+	float m_ShotsTimer = 0.f;
 public:
 
 	Delegate<Companion*> OnCompanionDie;

@@ -131,22 +131,22 @@
     <ClInclude Include="MetalAsteroid.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CompanionPickup.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="BasePickup.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="IUpgradableShip.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ShieldPickup.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="StoneAsteroid.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="WeaponPowerPickup.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CompanionPickup.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

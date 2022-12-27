@@ -52,12 +52,18 @@ void ContactListener::BeginContact(b2Contact* contact)
 	}
 
 	if (compA->GetIsTrigger() || compB->GetIsTrigger()) {
+
+		//compA->OnTriggerEnter.Broadcast(objB);
+		//compB->OnTriggerEnter.Broadcast(objA);
 		AddDel(objA, &compA->OnTriggerEnter, objB);
 		AddDel(objB, &compB->OnTriggerEnter, objA);
 		//objA->OnTriggerEnter(objB);
 		//objB->OnTriggerEnter(objA);
 	}
 	else {
+		
+		//compA->OnCollisionEnter.Broadcast(objB);
+		//compB->OnCollisionEnter.Broadcast(objA);
 		AddDel(objA, &compA->OnCollisionEnter, objB);
 		AddDel(objB, &compB->OnCollisionEnter, objA);
 		//objA->OnBeginCollision(objB);
@@ -80,14 +86,21 @@ void ContactListener::EndContact(b2Contact* contact)
 	}
 
 	if (compA->GetIsTrigger() || compB->GetIsTrigger()) {
-		AddDel(objA, &compA->OnTriggerExit, objB);
-		AddDel(objB, &compB->OnTriggerExit, objA);
+		
+		compA->OnTriggerExit.Broadcast(objB);
+		compB->OnTriggerExit.Broadcast(objA);
+		
+		//AddDel(objA, &compA->OnTriggerExit, objB);
+		//AddDel(objB, &compB->OnTriggerExit, objA);
 		//objA->OnTriggerExit(objB);
 		//objB->OnTriggerExit(objA);
 	}
 	else {
-		AddDel(objA, &compA->OnCollisionExit, objB);
-		AddDel(objB, &compB->OnCollisionExit, objA);
+
+		compA->OnCollisionExit.Broadcast(objB);
+		compB->OnCollisionExit.Broadcast(objA);
+		//AddDel(objA, &compA->OnCollisionExit, objB);
+		//AddDel(objB, &compB->OnCollisionExit, objA);
 		//objA->OnEndCollision(objB);
 		//objB->OnEndCollision(objA);
 	}
@@ -108,6 +121,7 @@ void ContactListener::ExecuteHandles()
 
 void ContactListener::AddDel(GameObject* caller,Delegate<GameObject*>* newDel, GameObject* param)
 {
+	
 	std::lock_guard<std::mutex> lock(m_HandlesMutex);
 
 	for (int i = 0; i < m_delList.size();++i) {

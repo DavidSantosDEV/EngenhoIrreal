@@ -20,7 +20,7 @@ public:
 
 	void SetGravity(Vector2D gravityDir);
 
-	void UpdatePhysics();
+	void UpdatePhysics(float delta);
 
 	static PhysicsWorld* GetInstance() { return m_Instance; }
 

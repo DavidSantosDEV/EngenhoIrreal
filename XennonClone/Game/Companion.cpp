@@ -6,11 +6,8 @@
 #include "CircleCollision.h"
 #include "AnimationComponent.h"
 #include "HealthComponent.h"
+#include "PlayerBullet.h"
 
-void Companion::Shoot()
-{
-
-}
 
 Companion::Companion(Vector2D position)
 {
@@ -27,6 +24,7 @@ Companion::Companion(Vector2D position)
 
 	physComp = AddComponent<PhysicsComponent>(BodyType::Dynamic, 0, 1, 1);
 	colComp = AddComponent<CircleCollision>(physComp, 10);
+	m_bulletPos = Vector2D(3.f, 0);
 }
 
 void Companion::SetTarget(Player* newTarget, Vector2D localPosition)
@@ -39,10 +37,16 @@ void Companion::SetTarget(Player* newTarget, Vector2D localPosition)
 
 void Companion::Update(float delta)
 {
+	m_ShotsTimer += delta;
 	if (m_FollowTarget) {
-		if (m_FollowTarget->GetIsShooting()) {
-
+		if (m_FollowTarget->GetIsShooting() && m_ShotsTimer >= m_FireRate)
+		{
+			PlayerBullet* bullet = GameWorld::InstantiateObject<PlayerBullet>();
+			// TODO don't get component every frame
+			bullet->GetPhysicsComponent()->SetPosition(GetTransform()->GetPosition()+m_bulletPos);
+			m_ShotsTimer = 0.f;
 		}
+		physComp->SetPosition(m_FollowTarget->GetTransform()->GetPosition() + m_playerOffSet);
 	}
 }
 
