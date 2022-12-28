@@ -41,6 +41,7 @@
     <ClCompile Include="PhysicsWorld.cpp" />
     <ClCompile Include="RenderComponent.cpp" />
     <ClCompile Include="SDLWrapper.cpp" />
+    <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="SquareCollision.cpp" />
     <ClCompile Include="TextureManager.cpp" />
@@ -73,6 +74,7 @@
     <ClInclude Include="PhysicsWorld.h" />
     <ClInclude Include="RenderComponent.h" />
     <ClInclude Include="SDLWrapper.h" />
+    <ClInclude Include="Shader.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="SquareCollision.h" />
     <ClInclude Include="TextureManager.h" />
@@ -81,6 +83,9 @@
     <ClInclude Include="Transform.h" />
     <ClInclude Include="ViewPortCollision.h" />
     <ClInclude Include="Window.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="shaders\Main.shader" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

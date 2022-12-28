@@ -30,6 +30,7 @@
 #include <glm.hpp>
 #include <gtc/matrix_transform.hpp>
 #include <gtc/type_ptr.hpp>
+#include "Shader.h"
 
 // Initialize static variables
 GameWorld* GameEngine::m_World = nullptr;
@@ -116,90 +117,94 @@ void GameEngine::StartAndRun()
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
-#pragma region VertexShader
+//#pragma region VertexShader
+//
+//	const char* vertexShaderSource = R"glsl(
+//	#version 330 core
+//	
+//	layout (location = 0) in vec2 position;
+//	layout (location = 1) in vec3 color;
+//
+//	out vec3 Color;
+//	
+//	void main()
+//	{
+//		Color = color;
+//		gl_Position = vec4(position, 0.0, 1.0);
+//	}
+//
+//	)glsl";
+//
+//	GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
+//	glShaderSource(vertexShader, 1, &vertexShaderSource, nullptr);
+//	glCompileShader(vertexShader);
+//
+//	GLint success;
+//	char infoLog[512];
+//	glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
+//
+//	if (!success)
+//	{
+//		glGetShaderInfoLog(vertexShader, 512, nullptr, infoLog);
+//		LOG_ERROR("ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog);
+//		SDL_GL_DeleteContext(context);
+//		SDL_DestroyWindow(m_Window->GetWindow());
+//		SDL_Quit();
+//	}
+//
+//#pragma endregion
+//
+//#pragma region FragmentShader
+//
+//	const char* fragmentShaderSource = R"glsl(
+//	#version 330 core
+//
+//	in vec3 Color;
+//	out vec4 outColor;
+//
+//	void main()
+//	{
+//		outColor = vec4(Color, 1.f);
+//	}
+//
+//	)glsl";
+//
+//	GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+//	glShaderSource(fragmentShader, 1, &fragmentShaderSource, nullptr);
+//	glCompileShader(fragmentShader);
+//	glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
+//
+//	if (!success)
+//	{
+//		glGetShaderInfoLog(fragmentShader, 512, nullptr, infoLog);
+//		LOG_ERROR("ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n" << infoLog << std::endl);
+//		SDL_GL_DeleteContext(context);
+//		SDL_DestroyWindow(m_Window->GetWindow());
+//		SDL_Quit();
+//	}
+//
+//#pragma endregion
+//
+//#pragma region ShaderProgram
+//	GLuint shaderProgram = glCreateProgram();
+//	glAttachShader(shaderProgram, vertexShader);
+//	glAttachShader(shaderProgram, fragmentShader);
+//	glLinkProgram(shaderProgram);
+//
+//	glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
+//	if (!success)
+//	{
+//		glGetProgramInfoLog(shaderProgram, 512, nullptr, infoLog);
+//		LOG_ERROR("ERROR::SHADER::PROGRAM::LINK_FAILED\n" << infoLog);
+//	}
+//
+//	glUseProgram(shaderProgram);
+//
+//#pragma endregion
+// 
+//
 
-	const char* vertexShaderSource = R"glsl(
-	#version 330 core
-	
-	layout (location = 0) in vec2 position;
-	layout (location = 1) in vec3 color;
-
-	out vec3 Color;
-	
-	void main()
-	{
-		Color = color;
-		gl_Position = vec4(position, 0.0, 1.0);
-	}
-
-	)glsl";
-
-	GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
-	glShaderSource(vertexShader, 1, &vertexShaderSource, nullptr);
-	glCompileShader(vertexShader);
-
-	GLint success;
-	char infoLog[512];
-	glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
-
-	if (!success)
-	{
-		glGetShaderInfoLog(vertexShader, 512, nullptr, infoLog);
-		LOG_ERROR("ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog);
-		SDL_GL_DeleteContext(context);
-		SDL_DestroyWindow(m_Window->GetWindow());
-		SDL_Quit();
-	}
-
-#pragma endregion
-
-#pragma region FragmentShader
-
-	const char* fragmentShaderSource = R"glsl(
-	#version 330 core
-
-	in vec3 Color;
-	out vec4 outColor;
-
-	void main()
-	{
-		outColor = vec4(Color, 1.f);
-	}
-
-	)glsl";
-
-	GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-	glShaderSource(fragmentShader, 1, &fragmentShaderSource, nullptr);
-	glCompileShader(fragmentShader);
-	glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
-
-	if (!success)
-	{
-		glGetShaderInfoLog(fragmentShader, 512, nullptr, infoLog);
-		LOG_ERROR("ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n" << infoLog << std::endl);
-		SDL_GL_DeleteContext(context);
-		SDL_DestroyWindow(m_Window->GetWindow());
-		SDL_Quit();
-	}
-
-#pragma endregion
-
-#pragma region ShaderProgram
-	GLuint shaderProgram = glCreateProgram();
-	glAttachShader(shaderProgram, vertexShader);
-	glAttachShader(shaderProgram, fragmentShader);
-	glLinkProgram(shaderProgram);
-
-	glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
-	if (!success)
-	{
-		glGetProgramInfoLog(shaderProgram, 512, nullptr, infoLog);
-		LOG_ERROR("ERROR::SHADER::PROGRAM::LINK_FAILED\n" << infoLog);
-	}
-
-	glUseProgram(shaderProgram);
-
-#pragma endregion
+	unsigned int shaderProgram = Shader::CreateProgramFromShaderPath("../Engine/shaders/Main.shader");
 
 	GLint posAttrib = glGetAttribLocation(shaderProgram, "position");
 	glEnableVertexAttribArray(posAttrib);
@@ -211,27 +216,6 @@ void GameEngine::StartAndRun()
 
 	//SplashScreen();
 	Start();
-
-	//while (true)
-	//{
-	//	if (SDL_PollEvent(&ev))
-	//	{
-	//		if (ev.type == SDL_QUIT) break;
-	//	}
-
-	//	glClear(GL_COLOR_BUFFER_BIT);
-
-	//	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-
-	//	glClearColor(0.2f, 0.3f, 0.3f, 1.f);
-
-	//	SDL_GL_SwapWindow(m_Window->GetWindow());
-	//}
-
-	//SDL_GL_DeleteContext(context);
-	//SDL_DestroyWindow(m_Window->GetWindow());
-
-	//SDL_Quit();
 
 	while (isRunning)
 	{
@@ -261,6 +245,7 @@ void GameEngine::StartAndRun()
 		mTicksCount = SDL_GetTicks();
 	}
 	m_audioSystem->Clean();
+
 	/*End game cleaning (memory leaks check) */
 	InstanceCounter::PrintCounts();
 	for (auto obj : m_GameObjectStack) {
@@ -271,6 +256,7 @@ void GameEngine::StartAndRun()
 
 	SDL_GL_DeleteContext(context);
 	SDL_DestroyWindow(m_Window->GetWindow());
+	glDeleteProgram(shaderProgram);
 }
 
 void GameEngine::DestroyPending()
