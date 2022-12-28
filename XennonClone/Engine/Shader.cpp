@@ -66,6 +66,9 @@ unsigned int Shader::CreateProgram(const char* vertexShader, const char* fragmen
 
 	glUseProgram(program);
 
+	glDeleteShader(vertex);
+	glDeleteShader(fragment);
+
 	return program;
 }
 
