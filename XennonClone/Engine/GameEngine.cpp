@@ -212,26 +212,26 @@ void GameEngine::StartAndRun()
 	//SplashScreen();
 	Start();
 
-	while (true)
-	{
-		if (SDL_PollEvent(&ev))
-		{
-			if (ev.type == SDL_QUIT) break;
-		}
+	//while (true)
+	//{
+	//	if (SDL_PollEvent(&ev))
+	//	{
+	//		if (ev.type == SDL_QUIT) break;
+	//	}
 
-		glClear(GL_COLOR_BUFFER_BIT);
+	//	glClear(GL_COLOR_BUFFER_BIT);
 
-		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+	//	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
-		glClearColor(0.2f, 0.3f, 0.3f, 1.f);
+	//	glClearColor(0.2f, 0.3f, 0.3f, 1.f);
 
-		SDL_GL_SwapWindow(m_Window->GetWindow());
-	}
+	//	SDL_GL_SwapWindow(m_Window->GetWindow());
+	//}
 
-	SDL_GL_DeleteContext(context);
-	SDL_DestroyWindow(m_Window->GetWindow());
+	//SDL_GL_DeleteContext(context);
+	//SDL_DestroyWindow(m_Window->GetWindow());
 
-	SDL_Quit();
+	//SDL_Quit();
 
 	while (isRunning)
 	{
@@ -268,6 +268,9 @@ void GameEngine::StartAndRun()
 	}
 	DestroyPending();
 	InstanceCounter::PrintCounts();
+
+	SDL_GL_DeleteContext(context);
+	SDL_DestroyWindow(m_Window->GetWindow());
 }
 
 void GameEngine::DestroyPending()
@@ -356,29 +359,30 @@ void GameEngine::Render()
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
 	glClearColor(0.2f, 0.3f, 0.3f, 1.f);
+
+	SDL_GL_SwapWindow(m_Window->GetWindow());
+
 	m_Window->Clean();
 
-
-
-	for (auto mR : m_RenderComponentsStack) 
-	{
-		Vector2D pos = mR->GetOwnerGameObject()->GetTransform()->GetPosition();
-		Vector2D win = m_Window->GetWindowSize();
-		if (isInsideSquare(Vector2D(-20,-20),Vector2D(win.x,-20),win,Vector2D(-20,win.y),pos)) {
-			if (!mR->GetIsVisible()) {
-				mR->SetIsVisible(true);
-				mR->GetOwnerGameObject()->OnBecameVisible();
-			}
-		}
-		else {
-			if (mR->GetIsVisible()) {
-				mR->SetIsVisible(false);
-				mR->GetOwnerGameObject()->OnBecameHidden();
-			}
-		}
-		mR->Render();
-	}
-	m_Window->UpdateRender();
+	//for (auto mR : m_RenderComponentsStack)
+	//{
+	//	Vector2D pos = mR->GetOwnerGameObject()->GetTransform()->GetPosition();
+	//	Vector2D win = m_Window->GetWindowSize();
+	//	if (isInsideSquare(Vector2D(-20, -20), Vector2D(win.x, -20), win, Vector2D(-20, win.y), pos)) {
+	//		if (!mR->GetIsVisible()) {
+	//			mR->SetIsVisible(true);
+	//			mR->GetOwnerGameObject()->OnBecameVisible();
+	//		}
+	//	}
+	//	else {
+	//		if (mR->GetIsVisible()) {
+	//			mR->SetIsVisible(false);
+	//			mR->GetOwnerGameObject()->OnBecameHidden();
+	//		}
+	//	}
+	//	mR->Render();
+	//}
+	//m_Window->UpdateRender();
 }
 
 void GameEngine::AddGameObjectToStack(GameObject* gameObject)
