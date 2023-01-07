@@ -30,6 +30,7 @@
 #include <gtc/type_ptr.hpp>
 #include "Shader.h"
 #include "Renderer.h"
+#include "OpenGLWrapper.h"
 
 // Initialize static variables
 GameWorld* GameEngine::m_World = nullptr;
@@ -58,10 +59,7 @@ void GameEngine::Init(const char* windowTitle, int windowWidth, int windowHeight
 	else {
 		m_Instance = this;
 		m_Sdl = new SDLWrapper(SDL_INIT_VIDEO | SDL_INIT_TIMER | SDL_INIT_AUDIO);
-		SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
-		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
-		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 5);
-		SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 0);
+		OpenGLWrapper::Init();
 		m_Window = new Window(windowTitle, windowWidth, windowHeight, true);
 		m_World = World;
 		m_Input = new Input();
@@ -76,17 +74,15 @@ void GameEngine::StartAndRun()
 {
 	LOG("Engine start");
 
-	SDL_GLContext context = SDL_GL_CreateContext(m_Window->GetWindow());
-	if (!gladLoadGLLoader((GLADloadproc)SDL_GL_GetProcAddress)) {
-		LOG_ERROR("Failed to initialize GLAD");
-		SDL_Quit();
-	}
-
 	bool isRunning = true;
 	SDL_Event ev;
 	const int lock = 1000 / m_MaxFPS;
 	Uint32 mTicksCount = SDL_GetTicks();
 
+
+	SDL_GLContext context = OpenGLWrapper::InitializeGLAD(m_Window->GetWindow());
+
+	/* Assign the 32 texture channels with empty samplers */
 	unsigned int shaderProgram = Shader::CreateProgramFromShaderPath("../Engine/shaders/Main.shader");
 	auto textureUniformLocation = glGetUniformLocation(shaderProgram, "Textures");
 	int samplers[32];
@@ -204,26 +200,6 @@ void GameEngine::Update()
 	}
 }
 
-float triangleArea(Vector2D A,Vector2D B ,Vector2D C ){
-	return (C.x * B.y - B.x * C.y) - (C.x * A.y - A.x * C.y) + (B.x * A.y - A.x * B.y);
-}
- bool isInsideSquare(Vector2D A ,Vector2D B ,Vector2D C ,Vector2D D ,Vector2D P)
-{
-	if (triangleArea(A,B,P) > 0 || triangleArea(B,C,P) > 0 || triangleArea(C,D,P) > 0 || triangleArea(D,A,P) > 0) {
-		return false;
-	}
-	return true;
-}
-
-bool IsInside(Vector2D windowConfines, Vector2D pos, float Leeway) {
-
-	if (pos < windowConfines) {
-		return true;
-	}
-	//lets try for now
-	return false;
-}
-
 void GameEngine::Render(unsigned int shaderProgramID)
 {
 	glClear(GL_COLOR_BUFFER_BIT);
@@ -258,6 +234,27 @@ void GameEngine::Render(unsigned int shaderProgramID)
 	//}
 	//m_Window->UpdateRender();
 }
+
+float triangleArea(Vector2D A,Vector2D B ,Vector2D C ){
+	return (C.x * B.y - B.x * C.y) - (C.x * A.y - A.x * C.y) + (B.x * A.y - A.x * B.y);
+}
+ bool isInsideSquare(Vector2D A ,Vector2D B ,Vector2D C ,Vector2D D ,Vector2D P)
+{
+	if (triangleArea(A,B,P) > 0 || triangleArea(B,C,P) > 0 || triangleArea(C,D,P) > 0 || triangleArea(D,A,P) > 0) {
+		return false;
+	}
+	return true;
+}
+
+bool IsInside(Vector2D windowConfines, Vector2D pos, float Leeway) {
+
+	if (pos < windowConfines) {
+		return true;
+	}
+	//lets try for now
+	return false;
+}
+
 
 void GameEngine::AddGameObjectToStack(GameObject* gameObject)
 {

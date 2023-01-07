@@ -35,6 +35,7 @@
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="InstanceCounter.cpp" />
     <ClCompile Include="MathHelper.cpp" />
+    <ClCompile Include="OpenGLWrapper.cpp" />
     <ClCompile Include="ParallaxComponent.cpp" />
     <ClCompile Include="Pawn.cpp" />
     <ClCompile Include="PhysicsComponent.cpp" />
@@ -69,6 +70,7 @@
     <ClInclude Include="InstanceCounter.h" />
     <ClInclude Include="Log.h" />
     <ClInclude Include="MathHelper.h" />
+    <ClInclude Include="OpenGLWrapper.h" />
     <ClInclude Include="ParallaxComponent.h" />
     <ClInclude Include="Pawn.h" />
     <ClInclude Include="PhysicsComponent.h" />
