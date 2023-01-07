@@ -24,13 +24,12 @@
 #include "AudioSystem.h"
 #include "SDL_audio.h"
 #include <iostream>
-#define STB_IMAGE_IMPLEMENTATION
-#include "stb_image.h"
 #include <glad/glad.h>
 #include <glm.hpp>
 #include <gtc/matrix_transform.hpp>
 #include <gtc/type_ptr.hpp>
 #include "Shader.h"
+#include "Renderer.h"
 
 // Initialize static variables
 GameWorld* GameEngine::m_World = nullptr;
@@ -60,8 +59,8 @@ void GameEngine::Init(const char* windowTitle, int windowWidth, int windowHeight
 		m_Instance = this;
 		m_Sdl = new SDLWrapper(SDL_INIT_VIDEO | SDL_INIT_TIMER | SDL_INIT_AUDIO);
 		SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
-		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
-		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 2);
+		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
+		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 5);
 		SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 0);
 		m_Window = new Window(windowTitle, windowWidth, windowHeight, true);
 		m_World = World;
@@ -75,57 +74,29 @@ void GameEngine::Init(const char* windowTitle, int windowWidth, int windowHeight
 
 void GameEngine::StartAndRun()
 {
-
 	LOG("Engine start");
 
 	SDL_GLContext context = SDL_GL_CreateContext(m_Window->GetWindow());
+	if (!gladLoadGLLoader((GLADloadproc)SDL_GL_GetProcAddress)) {
+		LOG_ERROR("Failed to initialize GLAD");
+		SDL_Quit();
+	}
 
 	bool isRunning = true;
 	SDL_Event ev;
 	const int lock = 1000 / m_MaxFPS;
 	Uint32 mTicksCount = SDL_GetTicks();
 
-
-	if (!gladLoadGLLoader((GLADloadproc)SDL_GL_GetProcAddress)) {
-		LOG_ERROR("Failed to initialize GLAD");
-		SDL_Quit();
-	}
-
-	float vertices[] = {
-		0.5f, 0.5f, 1.f, 0.5f, 0.f,	// top right | R = 1, G = 0, B = 0
-		0.5f, -0.5f, 0.5f, 1.f, 0.f,	// bottom right | R = 1, G = 0, B = 0
-		-0.5f, -0.5f, 0.f, 1.f, 0.5f, // bottom left | R = 0, G = 1, B = 0
-		-0.5f, 0.5f, 0.f, 0.5f, 1.f	// top left | R = 0, G = 1, B = 0
-	};
-
-	unsigned int indices[] = {
-		0, 1, 3,
-		1, 2, 3
-	};
-
-	GLuint vao;
-	glGenVertexArrays(1, &vao);
-	glBindVertexArray(vao);
-
-	GLuint vbo;
-	glGenBuffers(1, &vbo);
-	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
-	GLuint ebo;
-	glGenBuffers(1, &ebo);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
-
 	unsigned int shaderProgram = Shader::CreateProgramFromShaderPath("../Engine/shaders/Main.shader");
+	auto textureUniformLocation = glGetUniformLocation(shaderProgram, "Textures");
+	int samplers[32];
+	for (int i = 0; i < 32; i++)
+	{
+		samplers[i] = i;
+	}
+	glUniform1iv(textureUniformLocation, 32, samplers);
 
-	GLint posAttrib = glGetAttribLocation(shaderProgram, "position");
-	glEnableVertexAttribArray(posAttrib);
-	glVertexAttribPointer(posAttrib, 2, GL_FLOAT, false, 5 * sizeof(float), 0);
-
-	GLint colorAttrib = glGetAttribLocation(shaderProgram, "color");
-	glEnableVertexAttribArray(colorAttrib);
-	glVertexAttribPointer(colorAttrib, 3, GL_FLOAT, false, 5 * sizeof(float), (void*)(2 * sizeof(float)));
+	Renderer::Init();
 
 	//SplashScreen();
 	Start();
@@ -149,7 +120,7 @@ void GameEngine::StartAndRun()
 
 		Update();
 
-		Render();
+		Render(shaderProgram);
 
 		DestroyPending();
 		
@@ -169,7 +140,9 @@ void GameEngine::StartAndRun()
 
 	SDL_GL_DeleteContext(context);
 	SDL_DestroyWindow(m_Window->GetWindow());
-	glDeleteProgram(shaderProgram);
+
+	Renderer::ShutDown();
+	SDL_Quit();
 }
 
 void GameEngine::DestroyPending()
@@ -251,16 +224,18 @@ bool IsInside(Vector2D windowConfines, Vector2D pos, float Leeway) {
 	return false;
 }
 
-void GameEngine::Render()
+void GameEngine::Render(unsigned int shaderProgramID)
 {
 	glClear(GL_COLOR_BUFFER_BIT);
+	glUseProgram(shaderProgramID);
+	Renderer::BeginBatch();
 
-	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+	GLuint shipTexture = TextureManager::LoadTextureOpenGL("Ship1.bmp");
+	Renderer::DrawQuad({ 0.f, 0.5f }, { 0.5f, 0.5f }, shipTexture);
 
-	glClearColor(0.2f, 0.3f, 0.3f, 1.f);
-
+	Renderer::EndBatch();
+	Renderer::Flush();
 	SDL_GL_SwapWindow(m_Window->GetWindow());
-
 	m_Window->Clean();
 
 	//for (auto mR : m_RenderComponentsStack)

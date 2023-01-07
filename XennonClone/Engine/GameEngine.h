@@ -20,7 +20,7 @@ public:
 	void Start();
 	void HandleInput(union SDL_Event& ev);
 	void Update();
-	void Render();
+	void Render(unsigned int shaderProgramID);
 
 	void DestroyPending();
 	void AddPendingDestroy(GameObject* obj);

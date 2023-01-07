@@ -31,6 +31,7 @@ protected:
 protected:
 	static std::string GetPathTranslated(const char* path);
 public:
+	static unsigned int LoadTextureOpenGL(const char* path);
 	static SDL_Texture* LoadTexture(const char* Filename);
 	/*
 	static SDL_Texture* LoadTextureBind(const char* Filename, RenderComponent* comp);

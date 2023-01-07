@@ -40,6 +40,7 @@
     <ClCompile Include="PhysicsComponent.cpp" />
     <ClCompile Include="PhysicsWorld.cpp" />
     <ClCompile Include="RenderComponent.cpp" />
+    <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="SDLWrapper.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Sprite.cpp" />
@@ -73,6 +74,7 @@
     <ClInclude Include="PhysicsComponent.h" />
     <ClInclude Include="PhysicsWorld.h" />
     <ClInclude Include="RenderComponent.h" />
+    <ClInclude Include="Renderer.h" />
     <ClInclude Include="SDLWrapper.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Sprite.h" />
