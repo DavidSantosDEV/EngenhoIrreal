@@ -30,6 +30,7 @@ out vec4 outColor;
 
 void main()
 {
+	if (Color.rbg == vec3(255, 0, 255)) discard;
 	int index = int(TextureIndex);
 	outColor = texture(Textures[index], TextureCoords);
 };

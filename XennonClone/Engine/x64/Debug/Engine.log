@@ -3,6 +3,7 @@
 C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\Transform.h(75,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
 C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\SDLWrapper.h(7,12): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
 C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\MathHelper.h(71,56): warning C4114: same type qualifier used more than once
 C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\MathHelper.h(66,18): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
 C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\MathHelper.h(67,18): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
 C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\MathHelper.h(68,54): warning C4244: '=': conversion from 'float' to 'int', possible loss of data

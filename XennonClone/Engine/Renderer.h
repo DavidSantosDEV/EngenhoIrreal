@@ -13,6 +13,6 @@ public:
 	static void EndBatch();
 	static void Flush();
 
-	static void DrawQuad(const glm::vec2& position, const glm::vec2& size, uint32_t textureID);
+	static void DrawQuad(const glm::vec2& position, const float scaleFactor, uint32_t textureID);
 };
 

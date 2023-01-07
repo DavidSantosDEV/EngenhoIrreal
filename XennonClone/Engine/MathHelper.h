@@ -68,6 +68,15 @@ public:
 		value = (((value - oldMin) * NewRange) / oldRange) + newMin;
 	}
 
+	static float MapClampRanged(const float& value, const const float& oldMin, const float& oldMax,
+		const float& newMin, const float& newMax)
+	{
+		float oldRange = (oldMax - oldMin);
+		float NewRange = (newMax - newMin);
+		float newValue = (((value - oldMin) * NewRange) / oldRange) + newMin;
+		return newValue;
+	}
+
 	/* Returns the absolute result of the given value. (Eg: -5 returns 5 and 5 returns 5)*/
 	static int Abs(const int value)
 	{
