@@ -39,7 +39,6 @@ void Player::HandleEvents()
 	m_isShooting = Input::IsFireKeyDown();
 	if (m_isShooting && m_ShotsTimer >= m_FireRate)
 	{
-		int bulletPositionMultiplier = 1;
 		Bullet* bullet = nullptr;
 		switch (m_WeaponLevel) {
 		case 2:
@@ -50,8 +49,8 @@ void Player::HandleEvents()
 			break;
 		default:
 		case 1:
-			bullet = GameWorld::InstantiateObject<MediumBullet>();
-			//bullet = GameWorld::InstantiateObject<PlayerBullet>();
+			//bullet = GameWorld::InstantiateObject<MediumBullet>();
+			bullet = GameWorld::InstantiateObject<PlayerBullet>();
 			break;
 		}
 		if (bullet) {
@@ -158,7 +157,7 @@ void Player::ChangeAnimationBasedOnInput()
 
 Vector2D& Player::CalculateFirePosition(int positionMultiplier)
 {
-	m_FirePosition = _Transform.GetPosition() + Vector2D(17.f * positionMultiplier, 0);
+	m_FirePosition = _Transform.GetPosition() + Vector2D(-10.f * positionMultiplier, 0) + Vector2D(11,0);
 	return m_FirePosition;
 }
 

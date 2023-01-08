@@ -49,6 +49,7 @@ private:
 	PhysicsComponent* m_PhysicsComponent;
 	CircleCollision* m_Collider;
 
+	int bulletPositionMultiplier = 1;
 	bool m_isShooting =false;
 	float m_FireRate = 0.2f;
 	float m_ShotsTimer = 0.f;
