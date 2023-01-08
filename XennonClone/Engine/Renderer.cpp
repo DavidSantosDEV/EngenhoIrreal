@@ -130,12 +130,17 @@ void Renderer::DrawQuad(const glm::vec2& position, const float scaleFactor, uint
 	float screenWidth = 640.f, screenHeight = 480.f;
 	float spriteWidth = 448.f, spriteHeight = 64.f;
 
+	// Convert scale factor to be sprite size * value
 	float drawWidth = spriteWidth * scaleFactor;
 	float drawHeight = spriteHeight * scaleFactor;
-
 	drawWidth = MathHelper::MapClampRanged(drawWidth, 0.f, screenWidth, 0.f, 1.f);
 	drawHeight = MathHelper::MapClampRanged(drawHeight, 0.f, screenHeight, 0.f, 1.f);
 
+	// Convert positions to what SDL uses (top left is (0,0)
+	float drawPosX = MathHelper::MapClampRanged(position.x, 0.f, screenWidth, -1, 1);
+	float drawPosY = MathHelper::MapClampRanged(position.y, 0.f, screenHeight, 1, -1);
+
+	// If the max number of quads are already being drawn, draw them and start another batch
 	if (s_Data.CurrentIndexCount >= MaxIndexCount || s_Data.CurrentTextureSlotIndex > 31)
 	{
 		EndBatch();
@@ -163,25 +168,25 @@ void Renderer::DrawQuad(const glm::vec2& position, const float scaleFactor, uint
 		s_Data.CurrentTextureSlotIndex++;
 	}
 
-	s_Data.QuadBufferPtr->Position = { position.x - (drawWidth / 2), position.y - (drawHeight / 2), 0.f};
+	s_Data.QuadBufferPtr->Position = { drawPosX - (drawWidth / 2), drawPosY - (drawHeight / 2), 0.f};
 	s_Data.QuadBufferPtr->Color = { 1.f, 1.f, 1.f };
 	s_Data.QuadBufferPtr->TexCoords = { 0.f, 0.f };
 	s_Data.QuadBufferPtr->TexID = textureIndex;
 	s_Data.QuadBufferPtr++;
 
-	s_Data.QuadBufferPtr->Position = { position.x + (drawWidth / 2), position.y - (drawHeight / 2), 0.f};
+	s_Data.QuadBufferPtr->Position = { drawPosX + (drawWidth / 2), drawPosY - (drawHeight / 2), 0.f};
 	s_Data.QuadBufferPtr->Color = { 1.f, 1.f, 1.f };
 	s_Data.QuadBufferPtr->TexCoords = { 1.f, 0.f };
 	s_Data.QuadBufferPtr->TexID = textureIndex;
 	s_Data.QuadBufferPtr++;
 
-	s_Data.QuadBufferPtr->Position = { position.x + (drawWidth / 2), position.y + (drawHeight / 2), 0.f };
+	s_Data.QuadBufferPtr->Position = { drawPosX + (drawWidth / 2), drawPosY + (drawHeight / 2), 0.f };
 	s_Data.QuadBufferPtr->Color = { 1.f, 1.f, 1.f };
 	s_Data.QuadBufferPtr->TexCoords = { 1.f, 1.f };
 	s_Data.QuadBufferPtr->TexID = textureIndex;
 	s_Data.QuadBufferPtr++;
 
-	s_Data.QuadBufferPtr->Position = { position.x - (drawWidth / 2), position.y + (drawHeight / 2), 0.f};
+	s_Data.QuadBufferPtr->Position = { drawPosX - (drawWidth / 2), drawPosY + (drawHeight / 2), 0.f};
 	s_Data.QuadBufferPtr->Color = { 1.f, 1.f, 1.f };
 	s_Data.QuadBufferPtr->TexCoords = { 0.f, 1.f };
 	s_Data.QuadBufferPtr->TexID = textureIndex;
