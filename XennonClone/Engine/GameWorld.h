@@ -1,5 +1,6 @@
 #include "Log.h"
 #include "InstanceCounter.h"
+#include <vector>
 
 class GameEngine;
 class GameObject;
@@ -15,8 +16,8 @@ public:
 
 	static GameWorld* GetWorld() {return m_World;}
 
-	virtual void Start() = 0;
-	virtual void Update(float deltaTime) = 0;
+	virtual void Start() {};
+	virtual void Update(float deltaTime) {};
 
 	template <typename T, typename... TArgs> static T* InstantiateObject(TArgs&&... mArgs) {
 		T* newObject = new T(std::forward<TArgs>(mArgs)...);
@@ -24,7 +25,6 @@ public:
 		{
 			GameWorld::AddObjectToEngine(newObject); //Cheesy way to not have engine included
 			newObject->Start();
-			InstanceCounter::AddObjectCount();
 			return newObject;
 		}
 		LOG_ERROR("Can't instantiate Non GameObject types");
@@ -34,8 +34,39 @@ public:
 	static void DestroyObject(GameObject* Object);
 
 	static GameObject* FindObjectWithTag(std::string tag);
+	static std::vector<GameObject*> FindAllObjectsWithTag(std::string tag);
+
+	template <typename T>
+	static std::vector<T*> FindAllObjectsOfType() {
+		std::vector<GameObject*> objs = GetAllEngineObjects();
+		std::vector<T*> objsC;
+		for (auto ob : objs) {
+			T* casted = dynamic_cast<T*>(ob);
+			if (casted) {
+				objsC.push_back(casted);
+			}
+		}
+		return objsC;
+	}
+
+	template <typename T>
+	static T* FindObjectOfType() {
+		std::vector<GameObject*> objs = GetAllEngineObjects();
+		std::vector<T*> objsC;
+		for (auto ob : objs) {
+			T* casted = dynamic_cast<T*>(ob);
+			if (casted) {
+				return casted;
+			}
+		}
+		return nullptr;
+	}
+
 
 protected:
+
+	std::vector<GameObject*> GetAllEngineObjects();
+
 	static GameWorld* m_World;
 	static GameEngine* m_Engine;
 };

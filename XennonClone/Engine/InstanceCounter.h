@@ -5,10 +5,10 @@ class InstanceCounter
 	static int objectCount;
 
 public:
-	static void AddObjectCount() { objectCount++; }
-	static void RemoveObjectCount() { objectCount--; }
-	static void AddComponentCount() { ComponentCount++; }
-	static void RemoveComponentCount() { ComponentCount--; }
+	static void AddObjectCount(class GameObject* other);
+	static void RemoveObjectCount(GameObject* other);
+	static void AddComponentCount(class Component* other);
+	static void RemoveComponentCount(Component* other);
 
 	static int GetComponentCount(){return ComponentCount; }
 	static int GetObjectCount() { return objectCount; }

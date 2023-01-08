@@ -22,6 +22,7 @@ void TimerHandle::Start(float Delay /*Time in seconds*/, bool bRepeating)
 	m_isActive = true;
 	m_ShouldRepeat = bRepeating;
 	m_workerThread = std::thread(&TimerHandle::DelayTask, this);
+	//m_workerThread.join();
 }
 
 void TimerHandle::DelayTask()
@@ -29,7 +30,7 @@ void TimerHandle::DelayTask()
 	LOG_ERROR("Timer")
 	std::this_thread::sleep_for(std::chrono::milliseconds(delayTime * 1000));
 	TimerManager::AddHandleToExecution(this);
-	m_workerThread.detach();
+	//m_workerThread.join(); //detach
 }
 
 

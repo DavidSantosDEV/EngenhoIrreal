@@ -5,6 +5,7 @@ std::vector<TimerHandle*> TimerManager::m_ExecutionRow;
 std::vector<TimerHandle*> TimerManager::m_CreatedHandles;
 
 static std::mutex m_HandlesMutex;
+
 void TimerManager::ExecuteHandles()
 {
 	std::lock_guard<std::mutex> lock(m_HandlesMutex);

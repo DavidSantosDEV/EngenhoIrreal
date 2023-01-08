@@ -4,6 +4,7 @@ class Explosion : public GameObject
 {
 public:
 	Explosion();
+	Explosion(Transform* trnsfm);
 
 	void OnAnimationEnd();
 

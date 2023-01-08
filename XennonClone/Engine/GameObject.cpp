@@ -41,14 +41,6 @@ void GameObject::Start()
 	m_WasInitialized = true;
 }
 
-void GameObject::Update(float deltaTime)
-{
-}
-
-void GameObject::OnDestroyed()
-{
-}
-
 bool GameObject::HasTag(std::string tag) {
 	for (std::string str : m_objectTags) {
 		if (str == tag) {
@@ -68,6 +60,20 @@ bool GameObject::HasTag(const char* tag) {
 
 void GameObject::AddTag(const char* tag) {
 	m_objectTags.push_back(tag);
+}
+
+void GameObject::RemoveTag(const char* tag)
+{
+	for (int i = 0; i < m_objectTags.size();++i) {
+		if (std::strcmp(tag, m_objectTags[i].c_str()) == 0) {
+			m_objectTags.erase(m_objectTags.begin()+i);
+		}
+	}
+}
+
+void GameObject::RemoveTag(std::string tag)
+{
+	RemoveTag(tag.c_str());
 }
 
 void GameObject::SetPendingDestroy()

@@ -7,10 +7,13 @@
 #include "AnimationComponent.h"
 #include "HealthComponent.h"
 #include "PlayerBullet.h"
+#include "Explosion.h"
 
 
 Companion::Companion(Vector2D position)
 {
+	AddTag("Player");
+
 	GetTransform()->SetPosition(position);
 
 	m_FollowTarget = nullptr;
@@ -52,6 +55,7 @@ void Companion::Update(float delta)
 
 void Companion::OnZeroHealth()
 {
+	GameWorld::InstantiateObject<Explosion>(GetTransform());
 	OnCompanionDie.Broadcast(this);
 	GameWorld::DestroyObject(this);
 }

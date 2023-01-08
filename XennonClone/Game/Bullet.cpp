@@ -17,6 +17,8 @@ void Bullet::Setup()
 	CollisionComponent* comp = AddComponent<CircleCollision>(GetComponent<PhysicsComponent>(), m_BulletData.radius);
 	comp->SetIsTrigger(true);
 	comp->OnTriggerEnter.Add(this, &Bullet::OnTriggerEnter);
+
+	GetComponent<Sprite>()->SetIsVisible(true);
 }
 
 

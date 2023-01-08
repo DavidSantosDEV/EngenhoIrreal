@@ -11,6 +11,8 @@
 #include "TimerManager.h"
 #include "Companion.h"
 #include "MathHelper.h"
+#include "HeavyBullet.h"
+#include "MediumBullet.h"
 
 Player::Player()
 {
@@ -38,13 +40,29 @@ void Player::HandleEvents()
 	if (m_isShooting && m_ShotsTimer >= m_FireRate)
 	{
 		int bulletPositionMultiplier = 1;
-		for (unsigned int i = 0; i < m_WeaponLevel; ++i)
-		{
-			PlayerBullet* bullet = GameWorld::InstantiateObject<PlayerBullet>();
-			// TODO don't get component every frame
+		Bullet* bullet = nullptr;
+		switch (m_WeaponLevel) {
+		case 2:
+			bullet = GameWorld::InstantiateObject<MediumBullet>();
+			break;
+		case 3:
+			bullet = GameWorld::InstantiateObject<HeavyBullet>();
+			break;
+		default:
+		case 1:
+			bullet = GameWorld::InstantiateObject<MediumBullet>();
+			//bullet = GameWorld::InstantiateObject<PlayerBullet>();
+			break;
+		}
+		if (bullet) {
 			bullet->GetPhysicsComponent()->SetPosition(CalculateFirePosition(bulletPositionMultiplier));
 			bulletPositionMultiplier *= -1;
 		}
+		/*
+		for (unsigned int i = 0; i < m_WeaponLevel; ++i)
+		{
+			
+		}*/
 		m_ShotsTimer = 0.f;
 	}
 }

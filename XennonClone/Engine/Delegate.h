@@ -73,7 +73,7 @@ private:
 public:
 
     ~Delegate();
-
+    
     template <class T>
     void Add(T* object, void (T::* method)(TArgs... params));
 

@@ -22,6 +22,8 @@ protected:
 
 	float m_FireRate = 0.2f;
 	float m_ShotsTimer = 0.f;
+
+	int weaponPower = 1;
 public:
 
 	Delegate<Companion*> OnCompanionDie;
@@ -31,7 +33,6 @@ public:
 	void SetTarget(Player* newTarget, Vector2D localPosition);
 	virtual void Update(float delta) override;
 	void OnZeroHealth();
-
 
 	virtual void UpgradeShields(int amountToHeal) { LOG_ERROR(" Forgot to override IUpgradableShip methods") };
 	virtual void UpgradeWeaponPower() { LOG_ERROR(" Forgot to override IUpgradableShip methods") };

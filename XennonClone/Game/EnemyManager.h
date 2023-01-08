@@ -10,6 +10,11 @@ protected:
 
 	Vector2D LonerSpawns[3] = { Vector2D(800, 300),Vector2D(800, 50),Vector2D(800, 200) };
 
+	Vector2D AsteroidSpawns[3] = {};
+
+	Vector2D DroidSpawns[3] = {};
+
+
 	float m_CurrentTime;
 
 	float m_SpawnDelay = 3;
@@ -30,6 +35,8 @@ public:
 
 	void SpawnEnemyAtRandom();
 
+	
 	void DeleteEnemy(class Enemy* enemy);
+	void AddEnemy(Enemy* enemy);
 };
 

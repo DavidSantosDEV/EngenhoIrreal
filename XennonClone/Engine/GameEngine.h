@@ -24,7 +24,7 @@ public:
 
 	void DestroyPending();
 	void AddPendingDestroy(GameObject* obj);
-
+	void DestroyAll();
 
 
 	/* Object manipulation */

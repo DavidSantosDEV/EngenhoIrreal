@@ -83,4 +83,7 @@ public:
 		*a = *b;
 		*b = aux;
 	}
+
+	static int GetRandomInRange(int min, int max);
+
 };

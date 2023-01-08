@@ -21,7 +21,11 @@ public:
 
 	SineMovementData m_SineMovementData;
 
+	bool bCanDestroy = false;
 
 	virtual void Update(float deltaTime);
+	virtual void OnBecameVisible() override;
+	virtual void OnBecameHidden() override;
+
 };
 

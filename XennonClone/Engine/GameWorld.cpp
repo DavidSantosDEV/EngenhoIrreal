@@ -46,3 +46,22 @@ GameObject* GameWorld::FindObjectWithTag(std::string tag)
 	}
 	return nullptr;
 }
+
+std::vector<GameObject*> GameWorld::FindAllObjectsWithTag(std::string tag)
+{
+	std::vector<GameObject*> withTag;
+	if (m_Engine) {	
+		std::vector<GameObject*> objs = m_Engine->GetAllGameObjects();
+		for (auto obj : objs) {
+			if (obj->HasTag(tag)) {
+				withTag.push_back(obj);
+			}
+		}
+	}
+	return withTag;
+}
+
+std::vector<GameObject*> GameWorld::GetAllEngineObjects()
+{
+	return m_Engine->GetAllGameObjects();
+}

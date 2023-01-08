@@ -24,7 +24,6 @@
 #include "AudioSystem.h"
 #include "SDL_audio.h"
 #include <iostream>
-#include <mutex>
 
 
 // Initialize static variables
@@ -104,33 +103,32 @@ void GameEngine::StartAndRun()
 		DestroyPending();
 
 		//InstanceCounter::PrintCounts();
-		LOG("Elapsed : " << m_ElapsedMS);
+		//LOG("Elapsed : " << m_ElapsedMS);
 		mTicksCount = SDL_GetTicks();
 	}
 	m_audioSystem->Clean();
+
 	/*End game cleaning (memory leaks check) */
 	InstanceCounter::PrintCounts();
-	for (auto obj : m_GameObjectStack) {
-		AddPendingDestroy(obj);
-	}
-	DestroyPending();
+	DestroyAll();
 	InstanceCounter::PrintCounts();
+	/*-------------------*/
 }
 
 
-static std::mutex m_ObjMutex;
+//static std::mutex m_ObjMutex;
 void GameEngine::DestroyPending()
 {
-	std::lock_guard<std::mutex> lock(m_ObjMutex);
+	//std::lock_guard<std::mutex> lock(m_ObjMutex);
 	if (m_PendingDestroy.size() > 0) {
 		for (auto obj : m_PendingDestroy) {
 			std::vector<std::shared_ptr<Component>> comps = obj->GetAllComponents();
 			for (int i = 0; i < comps.size();++i) {
-				comps[i]->OnDestroyed();
+				//comps[i]->OnDestroyed();
 				if (comps[i]) {
 					comps[i]->OnDestroyed();
 				}
-				InstanceCounter::RemoveComponentCount();
+				InstanceCounter::RemoveComponentCount(comps[i].get());
 				InstanceCounter::PrintCounts();
 			}
 			obj->OnDestroyed();
@@ -143,6 +141,23 @@ void GameEngine::DestroyPending()
 void GameEngine::AddPendingDestroy(GameObject* obj)
 {
 	m_PendingDestroy.push_back(obj);
+}
+
+void GameEngine::DestroyAll()
+{
+	for (auto obj : m_GameObjectStack) {
+		std::vector<std::shared_ptr<Component>> comps = obj->GetAllComponents();
+		for (int i = 0; i < comps.size(); ++i) {
+			if (comps[i]) {
+				//comps[i]->OnDestroyed();
+			}
+			InstanceCounter::RemoveComponentCount(comps[i].get());
+			InstanceCounter::PrintCounts();
+		}
+		//obj->OnDestroyed();
+		RemoveGameObjectFromStack(obj);
+	}
+	m_GameObjectStack.clear();
 }
 
 void GameEngine::Start()
@@ -210,6 +225,24 @@ bool IsInside(Vector2D windowConfines, Vector2D pos, float Leeway) {
 void GameEngine::Render()
 {
 	m_Window->Clean();
+	Vector2D win = m_Window->GetWindowSize();
+	for (int i = 0; i < m_RenderComponentsStack.size();++i) {
+		Vector2D pos = m_RenderComponentsStack[i]->GetOwnerGameObject()->GetTransform()->GetPosition();		
+		if (isInsideSquare(Vector2D(-20, -20), Vector2D(win.x, -20), win, Vector2D(-20, win.y), pos)) {
+			if (!m_RenderComponentsStack[i]->GetIsVisible()) {
+				m_RenderComponentsStack[i]->SetIsVisible(true);
+				m_RenderComponentsStack[i]->GetOwnerGameObject()->OnBecameVisible();
+			}
+		}
+		else {
+			if (m_RenderComponentsStack[i]->GetIsVisible()) {
+				m_RenderComponentsStack[i]->SetIsVisible(false);
+				m_RenderComponentsStack[i]->GetOwnerGameObject()->OnBecameHidden();
+			}
+		}
+		m_RenderComponentsStack[i]->Render();
+	}
+	/*
 	for (auto mR : m_RenderComponentsStack) 
 	{
 		Vector2D pos = mR->GetOwnerGameObject()->GetTransform()->GetPosition();
@@ -227,7 +260,7 @@ void GameEngine::Render()
 			}
 		}
 		mR->Render();
-	}
+	}*/
 	m_Window->UpdateRender();
 }
 
@@ -235,6 +268,7 @@ void GameEngine::AddGameObjectToStack(GameObject* gameObject)
 {
 	if (gameObject == nullptr) { return; }
 	m_GameObjectStack.push_back(gameObject);
+	InstanceCounter::AddObjectCount(gameObject);
 }
 
 void GameEngine::RemoveGameObjectFromStack(GameObject* gameObject)
@@ -243,8 +277,9 @@ void GameEngine::RemoveGameObjectFromStack(GameObject* gameObject)
 	{
 		if (m_GameObjectStack[i] == gameObject)
 		{
+			InstanceCounter::RemoveObjectCount(gameObject);
 			m_GameObjectStack.erase(m_GameObjectStack.begin()+i);
-			InstanceCounter::RemoveObjectCount();
+			
 			return;
 		}
 	}

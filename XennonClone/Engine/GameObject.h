@@ -19,10 +19,10 @@ public:
 	~GameObject();
 
 	virtual void Start();
-	virtual void Update(float deltaTime);
+	virtual void Update(float deltaTime) {};
 
 	/* Called right before the GameObject is destroyed */
-	virtual void OnDestroyed();
+	virtual void OnDestroyed() {};
 
 	Transform _Transform;
 
@@ -67,7 +67,7 @@ public:
 		m_ComponentsHashMap[GetComponentID<T>()] = newComponent;
 
 		newComponent->Start();
-		InstanceCounter::AddComponentCount();
+		InstanceCounter::AddComponentCount(newComponent);
 
 		return newComponent;
 	}
@@ -84,31 +84,22 @@ public:
 #pragma endregion
 
 public:
+	/*Tags*/
 	bool HasTag(std::string tag);
 	bool HasTag(const char* tag);
 	void AddTag(const char* tag);
-
+	void RemoveTag(const char* tag);
+	void RemoveTag(std::string tag);
 	std::vector<std::string> GetTags() { return m_objectTags; }
+	/*----------------*/
 
 	inline bool GetWasInitialized() const { return m_WasInitialized; }
 
 	inline Transform* GetTransform() { return &_Transform; }
 
+
 	void SetPendingDestroy();
-
 	bool IsPendingDestroy();
-
-	/* Only called if GameObject has CollisionComponent*/
-	//virtual void OnBeginCollision(GameObject* other){};
-	/* Only called if GameObject has CollisionComponent*/
-	//virtual void OnEndCollision(GameObject* other){};
-	/* Only called if GameObject has CollisionComponent*/
-	//virtual void OnTriggerEnter(GameObject* other){};
-	/* Only called if GameObject has CollisionComponent*/
-	//virtual void OnTriggerExit(GameObject* other){};
-
-	/*Only called if GameObject has AnimationComponent */
-	//virtual void OnAnimationEnd() {};
 
 	/* Called when the GameObject is inside the screen area */
 	virtual void OnBecameVisible() {};
