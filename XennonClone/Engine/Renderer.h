@@ -1,6 +1,7 @@
 #pragma once
 
 #include <glm/glm.hpp>
+#include "Transform.h"
 
 class Renderer
 {
@@ -13,6 +14,6 @@ public:
 	static void EndBatch();
 	static void Flush();
 
-	static void DrawQuad(const glm::vec2& position, const float scaleFactor, uint32_t textureID);
+	static void DrawQuad(const Vector2D& position, const float scaleFactor, uint32_t textureID);
 };
 

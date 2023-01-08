@@ -207,7 +207,7 @@ void GameEngine::Render(unsigned int shaderProgramID)
 	Renderer::BeginBatch();
 
 	GLuint shipTexture = TextureManager::LoadTextureOpenGL("Ship1.bmp");
-	Renderer::DrawQuad({ 200.f, 150.f }, 1.2f, shipTexture);
+	Renderer::DrawQuad(Vector2D(300.f, 400.f), 2.f, shipTexture);
 
 	Renderer::EndBatch();
 	Renderer::Flush();

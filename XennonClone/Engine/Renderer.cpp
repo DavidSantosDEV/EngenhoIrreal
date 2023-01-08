@@ -4,6 +4,7 @@
 #include <array>
 #include <glad/glad.h>
 #include "MathHelper.h"
+#include "Transform.h"
 
 /* The maximum number of quads that can be drawn in a single draw call*/
 static const size_t MaxQuadCount = 5000;
@@ -125,10 +126,12 @@ void Renderer::Flush()
 	s_Data.CurrentTextureSlotIndex = 1;
 }
 
-void Renderer::DrawQuad(const glm::vec2& position, const float scaleFactor, uint32_t textureID)
+void Renderer::DrawQuad(const Vector2D& position, const float scaleFactor, uint32_t textureID)
 {
-	float screenWidth = 640.f, screenHeight = 480.f;
-	float spriteWidth = 448.f, spriteHeight = 64.f;
+	constexpr float x = 3, y = 0;
+	constexpr float screenWidth = 640.f, screenHeight = 480.f;
+	constexpr float spriteWidth = 64.f, spriteHeight = 64.f;
+	constexpr float sheetWidth = 448.f, sheetHeight = 64.f;
 
 	// Convert scale factor to be sprite size * value
 	float drawWidth = spriteWidth * scaleFactor;
@@ -168,27 +171,34 @@ void Renderer::DrawQuad(const glm::vec2& position, const float scaleFactor, uint
 		s_Data.CurrentTextureSlotIndex++;
 	}
 
+	constexpr glm::vec2 textureCoords[] = {
+	{(x * spriteWidth) / sheetWidth, (y * spriteHeight) / sheetHeight},
+	{((x + 1) * spriteWidth) / sheetWidth, (y * spriteHeight) / sheetHeight},
+	{((x + 1) * spriteWidth) / sheetWidth, ((y + 1) * spriteHeight) / sheetHeight},
+	{(x * spriteWidth) / sheetWidth, ((y + 1) * spriteHeight) / sheetHeight}
+	};
+
 	s_Data.QuadBufferPtr->Position = { drawPosX - (drawWidth / 2), drawPosY - (drawHeight / 2), 0.f};
 	s_Data.QuadBufferPtr->Color = { 1.f, 1.f, 1.f };
-	s_Data.QuadBufferPtr->TexCoords = { 0.f, 0.f };
+	s_Data.QuadBufferPtr->TexCoords = textureCoords[0];
 	s_Data.QuadBufferPtr->TexID = textureIndex;
 	s_Data.QuadBufferPtr++;
 
 	s_Data.QuadBufferPtr->Position = { drawPosX + (drawWidth / 2), drawPosY - (drawHeight / 2), 0.f};
 	s_Data.QuadBufferPtr->Color = { 1.f, 1.f, 1.f };
-	s_Data.QuadBufferPtr->TexCoords = { 1.f, 0.f };
+	s_Data.QuadBufferPtr->TexCoords = textureCoords[1];
 	s_Data.QuadBufferPtr->TexID = textureIndex;
 	s_Data.QuadBufferPtr++;
 
 	s_Data.QuadBufferPtr->Position = { drawPosX + (drawWidth / 2), drawPosY + (drawHeight / 2), 0.f };
 	s_Data.QuadBufferPtr->Color = { 1.f, 1.f, 1.f };
-	s_Data.QuadBufferPtr->TexCoords = { 1.f, 1.f };
+	s_Data.QuadBufferPtr->TexCoords = textureCoords[2];
 	s_Data.QuadBufferPtr->TexID = textureIndex;
 	s_Data.QuadBufferPtr++;
 
 	s_Data.QuadBufferPtr->Position = { drawPosX - (drawWidth / 2), drawPosY + (drawHeight / 2), 0.f};
 	s_Data.QuadBufferPtr->Color = { 1.f, 1.f, 1.f };
-	s_Data.QuadBufferPtr->TexCoords = { 0.f, 1.f };
+	s_Data.QuadBufferPtr->TexCoords = textureCoords[3];
 	s_Data.QuadBufferPtr->TexID = textureIndex;
 	s_Data.QuadBufferPtr++;
 
