@@ -12,7 +12,7 @@
 #include "Window.h"
 #include "GameWorld.h"
 #include "GameObject.h"
-#include "RenderComponent.h"
+//#include "RenderComponent.h"
 #include "PhysicsWorld.h"
 #include "Pawn.h"
 #include "Log.h"
@@ -31,10 +31,15 @@
 #include "Shader.h"
 #include "Renderer.h"
 #include "OpenGLWrapper.h"
+#include "Sprite.h"
+
+float triangleArea(Vector2D A, Vector2D B, Vector2D C);
+bool isInsideSquare(Vector2D A, Vector2D B, Vector2D C, Vector2D D, Vector2D P);
 
 // Initialize static variables
 GameWorld* GameEngine::m_World = nullptr;
 float GameEngine::m_ElapsedMS = 0.f;
+bool GameEngine::s_IsUsingOpenGLRendering = false;
 
 std::vector<GameObject*> GameEngine::m_GameObjectStack;
 std::vector<RenderComponent*> GameEngine::m_RenderComponentsStack;
@@ -202,42 +207,51 @@ void GameEngine::Update()
 
 void GameEngine::Render(unsigned int shaderProgramID)
 {
-	glClear(GL_COLOR_BUFFER_BIT);
-	glUseProgram(shaderProgramID);
-	Renderer::BeginBatch();
+	if (s_IsUsingOpenGLRendering)
+	{
+		glClear(GL_COLOR_BUFFER_BIT);
+		glUseProgram(shaderProgramID);
+		Renderer::BeginBatch();
 
-	GLuint shipTexture = TextureManager::LoadTextureOpenGL("Ship1.bmp");
-	Renderer::DrawQuad(Vector2D(300.f, 400.f), 2.f, shipTexture);
+		GLuint shipTexture = TextureManager::LoadTextureOpenGL("Ship1.bmp");
+		SDL_Rect sourceRect = GameWorld::FindObjectWithTag("Player")->GetComponent<Sprite>()->GetSourceRect();
+		Vector2D pos = GameWorld::FindObjectWithTag("Player")->_Transform.GetPosition();
+		float scale = GameWorld::FindObjectWithTag("Player")->GetComponent<Sprite>()->GetScale();
+		Renderer::DrawQuad(pos, scale, shipTexture, sourceRect);
 
-	Renderer::EndBatch();
-	Renderer::Flush();
-	SDL_GL_SwapWindow(m_Window->GetWindow());
-	m_Window->Clean();
-
-	//for (auto mR : m_RenderComponentsStack)
-	//{
-	//	Vector2D pos = mR->GetOwnerGameObject()->GetTransform()->GetPosition();
-	//	Vector2D win = m_Window->GetWindowSize();
-	//	if (isInsideSquare(Vector2D(-20, -20), Vector2D(win.x, -20), win, Vector2D(-20, win.y), pos)) {
-	//		if (!mR->GetIsVisible()) {
-	//			mR->SetIsVisible(true);
-	//			mR->GetOwnerGameObject()->OnBecameVisible();
-	//		}
-	//	}
-	//	else {
-	//		if (mR->GetIsVisible()) {
-	//			mR->SetIsVisible(false);
-	//			mR->GetOwnerGameObject()->OnBecameHidden();
-	//		}
-	//	}
-	//	mR->Render();
-	//}
-	//m_Window->UpdateRender();
+		Renderer::EndBatch();
+		Renderer::Flush();
+		SDL_GL_SwapWindow(m_Window->GetWindow());
+		m_Window->Clean();
+	}
+	else
+	{
+		for (auto mR : m_RenderComponentsStack)
+		{
+			Vector2D pos = mR->GetOwnerGameObject()->GetTransform()->GetPosition();
+			Vector2D win = m_Window->GetWindowSize();
+			if (isInsideSquare(Vector2D(-20, -20), Vector2D(win.x, -20), win, Vector2D(-20, win.y), pos)) {
+				if (!mR->GetIsVisible()) {
+					mR->SetIsVisible(true);
+					mR->GetOwnerGameObject()->OnBecameVisible();
+				}
+			}
+			else {
+				if (mR->GetIsVisible()) {
+					mR->SetIsVisible(false);
+					mR->GetOwnerGameObject()->OnBecameHidden();
+				}
+			}
+			mR->Render();
+		}
+		m_Window->UpdateRender();
+	}
 }
 
 float triangleArea(Vector2D A,Vector2D B ,Vector2D C ){
 	return (C.x * B.y - B.x * C.y) - (C.x * A.y - A.x * C.y) + (B.x * A.y - A.x * B.y);
 }
+
  bool isInsideSquare(Vector2D A ,Vector2D B ,Vector2D C ,Vector2D D ,Vector2D P)
 {
 	if (triangleArea(A,B,P) > 0 || triangleArea(B,C,P) > 0 || triangleArea(C,D,P) > 0 || triangleArea(D,A,P) > 0) {

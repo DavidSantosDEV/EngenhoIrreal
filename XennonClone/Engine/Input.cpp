@@ -87,3 +87,9 @@ bool Input::IsFireKeyDown()
 
 	return currentKeyStates[SDL_SCANCODE_SPACE] || isGamepadButtonPressed;
 }
+
+bool Input::IsChangeRenderingKeyDown()
+{
+	const Uint8* currentKeyStates = SDL_GetKeyboardState(NULL);
+	return currentKeyStates[SDL_SCANCODE_P];
+}

@@ -126,16 +126,16 @@ void Renderer::Flush()
 	s_Data.CurrentTextureSlotIndex = 1;
 }
 
-void Renderer::DrawQuad(const Vector2D& position, const float scaleFactor, uint32_t textureID)
+void Renderer::DrawQuad(const Vector2D& position, const float scaleFactor, uint32_t textureID, SDL_Rect& sourceRect)
 {
-	constexpr float x = 3, y = 0;
 	constexpr float screenWidth = 640.f, screenHeight = 480.f;
-	constexpr float spriteWidth = 64.f, spriteHeight = 64.f;
 	constexpr float sheetWidth = 448.f, sheetHeight = 64.f;
+	float x = sourceRect.x / sourceRect.w;
+	float y = sourceRect.y / sourceRect.h;
 
 	// Convert scale factor to be sprite size * value
-	float drawWidth = spriteWidth * scaleFactor;
-	float drawHeight = spriteHeight * scaleFactor;
+	float drawWidth = sourceRect.w * scaleFactor;
+	float drawHeight = sourceRect.h * scaleFactor;
 	drawWidth = MathHelper::MapClampRanged(drawWidth, 0.f, screenWidth, 0.f, 1.f);
 	drawHeight = MathHelper::MapClampRanged(drawHeight, 0.f, screenHeight, 0.f, 1.f);
 
@@ -171,11 +171,11 @@ void Renderer::DrawQuad(const Vector2D& position, const float scaleFactor, uint3
 		s_Data.CurrentTextureSlotIndex++;
 	}
 
-	constexpr glm::vec2 textureCoords[] = {
-	{(x * spriteWidth) / sheetWidth, (y * spriteHeight) / sheetHeight},
-	{((x + 1) * spriteWidth) / sheetWidth, (y * spriteHeight) / sheetHeight},
-	{((x + 1) * spriteWidth) / sheetWidth, ((y + 1) * spriteHeight) / sheetHeight},
-	{(x * spriteWidth) / sheetWidth, ((y + 1) * spriteHeight) / sheetHeight}
+	const glm::vec2 textureCoords[] = {
+	{(x * sourceRect.w) / sheetWidth, (y * sourceRect.h) / sheetHeight},
+	{((x + 1) * sourceRect.w) / sheetWidth, (y * sourceRect.h) / sheetHeight},
+	{((x + 1) * sourceRect.w) / sheetWidth, ((y + 1) * sourceRect.h) / sheetHeight},
+	{(x * sourceRect.w) / sheetWidth, ((y + 1) * sourceRect.h) / sheetHeight}
 	};
 
 	s_Data.QuadBufferPtr->Position = { drawPosX - (drawWidth / 2), drawPosY - (drawHeight / 2), 0.f};

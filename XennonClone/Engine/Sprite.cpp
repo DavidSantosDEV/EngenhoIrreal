@@ -90,6 +90,7 @@ void Sprite::SetTextureData(const char* texturePath, int spriteSheetRows, int sp
 
 	m_FrameWidth = m_TextureWidth / spriteSheetRows;
 	m_FrameHeight = m_TextureHeight / spriteSheetColumns;
+	m_Scale = scale;
 
 	m_SourceRect.x = m_SourceRect.y = 0;
 	m_SourceRect.w = m_FrameWidth;

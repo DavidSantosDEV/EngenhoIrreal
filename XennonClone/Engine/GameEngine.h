@@ -36,6 +36,7 @@ public:
 	static void RemovePawnFromStack(Pawn* pawn);
 
 	static std::vector<GameObject*> GetAllGameObjects() { return m_GameObjectStack; }
+	static bool s_IsUsingOpenGLRendering;
 
 private:
 

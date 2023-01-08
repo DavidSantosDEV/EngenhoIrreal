@@ -34,6 +34,8 @@ protected:
 
 	float m_Opacity = 1;
 
+	float m_Scale = 1.f;
+
 public:
 	/* Used for non-animated sprites */
 	Sprite(const char* texturePath, int renderPriority);
@@ -56,6 +58,8 @@ public:
 	void SetRotation(float val) { m_rotation = val; }
 
 	void SetOpacity(float opacity);
+
+	float GetScale() const { return m_Scale; }
 
 	// Inherited via RenderComponent
 	virtual void Render() override;

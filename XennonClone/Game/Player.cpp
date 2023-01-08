@@ -10,6 +10,7 @@
 #include "Explosion.h"
 #include "TimerManager.h"
 #include "MathHelper.h"
+#include "GameEngine.h"
 
 Player::Player()
 {
@@ -38,6 +39,11 @@ void Player::HandleEvents()
 			bullet->GetPhysicsComponent()->SetPosition(CalculateFirePosition(bulletPositionMultiplier));
 			bulletPositionMultiplier *= -1;
 		}
+		m_ShotsTimer = 0.f;
+	}
+	if (Input::IsChangeRenderingKeyDown() && m_ShotsTimer >= m_FireRate)
+	{
+		GameEngine::s_IsUsingOpenGLRendering = !GameEngine::s_IsUsingOpenGLRendering;
 		m_ShotsTimer = 0.f;
 	}
 }
