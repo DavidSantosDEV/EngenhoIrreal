@@ -1,10 +1,10 @@
 c:\users\diogo\documents\github\engenhoirreal\xennonclone\x64\debug\engenhoirrealxvii.pdb
 c:\users\diogo\documents\github\engenhoirreal\xennonclone\x64\debug\engenhoirrealxvii.idb
-c:\users\diogo\documents\github\engenhoirreal\xennonclone\engine\x64\debug\rendercomponent.obj
 c:\users\diogo\documents\github\engenhoirreal\xennonclone\engine\x64\debug\physicsworld.obj
 c:\users\diogo\documents\github\engenhoirreal\xennonclone\engine\x64\debug\physicscomponent.obj
 c:\users\diogo\documents\github\engenhoirreal\xennonclone\engine\x64\debug\pawn.obj
 c:\users\diogo\documents\github\engenhoirreal\xennonclone\engine\x64\debug\parallaxcomponent.obj
+c:\users\diogo\documents\github\engenhoirreal\xennonclone\engine\x64\debug\openglwrapper.obj
 c:\users\diogo\documents\github\engenhoirreal\xennonclone\engine\x64\debug\mathhelper.obj
 c:\users\diogo\documents\github\engenhoirreal\xennonclone\engine\x64\debug\instancecounter.obj
 c:\users\diogo\documents\github\engenhoirreal\xennonclone\engine\x64\debug\input.obj
@@ -12,6 +12,7 @@ c:\users\diogo\documents\github\engenhoirreal\xennonclone\engine\x64\debug\inite
 c:\users\diogo\documents\github\engenhoirreal\xennonclone\engine\x64\debug\healthcomponent.obj
 c:\users\diogo\documents\github\engenhoirreal\xennonclone\engine\x64\debug\gameworld.obj
 c:\users\diogo\documents\github\engenhoirreal\xennonclone\engine\x64\debug\gameobject.obj
+c:\users\diogo\documents\github\engenhoirreal\xennonclone\engine\x64\debug\gameengine.obj
 c:\users\diogo\documents\github\engenhoirreal\xennonclone\engine\x64\debug\contactlistener.obj
 c:\users\diogo\documents\github\engenhoirreal\xennonclone\engine\x64\debug\component.obj
 c:\users\diogo\documents\github\engenhoirreal\xennonclone\engine\x64\debug\collisioncomponent.obj
@@ -29,9 +30,8 @@ c:\users\diogo\documents\github\engenhoirreal\xennonclone\engine\x64\debug\sprit
 c:\users\diogo\documents\github\engenhoirreal\xennonclone\engine\x64\debug\shader.obj
 c:\users\diogo\documents\github\engenhoirreal\xennonclone\engine\x64\debug\sdlwrapper.obj
 c:\users\diogo\documents\github\engenhoirreal\xennonclone\engine\x64\debug\renderer.obj
-c:\users\diogo\documents\github\engenhoirreal\xennonclone\engine\x64\debug\openglwrapper.obj
+c:\users\diogo\documents\github\engenhoirreal\xennonclone\engine\x64\debug\rendercomponent.obj
 c:\users\diogo\documents\github\engenhoirreal\xennonclone\engine\x64\debug\glad.obj
-c:\users\diogo\documents\github\engenhoirreal\xennonclone\engine\x64\debug\gameengine.obj
 c:\users\diogo\documents\github\engenhoirreal\xennonclone\x64\debug\engenhoirrealxvii.lib
 c:\users\diogo\documents\github\engenhoirreal\xennonclone\engine\x64\debug\engenhoi.92de34ec.tlog\cl.command.1.tlog
 c:\users\diogo\documents\github\engenhoirreal\xennonclone\engine\x64\debug\engenhoi.92de34ec.tlog\cl.read.1.tlog

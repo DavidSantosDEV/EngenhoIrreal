@@ -28,7 +28,8 @@ unsigned int TextureManager::LoadTextureOpenGL(const char* path)
 	stbi_set_flip_vertically_on_load(1);
 	// Load texture data
 	unsigned char* textureData = stbi_load(GetPathTranslated(path).c_str(), 
-        &width, &height, &numberChannels, STBI_rgb);
+        &width, &height, &numberChannels, 0);
+
 	if (textureData == nullptr)
 	{
 		LOG_ERROR("Failed to load texture data from path: " << GetPathTranslated(path));
@@ -44,7 +45,7 @@ unsigned int TextureManager::LoadTextureOpenGL(const char* path)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB8, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, textureData);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, textureData);
 
 	stbi_image_free(textureData);
 

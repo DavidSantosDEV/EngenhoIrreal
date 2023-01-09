@@ -213,7 +213,7 @@ void GameEngine::Render(unsigned int shaderProgramID)
 		glUseProgram(shaderProgramID);
 		Renderer::BeginBatch();
 
-		GLuint shipTexture = TextureManager::LoadTextureOpenGL("Ship1.bmp");
+		GLuint shipTexture = TextureManager::LoadTextureOpenGL("Ship1.png");
 		SDL_Rect sourceRect = GameWorld::FindObjectWithTag("Player")->GetComponent<Sprite>()->GetSourceRect();
 		Vector2D pos = GameWorld::FindObjectWithTag("Player")->_Transform.GetPosition();
 		float scale = GameWorld::FindObjectWithTag("Player")->GetComponent<Sprite>()->GetScale();
