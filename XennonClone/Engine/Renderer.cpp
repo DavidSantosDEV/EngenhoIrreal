@@ -6,6 +6,10 @@
 #include "MathHelper.h"
 #include "Transform.h"
 
+
+float Renderer::s_ScreenWidth = 0.f;
+float Renderer::s_ScreenHeight = 0.f;
+
 /* The maximum number of quads that can be drawn in a single draw call*/
 static const size_t MaxQuadCount = 5000;
 static const size_t MaxVertexCount = MaxQuadCount * 4;
@@ -128,7 +132,6 @@ void Renderer::Flush()
 
 void Renderer::DrawQuad(const Vector2D& position, const float scaleFactor, uint32_t textureID, SDL_Rect& sourceRect)
 {
-	constexpr float screenWidth = 640.f, screenHeight = 480.f;
 	constexpr float sheetWidth = 448.f, sheetHeight = 64.f;
 	float x = sourceRect.x / sourceRect.w;
 	float y = sourceRect.y / sourceRect.h;
@@ -136,12 +139,12 @@ void Renderer::DrawQuad(const Vector2D& position, const float scaleFactor, uint3
 	// Convert scale factor to be sprite size * value
 	float drawWidth = sourceRect.w * scaleFactor;
 	float drawHeight = sourceRect.h * scaleFactor;
-	drawWidth = MathHelper::MapClampRanged(drawWidth, 0.f, screenWidth, 0.f, 2.f);
-	drawHeight = MathHelper::MapClampRanged(drawHeight, 0.f, screenHeight, 0.f, 2.f);
+	drawWidth = MathHelper::MapClampRanged(drawWidth, 0.f, s_ScreenWidth, 0.f, 2.f);
+	drawHeight = MathHelper::MapClampRanged(drawHeight, 0.f, s_ScreenHeight, 0.f, 2.f);
 
 	// Convert positions to what SDL uses (top left is (0,0)
-	float drawPosX = MathHelper::MapClampRanged(position.x, 0.f, screenWidth, -1, 1);
-	float drawPosY = MathHelper::MapClampRanged(position.y, 0.f, screenHeight, 1, -1);
+	float drawPosX = MathHelper::MapClampRanged(position.x, 0.f, s_ScreenWidth, -1, 1);
+	float drawPosY = MathHelper::MapClampRanged(position.y, 0.f, s_ScreenHeight, 1, -1);
 
 	// If the max number of quads are already being drawn, draw them and start another batch
 	if (s_Data.CurrentIndexCount >= MaxIndexCount || s_Data.CurrentTextureSlotIndex > 31)
@@ -179,30 +182,21 @@ void Renderer::DrawQuad(const Vector2D& position, const float scaleFactor, uint3
 	{(x * sourceRect.w) / sheetWidth, ((y + 1) * sourceRect.h) / sheetHeight}
 	};
 
-	s_Data.QuadBufferPtr->Position = { drawPosX, drawPosY - drawHeight, 0.f};
-	s_Data.QuadBufferPtr->Color = { 1.f, 1.f, 1.f };
-	s_Data.QuadBufferPtr->TexCoords = textureCoords[0];
-	s_Data.QuadBufferPtr->TexID = textureIndex;
-	s_Data.QuadBufferPtr++;
+	const glm::vec3 positions[] = {
+		{ drawPosX, drawPosY - drawHeight, 0.f},
+		{ drawPosX + drawWidth, drawPosY - drawHeight, 0.f},
+		{ drawPosX + drawWidth, drawPosY, 0.f },
+		{ drawPosX, drawPosY, 0.f}
+	};
 
-	s_Data.QuadBufferPtr->Position = { drawPosX + drawWidth, drawPosY - drawHeight, 0.f};
-	s_Data.QuadBufferPtr->Color = { 1.f, 1.f, 1.f };
-	s_Data.QuadBufferPtr->TexCoords = textureCoords[1];
-	s_Data.QuadBufferPtr->TexID = textureIndex;
-	s_Data.QuadBufferPtr++;
-
-	s_Data.QuadBufferPtr->Position = { drawPosX + drawWidth, drawPosY, 0.f };
-	s_Data.QuadBufferPtr->Color = { 1.f, 1.f, 1.f };
-	s_Data.QuadBufferPtr->TexCoords = textureCoords[2];
-	s_Data.QuadBufferPtr->TexID = textureIndex;
-	s_Data.QuadBufferPtr++;
-
-	s_Data.QuadBufferPtr->Position = { drawPosX, drawPosY, 0.f};
-	s_Data.QuadBufferPtr->Color = { 1.f, 1.f, 1.f };
-	s_Data.QuadBufferPtr->TexCoords = textureCoords[3];
-	s_Data.QuadBufferPtr->TexID = textureIndex;
-	s_Data.QuadBufferPtr++;
-
+	for (int i = 0; i < 4; ++i)
+	{
+		s_Data.QuadBufferPtr->Position = positions[i];
+		s_Data.QuadBufferPtr->Color = { 1.f, 1.f, 1.f };
+		s_Data.QuadBufferPtr->TexCoords = textureCoords[i];
+		s_Data.QuadBufferPtr->TexID = textureIndex;
+		s_Data.QuadBufferPtr++;
+	}
 	s_Data.CurrentIndexCount += 6;
 }
 

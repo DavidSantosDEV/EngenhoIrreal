@@ -64,6 +64,8 @@ void GameEngine::Init(const char* windowTitle, int windowWidth, int windowHeight
 	else {
 		m_Instance = this;
 		m_Sdl = new SDLWrapper(SDL_INIT_VIDEO | SDL_INIT_TIMER | SDL_INIT_AUDIO);
+		Renderer::s_ScreenWidth = windowWidth;
+		Renderer::s_ScreenHeight = windowHeight;
 		OpenGLWrapper::Init();
 		m_Window = new Window(windowTitle, windowWidth, windowHeight, true);
 		m_World = World;
@@ -213,7 +215,7 @@ void GameEngine::Render(unsigned int shaderProgramID)
 		glUseProgram(shaderProgramID);
 		Renderer::BeginBatch();
 
-		GLuint shipTexture = TextureManager::LoadTextureOpenGL("Ship1.png");
+		GLuint shipTexture = TextureManager::LoadTextureOpenGL("png/Ship1.png");
 		SDL_Rect sourceRect = GameWorld::FindObjectWithTag("Player")->GetComponent<Sprite>()->GetSourceRect();
 		Vector2D pos = GameWorld::FindObjectWithTag("Player")->_Transform.GetPosition();
 		float scale = GameWorld::FindObjectWithTag("Player")->GetComponent<Sprite>()->GetScale();

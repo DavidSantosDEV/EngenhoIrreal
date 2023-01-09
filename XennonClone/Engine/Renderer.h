@@ -15,5 +15,8 @@ public:
 	static void Flush();
 
 	static void DrawQuad(const Vector2D& position, const float scaleFactor, uint32_t textureID, struct SDL_Rect& sourceRect);
+
+	static float s_ScreenWidth, s_ScreenHeight;
+
 };
 

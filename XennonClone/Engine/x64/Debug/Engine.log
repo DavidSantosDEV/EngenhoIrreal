@@ -1,12 +1,12 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(510,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (Engine.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  Shader.cpp
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\minwindef.h(130,1): warning C4005: 'APIENTRY': macro redefinition
-C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\include\glad\glad.h(32): message : see previous definition of 'APIENTRY'
-C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
-  TextureManager.cpp
+  Renderer.cpp
 C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\Transform.h(75,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
-  Generating Code...
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\MathHelper.h(71,56): warning C4114: same type qualifier used more than once
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\MathHelper.h(66,18): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\MathHelper.h(67,18): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\MathHelper.h(68,54): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\Renderer.cpp(136,10): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\Engine\Renderer.cpp(137,10): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
 SDL2_image.lib(SDL2_image.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in SDL2.lib(SDL2.dll); second definition ignored
 SDL2_mixer.lib(SDL2_mixer.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in SDL2.lib(SDL2.dll); second definition ignored
   Engine.vcxproj -> C:\Users\diogo\Documents\GitHub\EngenhoIrreal\XennonClone\x64\Debug\EngenhoIrrealXVII.lib
