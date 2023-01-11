@@ -6,7 +6,7 @@
 Drone::Drone()
 {
 	m_SineMovementData = SineMovementData(3.f, 1.f);
-	m_EnemyData = EnemyData("Enemy", "drone.bmp", 8, 2, 1.f, 25, 10, 25, 35);
+	m_EnemyData = EnemyData("Enemy", "png/drone.png", 8, 2, 1.f, 25, 10, 25, 35);
 	Setup();
 }
 

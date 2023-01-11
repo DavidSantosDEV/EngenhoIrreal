@@ -3,7 +3,7 @@
 
 WeaponPowerPickup::WeaponPowerPickup()
 {
-	SetupPickup("PUMissil.bmp", 4, 2, 25);
+	SetupPickup("png/PUMissil.png", 4, 2, 25);
 }
 
 void WeaponPowerPickup::CallPickupPower(class IUpgradableShip* other)

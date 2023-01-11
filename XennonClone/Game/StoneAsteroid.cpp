@@ -22,13 +22,13 @@ void StoneAsteroid::SetupAsteroidData()
 	switch (m_AsteroidType)
 	{
 	case AsteroidType::Small:
-		m_EnemyData = EnemyData("Enemy", "SAster32.bmp", 8, 2, 1.f, 15, 15, 15, 40);
+		m_EnemyData = EnemyData("Enemy", "png/SAster32.png", 8, 2, 1.f, 15, 15, 15, 40);
 		break;
 	case AsteroidType::Medium:
-		m_EnemyData = EnemyData("Enemy", "SAster64.bmp", 8, 3, 1.f, 25, 15, 30, 35);
+		m_EnemyData = EnemyData("Enemy", "png/SAster64.png", 8, 3, 1.f, 25, 15, 30, 35);
 		break;
 	case AsteroidType::Large:
-		m_EnemyData = EnemyData("Enemy", "SAster96.bmp", 5, 5, 1.f, 60, 30, 40, 25);
+		m_EnemyData = EnemyData("Enemy", "png/SAster96.png", 5, 5, 1.f, 60, 30, 40, 25);
 		break;
 	default:
 		LOG_ERROR("no valid stone asteroid type");

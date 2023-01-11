@@ -3,7 +3,7 @@
 
 ShieldPickup::ShieldPickup()
 {
-	SetupPickup("PUShield.bmp", 4, 2, 25);
+	SetupPickup("png/PUShield.png", 4, 2, 25);
 }
 
 void ShieldPickup::CallPickupPower(class IUpgradableShip* other)
