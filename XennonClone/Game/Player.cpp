@@ -41,11 +41,6 @@ void Player::HandleEvents()
 		}
 		m_ShotsTimer = 0.f;
 	}
-	if (Input::IsChangeRenderingKeyDown() && m_ShotsTimer >= m_FireRate)
-	{
-		GameEngine::s_IsUsingOpenGLRendering = !GameEngine::s_IsUsingOpenGLRendering;
-		m_ShotsTimer = 0.f;
-	}
 }
 
 void Player::OnZeroHealth()
