@@ -16,7 +16,7 @@ Player::Player()
 {
 	AddTag("Player");
 
-	m_SpriteComponent = AddComponent<Sprite>("Ship1.bmp", 7, 1, 1.f, 1);
+	m_SpriteComponent = AddComponent<Sprite>("png/Ship1.png", 7, 1, 1.f, 1);
 	m_AnimationComponent = AddComponent<AnimationComponent>(m_SpriteComponent, false, 8.f);
 
 	m_PhysicsComponent = AddComponent<PhysicsComponent>(BodyType::Dynamic, 0, 1, 1);

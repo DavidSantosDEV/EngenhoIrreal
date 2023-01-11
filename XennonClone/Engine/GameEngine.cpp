@@ -209,46 +209,53 @@ void GameEngine::Update()
 
 void GameEngine::Render(unsigned int shaderProgramID)
 {
-	if (s_IsUsingOpenGLRendering)
-	{
-		glClear(GL_COLOR_BUFFER_BIT);
-		glUseProgram(shaderProgramID);
-		Renderer::BeginBatch();
+	glClear(GL_COLOR_BUFFER_BIT);
+	glUseProgram(shaderProgramID);
+	Renderer::BeginBatch();
 
-		TextureData textureData = TextureManager::LoadTextureOpenGL("png/Ship1.png");
-		SDL_Rect sourceRect = GameWorld::FindObjectWithTag("Player")->GetComponent<Sprite>()->GetSourceRect();
-		Vector2D pos = GameWorld::FindObjectWithTag("Player")->_Transform.GetPosition();
-		float scale = GameWorld::FindObjectWithTag("Player")->GetComponent<Sprite>()->GetScale();
-		Renderer::DrawQuad(pos, scale, textureData.TextureID, &sourceRect, Vector2D(textureData.SheetWidth, 
-			textureData.SheetHeight));
-
-		Renderer::EndBatch();
-		Renderer::Flush();
-		SDL_GL_SwapWindow(m_Window->GetWindow());
-		m_Window->Clean();
-	}
-	else
+	for (auto mR : m_RenderComponentsStack)
 	{
-		for (auto mR : m_RenderComponentsStack)
-		{
-			Vector2D pos = mR->GetOwnerGameObject()->GetTransform()->GetPosition();
-			Vector2D win = m_Window->GetWindowSize();
-			if (isInsideSquare(Vector2D(-20, -20), Vector2D(win.x, -20), win, Vector2D(-20, win.y), pos)) {
-				if (!mR->GetIsVisible()) {
-					mR->SetIsVisible(true);
-					mR->GetOwnerGameObject()->OnBecameVisible();
-				}
+		Vector2D pos = mR->GetOwnerGameObject()->GetTransform()->GetPosition();
+		Vector2D win = m_Window->GetWindowSize();
+		if (isInsideSquare(Vector2D(-20, -20), Vector2D(win.x, -20), win, Vector2D(-20, win.y), pos)) {
+			if (!mR->GetIsVisible()) {
+				mR->SetIsVisible(true);
+				mR->GetOwnerGameObject()->OnBecameVisible();
 			}
-			else {
-				if (mR->GetIsVisible()) {
-					mR->SetIsVisible(false);
-					mR->GetOwnerGameObject()->OnBecameHidden();
-				}
-			}
-			mR->Render();
 		}
-		m_Window->UpdateRender();
+		else {
+			if (mR->GetIsVisible()) {
+				mR->SetIsVisible(false);
+				mR->GetOwnerGameObject()->OnBecameHidden();
+			}
+		}
+		mR->Render();
 	}
+
+	Renderer::EndBatch();
+	Renderer::Flush();
+	SDL_GL_SwapWindow(m_Window->GetWindow());
+	m_Window->Clean();
+
+	//for (auto mR : m_RenderComponentsStack)
+	//{
+	//	Vector2D pos = mR->GetOwnerGameObject()->GetTransform()->GetPosition();
+	//	Vector2D win = m_Window->GetWindowSize();
+	//	if (isInsideSquare(Vector2D(-20, -20), Vector2D(win.x, -20), win, Vector2D(-20, win.y), pos)) {
+	//		if (!mR->GetIsVisible()) {
+	//			mR->SetIsVisible(true);
+	//			mR->GetOwnerGameObject()->OnBecameVisible();
+	//		}
+	//	}
+	//	else {
+	//		if (mR->GetIsVisible()) {
+	//			mR->SetIsVisible(false);
+	//			mR->GetOwnerGameObject()->OnBecameHidden();
+	//		}
+	//	}
+	//	mR->Render();
+	//}
+	//m_Window->UpdateRender();
 }
 
 float triangleArea(Vector2D A,Vector2D B ,Vector2D C ){

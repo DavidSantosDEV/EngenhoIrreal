@@ -14,6 +14,7 @@
 #include "MathHelper.h"
 #include "TextureManager.h"
 #include "Log.h"
+#include "Renderer.h"
 
 Sprite::Sprite(const char* texturePath, int renderPriority) : RenderComponent(renderPriority)
 {
@@ -62,9 +63,10 @@ void Sprite::Render()
 
 			SDL_RendererFlip flip = (m_FlipY ? SDL_FLIP_VERTICAL : SDL_FLIP_NONE);
 			
+			Renderer::DrawQuad(m_ParentTransform->GetPosition(), m_Scale, m_TextureData.TextureID,
+				&m_SourceRect, Vector2D(m_TextureData.SheetWidth, m_TextureData.SheetHeight));
 
-			SDL_RenderCopyExF(GameEngine::GetInstance()->GetRenderer(), m_Texture, &m_SourceRect, &m_DestRect, m_rotation, &center, flip);
-			//SDL_RenderCopyF(GameEngine::GetInstance()->GetRenderer(), m_Texture, &m_SourceRect, &m_DestRect);
+			//SDL_RenderCopyExF(GameEngine::GetInstance()->GetRenderer(), m_Texture, &m_SourceRect, &m_DestRect, m_rotation, &center, flip);
 		}
 	}
 }
@@ -86,10 +88,12 @@ void Sprite::SetSpriteTexture(SDL_Texture* texture)
 void Sprite::SetTextureData(const char* texturePath, int spriteSheetRows, int spriteSheetColumns, float scale)
 {
 	m_Texture = TextureManager::LoadTexture(texturePath);
-	SDL_QueryTexture(m_Texture, nullptr, nullptr, &m_TextureWidth, &m_TextureHeight);
+	SDL_QueryTexture(m_Texture, nullptr, nullptr, &m_SheetWidth, &m_SheetHeight);
 
-	m_FrameWidth = m_TextureWidth / spriteSheetRows;
-	m_FrameHeight = m_TextureHeight / spriteSheetColumns;
+	m_TextureData = TextureManager::LoadTextureOpenGL(texturePath);
+
+	m_FrameWidth = m_SheetWidth / spriteSheetRows;
+	m_FrameHeight = m_SheetHeight / spriteSheetColumns;
 	m_Scale = scale;
 
 	m_SourceRect.x = m_SourceRect.y = 0;

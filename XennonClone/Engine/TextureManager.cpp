@@ -24,6 +24,7 @@ std::string TextureManager::GetPathTranslated(const char* path)
 TextureData TextureManager::LoadTextureOpenGL(const char* path)
 {
     int sheetWidth = 0, sheetHeight = 0;
+    GLuint internalFormat = 0, dataFormat = 0;
 
 	int numberChannels;
 
@@ -32,10 +33,21 @@ TextureData TextureManager::LoadTextureOpenGL(const char* path)
 	unsigned char* textureData = stbi_load(GetPathTranslated(path).c_str(), 
         &sheetWidth, &sheetHeight, &numberChannels, 0);
 
+    if (numberChannels == 3)
+    {
+        LOG_WARNING("Texture is still .bmp at: " << path);
+        internalFormat = GL_RGB8;
+        dataFormat = GL_RGB;
+    }
+    else
+    {
+		internalFormat = GL_RGBA8;
+		dataFormat = GL_RGBA;
+    }
+
 	if (textureData == nullptr)
 	{
 		LOG_ERROR("Failed to load texture data from path: " << GetPathTranslated(path));
-		return TextureData();
 	}
 
 	GLuint textureID;
@@ -47,7 +59,7 @@ TextureData TextureManager::LoadTextureOpenGL(const char* path)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, sheetWidth, sheetHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, textureData);
+	glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, sheetWidth, sheetHeight, 0, dataFormat, GL_UNSIGNED_BYTE, textureData);
 
 	stbi_image_free(textureData);
 
