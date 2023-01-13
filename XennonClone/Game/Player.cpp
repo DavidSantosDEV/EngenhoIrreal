@@ -57,11 +57,6 @@ void Player::HandleEvents()
 			bullet->GetPhysicsComponent()->SetPosition(CalculateFirePosition(bulletPositionMultiplier));
 			bulletPositionMultiplier *= -1;
 		}
-		/*
-		for (unsigned int i = 0; i < m_WeaponLevel; ++i)
-		{
-			
-		}*/
 		m_ShotsTimer = 0.f;
 	}
 }

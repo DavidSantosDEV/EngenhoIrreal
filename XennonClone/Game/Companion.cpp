@@ -7,6 +7,9 @@
 #include "AnimationComponent.h"
 #include "HealthComponent.h"
 #include "PlayerBullet.h"
+#include "MediumBullet.h"
+#include "HeavyBullet.h"
+#include "MathHelper.h"
 #include "Explosion.h"
 
 
@@ -34,6 +37,7 @@ void Companion::SetTarget(Player* newTarget, Vector2D localPosition)
 {
 	if (newTarget) {
 		m_FollowTarget = newTarget;
+		m_FollowTarget->GetHealthComponent()->OnDie.Add(this, &Companion::OnPlayerDie);
 		m_playerOffSet = localPosition;
 	}
 }
@@ -44,10 +48,25 @@ void Companion::Update(float delta)
 	if (m_FollowTarget) {
 		if (m_FollowTarget->GetIsShooting() && m_ShotsTimer >= m_FireRate)
 		{
-			PlayerBullet* bullet = GameWorld::InstantiateObject<PlayerBullet>();
-			// TODO don't get component every frame
-			bullet->GetPhysicsComponent()->SetPosition(GetTransform()->GetPosition()+m_bulletPos);
-			m_ShotsTimer = 0.f;
+			Bullet* bullet = nullptr;
+			//Copy paste from player
+			switch (weaponPower)
+			{
+			case 2:
+				bullet = GameWorld::InstantiateObject<MediumBullet>();
+				break;
+			case 3:
+				bullet = GameWorld::InstantiateObject<HeavyBullet>();
+				break;
+			default:
+			case 1:
+				bullet = GameWorld::InstantiateObject<PlayerBullet>();
+				break;
+			}
+			if (bullet) {
+				bullet->GetPhysicsComponent()->SetPosition(GetTransform()->GetPosition() + m_bulletPos);
+				m_ShotsTimer = 0.f;
+			}
 		}
 		physComp->SetPosition(m_FollowTarget->GetTransform()->GetPosition() + m_playerOffSet);
 	}
@@ -58,4 +77,15 @@ void Companion::OnZeroHealth()
 	GameWorld::InstantiateObject<Explosion>(GetTransform());
 	OnCompanionDie.Broadcast(this);
 	GameWorld::DestroyObject(this);
+}
+
+void Companion::OnPlayerDie()
+{
+	GameWorld::DestroyObject(this);
+}
+
+void Companion::UpgradeWeaponPower()
+{
+	weaponPower += 1;
+	weaponPower = MathHelper::ClampInt(weaponPower, 1, 3);
 }

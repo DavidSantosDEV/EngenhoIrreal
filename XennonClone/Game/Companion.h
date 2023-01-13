@@ -34,8 +34,10 @@ public:
 	virtual void Update(float delta) override;
 	void OnZeroHealth();
 
+	void OnPlayerDie();
+
 	virtual void UpgradeShields(int amountToHeal) { LOG_ERROR(" Forgot to override IUpgradableShip methods") };
-	virtual void UpgradeWeaponPower() { LOG_ERROR(" Forgot to override IUpgradableShip methods") };
+	virtual void UpgradeWeaponPower(); //Upgrade weapon
 	virtual void AddCompanion() {};
 
 	Vector2D GetPositionTarget() { return m_playerOffSet; }

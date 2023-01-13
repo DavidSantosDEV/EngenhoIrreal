@@ -47,9 +47,21 @@ void XennonGameWorld::Start()
 	//InstantiateObject<Loner>()->GetComponent<PhysicsComponent>()->SetPosition(Vector2D(800, 300));
 }
 
+void XennonGameWorld::Update(float delta)
+{
+	if (bPlayerDead) {
+		currentWaitTime += delta;
+		if (currentWaitTime>= playerRespawnTime) {
+			RespawnPlayer();
+			currentWaitTime = 0;
+		}
+	}
+}
+
 void XennonGameWorld::RespawnPlayer()
 {
 	m_player->GetComponent<HealthComponent>()->Revive();
+	bPlayerDead = false;
 	LOG_ERROR("TIMED");
 }
 
@@ -58,6 +70,7 @@ void XennonGameWorld::OnPlayerDie()
 	//Remove Lives
 	m_currentPlayerLifeCount = MathHelper::ClampInt(m_currentPlayerLifeCount- 1,0,m_MaxPlayerLifeCount);
 	LOG("Player Live cout " << m_currentPlayerLifeCount);
+	bPlayerDead = true;
 	if (!m_currentPlayerLifeCount>0) {
 		ClearCurrent();
 	}
@@ -76,4 +89,6 @@ void XennonGameWorld::AddScore(unsigned int value)
 void XennonGameWorld::ClearCurrent()
 {
 	m_currentScore = 0;
+	m_currentPlayerLifeCount = m_MaxPlayerLifeCount;
+	LOG("Current Score: " << m_currentScore);
 }

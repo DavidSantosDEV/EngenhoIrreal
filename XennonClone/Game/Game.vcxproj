@@ -171,7 +171,6 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerBullet.cpp" />
     <ClCompile Include="PowerUpManager.cpp" />
-    <ClCompile Include="PowerUpMissile.cpp" />
     <ClCompile Include="Rusher.cpp" />
     <ClCompile Include="ShieldPickup.cpp" />
     <ClCompile Include="StaticBackground.cpp" />
@@ -200,7 +199,6 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerBullet.h" />
     <ClInclude Include="PowerUpManager.h" />
-    <ClInclude Include="PowerUpMissile.h" />
     <ClInclude Include="Rusher.h" />
     <ClInclude Include="ShieldPickup.h" />
     <ClInclude Include="StaticBackground.h" />

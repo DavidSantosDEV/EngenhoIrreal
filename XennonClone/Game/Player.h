@@ -31,6 +31,8 @@ public:
 	virtual void UpgradeWeaponPower() override;
 	virtual void AddCompanion() override;
 
+	HealthComponent* GetHealthComponent() { return m_HealthComponent; }
+
 
 private:
 
@@ -59,7 +61,7 @@ private:
 
 	Vector2D m_FirePosition;
 	//Companion
-	std::vector<Vector2D> m_CompanionPositions {Vector2D(100,0)};
+	std::vector<Vector2D> m_CompanionPositions {Vector2D(100,0), Vector2D(-100,0)};
 	std::vector<Vector2D> m_AvailablePositions;
 };
 

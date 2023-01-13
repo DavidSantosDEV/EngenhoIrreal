@@ -38,11 +38,11 @@ void PowerUpManager::SpawnRandomPickup()
 		bpickup = GameWorld::InstantiateObject<CompanionPickup>();
 		break;
 	}
+
 	if (bpickup) {
 		PhysicsComponent* physc = bpickup->GetComponent<PhysicsComponent>();
 		if (physc) {
-			Vector2D pos = GetRandomPosition();
-			physc->SetPosition(pos);
+			physc->SetPosition(GetRandomPosition());
 		}
 	}
 }

@@ -40,10 +40,6 @@ void EnemyManager::Update(float deltaTime)
 
 void EnemyManager::SpawnEnemyAtRandom()
 {	
-	// TODO FIX. Enemy base class doesn't do anything, only child classes
-	// Como resolver: o enemy manager tem de saber das classes de inimigos que existem no jogo
-	// e escolhe random dentro dessas para fazer spawn
-
 	//Spawn rocks, spawn drone packs
 
   	if (enemyCount< m_MaxEnemies) {
@@ -63,6 +59,9 @@ void EnemyManager::SpawnEnemyAtRandom()
 			break;
 		case 2:
 			//Asteroid
+
+			//Metal
+
 			enemy = GameWorld::InstantiateObject<StoneAsteroid>();
 			break;
 		default:
