@@ -54,6 +54,8 @@ public:
 	void SetSpriteTexture(SDL_Texture* Texture);
 	void SetTextureData(const char* texturePath, int spriteSheetColumns, int spriteSheetRows, float scale);
 
+	int GetSheetHeight() const { return m_SheetHeight; }
+
 	inline SDL_Texture* GetTexture() const { return m_Texture; }
 	SDL_Rect& GetSourceRect();
 	SDL_FRect& GetDestRect();

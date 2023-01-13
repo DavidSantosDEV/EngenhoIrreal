@@ -17,14 +17,14 @@ void ParallaxComponent::Start()
 		LOG_ERROR("ParallaxComponent only works if GO also has a SpriteComponent");
 	}
 
-	m_OwnerGameObject->_Transform.SetPosition(0.f, -m_SpriteComponent->m_SheetHeight);
+	m_OwnerGameObject->_Transform.SetPosition(0.f, -300);
 }
 
 void ParallaxComponent::Update(float deltaTime)
 {	
-	if (m_OwnerGameObject->_Transform.GetPosition().y >= m_SpriteComponent->m_SheetHeight / 3)
+	if (m_OwnerGameObject->_Transform.GetPosition().y >= m_SpriteComponent->m_SheetHeight + 475)
 	{
-		m_OwnerGameObject->_Transform.SetPosition(0.f, -m_SpriteComponent->m_SheetHeight);
+		m_OwnerGameObject->_Transform.SetPosition(0.f, -300);
 	}
 	else
 	{

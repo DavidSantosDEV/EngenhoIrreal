@@ -183,8 +183,8 @@ void Renderer::DrawQuad(const Vector2D& position, const float scaleFactor, uint3
 	};
 
 	const glm::vec3 positions[] = {
-		{ drawPosX, drawPosY - drawHeight, 0.f},
-		{ drawPosX + drawWidth, drawPosY - drawHeight, 0.f},
+		{ drawPosX, drawPosY + drawHeight, 0.f},
+		{ drawPosX + drawWidth, drawPosY + drawHeight, 0.f},
 		{ drawPosX + drawWidth, drawPosY, 0.f },
 		{ drawPosX, drawPosY, 0.f}
 	};
