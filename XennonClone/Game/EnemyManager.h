@@ -10,9 +10,9 @@ protected:
 
 	Vector2D LonerSpawns[3] = { Vector2D(800, 300),Vector2D(800, 50),Vector2D(800, 200) };
 
-	Vector2D AsteroidSpawns[3] = {};
+	Vector2D AsteroidSpawns[3] = { Vector2D(300, -20),Vector2D(50, -50),Vector2D(200, -100) };
 
-	Vector2D DroidSpawns[3] = {};
+	Vector2D DroidSpawns[4] = { Vector2D(50,-10), Vector2D(300,-10.f), Vector2D(150,-10.f), Vector2D(200,-10.f) };
 
 
 	float m_CurrentTime;

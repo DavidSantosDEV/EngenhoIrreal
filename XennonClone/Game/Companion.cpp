@@ -84,6 +84,11 @@ void Companion::OnPlayerDie()
 	GameWorld::DestroyObject(this);
 }
 
+void Companion::UpgradeShields(int amountToHeal)
+{
+	HealthComp->Heal(amountToHeal);
+}
+
 void Companion::UpgradeWeaponPower()
 {
 	weaponPower += 1;
