@@ -29,17 +29,21 @@
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameWorld.cpp" />
+    <ClCompile Include="glad.c" />
     <ClCompile Include="HealthComponent.cpp" />
     <ClCompile Include="InitError.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="InstanceCounter.cpp" />
     <ClCompile Include="MathHelper.cpp" />
+    <ClCompile Include="OpenGLWrapper.cpp" />
     <ClCompile Include="ParallaxComponent.cpp" />
     <ClCompile Include="Pawn.cpp" />
     <ClCompile Include="PhysicsComponent.cpp" />
     <ClCompile Include="PhysicsWorld.cpp" />
     <ClCompile Include="RenderComponent.cpp" />
+    <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="SDLWrapper.cpp" />
+    <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="SquareCollision.cpp" />
     <ClCompile Include="TextureManager.cpp" />
@@ -65,12 +69,15 @@
     <ClInclude Include="InstanceCounter.h" />
     <ClInclude Include="Log.h" />
     <ClInclude Include="MathHelper.h" />
+    <ClInclude Include="OpenGLWrapper.h" />
     <ClInclude Include="ParallaxComponent.h" />
     <ClInclude Include="Pawn.h" />
     <ClInclude Include="PhysicsComponent.h" />
     <ClInclude Include="PhysicsWorld.h" />
     <ClInclude Include="RenderComponent.h" />
+    <ClInclude Include="Renderer.h" />
     <ClInclude Include="SDLWrapper.h" />
+    <ClInclude Include="Shader.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="SquareCollision.h" />
     <ClInclude Include="TextureManager.h" />
@@ -78,6 +85,9 @@
     <ClInclude Include="TimerManager.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="Window.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="shaders\Main.shader" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -166,7 +176,7 @@
       <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>..\include\Box2D;..\include\SDL2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\include;..\include\glm;..\include\KHR;..\include\glad;..\include\Box2D;..\include\SDL2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -205,7 +215,7 @@
       <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>..\include\Box2D;..\include\SDL2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\include;..\include\glm;..\include\KHR;..\include\glad;..\include\Box2D;..\include\SDL2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

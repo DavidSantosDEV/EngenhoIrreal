@@ -22,8 +22,8 @@ void AnimationComponent::Start()
 	{
 		m_StartingAnimationFrameX = 0;
 		m_StartingAnimationFrameY = 0;
-		m_EndingAnimationFrameX = m_ParentSpriteComponent->m_TextureWidth;
-		m_EndingAnimationFrameY = m_ParentSpriteComponent->m_TextureHeight;
+		m_EndingAnimationFrameX = m_ParentSpriteComponent->m_SheetWidth;
+		m_EndingAnimationFrameY = m_ParentSpriteComponent->m_SheetHeight;
 	}
 }
 

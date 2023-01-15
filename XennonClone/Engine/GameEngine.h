@@ -20,7 +20,7 @@ public:
 	void Start();
 	void HandleInput(union SDL_Event& ev);
 	void Update();
-	void Render();
+	void Render(unsigned int shaderProgramID);
 
 	void DestroyPending();
 	void AddPendingDestroy(GameObject* obj);
@@ -36,6 +36,7 @@ public:
 	static void RemovePawnFromStack(Pawn* pawn);
 
 	static std::vector<GameObject*> GetAllGameObjects() { return m_GameObjectStack; }
+	static bool s_IsUsingOpenGLRendering;
 
 private:
 

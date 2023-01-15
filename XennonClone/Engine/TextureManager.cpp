@@ -8,6 +8,9 @@
 //#include "RenderComponent.h"
 #include <iostream>
 #include "Log.h"
+#define STB_IMAGE_IMPLEMENTATION
+#include "stb_image.h"
+#include <glad/glad.h>
 
 const char* TextureManager::m_BasePath = "../Assets/";
 
@@ -16,6 +19,51 @@ std::string TextureManager::GetPathTranslated(const char* path)
     std::string fullPath = m_BasePath;
     fullPath += path;
     return fullPath;
+}
+
+TextureData TextureManager::LoadTextureOpenGL(const char* path)
+{
+    int sheetWidth = 0, sheetHeight = 0;
+    GLuint internalFormat = 0, dataFormat = 0;
+
+	int numberChannels;
+
+	stbi_set_flip_vertically_on_load(0);
+	// Load texture data
+	unsigned char* textureData = stbi_load(GetPathTranslated(path).c_str(), 
+        &sheetWidth, &sheetHeight, &numberChannels, 0);
+
+    if (numberChannels == 3)
+    {
+        LOG_WARNING("Texture is still .bmp at: " << path);
+        internalFormat = GL_RGB8;
+        dataFormat = GL_RGB;
+    }
+    else
+    {
+		internalFormat = GL_RGBA8;
+		dataFormat = GL_RGBA;
+    }
+
+	if (textureData == nullptr)
+	{
+		LOG_ERROR("Failed to load texture data from path: " << GetPathTranslated(path));
+	}
+
+	GLuint textureID;
+	glCreateTextures(GL_TEXTURE_2D, 1, &textureID);
+	glBindTexture(GL_TEXTURE_2D, textureID);
+
+	// Set texture parameters
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, sheetWidth, sheetHeight, 0, dataFormat, GL_UNSIGNED_BYTE, textureData);
+
+	stbi_image_free(textureData);
+
+	return TextureData(textureID, sheetWidth, sheetHeight);
 }
 
 SDL_Texture* TextureManager::LoadTexture(const char* Filename) //Generic Loader

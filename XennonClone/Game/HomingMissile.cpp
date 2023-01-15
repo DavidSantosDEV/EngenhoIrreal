@@ -6,7 +6,7 @@
 
 HomingMissile::HomingMissile()
 {
-	m_BulletData = BulletData("enemybullet.bmp", 1, 8, 25, "Player", 10, 2.f, 100, Vector2D::Down());
+	m_BulletData = BulletData("png/enemybullet.png", 1, 8, 25, "Player", 10, 2.f, 100, Vector2D::Down());
 	Setup();
 }
 

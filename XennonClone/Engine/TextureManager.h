@@ -4,18 +4,15 @@
 #include <vector>
 #include <string>
 
-class RenderComponent;
-/*
-struct TextureAndComps {
-	TextureAndComps() { texture = nullptr; }
-	TextureAndComps(SDL_Texture* t, std::vector<RenderComponent*> c) {
-		texture = t;
-		components = c;
-	}
-
-	SDL_Texture* texture;
-	std::vector<RenderComponent*> components;
-};*/
+struct TextureData
+{
+	/* Texture ID bound in OpenGL */
+	unsigned int TextureID;
+	int SheetWidth = 1;
+	int SheetHeight = 1;
+	TextureData() = default;
+	TextureData(unsigned int textureID, int sheetWidth, int sheetHeight) : TextureID{ textureID }, SheetWidth{ sheetWidth }, SheetHeight{ sheetHeight } {};
+};
 
 class TextureManager {
 	/*Todo,
@@ -31,6 +28,7 @@ protected:
 protected:
 	static std::string GetPathTranslated(const char* path);
 public:
+	static TextureData LoadTextureOpenGL(const char* path);
 	static SDL_Texture* LoadTexture(const char* Filename);
 	/*
 	static SDL_Texture* LoadTextureBind(const char* Filename, RenderComponent* comp);

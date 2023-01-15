@@ -11,7 +11,7 @@ void Loner::Shoot()
 
 Loner::Loner()
 {
-	m_EnemyData = EnemyData("Enemy", "lonerA.bmp", 4, 4, 1.f, 35, 10, 50, 10);
+	m_EnemyData = EnemyData("Enemy", "png/lonerA.png", 4, 4, 1.f, 35, 10, 50, 10);
 	Setup();
 	currentDelay = shootDelay;
 	AddTag("Loner");

@@ -11,4 +11,5 @@ public:
 	static int GetRightAxisValue();
 	static int GetUpAxisValue();
 	static bool IsFireKeyDown();
+	static bool IsChangeRenderingKeyDown();
 };

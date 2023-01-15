@@ -2,6 +2,7 @@
 #include "RenderComponent.h"
 #include "Transform.h"
 #include "SDL.h"
+#include "TextureManager.h"
 
 struct SDL_Texture;
 struct SDL_Rect;
@@ -14,14 +15,16 @@ protected:
 	Transform* m_ParentTransform{ nullptr };
 
 	//Display
+
 	SDL_Texture* m_Texture = nullptr;
+	TextureData m_TextureData;
 
 	SDL_Rect m_SourceRect;
 	SDL_FRect m_DestRect;
 
 	/* The pixels (width and height) of the texture that should be loaded */
-	int m_TextureWidth = 0;
-	int m_TextureHeight = 0;
+	int m_SheetWidth = 0;
+	int m_SheetHeight = 0;
 	/* The pixels (width and height) of each sprite in the spritesheet */
 	int m_FrameWidth = 1;
 	int m_FrameHeight = 1;
@@ -33,6 +36,8 @@ protected:
 	bool m_FlipY = false;
 
 	float m_Opacity = 1;
+
+	float m_Scale = 1.f;
 
 public:
 	/* Used for non-animated sprites */
@@ -49,6 +54,8 @@ public:
 	void SetSpriteTexture(SDL_Texture* Texture);
 	void SetTextureData(const char* texturePath, int spriteSheetColumns, int spriteSheetRows, float scale);
 
+	int GetSheetHeight() const { return m_SheetHeight; }
+
 	inline SDL_Texture* GetTexture() const { return m_Texture; }
 	SDL_Rect& GetSourceRect();
 	SDL_FRect& GetDestRect();
@@ -57,6 +64,8 @@ public:
 
 	void SetOpacity(float opacity);
 	void SetScale(float fScale);
+
+	float GetScale() const { return m_Scale; }
 
 	// Inherited via RenderComponent
 	virtual void Render() override;

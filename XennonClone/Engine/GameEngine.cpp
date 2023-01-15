@@ -12,7 +12,7 @@
 #include "Window.h"
 #include "GameWorld.h"
 #include "GameObject.h"
-#include "RenderComponent.h"
+//#include "RenderComponent.h"
 #include "PhysicsWorld.h"
 #include "Pawn.h"
 #include "Log.h"
@@ -24,19 +24,28 @@
 #include "AudioSystem.h"
 #include "SDL_audio.h"
 #include <iostream>
+#include <glad/glad.h>
+#include <glm.hpp>
+#include <gtc/matrix_transform.hpp>
+#include <gtc/type_ptr.hpp>
+#include "Shader.h"
+#include "Renderer.h"
+#include "OpenGLWrapper.h"
+#include "Sprite.h"
 
+float triangleArea(Vector2D A, Vector2D B, Vector2D C);
+bool isInsideSquare(Vector2D A, Vector2D B, Vector2D C, Vector2D D, Vector2D P);
 
 // Initialize static variables
 GameWorld* GameEngine::m_World = nullptr;
 float GameEngine::m_ElapsedMS = 0.f;
+bool GameEngine::s_IsUsingOpenGLRendering = false;
 
 std::vector<GameObject*> GameEngine::m_GameObjectStack;
 std::vector<RenderComponent*> GameEngine::m_RenderComponentsStack;
 std::vector<Pawn*> GameEngine::m_PawnsStack;
 
 GameEngine* GameEngine::m_Instance{ nullptr };
-
-
 
 GameEngine::~GameEngine()
 {
@@ -55,6 +64,9 @@ void GameEngine::Init(const char* windowTitle, int windowWidth, int windowHeight
 	else {
 		m_Instance = this;
 		m_Sdl = new SDLWrapper(SDL_INIT_VIDEO | SDL_INIT_TIMER | SDL_INIT_AUDIO);
+		Renderer::s_ScreenWidth = windowWidth;
+		Renderer::s_ScreenHeight = windowHeight;
+		OpenGLWrapper::Init();
 		m_Window = new Window(windowTitle, windowWidth, windowHeight, true);
 		m_World = World;
 		m_Input = new Input();
@@ -67,16 +79,31 @@ void GameEngine::Init(const char* windowTitle, int windowWidth, int windowHeight
 
 void GameEngine::StartAndRun()
 {
-
 	LOG("Engine start");
 
-	//SplashScreen();
-
-	Start();
 	bool isRunning = true;
 	SDL_Event ev;
 	const int lock = 1000 / m_MaxFPS;
 	Uint32 mTicksCount = SDL_GetTicks();
+
+
+	SDL_GLContext context = OpenGLWrapper::InitializeGLAD(m_Window->GetWindow());
+
+	/* Assign the 32 texture channels with empty samplers */
+	unsigned int shaderProgram = Shader::CreateProgramFromShaderPath("../Engine/shaders/Main.shader");
+	auto textureUniformLocation = glGetUniformLocation(shaderProgram, "Textures");
+	int samplers[32];
+	for (int i = 0; i < 32; i++)
+	{
+		samplers[i] = i;
+	}
+	glUniform1iv(textureUniformLocation, 32, samplers);
+
+	Renderer::Init();
+
+	//SplashScreen();
+	Start();
+
 	while (isRunning)
 	{
 		while (!SDL_TICKS_PASSED(SDL_GetTicks(), mTicksCount + lock)); //Wait until ms passed
@@ -98,7 +125,7 @@ void GameEngine::StartAndRun()
 
 		Update();
 
-		Render();
+		Render(shaderProgram);
 
 		DestroyPending();
 
@@ -112,7 +139,12 @@ void GameEngine::StartAndRun()
 	InstanceCounter::PrintCounts();
 	DestroyAll();
 	InstanceCounter::PrintCounts();
-	/*-------------------*/
+
+	SDL_GL_DeleteContext(context);
+	SDL_DestroyWindow(m_Window->GetWindow());
+
+	Renderer::ShutDown();
+	SDL_Quit();
 }
 
 
@@ -202,9 +234,61 @@ void GameEngine::Update()
 	}
 }
 
+void GameEngine::Render(unsigned int shaderProgramID)
+{
+	glClear(GL_COLOR_BUFFER_BIT);
+	glUseProgram(shaderProgramID);
+	Renderer::BeginBatch();
+
+	for (auto mR : m_RenderComponentsStack)
+	{
+		Vector2D pos = mR->GetOwnerGameObject()->GetTransform()->GetPosition();
+		Vector2D win = m_Window->GetWindowSize();
+		if (isInsideSquare(Vector2D(-20, -20), Vector2D(win.x, -20), win, Vector2D(-20, win.y), pos)) {
+			if (!mR->GetIsVisible()) {
+				mR->SetIsVisible(true);
+				mR->GetOwnerGameObject()->OnBecameVisible();
+			}
+		}
+		else {
+			if (mR->GetIsVisible()) {
+				mR->SetIsVisible(false);
+				mR->GetOwnerGameObject()->OnBecameHidden();
+			}
+		}
+		mR->Render();
+	}
+
+	Renderer::EndBatch();
+	Renderer::Flush();
+	SDL_GL_SwapWindow(m_Window->GetWindow());
+	m_Window->Clean();
+
+	//for (auto mR : m_RenderComponentsStack)
+	//{
+	//	Vector2D pos = mR->GetOwnerGameObject()->GetTransform()->GetPosition();
+	//	Vector2D win = m_Window->GetWindowSize();
+	//	if (isInsideSquare(Vector2D(-20, -20), Vector2D(win.x, -20), win, Vector2D(-20, win.y), pos)) {
+	//		if (!mR->GetIsVisible()) {
+	//			mR->SetIsVisible(true);
+	//			mR->GetOwnerGameObject()->OnBecameVisible();
+	//		}
+	//	}
+	//	else {
+	//		if (mR->GetIsVisible()) {
+	//			mR->SetIsVisible(false);
+	//			mR->GetOwnerGameObject()->OnBecameHidden();
+	//		}
+	//	}
+	//	mR->Render();
+	//}
+	//m_Window->UpdateRender();
+}
+
 float triangleArea(Vector2D A,Vector2D B ,Vector2D C ){
 	return (C.x * B.y - B.x * C.y) - (C.x * A.y - A.x * C.y) + (B.x * A.y - A.x * B.y);
 }
+
  bool isInsideSquare(Vector2D A ,Vector2D B ,Vector2D C ,Vector2D D ,Vector2D P)
 {
 	if (triangleArea(A,B,P) > 0 || triangleArea(B,C,P) > 0 || triangleArea(C,D,P) > 0 || triangleArea(D,A,P) > 0) {
@@ -222,6 +306,8 @@ bool IsInside(Vector2D windowConfines, Vector2D pos, float Leeway) {
 	return false;
 }
 
+
+/*
 void GameEngine::Render()
 {
 	m_Window->Clean();
@@ -260,9 +346,9 @@ void GameEngine::Render()
 			}
 		}
 		mR->Render();
-	}*/
+	}
 	m_Window->UpdateRender();
-}
+}*/
 
 void GameEngine::AddGameObjectToStack(GameObject* gameObject)
 {
