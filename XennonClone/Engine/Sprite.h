@@ -16,7 +16,7 @@ protected:
 
 	//Display
 
-	SDL_Texture* m_Texture = nullptr;
+	//SDL_Texture* m_Texture = nullptr;
 	TextureData m_TextureData;
 
 	SDL_Rect m_SourceRect;
@@ -51,12 +51,12 @@ public:
 
 	virtual void Start() override;
 
-	void SetSpriteTexture(SDL_Texture* Texture);
+	//void SetSpriteTexture(SDL_Texture* Texture);
 	void SetTextureData(const char* texturePath, int spriteSheetColumns, int spriteSheetRows, float scale);
 
 	int GetSheetHeight() const { return m_SheetHeight; }
 
-	inline SDL_Texture* GetTexture() const { return m_Texture; }
+	//inline SDL_Texture* GetTexture() const { return m_Texture; }
 	SDL_Rect& GetSourceRect();
 	SDL_FRect& GetDestRect();
 

@@ -5,7 +5,6 @@
 #include "TextureManager.h"
 #include "GameEngine.h"
 #include "SDL_image.h"
-//#include "RenderComponent.h"
 #include <iostream>
 #include "Log.h"
 #define STB_IMAGE_IMPLEMENTATION

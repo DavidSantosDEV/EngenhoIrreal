@@ -46,7 +46,7 @@ void Sprite::Start()
 void Sprite::SetOpacity(float opacity)
 {
 	m_Opacity = MathHelper::Clamp01(opacity);
-	SDL_SetTextureAlphaMod(m_Texture, (Uint8)(m_Opacity * 255));
+	//SDL_SetTextureAlphaMod(m_Texture, (Uint8)(m_Opacity * 255));
 }
 
 void Sprite::SetScale(float fScale)
@@ -58,47 +58,49 @@ void Sprite::SetScale(float fScale)
 void Sprite::Render()
 {
 	if (!m_isActive)return;
-	if (m_Texture) {
-		if (m_ParentTransform) 
-		{
-			m_DestRect.x = m_ParentTransform->GetPosition().x;
-			m_DestRect.y = m_ParentTransform->GetPosition().y;
-			// TODO: optimize get renderer on tick
-			SDL_FPoint center;
-			center.x = 0;
-			center.y = 0;
+	if (m_ParentTransform)
+	{
+		m_DestRect.x = m_ParentTransform->GetPosition().x;
+		m_DestRect.y = m_ParentTransform->GetPosition().y;
+		// TODO: optimize get renderer on tick
+		SDL_FPoint center;
+		center.x = 0;
+		center.y = 0;
 
-			SDL_RendererFlip flip = (m_FlipY ? SDL_FLIP_VERTICAL : SDL_FLIP_NONE);
-			
-			Renderer::DrawQuad(m_ParentTransform->GetPosition(), m_Scale, m_TextureData.TextureID,
-				&m_SourceRect, Vector2D(m_TextureData.SheetWidth, m_TextureData.SheetHeight));
+		SDL_RendererFlip flip = (m_FlipY ? SDL_FLIP_VERTICAL : SDL_FLIP_NONE);
 
-			//SDL_RenderCopyExF(GameEngine::GetInstance()->GetRenderer(), m_Texture, &m_SourceRect, &m_DestRect, m_rotation, &center, flip);
-		}
+		Renderer::DrawQuad(m_ParentTransform->GetPosition(), m_Scale, m_TextureData.TextureID,
+			&m_SourceRect, Vector2D(m_TextureData.SheetWidth, m_TextureData.SheetHeight));
+
+		//SDL_RenderCopyExF(GameEngine::GetInstance()->GetRenderer(), m_Texture, &m_SourceRect, &m_DestRect, m_rotation, &center, flip);
 	}
 }
 
 void Sprite::OnDestroyed()
 {
 	GameEngine::RemoveRenderComponentFromStack(this);
-	SDL_DestroyTexture(m_Texture);
+	//SDL_DestroyTexture(m_Texture);
 	TextureManager::FreeTexture(&m_TextureData);
 	//delete m_Texture;
 	//delete m_ParentTransform;
 	//delete this;
 }
 
+/*
 void Sprite::SetSpriteTexture(SDL_Texture* texture)
 {
 	m_Texture = texture;
-}
+}*/
 
 void Sprite::SetTextureData(const char* texturePath, int spriteSheetRows, int spriteSheetColumns, float scale)
 {
-	m_Texture = TextureManager::LoadTexture(texturePath);
-	SDL_QueryTexture(m_Texture, nullptr, nullptr, &m_SheetWidth, &m_SheetHeight);
+	//m_Texture = TextureManager::LoadTexture(texturePath);
+	//SDL_QueryTexture(m_Texture, nullptr, nullptr, &m_SheetWidth, &m_SheetHeight);
 
 	m_TextureData = TextureManager::LoadTextureOpenGL(texturePath);
+
+	m_SheetWidth = m_TextureData.SheetWidth;
+	m_SheetHeight = m_TextureData.SheetHeight;
 
 	m_FrameWidth = m_SheetWidth / spriteSheetRows;
 	m_FrameHeight = m_SheetHeight / spriteSheetColumns;

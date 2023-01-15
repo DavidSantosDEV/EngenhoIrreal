@@ -13,10 +13,11 @@
 
 void AnimationComponent::Start()
 {
+	/*
 	if (m_ParentSpriteComponent->GetTexture() == nullptr)
 	{
 		LOG_ERROR("AnimationComponent only works if GO also has a SpriteComponent");
-	}
+	}*/
 	// If user chose to auto play animation on start
 	if (m_IsPlayingAnimation)
 	{
