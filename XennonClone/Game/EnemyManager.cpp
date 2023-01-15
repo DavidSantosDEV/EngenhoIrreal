@@ -58,8 +58,7 @@ void EnemyManager::SpawnEnemyAtRandom()
 			spawnPoint = RusherSpawns[rand() % 4];
 			break;
 		case 2:
-			int rnd = MathHelper::GetRandomInRange(0, 99);
-			if (rnd>=49) {
+			if (MathHelper::GetRandomInRange(0, 99) >= 49) {
 				enemy = GameWorld::InstantiateObject<StoneAsteroid>();
 			}
 			else {
@@ -79,15 +78,6 @@ void EnemyManager::SpawnEnemyAtRandom()
 			
 			break;
 		}
-		/*
-		if ((rand() % 100) > 50) {
-			enemy = GameWorld::InstantiateObject<Loner>();
-			spawnPoint = LonerSpawns[rand() % 3];
-		}
-		else {
-			enemy = GameWorld::InstantiateObject<Rusher>();
-			spawnPoint = RusherSpawns[rand() % 4];
-		}*/
 		if (enemy) {
 			enemyCount++;
 			enemy->GetComponent<PhysicsComponent>()->SetPosition(spawnPoint);

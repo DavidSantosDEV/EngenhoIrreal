@@ -51,8 +51,8 @@ void Player::HandleEvents()
 			break;
 		default:
 		case 1:
-			//bullet = GameWorld::InstantiateObject<MediumBullet>();
-			bullet = GameWorld::InstantiateObject<PlayerBullet>();
+			bullet = GameWorld::InstantiateObject<MediumBullet>();
+			//bullet = GameWorld::InstantiateObject<PlayerBullet>();
 			break;
 		}
 		if (bullet) {

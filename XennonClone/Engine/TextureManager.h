@@ -25,6 +25,9 @@ class TextureManager {
 
 protected:
 	static const char* m_BasePath;
+
+	static void RemoveColor(unsigned char* pixels, int width, int height, unsigned char red, unsigned char green, unsigned char blue);
+
 protected:
 	static std::string GetPathTranslated(const char* path);
 public:

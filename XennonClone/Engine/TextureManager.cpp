@@ -13,6 +13,17 @@
 
 const char* TextureManager::m_BasePath = "../Assets/";
 
+void TextureManager::RemoveColor(unsigned char* pixels, int width, int height, unsigned char red, unsigned char green, unsigned char blue)
+{
+    for (int i = 0; i < width * height * 3; i += 3)
+    {
+        if (pixels[i] == red && pixels[i + 1] == green && pixels[i + 2] == blue)
+        {
+            pixels[i] = pixels[i + 1] = pixels[i + 2] = 0; // set color to transparent
+        }
+    }
+}
+
 std::string TextureManager::GetPathTranslated(const char* path)
 {
     std::string fullPath = m_BasePath;
@@ -32,10 +43,14 @@ TextureData TextureManager::LoadTextureOpenGL(const char* path)
 	unsigned char* textureData = stbi_load(GetPathTranslated(path).c_str(), 
         &sheetWidth, &sheetHeight, &numberChannels, 0);
 
+    //if(textureData)
+    RemoveColor(textureData, sheetWidth, sheetHeight, 255, 0, 255);
+
+
     if (numberChannels == 3)
     {
         LOG_WARNING("Texture is still .bmp at: " << path);
-        internalFormat = GL_RGB8;
+        internalFormat = GL_RGBA;
         dataFormat = GL_RGB;
     }
     else
@@ -53,11 +68,15 @@ TextureData TextureManager::LoadTextureOpenGL(const char* path)
 	glCreateTextures(GL_TEXTURE_2D, 1, &textureID);
 	glBindTexture(GL_TEXTURE_2D, textureID);
 
+    
+    //glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_BLEND);
+
 	// Set texture parameters
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
 	glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, sheetWidth, sheetHeight, 0, dataFormat, GL_UNSIGNED_BYTE, textureData);
 
 	stbi_image_free(textureData);
