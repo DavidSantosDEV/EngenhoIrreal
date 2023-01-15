@@ -39,7 +39,8 @@ bool isInsideSquare(Vector2D A, Vector2D B, Vector2D C, Vector2D D, Vector2D P);
 // Initialize static variables
 GameWorld* GameEngine::m_World = nullptr;
 float GameEngine::m_ElapsedMS = 0.f;
-bool GameEngine::s_IsUsingOpenGLRendering = false;
+
+bool GameEngine::s_IsUsingOpenGLRendering = false;  //NOT USED
 
 std::vector<GameObject*> GameEngine::m_GameObjectStack;
 std::vector<RenderComponent*> GameEngine::m_RenderComponentsStack;

@@ -82,6 +82,7 @@ void Sprite::OnDestroyed()
 {
 	GameEngine::RemoveRenderComponentFromStack(this);
 	SDL_DestroyTexture(m_Texture);
+	TextureManager::FreeTexture(&m_TextureData);
 	//delete m_Texture;
 	//delete m_ParentTransform;
 	//delete this;

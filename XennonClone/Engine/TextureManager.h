@@ -30,6 +30,8 @@ protected:
 public:
 	static TextureData LoadTextureOpenGL(const char* path);
 	static SDL_Texture* LoadTexture(const char* Filename);
+
+	static void FreeTexture(TextureData* texture);
 	/*
 	static SDL_Texture* LoadTextureBind(const char* Filename, RenderComponent* comp);
 

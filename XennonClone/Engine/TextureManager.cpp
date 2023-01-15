@@ -24,7 +24,7 @@ std::string TextureManager::GetPathTranslated(const char* path)
 TextureData TextureManager::LoadTextureOpenGL(const char* path)
 {
     int sheetWidth = 0, sheetHeight = 0;
-    GLuint internalFormat = 0, dataFormat = 0;
+    unsigned int internalFormat = 0, dataFormat = 0;
 
 	int numberChannels;
 
@@ -50,7 +50,7 @@ TextureData TextureManager::LoadTextureOpenGL(const char* path)
 		LOG_ERROR("Failed to load texture data from path: " << GetPathTranslated(path));
 	}
 
-	GLuint textureID;
+	unsigned int textureID;
 	glCreateTextures(GL_TEXTURE_2D, 1, &textureID);
 	glBindTexture(GL_TEXTURE_2D, textureID);
 
@@ -84,6 +84,12 @@ SDL_Texture* TextureManager::LoadTexture(const char* Filename) //Generic Loader
     SDL_SetTextureBlendMode(finaltexture, SDL_BLENDMODE_BLEND);
 
     return finaltexture;
+}
+void TextureManager::FreeTexture(TextureData* texture)
+{
+    if (texture) {
+        glDeleteTextures(1, &texture->TextureID);
+    }
 }
 /*
 SDL_Texture* TextureManager::LoadTextureBind(const char* Filename, RenderComponent* comp)
