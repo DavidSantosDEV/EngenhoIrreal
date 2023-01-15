@@ -37,6 +37,11 @@ void StoneAsteroid::SetupAsteroidData()
 	Setup();
 }
 
+void StoneAsteroid::OnBecameHidden()
+{
+	GameWorld::DestroyObject(this);
+}
+
 void StoneAsteroid::Update(float deltaTime)
 {
 	m_PhysicsComponent->SetVelocity(m_MovementDirection * m_EnemyData.speed);

@@ -36,3 +36,15 @@ void BasePickup::OnTriggerEnter(GameObject* other)
 	}
 	GameWorld::DestroyObject(this);
 }
+
+void BasePickup::OnBecameHidden()
+{
+	if (bWasVisible) {
+		GameWorld::DestroyObject(this);
+	}
+}
+
+void BasePickup::OnBecameVisible()
+{
+	bWasVisible = true;
+}

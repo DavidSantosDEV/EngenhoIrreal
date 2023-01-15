@@ -23,6 +23,9 @@ private:
 	AsteroidType m_AsteroidType;
 
 public:
+
+	virtual void OnBecameHidden() override;
+
 	void SetAsteroidType(AsteroidType type) { m_AsteroidType = type; Setup(); }
 	AsteroidType GetAsteroidType() const { return m_AsteroidType; }
 	const char* GetAsteroidTypeString()

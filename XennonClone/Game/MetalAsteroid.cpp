@@ -1,4 +1,5 @@
 #include "MetalAsteroid.h"
+#include "GameWorld.h"
 #include "PhysicsComponent.h"
 
 MetalAsteroid::MetalAsteroid()
@@ -28,5 +29,10 @@ MetalAsteroid::MetalAsteroid()
 void MetalAsteroid::Update(float deltaTime)
 {
 	m_PhysicsComponent->SetVelocity(m_MovementDirection * m_EnemyData.speed);
+}
+
+void MetalAsteroid::OnBecameHidden()
+{
+	GameWorld::DestroyObject(this);
 }
 

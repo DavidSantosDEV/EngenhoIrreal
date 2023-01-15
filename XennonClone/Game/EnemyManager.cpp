@@ -105,7 +105,7 @@ void EnemyManager::DeleteEnemy(Enemy* enemy)
 		if (m_Enemies[i] == enemy)
 		{
 			enemyCount--;
-			//GameWorld::DestroyObject(enemy);
+			
 			m_Enemies.erase(m_Enemies.begin() + i);
 			LOG_ERROR("Enemy Count: " << enemyCount);
 			return;
