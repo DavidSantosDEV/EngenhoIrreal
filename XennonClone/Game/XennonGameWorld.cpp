@@ -27,7 +27,7 @@ void XennonGameWorld::Start()
 
 	InstantiateObject<PowerUpManager>();
 
-	StaticBackground* background = InstantiateObject<StaticBackground>();
+	InstantiateObject<StaticBackground>();
 	InstantiateObject<RocksBackground>();
 
 	m_player = InstantiateObject<Player>();

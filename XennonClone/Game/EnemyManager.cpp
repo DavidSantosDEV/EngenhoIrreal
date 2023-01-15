@@ -58,11 +58,13 @@ void EnemyManager::SpawnEnemyAtRandom()
 			spawnPoint = RusherSpawns[rand() % 4];
 			break;
 		case 2:
-			//Asteroid
-
-			//Metal
-
-			enemy = GameWorld::InstantiateObject<StoneAsteroid>();
+			int rnd = MathHelper::GetRandomInRange(0, 99);
+			if (rnd>=49) {
+				enemy = GameWorld::InstantiateObject<StoneAsteroid>();
+			}
+			else {
+				enemy = GameWorld::InstantiateObject<MetalAsteroid>();
+			}
 			break;
 		default:
 		case 3:
