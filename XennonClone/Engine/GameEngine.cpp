@@ -257,6 +257,7 @@ void GameEngine::Render(unsigned int shaderProgramID)
 				mR->GetOwnerGameObject()->OnBecameHidden();
 			}
 		}
+		if(mR->GetIsActive())
 		mR->Render();
 	}
 

@@ -20,5 +20,7 @@ public:
 	virtual void OnDestroyed() {};
 
 	virtual void SetActive(bool bVal) { m_isActive = bVal; }
+
+	bool GetIsActive() { return m_isActive; }
 };
 

@@ -170,6 +170,7 @@
     <ClCompile Include="MetalAsteroid.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerBullet.cpp" />
+    <ClCompile Include="PlayerUI.cpp" />
     <ClCompile Include="PowerUpManager.cpp" />
     <ClCompile Include="Rusher.cpp" />
     <ClCompile Include="ShieldPickup.cpp" />
@@ -198,6 +199,7 @@
     <ClInclude Include="MetalAsteroid.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerBullet.h" />
+    <ClInclude Include="PlayerUI.h" />
     <ClInclude Include="PowerUpManager.h" />
     <ClInclude Include="Rusher.h" />
     <ClInclude Include="ShieldPickup.h" />
