@@ -51,8 +51,9 @@ void Sprite::SetOpacity(float opacity)
 
 void Sprite::SetScale(float fScale)
 {
-	m_DestRect.w = m_FrameWidth * fScale;
-	m_DestRect.h = m_FrameHeight * fScale;
+	m_Scale = fScale;
+	//m_DestRect.w = m_FrameWidth * fScale;
+	//m_DestRect.h = m_FrameHeight * fScale;
 }
 
 void Sprite::Render()
@@ -60,8 +61,8 @@ void Sprite::Render()
 	if (!m_isActive)return;
 	if (m_ParentTransform)
 	{
-		m_DestRect.x = m_ParentTransform->GetPosition().x;
-		m_DestRect.y = m_ParentTransform->GetPosition().y;
+		//m_DestRect.x = m_ParentTransform->GetPosition().x;
+		//m_DestRect.y = m_ParentTransform->GetPosition().y;
 		// TODO: optimize get renderer on tick
 		SDL_FPoint center;
 		center.x = 0;
@@ -78,8 +79,8 @@ void Sprite::Render()
 
 void Sprite::OnDestroyed()
 {
-	GameEngine::RemoveRenderComponentFromStack(this);
 	//SDL_DestroyTexture(m_Texture);
+	GameEngine::RemoveRenderComponentFromStack(this);
 	TextureManager::FreeTexture(&m_TextureData);
 	//delete m_Texture;
 	//delete m_ParentTransform;

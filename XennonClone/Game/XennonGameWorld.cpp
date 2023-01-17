@@ -20,6 +20,7 @@
 #include "StoneAsteroid.h"
 #include "Companion.h"
 #include "PowerUpManager.h"
+#include "PlayerUI.h"
 
 void XennonGameWorld::Start()
 {
@@ -31,6 +32,7 @@ void XennonGameWorld::Start()
 	InstantiateObject<RocksBackground>();
 
 	m_player = InstantiateObject<Player>();
+	//InstantiateObject<PlayerUI>();
 	
 	m_player->GetComponent<PhysicsComponent>()->SetPosition(m_PlayerStartPos);
 	m_player->GetComponent<HealthComponent>()->OnDie.Add(this, &XennonGameWorld::OnPlayerDie);

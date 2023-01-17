@@ -12,7 +12,6 @@
 #include "Window.h"
 #include "GameWorld.h"
 #include "GameObject.h"
-//#include "RenderComponent.h"
 #include "PhysicsWorld.h"
 #include "Pawn.h"
 #include "Log.h"
@@ -32,6 +31,7 @@
 #include "Renderer.h"
 #include "OpenGLWrapper.h"
 #include "Sprite.h"
+#include "FontLoader.h"
 
 float triangleArea(Vector2D A, Vector2D B, Vector2D C);
 bool isInsideSquare(Vector2D A, Vector2D B, Vector2D C, Vector2D D, Vector2D P);
@@ -73,8 +73,10 @@ void GameEngine::Init(const char* windowTitle, int windowWidth, int windowHeight
 		m_Input = new Input();
 		m_PhysicsWorld = new PhysicsWorld();
 		m_PhysicsWorld->Init();
-		m_audioSystem = new AudioSystem();
-		m_audioSystem->Init();
+		//m_audioSystem = new AudioSystem();
+		//m_audioSystem->Init();
+		m_FontLoader = new FontLoader();
+		m_FontLoader->Init("font16x16.bmp");
 	}
 }
 
@@ -265,26 +267,6 @@ void GameEngine::Render(unsigned int shaderProgramID)
 	Renderer::Flush();
 	SDL_GL_SwapWindow(m_Window->GetWindow());
 	m_Window->Clean();
-
-	//for (auto mR : m_RenderComponentsStack)
-	//{
-	//	Vector2D pos = mR->GetOwnerGameObject()->GetTransform()->GetPosition();
-	//	Vector2D win = m_Window->GetWindowSize();
-	//	if (isInsideSquare(Vector2D(-20, -20), Vector2D(win.x, -20), win, Vector2D(-20, win.y), pos)) {
-	//		if (!mR->GetIsVisible()) {
-	//			mR->SetIsVisible(true);
-	//			mR->GetOwnerGameObject()->OnBecameVisible();
-	//		}
-	//	}
-	//	else {
-	//		if (mR->GetIsVisible()) {
-	//			mR->SetIsVisible(false);
-	//			mR->GetOwnerGameObject()->OnBecameHidden();
-	//		}
-	//	}
-	//	mR->Render();
-	//}
-	//m_Window->UpdateRender();
 }
 
 float triangleArea(Vector2D A,Vector2D B ,Vector2D C ){

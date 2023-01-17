@@ -1,15 +1,13 @@
 #include "PlayerUI.h"
-#include "Sprite.h"
+#include "TextRendererComponent.h"
+
 
 void PlayerUI::Start()
 {
+	textRenderer = AddComponent<TextRendererComponent>("Player", 5.f, Vector2D(200, 200), "font16x16.bmp");
 }
 
 void PlayerUI::SetLifeCount(int count)
 {
-	int num = count;
-	for (auto s : playerHealthCountSprites) {
-		s.SetActive(num > 0);
-		num--;
-	}
+
 }

@@ -1,6 +1,5 @@
 d:\development\engenhoirreal\xennonclone\x64\debug\engenhoirrealxvii.pdb
 d:\development\engenhoirreal\xennonclone\x64\debug\engenhoirrealxvii.idb
-d:\development\engenhoirreal\xennonclone\engine\x64\debug\physicsworld.obj
 d:\development\engenhoirreal\xennonclone\engine\x64\debug\physicscomponent.obj
 d:\development\engenhoirreal\xennonclone\engine\x64\debug\pawn.obj
 d:\development\engenhoirreal\xennonclone\engine\x64\debug\parallaxcomponent.obj
@@ -13,6 +12,7 @@ d:\development\engenhoirreal\xennonclone\engine\x64\debug\healthcomponent.obj
 d:\development\engenhoirreal\xennonclone\engine\x64\debug\gameworld.obj
 d:\development\engenhoirreal\xennonclone\engine\x64\debug\gameobject.obj
 d:\development\engenhoirreal\xennonclone\engine\x64\debug\gameengine.obj
+d:\development\engenhoirreal\xennonclone\engine\x64\debug\fontloader.obj
 d:\development\engenhoirreal\xennonclone\engine\x64\debug\contactlistener.obj
 d:\development\engenhoirreal\xennonclone\engine\x64\debug\component.obj
 d:\development\engenhoirreal\xennonclone\engine\x64\debug\collisioncomponent.obj
@@ -21,6 +21,7 @@ d:\development\engenhoirreal\xennonclone\engine\x64\debug\audiosystem.obj
 d:\development\engenhoirreal\xennonclone\engine\x64\debug\audioclip.obj
 d:\development\engenhoirreal\xennonclone\engine\x64\debug\animationcomponent.obj
 d:\development\engenhoirreal\xennonclone\engine\x64\debug\window.obj
+d:\development\engenhoirreal\xennonclone\engine\x64\debug\textrenderercomponent.obj
 d:\development\engenhoirreal\xennonclone\engine\x64\debug\timermanager.obj
 d:\development\engenhoirreal\xennonclone\engine\x64\debug\timer.obj
 d:\development\engenhoirreal\xennonclone\engine\x64\debug\texturemanager.obj
@@ -30,6 +31,7 @@ d:\development\engenhoirreal\xennonclone\engine\x64\debug\shader.obj
 d:\development\engenhoirreal\xennonclone\engine\x64\debug\sdlwrapper.obj
 d:\development\engenhoirreal\xennonclone\engine\x64\debug\renderer.obj
 d:\development\engenhoirreal\xennonclone\engine\x64\debug\rendercomponent.obj
+d:\development\engenhoirreal\xennonclone\engine\x64\debug\physicsworld.obj
 d:\development\engenhoirreal\xennonclone\engine\x64\debug\glad.obj
 d:\development\engenhoirreal\xennonclone\x64\debug\engenhoirrealxvii.lib
 d:\development\engenhoirreal\xennonclone\engine\x64\debug\engenhoi.92de34ec.tlog\cl.command.1.tlog

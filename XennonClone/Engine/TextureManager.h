@@ -15,31 +15,20 @@ struct TextureData
 };
 
 class TextureManager {
-	/*Todo,
-
-	Sprites shouldnt be loaded everytime we need an object with it, so, lets make a map with the objects that have it,
-	when it becomes 0, it unloads the sprite.
-	*/
-
-	/*static std::map<std::string, TextureAndComps> m_textureMap;*/
 
 protected:
 	static const char* m_BasePath;
 
 	static void RemoveColor(unsigned char* pixels, int width, int height, unsigned char red, unsigned char green, unsigned char blue);
-
-protected:
-	static std::string GetPathTranslated(const char* path);
+	
 public:
+	static std::string GetPathTranslated(const char* path);
+
 	static TextureData LoadTextureOpenGL(const char* path);
 	static SDL_Texture* LoadTexture(const char* Filename);
 
 	static void FreeTexture(TextureData* texture);
-	/*
-	static SDL_Texture* LoadTextureBind(const char* Filename, RenderComponent* comp);
 
-	static void RemoveFromBind(SDL_Texture* text,RenderComponent* comp);
-	*/
 	static SDL_Texture* LoadTextureBMP(const char* Filename);
 
 	static SDL_Surface* LoadSurface(const char* Filename);

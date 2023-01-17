@@ -61,6 +61,7 @@ private:
 	class AudioSystem* m_audioSystem;
 	class Window* m_Window;
 	class Input* m_Input;
+	class FontLoader* m_FontLoader;
 
 	const int m_MaxFPS = 120;
 	static float m_ElapsedMS;
@@ -75,6 +76,8 @@ public:
 	class Window* GetWindow() { return m_Window; }
 
 	Vector2D GetWindowSize();
+	
+	FontLoader* GetFontLoader() { return m_FontLoader; }
 
 	PhysicsWorld* GetPhysicsWorld() { return m_PhysicsWorld; }
 };
