@@ -3,6 +3,14 @@
 #include <sstream>
 #include <iomanip>
 
+std::string PlayerUI::GetNumberFormated(int num)
+{
+	std::stringstream ss;
+	ss << std::setw(10) << std::setfill('0') << num;
+	std::string s = ss.str();
+	return s;
+}
+
 void PlayerUI::Start()
 {
 	m_HighScoreText = AddComponent<TextRendererComponent>("Player Health: '", 1.f, Vector2D(225, 20), "png/font8x8.png");
@@ -19,16 +27,11 @@ void PlayerUI::SetLifeCount(int count)
 
 void PlayerUI::SetCurrentScore(int Score)
 {
-	std::stringstream ss;
-	ss << std::setw(10) << std::setfill('0') << Score;
-	std::string s = ss.str();
-	m_ScoreText->SetText(s);
+
+	m_ScoreText->SetText(GetNumberFormated(Score));
 }
 
 void PlayerUI::SetHighScore(int Score)
 {
-	std::stringstream ss;
-	ss << std::setw(10) << std::setfill('0') << Score;
-	std::string s = ss.str();
-	m_HighScoreText->SetText("High Score: " + s);
+	m_HighScoreText->SetText("High Score: " + GetNumberFormated(Score));
 }
