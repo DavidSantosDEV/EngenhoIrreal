@@ -3,7 +3,7 @@
 
 HeavyBullet::HeavyBullet()
 {
-	m_BulletData = BulletData("missile.bmp", 3, 2, 40, "Enemy", 10, 2.f, 100, Vector2D::Up());
+	m_BulletData = BulletData("png/missile.png", 3, 2, 40, "Enemy", 10, 2.f, 100, Vector2D::Up());
 	Setup();
 }
 

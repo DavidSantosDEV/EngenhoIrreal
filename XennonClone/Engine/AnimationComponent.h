@@ -28,6 +28,9 @@ public:
 
 	/* Called by other classes to stop the current animation. Is called inside play animation automatically */
 	void StopAnimation() { m_IsPlayingAnimation = false; }
+
+	void SetAnimationSpeed(float val) { m_AnimationSpeed = val; }
+
 private:
 	class Sprite* m_ParentSpriteComponent;
 	float m_AnimationSpeed = 1.f;

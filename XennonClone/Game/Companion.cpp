@@ -13,6 +13,12 @@
 #include "Explosion.h"
 
 
+void Companion::Start()
+{
+	animComp->PlayAnimation(0, 0, 3, 3, true);
+	animComp->SetAnimationSpeed(3.f);
+}
+
 Companion::Companion(Vector2D position)
 {
 	AddTag("Player");
@@ -22,9 +28,9 @@ Companion::Companion(Vector2D position)
 	m_FollowTarget = nullptr;
 
 	//const char* texturePath, int spriteSheetColumns, int spriteSheetRows, float scale, int renderPriority
-	spriteComp = AddComponent<Sprite>("clone.bmp",4,4,1.f,1);
+	spriteComp = AddComponent<Sprite>("png/clone.png",4,5,1.f,1);
 	animComp = AddComponent<AnimationComponent>(spriteComp,true,1.f);
-	
+
 	HealthComp = AddComponent<HealthComponent>(100);
 	HealthComp->OnDie.Add(this, &Companion::OnZeroHealth);
 

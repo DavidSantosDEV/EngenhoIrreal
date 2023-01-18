@@ -29,6 +29,8 @@ public:
 
 	Delegate<Companion*> OnCompanionDie;
 
+	virtual void Start() override;
+
 	Companion(Vector2D position);
 	
 	void SetTarget(Player* newTarget, Vector2D localPosition);
