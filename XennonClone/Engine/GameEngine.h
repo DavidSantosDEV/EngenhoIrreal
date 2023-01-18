@@ -43,7 +43,6 @@ private:
 	void SplashScreen();
 
 	/* Sort render components in order to support a layering/priority system*/
-	static void SortRenderComponents();
 	static void SwapRenderComponents(RenderComponent* r1, RenderComponent* r2);
 
 	static GameEngine* m_Instance;
@@ -54,6 +53,7 @@ private:
 
 	static std::vector<GameObject*> m_GameObjectStack;
 	static std::vector<RenderComponent*> m_RenderComponentsStack;
+	static std::vector<RenderComponent*> m_UIRenderStack;
 	static std::vector<Pawn*> m_PawnsStack;
 
 	static GameWorld* m_World;
@@ -67,6 +67,8 @@ private:
 	static float m_ElapsedMS;
 
 public:
+	static void SortRenderComponents();
+
 	static float GetDeltaTime() { return m_ElapsedMS; }
 
 	static GameEngine* GetInstance() { return m_Instance; }

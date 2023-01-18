@@ -4,17 +4,16 @@
 #include "SDL.h"
 #include "FontLoader.h"
 
-TextRendererComponent::TextRendererComponent(std::string TextToRender, float scale, Vector2D pos, std::string font) : RenderComponent(0)
+TextRendererComponent::TextRendererComponent(std::string TextToRender, float scale, Vector2D pos, std::string font) : RenderComponent()
 {
-
 	m_TextPosition = pos;
 	m_TextScale = scale;
 	m_Font = GameEngine::GetInstance()->GetFontLoader()->GetFont(font);
 
 	m_Text = "";
 	SetText(TextToRender);
-
-	SetRenderPriority(-1);
+	m_IsUI = true;
+	GameEngine::AddRenderComponentToStack(this);
 }
 
 void TextRendererComponent::Render()
@@ -44,6 +43,11 @@ void TextRendererComponent::Render()
 		Renderer::DrawQuad(posWorld, m_TextScale, m_Font->GetData()->TextureID, &SourceRect, Vector2D(m_Font->GetData()->SheetWidth, m_Font->GetData()->SheetHeight));
 		posWorld = Vector2D(posWorld.x + m_FrameWidth, posWorld.y);
 	}
+}
+
+void TextRendererComponent::Start()
+{
+	SetRenderPriority(-1);
 }
 
 void TextRendererComponent::SetText(std::string newText)

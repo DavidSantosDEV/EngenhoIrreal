@@ -8,6 +8,11 @@
 #include "RenderComponent.h"
 #include "Log.h"
 
+RenderComponent::RenderComponent()
+{
+	m_RenderPriority = 0;
+}
+
 RenderComponent::RenderComponent(int renderPriority)
 {
 	m_RenderPriority = renderPriority;
@@ -17,4 +22,10 @@ RenderComponent::RenderComponent(int renderPriority)
 RenderComponent::~RenderComponent()
 {
 	GameEngine::RemoveRenderComponentFromStack(this);
+}
+
+void RenderComponent::SetRenderPriority(int renderPriority)
+{
+	m_RenderPriority = renderPriority;
+	GameEngine::SortRenderComponents();
 }

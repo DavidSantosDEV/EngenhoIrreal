@@ -44,6 +44,7 @@ bool GameEngine::s_IsUsingOpenGLRendering = false;  //NOT USED
 
 std::vector<GameObject*> GameEngine::m_GameObjectStack;
 std::vector<RenderComponent*> GameEngine::m_RenderComponentsStack;
+std::vector<RenderComponent*> GameEngine::m_UIRenderStack;
 std::vector<Pawn*> GameEngine::m_PawnsStack;
 
 GameEngine* GameEngine::m_Instance{ nullptr };
@@ -242,7 +243,7 @@ void GameEngine::Render(unsigned int shaderProgramID)
 	glClear(GL_COLOR_BUFFER_BIT);
 	glUseProgram(shaderProgramID);
 	Renderer::BeginBatch();
-
+	/**/
 	for (auto mR : m_RenderComponentsStack)
 	{
 		Vector2D pos = mR->GetOwnerGameObject()->GetTransform()->GetPosition();
@@ -261,6 +262,25 @@ void GameEngine::Render(unsigned int shaderProgramID)
 		}
 		if(mR->GetIsActive())
 		mR->Render();
+	}
+
+	for (auto UIR : m_UIRenderStack) {
+		Vector2D pos = UIR->GetOwnerGameObject()->GetTransform()->GetPosition();
+		Vector2D win = m_Window->GetWindowSize();
+		if (isInsideSquare(Vector2D(-20, -20), Vector2D(win.x, -20), win, Vector2D(-20, win.y), pos)) {
+			if (!UIR->GetIsVisible()) {
+				UIR->SetIsVisible(true);
+				UIR->GetOwnerGameObject()->OnBecameVisible();
+			}
+		}
+		else {
+			if (UIR->GetIsVisible()) {
+				UIR->SetIsVisible(false);
+				UIR->GetOwnerGameObject()->OnBecameHidden();
+			}
+		}
+		if (UIR->GetIsActive())
+			UIR->Render();
 	}
 
 	Renderer::EndBatch();
@@ -358,21 +378,41 @@ void GameEngine::RemoveGameObjectFromStack(GameObject* gameObject)
 void GameEngine::AddRenderComponentToStack(RenderComponent* renderComponent)
 {
 	if (renderComponent == nullptr) { return; }
-	m_RenderComponentsStack.push_back(renderComponent);
+	if (renderComponent->GetIsUI()) {
+		m_UIRenderStack.push_back(renderComponent);
+	}
+	else {
+		m_RenderComponentsStack.push_back(renderComponent);
+	}
+
 	SortRenderComponents();
 }
 
 void GameEngine::RemoveRenderComponentFromStack(RenderComponent* renderComponent)
 {
-	for (int i = 0; i < m_RenderComponentsStack.size(); ++i)
-	{
-		if (m_RenderComponentsStack[i] == renderComponent)
-		{
-			m_RenderComponentsStack.erase(m_RenderComponentsStack.begin() + i);
-			return;
+	if (renderComponent!=nullptr) {
+		if (renderComponent->GetIsUI()) {
+			for (int i = 0; i < m_UIRenderStack.size(); ++i)
+			{
+				if (m_UIRenderStack[i] == renderComponent)
+				{
+					m_UIRenderStack.erase(m_UIRenderStack.begin() + i);
+					return;
+				}
+			}
 		}
+		else {
+			for (int i = 0; i < m_RenderComponentsStack.size(); ++i)
+			{
+				if (m_RenderComponentsStack[i] == renderComponent)
+				{
+					m_RenderComponentsStack.erase(m_RenderComponentsStack.begin() + i);
+					return;
+				}
+			}
+		}
+		SortRenderComponents();
 	}
-	SortRenderComponents();
 }
 
 void GameEngine::AddPawnToStack(Pawn* pawn)
