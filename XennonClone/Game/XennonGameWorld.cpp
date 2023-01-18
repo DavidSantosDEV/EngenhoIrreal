@@ -32,7 +32,7 @@ void XennonGameWorld::Start()
 	InstantiateObject<RocksBackground>();
 
 	m_player = InstantiateObject<Player>();
-	//InstantiateObject<PlayerUI>();
+	InstantiateObject<PlayerUI>();
 	
 	m_player->GetComponent<PhysicsComponent>()->SetPosition(m_PlayerStartPos);
 	m_player->GetComponent<HealthComponent>()->OnDie.Add(this, &XennonGameWorld::OnPlayerDie);

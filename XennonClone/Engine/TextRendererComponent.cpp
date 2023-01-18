@@ -6,21 +6,24 @@
 
 TextRendererComponent::TextRendererComponent(std::string TextToRender, float scale, Vector2D pos, std::string font) : RenderComponent(0)
 {
-	m_Text = TextToRender;
+
 	m_TextPosition = pos;
 	m_TextScale = scale;
 	m_Font = GameEngine::GetInstance()->GetFontLoader()->GetFont(font);
+
+	m_Text = "";
+	SetText(TextToRender);
+
 	SetRenderPriority(-1);
 }
 
 void TextRendererComponent::Render()
 {
-	return;
 	Vector2D posWorld = m_TextPosition;
-	for (char& c : m_Text) {
+	for (int i = 0; i < m_textCoords.size();++i) {
 		//Find sprite for char
 
-		Vector2D IndexPos = m_Font->GetPositionIndexForChar(c);
+		//Vector2D IndexPos = m_Font->GetPositionIndexForChar(c);
 
 		SDL_Rect SourceRect;
 		//SDL_Rect DestRect;
@@ -28,8 +31,8 @@ void TextRendererComponent::Render()
 		int m_FrameWidth = m_Font->GetData()->SheetWidth / m_Font->GetColumns();
 		int m_FrameHeight = m_Font->GetData()->SheetHeight / m_Font->GetRows();
 
-		SourceRect.x = m_FrameWidth * IndexPos.x;
-		SourceRect.y = m_FrameHeight * IndexPos.y;
+		SourceRect.x = m_FrameWidth * m_textCoords[i].x;
+		SourceRect.y = m_FrameHeight * m_textCoords[i].y;
 
 
 		SourceRect.w = m_FrameWidth;
@@ -40,5 +43,21 @@ void TextRendererComponent::Render()
 
 		Renderer::DrawQuad(posWorld, m_TextScale, m_Font->GetData()->TextureID, &SourceRect, Vector2D(m_Font->GetData()->SheetWidth, m_Font->GetData()->SheetHeight));
 		posWorld = Vector2D(posWorld.x + m_FrameWidth, posWorld.y);
+	}
+}
+
+void TextRendererComponent::SetText(std::string newText)
+{
+	if (newText == m_Text) {
+		return;
+	}
+	m_Text = newText;
+	m_textCoords.clear();
+	for (char& c : m_Text) {
+		//Find sprite for char
+		if (m_Font) {
+			Vector2D IndexPos = m_Font->GetPositionIndexForChar(c);
+			m_textCoords.push_back(IndexPos);
+		}
 	}
 }

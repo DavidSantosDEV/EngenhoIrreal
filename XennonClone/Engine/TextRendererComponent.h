@@ -2,6 +2,7 @@
 #include "RenderComponent.h"
 #include <string>
 #include "Transform.h"
+#include <vector>
 
 class TextRendererComponent : public RenderComponent
 {
@@ -10,12 +11,13 @@ protected:
 	float m_TextScale = 1;
 	Vector2D m_TextPosition;
 	class FontText* m_Font;
-public:
+	std::vector<Vector2D> m_textCoords;
+public:	
 	TextRendererComponent(std::string TextToRender, float scale, Vector2D pos, std::string font);
 
 	virtual void Render() override;
 
-	void SetText(std::string newText) { m_Text = newText; }
+	void SetText(std::string newText);
 	void SetScale(float textScale) { m_TextScale = textScale; }
 	void SetPosition(Vector2D newPosition) { m_TextPosition = newPosition; }
 
