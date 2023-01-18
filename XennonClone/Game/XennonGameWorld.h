@@ -17,6 +17,7 @@ protected:
 	Vector2D m_PlayerStartPos = Vector2D(250, 400);
 
 	class Player* m_player;
+	class PlayerUI* m_UIPlayer;
 
 	bool bPlayerDead = false;
 

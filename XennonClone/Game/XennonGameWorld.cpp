@@ -32,7 +32,8 @@ void XennonGameWorld::Start()
 	InstantiateObject<RocksBackground>();
 
 	m_player = InstantiateObject<Player>();
-	InstantiateObject<PlayerUI>();
+	m_UIPlayer = InstantiateObject<PlayerUI>();
+	m_UIPlayer->SetHighScore(0);
 	
 	m_player->GetComponent<PhysicsComponent>()->SetPosition(m_PlayerStartPos);
 	m_player->GetComponent<HealthComponent>()->OnDie.Add(this, &XennonGameWorld::OnPlayerDie);
@@ -83,8 +84,10 @@ void XennonGameWorld::OnPlayerDie()
 void XennonGameWorld::AddScore(unsigned int value)
 {
 	m_currentScore += value;
+	m_UIPlayer->SetCurrentScore(m_currentScore);
 	if (m_currentScore>m_BestScore) {
 		m_BestScore = m_currentScore;
+		m_UIPlayer->SetHighScore(m_BestScore);
 	}
 	LOG("Current Score!: " << m_currentScore);
 }
@@ -92,6 +95,7 @@ void XennonGameWorld::AddScore(unsigned int value)
 void XennonGameWorld::ClearCurrent()
 {
 	m_currentScore = 0;
+	m_UIPlayer->SetCurrentScore(0);
 	m_currentPlayerLifeCount = m_MaxPlayerLifeCount;
 	LOG("Current Score: " << m_currentScore);
 }
