@@ -310,50 +310,6 @@ bool IsInside(Vector2D windowConfines, Vector2D pos, float Leeway) {
 	return false;
 }
 
-
-/*
-void GameEngine::Render()
-{
-	m_Window->Clean();
-	Vector2D win = m_Window->GetWindowSize();
-	for (int i = 0; i < m_RenderComponentsStack.size();++i) {
-		Vector2D pos = m_RenderComponentsStack[i]->GetOwnerGameObject()->GetTransform()->GetPosition();		
-		if (isInsideSquare(Vector2D(-20, -20), Vector2D(win.x, -20), win, Vector2D(-20, win.y), pos)) {
-			if (!m_RenderComponentsStack[i]->GetIsVisible()) {
-				m_RenderComponentsStack[i]->SetIsVisible(true);
-				m_RenderComponentsStack[i]->GetOwnerGameObject()->OnBecameVisible();
-			}
-		}
-		else {
-			if (m_RenderComponentsStack[i]->GetIsVisible()) {
-				m_RenderComponentsStack[i]->SetIsVisible(false);
-				m_RenderComponentsStack[i]->GetOwnerGameObject()->OnBecameHidden();
-			}
-		}
-		m_RenderComponentsStack[i]->Render();
-	}
-	/*
-	for (auto mR : m_RenderComponentsStack) 
-	{
-		Vector2D pos = mR->GetOwnerGameObject()->GetTransform()->GetPosition();
-		Vector2D win = m_Window->GetWindowSize();
-		if (isInsideSquare(Vector2D(-20,-20),Vector2D(win.x,-20),win,Vector2D(-20,win.y),pos)) {
-			if (!mR->GetIsVisible()) {
-				mR->SetIsVisible(true);
-				mR->GetOwnerGameObject()->OnBecameVisible();
-			}
-		}
-		else {
-			if (mR->GetIsVisible()) {
-				mR->SetIsVisible(false);
-				mR->GetOwnerGameObject()->OnBecameHidden();
-			}
-		}
-		mR->Render();
-	}
-	m_Window->UpdateRender();
-}*/
-
 void GameEngine::AddGameObjectToStack(GameObject* gameObject)
 {
 	if (gameObject == nullptr) { return; }
