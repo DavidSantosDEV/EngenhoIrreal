@@ -71,20 +71,4 @@ Vector2D FontText::GetPositionIndexForChar(char c)
 		}
 	}
 	return Vector2D::Zero();
-
-	/*
-	int y = 0;
-	int xcount=0;
-	for (int i = 0; i < m_Format.size();++i) {
-		xcount++;
-		if (xcount>=m_columns) {
-			xcount = 0;
-			y++;
-			
-		}
-		if (c == m_Format[i]) {
-			return Vector2D(MathHelper::ClampInt(xcount - 1,0,m_columns-1), y);
-		}
-	}
-	return Vector2D::Zero();*/
 }

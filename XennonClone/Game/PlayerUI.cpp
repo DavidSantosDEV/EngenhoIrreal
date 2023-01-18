@@ -4,7 +4,8 @@
 
 void PlayerUI::Start()
 {
-	textRenderer = AddComponent<TextRendererComponent>("Ready Player One?", 1.f, Vector2D(200, 200), "font16x16.bmp");
+	textRenderer = AddComponent<TextRendererComponent>("Player Health:", 1.f, Vector2D(200, 200), "png/font16x16.png");
+	textRenderer->SetText("Banana");
 }
 
 void PlayerUI::SetLifeCount(int count)
