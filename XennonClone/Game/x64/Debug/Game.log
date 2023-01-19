@@ -1,27 +1,14 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (Game.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  Player.cpp
+  PlayerIMGUI.cpp
+D:\Development\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+D:\Development\EngenhoIrreal\XennonClone\Engine\Transform.h(75,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  XennonGameWorld.cpp
 D:\Development\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
 D:\Development\EngenhoIrreal\XennonClone\Engine\Transform.h(75,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
 D:\Development\EngenhoIrreal\XennonClone\Engine\MathHelper.h(71,56): warning C4114: same type qualifier used more than once
 D:\Development\EngenhoIrreal\XennonClone\Engine\MathHelper.h(66,18): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
 D:\Development\EngenhoIrreal\XennonClone\Engine\MathHelper.h(67,18): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
 D:\Development\EngenhoIrreal\XennonClone\Engine\MathHelper.h(68,54): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-D:\Development\EngenhoIrreal\XennonClone\Game\Player.cpp(104,6): warning C4804: '>': unsafe use of type 'bool' in operation
-D:\Development\EngenhoIrreal\XennonClone\Game\Player.cpp(133,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Development\EngenhoIrreal\XennonClone\Game\Player.cpp(133,32): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Development\EngenhoIrreal\XennonClone\Game\Player.cpp(135,14): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
-D:\Development\EngenhoIrreal\XennonClone\Engine\GameObject.h(60,46): warning C4244: 'argument': conversion from '_Ty' to 'float', possible loss of data
-          with
-          [
-              _Ty=int
-          ]
-D:\Development\EngenhoIrreal\XennonClone\Game\Player.cpp(26,80): message : see reference to function template instantiation 'T *GameObject::AddComponent<PhysicsComponent,BodyType,int,int,int>(BodyType &&,int &&,int &&,int &&)' being compiled
-          with
-          [
-              T=PhysicsComponent
-          ]
-  PlayerUI.cpp
-D:\Development\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
-D:\Development\EngenhoIrreal\XennonClone\Engine\Transform.h(75,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\Development\EngenhoIrreal\XennonClone\Game\XennonGameWorld.cpp(81,6): warning C4804: '>': unsafe use of type 'bool' in operation
   Generating Code...
   Game.vcxproj -> D:\Development\EngenhoIrreal\XennonClone\x64\Debug\XennonClone.exe

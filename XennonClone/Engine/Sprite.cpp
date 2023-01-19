@@ -32,6 +32,14 @@ Sprite::Sprite(const char* texturePath, int spriteSheetRows, int spriteSheetColu
 	SetTextureData(texturePath, spriteSheetRows, spriteSheetColumns, scale);
 }
 
+Sprite::Sprite(const char* texturePath, int spriteSheetColumns, int spriteSheetRows, float scale, int renderPriority, bool isUI) : RenderComponent()
+{
+	SetTextureData(texturePath, spriteSheetRows, spriteSheetColumns, scale);
+	m_RenderPriority = renderPriority;
+	m_IsUI = isUI;
+	GameEngine::AddRenderComponentToStack(this);
+}
+
 void Sprite::Start()
 {
 	Component::Start();
@@ -110,8 +118,8 @@ void Sprite::SetTextureData(const char* texturePath, int spriteSheetRows, int sp
 	m_SourceRect.x = m_SourceRect.y = 0;
 	m_SourceRect.w = m_FrameWidth;
 	m_SourceRect.h = m_FrameHeight;
-	m_DestRect.w = m_FrameWidth * scale;
-	m_DestRect.h = m_FrameHeight * scale;
+	//m_DestRect.w = m_FrameWidth * scale;
+	//m_DestRect.h = m_FrameHeight * scale;
 }
 
 SDL_Rect& Sprite::GetSourceRect()
@@ -119,7 +127,3 @@ SDL_Rect& Sprite::GetSourceRect()
 	return m_SourceRect;
 }
 
-SDL_FRect& Sprite::GetDestRect()
-{
-	return m_DestRect;
-}

@@ -20,6 +20,9 @@ public:
 
 	bool GetIsAlive() { return !bIsDead; }
 
+	int GetMaxHealth() { return m_MaxHealth; }
+	int GetCurrentHealth() { return m_CurrentHealth; }
+
 private:
 	bool bIsDead=false;
 	int m_MaxHealth = 100;

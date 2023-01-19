@@ -133,7 +133,12 @@ void Renderer::Flush()
 void Renderer::DrawQuad(const Vector2D& position, const float scaleFactor, uint32_t textureID, SDL_Rect* sourceRect, const Vector2D& sheetSize)
 {
 	const float sheetWidth = sheetSize.x, sheetHeight = sheetSize.y;
-
+	if (sourceRect->w == 0) {
+		return;
+	}
+	if (sourceRect->h == 0) {
+		return;
+	}
 	float x = sourceRect->x / sourceRect->w;
 	float y = sourceRect->y / sourceRect->h;
 

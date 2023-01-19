@@ -18,6 +18,7 @@ protected:
 
 	class Player* m_player;
 	class PlayerUI* m_UIPlayer;
+	class PlayerIMGUI* m_IMGUI;
 
 	bool bPlayerDead = false;
 
@@ -28,7 +29,7 @@ protected:
 
 	void RespawnPlayer();
 	void OnPlayerDie();
-
+	void OnPlayerTakeDamage(int dmg);
 public:
 	void AddScore(unsigned int value);
 	void ClearCurrent();

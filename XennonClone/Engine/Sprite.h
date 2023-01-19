@@ -46,6 +46,7 @@ public:
 	Sprite(const char* texturePath, int renderPriority, float scale);
 	/* Used for animated sprites or specific sprites in spritesheet */
 	Sprite(const char* texturePath, int spriteSheetColumns, int spriteSheetRows, float scale, int renderPriority);
+	Sprite(const char* texturePath, int spriteSheetColumns, int spriteSheetRows, float scale, int renderPriority, bool isUI);
 
 	void SetFlipY(bool val) { m_FlipY = val; }
 
@@ -58,7 +59,7 @@ public:
 
 	//inline SDL_Texture* GetTexture() const { return m_Texture; }
 	SDL_Rect& GetSourceRect();
-	SDL_FRect& GetDestRect();
+	//SDL_FRect& GetDestRect();
 
 	void SetRotation(float val) { m_rotation = val; }
 

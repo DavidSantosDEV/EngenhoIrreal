@@ -51,6 +51,7 @@
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="TimerManager.cpp" />
     <ClCompile Include="TextRendererComponent.cpp" />
+    <ClCompile Include="UISprite.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -88,6 +89,7 @@
     <ClInclude Include="TimerManager.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="TextRendererComponent.h" />
+    <ClInclude Include="UISprite.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>

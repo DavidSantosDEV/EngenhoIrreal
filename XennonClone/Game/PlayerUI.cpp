@@ -20,21 +20,11 @@ void PlayerUI::Start()
 	m_ScoreText = AddComponent<TextRendererComponent>("0000000000", 1.f, Vector2D(10, 50), "png/font16x16.png");
 }
 
-void PlayerUI::SetLifeCount(int count)
-{
-
-}
-
 void PlayerUI::SetCurrentScore(int Score)
 {
 
 	m_ScoreText->SetText(GetNumberFormated(Score));
 }
-
-void PlayerUI::SetPlayerHealthBar(int current, int max)
-{
-}
-
 void PlayerUI::SetHighScore(int Score)
 {
 	m_HighScoreText->SetText("High Score: " + GetNumberFormated(Score));
