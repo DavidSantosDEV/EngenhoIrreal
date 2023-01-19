@@ -68,11 +68,13 @@ void Player::OnZeroHealth()
 	GameWorld::InstantiateObject<Explosion>()->_Transform.SetPosition(_Transform.GetPosition());
 	m_SpriteComponent->SetActive(false);
 	m_Collider->SetCollisionEnabled(false);
+	RemoveTag("Player");
 	//GameWorld::DestroyObject(this);
 }
 
 void Player::OnRevive()
 {
+	AddTag("Player");
 	m_Collider->SetCollisionEnabled(true);
 	m_SpriteComponent->SetActive(true);
 }

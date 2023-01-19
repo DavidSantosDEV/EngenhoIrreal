@@ -7,11 +7,13 @@ class UISprite;
 class PlayerIMGUI : public GameObject
 {
 protected:
-	std::vector<UISprite*> m_PlayerLives;
+	UISprite* m_PlayerLifeOne;
+	UISprite* m_PlayerLifeTwo;
+	UISprite* m_PlayerLifeThree;
 	UISprite* m_PlayerHealthBar;
 	UISprite* m_HealthbarBack;
 
-	Vector2D startPosLives = Vector2D(20, 350);
+	Vector2D startPosLives = Vector2D(20, 430);
 public:
 	virtual void Start() override;
 
