@@ -5,7 +5,7 @@
 
 CompanionPickup::CompanionPickup()
 {
-	SetupPickup("PULaser.bmp",4 ,2,25);
+	SetupPickup("png/PULaser.png",4 ,2,25);
 	//m_SpriteComponent->SetScale(0.5f);
 }
 void CompanionPickup::Start()

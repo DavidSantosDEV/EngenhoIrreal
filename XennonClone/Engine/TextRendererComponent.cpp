@@ -45,10 +45,11 @@ void TextRendererComponent::Render()
 	}
 }
 
+/*
 void TextRendererComponent::Start()
 {
 	SetRenderPriority(-1);
-}
+}*/
 
 void TextRendererComponent::SetText(std::string newText)
 {

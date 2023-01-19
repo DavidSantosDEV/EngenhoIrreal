@@ -17,7 +17,7 @@ public:
 
 	virtual void Render() override;
 
-	virtual void Start() override;
+	//virtual void Start() override;
 
 	void SetText(std::string newText);
 	void SetScale(float textScale) { m_TextScale = textScale; }

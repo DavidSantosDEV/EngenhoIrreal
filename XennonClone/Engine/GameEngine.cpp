@@ -20,8 +20,6 @@
 #include "InstanceCounter.h"
 #include "MathHelper.h"
 #include "TextureManager.h"
-#include "AudioSystem.h"
-#include "SDL_audio.h"
 #include <iostream>
 #include <glad/glad.h>
 #include <glm.hpp>
@@ -30,7 +28,7 @@
 #include "Shader.h"
 #include "Renderer.h"
 #include "OpenGLWrapper.h"
-#include "Sprite.h"
+#include "RenderComponent.h"
 #include "FontLoader.h"
 
 float triangleArea(Vector2D A, Vector2D B, Vector2D C);
@@ -137,7 +135,6 @@ void GameEngine::StartAndRun()
 		//LOG("Elapsed : " << m_ElapsedMS);
 		mTicksCount = SDL_GetTicks();
 	}
-	m_audioSystem->Clean();
 
 	/*End game cleaning (memory leaks check) */
 	InstanceCounter::PrintCounts();

@@ -6,7 +6,8 @@ public:
 	RenderComponent();
 	RenderComponent(int renderPriority);
 	~RenderComponent();
-	virtual void Render() {};
+
+	virtual void Render() = 0;
 
 	int GetRenderPriority() const { return m_RenderPriority; }
 	void SetRenderPriority(int renderPriority);

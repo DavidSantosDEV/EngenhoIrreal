@@ -31,6 +31,10 @@ void PlayerUI::SetCurrentScore(int Score)
 	m_ScoreText->SetText(GetNumberFormated(Score));
 }
 
+void PlayerUI::SetPlayerHealthBar(int current, int max)
+{
+}
+
 void PlayerUI::SetHighScore(int Score)
 {
 	m_HighScoreText->SetText("High Score: " + GetNumberFormated(Score));
