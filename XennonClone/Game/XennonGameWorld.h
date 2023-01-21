@@ -29,7 +29,7 @@ protected:
 
 	void RespawnPlayer();
 	void OnPlayerDie();
-	void OnPlayerTakeDamage(int dmg);
+	void OnHealthChanged(int dmg);
 public:
 	void AddScore(unsigned int value);
 	void ClearCurrent();

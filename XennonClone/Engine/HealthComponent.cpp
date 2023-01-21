@@ -40,6 +40,7 @@ void HealthComponent::DealDamage(HealthComponent* otherHealthComponent, int amou
 void HealthComponent::Heal(int ammount)
 {
 	m_CurrentHealth = MathHelper::ClampInt(m_CurrentHealth + ammount, 0, m_MaxHealth);
+	OnHeal.Broadcast(ammount);
 }
 
 void HealthComponent::Revive()

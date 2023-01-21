@@ -9,6 +9,7 @@ public:
 	Delegate<int> OnAnyDamageTaken;
 	Delegate<> OnRevive;
 	Delegate<> OnDie;
+	Delegate<int> OnHeal;
 
 	HealthComponent(int maxHealth) : m_MaxHealth{ maxHealth }, m_CurrentHealth{maxHealth} {};
 

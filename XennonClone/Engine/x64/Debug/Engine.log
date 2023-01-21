@@ -1,10 +1,18 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (Engine.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  HealthComponent.cpp
+D:\Development\EngenhoIrreal\XennonClone\Engine\rlutil.h(577,32): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+D:\Development\EngenhoIrreal\XennonClone\Engine\MathHelper.h(71,56): warning C4114: same type qualifier used more than once
+D:\Development\EngenhoIrreal\XennonClone\Engine\MathHelper.h(66,18): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\Development\EngenhoIrreal\XennonClone\Engine\MathHelper.h(67,18): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\Development\EngenhoIrreal\XennonClone\Engine\MathHelper.h(68,54): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+D:\Development\EngenhoIrreal\XennonClone\Engine\Transform.h(75,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   TextRendererComponent.cpp
 D:\Development\EngenhoIrreal\XennonClone\Engine\Transform.h(75,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
 D:\Development\EngenhoIrreal\XennonClone\Engine\TextRendererComponent.cpp(43,31): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
 D:\Development\EngenhoIrreal\XennonClone\Engine\TextRendererComponent.cpp(44,32): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
 D:\Development\EngenhoIrreal\XennonClone\Engine\TextRendererComponent.cpp(53,145): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 D:\Development\EngenhoIrreal\XennonClone\Engine\TextRendererComponent.cpp(53,114): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Generating Code...
 SDL2_image.lib(SDL2_image.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in SDL2.lib(SDL2.dll); second definition ignored
 SDL2_mixer.lib(SDL2_mixer.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in SDL2.lib(SDL2.dll); second definition ignored
   Engine.vcxproj -> D:\Development\EngenhoIrreal\XennonClone\x64\Debug\EngenhoIrrealXVII.lib

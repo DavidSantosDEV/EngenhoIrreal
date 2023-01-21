@@ -41,7 +41,8 @@ void XennonGameWorld::Start()
 	m_player->GetComponent<PhysicsComponent>()->SetPosition(m_PlayerStartPos);
 	HealthComponent* playerH = m_player->GetComponent<HealthComponent>();
 	playerH->OnDie.Add(this, &XennonGameWorld::OnPlayerDie);
-	playerH->OnAnyDamageTaken.Add(this, &XennonGameWorld::OnPlayerTakeDamage);
+	playerH->OnAnyDamageTaken.Add(this, &XennonGameWorld::OnHealthChanged);
+	playerH->OnHeal.Add(this, &XennonGameWorld::OnHealthChanged);
 
 	DronePack* d = InstantiateObject<DronePack>();
 	d->_Transform.SetPosition(Vector2D(300, -300));
@@ -85,7 +86,7 @@ void XennonGameWorld::OnPlayerDie()
 	//TimerManager::CreateTimer(this, &XennonGameWorld::RespawnPlayer, 5, false, true);
 }
 
-void XennonGameWorld::OnPlayerTakeDamage(int dmg)
+void XennonGameWorld::OnHealthChanged(int dmg)
 {
 	HealthComponent* h = m_player->GetComponent<HealthComponent>();
 

@@ -30,12 +30,8 @@ void TextRendererComponent::Render()
 {
 	Vector2D posWorld = m_TextPosition;
 	for (int i = 0; i < m_textCoords.size();++i) {
-		//Find sprite for char
-
-		//Vector2D IndexPos = m_Font->GetPositionIndexForChar(c);
 
 		SDL_Rect SourceRect;
-		//SDL_Rect DestRect;
 
 		int m_FrameWidth = m_Font->GetData()->SheetWidth / m_Font->GetColumns();
 		int m_FrameHeight = m_Font->GetData()->SheetHeight / m_Font->GetRows();
@@ -46,9 +42,6 @@ void TextRendererComponent::Render()
 
 		SourceRect.w = m_FrameWidth;
 		SourceRect.h = m_FrameHeight;
-
-		//DestRect.w = m_FrameWidth * m_TextScale;
-		//DestRect.h = m_FrameHeight * m_TextScale;
 
 		Renderer::DrawQuad(posWorld, m_TextScale, m_Font->GetData()->TextureID, &SourceRect, Vector2D(m_Font->GetData()->SheetWidth, m_Font->GetData()->SheetHeight));
 		posWorld = Vector2D(posWorld.x + m_FrameWidth, posWorld.y);
