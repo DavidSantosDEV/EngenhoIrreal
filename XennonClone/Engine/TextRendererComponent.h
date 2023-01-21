@@ -14,6 +14,9 @@ protected:
 	std::vector<Vector2D> m_textCoords;
 public:	
 	TextRendererComponent(std::string TextToRender, float scale, Vector2D pos, std::string font);
+	~TextRendererComponent();
+
+	virtual void OnDestroyed() override;
 
 	virtual void Render() override;
 

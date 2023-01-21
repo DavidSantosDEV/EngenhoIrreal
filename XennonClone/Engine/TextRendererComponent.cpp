@@ -16,6 +16,16 @@ TextRendererComponent::TextRendererComponent(std::string TextToRender, float sca
 	GameEngine::AddRenderComponentToStack(this);
 }
 
+TextRendererComponent::~TextRendererComponent()
+{
+	GameEngine::RemoveRenderComponentFromStack(this);
+}
+
+void TextRendererComponent::OnDestroyed()
+{
+	GameEngine::RemoveRenderComponentFromStack(this);
+}
+
 void TextRendererComponent::Render()
 {
 	Vector2D posWorld = m_TextPosition;

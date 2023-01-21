@@ -4,6 +4,7 @@
 #include "HealthComponent.h"
 #include "Sprite.h"
 #include "AnimationComponent.h"
+#include "TextPopup.h"
 //#include "GameWorld.h"
 #include "EnemyManager.h"
 #include "Explosion.h"
@@ -45,7 +46,10 @@ void Enemy::OnZeroHealth()
 
 	XennonGameWorld* world = dynamic_cast<XennonGameWorld*>(GameWorld::GetWorld());
 	if (world) {
-		world->AddScore(20);
+
+		world->AddScore(score);
+		//std::string text, float time, Vector2D pos
+		GameWorld::InstantiateObject<TextPopup>(std::to_string(score),2.f,_Transform.GetPosition());
 	}
 
 	GameWorld::DestroyObject(this);

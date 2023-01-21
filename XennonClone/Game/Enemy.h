@@ -34,6 +34,8 @@ class Enemy : public GameObject
 {
 protected:
 
+	int score = 20;
+
 	/* Called in child classes to setup a generic enemy */
 	void Setup();
 

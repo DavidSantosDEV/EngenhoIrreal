@@ -178,6 +178,7 @@
     <ClCompile Include="StaticBackground.cpp" />
     <ClCompile Include="RocksBackground.cpp" />
     <ClCompile Include="StoneAsteroid.cpp" />
+    <ClCompile Include="TextPopup.cpp" />
     <ClCompile Include="WeaponPowerPickup.cpp" />
     <ClCompile Include="XennonGameWorld.cpp" />
     <ClCompile Include="XennonClone.cpp" />
@@ -208,6 +209,7 @@
     <ClInclude Include="StaticBackground.h" />
     <ClInclude Include="RocksBackground.h" />
     <ClInclude Include="StoneAsteroid.h" />
+    <ClInclude Include="TextPopup.h" />
     <ClInclude Include="WeaponPowerPickup.h" />
     <ClInclude Include="XennonGameWorld.h" />
   </ItemGroup>
