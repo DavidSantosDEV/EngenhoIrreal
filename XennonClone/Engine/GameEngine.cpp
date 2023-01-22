@@ -137,9 +137,9 @@ void GameEngine::StartAndRun()
 	}
 
 	/*End game cleaning (memory leaks check) */
-	InstanceCounter::PrintCounts();
+	//InstanceCounter::PrintCounts();
 	DestroyAll();
-	InstanceCounter::PrintCounts();
+	//InstanceCounter::PrintCounts();
 
 	SDL_GL_DeleteContext(context);
 	SDL_DestroyWindow(m_Window->GetWindow());
@@ -157,7 +157,6 @@ void GameEngine::DestroyPending()
 		for (auto obj : m_PendingDestroy) {
 			std::vector<std::shared_ptr<Component>> comps = obj->GetAllComponents();
 			for (int i = 0; i < comps.size();++i) {
-				//comps[i]->OnDestroyed();
 				if (comps[i]) {
 					comps[i]->OnDestroyed();
 				}
@@ -182,12 +181,11 @@ void GameEngine::DestroyAll()
 		std::vector<std::shared_ptr<Component>> comps = obj->GetAllComponents();
 		for (int i = 0; i < comps.size(); ++i) {
 			if (comps[i]) {
-				//comps[i]->OnDestroyed();
+				InstanceCounter::RemoveComponentCount(comps[i].get());
+				//InstanceCounter::PrintCounts();
 			}
-			InstanceCounter::RemoveComponentCount(comps[i].get());
-			InstanceCounter::PrintCounts();
+
 		}
-		//obj->OnDestroyed();
 		RemoveGameObjectFromStack(obj);
 	}
 	m_GameObjectStack.clear();
