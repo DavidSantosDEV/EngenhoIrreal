@@ -98,7 +98,7 @@ void Player::UpgradeShields(int amountToHeal)
 void Player::UpgradeWeaponPower()
 {
 	LOG_WARNING("Player WeaponPower Upgraded");
-	m_WeaponLevel = MathHelper::ClampInt(m_WeaponLevel + 1, 1, 2);
+	m_WeaponLevel = MathHelper::ClampInt(m_WeaponLevel + 1, 1, 3);
 }
 
 void Player::AddCompanion()

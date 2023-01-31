@@ -25,7 +25,6 @@ public:
 	Delegate<GameObject*> OnCollisionExit;
 	Delegate<GameObject*> OnTriggerEnter;
 	Delegate<GameObject*> OnTriggerExit;
-
 	CollisionComponent(){};
 
 	CollisionComponent(PhysicsComponent* physical);
