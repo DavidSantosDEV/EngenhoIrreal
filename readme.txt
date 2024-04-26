@@ -1,3 +1,5 @@
+Academic Simple 2D Game project
+
 How to compile de project:
 
 1. Open XennonClone.sln with Visual Studio
